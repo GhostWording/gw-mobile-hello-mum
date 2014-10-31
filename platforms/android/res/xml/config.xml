@@ -8,17 +8,17 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <name>gw-mobile-hello-mum</name>
+    <name>Hello Mum</name>
     <description>
-        An Ionic Framework and Cordova project.
-    </description>
+    GhostWording Hello Mum Mobile App
+  </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    GhostWording Ltd
+  </author>
     <content src="index.html" />
     <access origin="*" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="UIWebViewBounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="UIWebViewBounce" value="true" />
+    <preference name="DisallowOverscroll" value="false" />
     <preference name="BackupWebStorage" value="none" />
 </widget>
