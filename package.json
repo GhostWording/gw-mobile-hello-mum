@@ -1,10 +1,10 @@
 {
-  "name": "gw-mobile-proto",
-  "version": "0.4.0",
-  "description": "Ghostwording mobile prototype",
+  "name": "gw-mobile-hello-mum",
+  "version": "0.1.0",
+  "description": "Ghostwording Hello Mum Mobile Application",
   "repository": {
     "type": "git",
-    "url": "git@github.com:GhostWording/gw-mobile-proto.git"
+    "url": "git@github.com:GhostWording/gw-mobile-hello-mum.git"
   },
   "dependencies": {},
   "devDependencies": {
