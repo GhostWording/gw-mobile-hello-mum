@@ -22,6 +22,7 @@
       $scope.texts = null;
       // Get intentions for area
       intentionsSvc.getIntentionsForArea($scope.area.Name).then(function(intentions) {
+        console.log(intentions);
         $scope.intentions = intentions;
       });
     };
@@ -35,22 +36,38 @@
       intentionsSvc.setIntentionSlug($scope.intention.Slug); 
       // Clear texts
       $scope.texts = null;
+      // Reset genders
+      $scope.gender = 'any';
+      $scope.recipientGender = 'any';
       // Fetch texts
       textsSvc.getCurrentTextList('en-EN').then(function(texts) {
         $scope.texts = texts;
+        $scope.filteredTexts = texts;
       }); 
     };
     // Filtering
-    var user = {};
     function filterTexts() {
-      filteredTextListSvc.setFilteredAndOrderedList($scope.texts, user, filtersSvc.filters.preferredStyles);
+      var filters = filtersSvc.filters; 
+      var user = {};
+      switch($scope.gender) {
+        case 'any': user.gender = 'I'; break;
+        case 'male': user.gender = 'N'; break;
+        case 'female': user.gender = 'F'; break;
+      }
+      switch($scope.recipientGender) {
+        case 'any': filters.recipientGender = 'I'; break;
+        case 'male': filters.recipientGender = 'N'; break;
+        case 'female': filters.recipientGender = 'F'; break;
+      }
+      filteredTextListSvc.setFilteredAndOrderedList($scope.texts, user, filters.preferredStyles);
       $scope.filteredTexts = filteredTextListSvc.getFilteredTextList();
     }
     // Gender selected
     $scope.genderSelected = function() {
-      if($scope.gender == 'male') user.gender = 'I';
-      if($scope.gender == 'female') user.gender = 'F';
-      console.log(user);
+      filterTexts();
+    };
+    // Recipient Gender selected
+    $scope.recipientGenderSelected = function() {
       filterTexts();
     };
     // Texts Ready

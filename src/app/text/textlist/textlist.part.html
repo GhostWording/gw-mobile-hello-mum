@@ -10,18 +10,16 @@
     </label>
     <label class="item item-input item-select filter" ng-show="textsReady()">
       <div class="input-label dark">gender</div>
-      <select ng-model="gender" ng-options="gender for gender in ['male','female']" ng-change="genderSelected()"></select>
+      <select ng-model="gender" ng-options="gender for gender in ['any', 'male','female']" ng-change="genderSelected()"></select>
     </label>
     <label class="item item-input item-select filter" ng-show="textsReady()">
       <div class="input-label dark">recipient gender</div>
-      <select ng-model="recipientGender" ng-options="gender for gender in ['male','female']" ng-change="recipentGenderSelected()"></select>
+      <select ng-model="recipientGender" ng-options="gender for gender in ['any', 'male','female']" ng-change="recipientGenderSelected()"></select>
     </label>
   </div>
-  <p>{{texts.length}}</p>
-  <ion-list has-bouncing="true">
-    <ion-item ng-repeat="text in texts" class="item-text-wrap">
+  <div class="textList">
+    <div class="textListItem" ng-repeat="text in filteredTexts">
       {{text.Content}}
-      <ion-option-button class="button-energized" ng-click="share(item)">Send</ion-option-button>
-    </ion-item>
-  </ion-list>
+    </div>
+  </div>
 </div>
