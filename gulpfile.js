@@ -42,6 +42,13 @@ var getCSSGlobs = function() {
   ];
 };
 
+var getFontGlobs = function() {
+  return [
+    'src/lib/ionic/fonts/**/ionicons.ttf',
+    'src/lib/ionic/fonts/**/ionicons.woff'
+  ];
+};
+
 var partialGlobs = [
   'src/app/**/*.part.html'
 ];
@@ -119,11 +126,23 @@ gulp.task('process:styles', function() {
   return gulp.src(getCSSGlobs(), {base:'src'})
     .pipe(gIf(!debug, concat('app.css')))
     .pipe(gIf(!debug, minifyCSS({keepSpecialComments: 0})))
+		.pipe(gIf(!debug, replace('../fonts', 'fonts')))
     .pipe(gulp.dest('www'));
 });
 
+gulp.task('process:fonts', function() {
+  if(debug) {
+    var options = {base:'src'};
+    var dest = 'www';
+  } else {
+    var dest = 'www/fonts';
+  }
+  return gulp.src(getFontGlobs(), options)
+    .pipe(gulp.dest(dest));
+});
+
 gulp.task('build', function(done) {
-  runSequence('clean', ['process:javascript', 'process:styles'], 'process:index', done);
+  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts'], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {
