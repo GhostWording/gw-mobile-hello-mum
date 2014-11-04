@@ -41,6 +41,8 @@
 		07DC8B17A5B3462EAA7B0D4B /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CBF2519DDD44BFAF1C2CAB /* UIWebViewExtension.m */; };
 		A9E7757CE2FD4AEF946A1B91 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1710F4BDE4E3181BA0CBF /* CDVLogger.m */; };
 		04B3C5DBB9E74EE6A3CA5965 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */; };
+		05606D6323484EB3BFE36D0C /* Sms.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90203B691495BA78908EB /* Sms.m */; };
+		CA1D8C8E91F94096932777D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18963A42376D467A8485B4EE /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,9 @@
 		51264CCB15F14879BBFE4AA7 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		8F66E62549B6443C8A724320 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		3FD90203B691495BA78908EB /* Sms.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Sms.m"; path = "org.apache.cordova.plugin.sms/Sms.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A2A5748EC5484E2482631EE5 /* Sms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Sms.h"; path = "org.apache.cordova.plugin.sms/Sms.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		18963A42376D467A8485B4EE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +128,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				CA1D8C8E91F94096932777D5 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +221,7 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				18963A42376D467A8485B4EE /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +245,8 @@
 				51264CCB15F14879BBFE4AA7 /* CDVLogger.h */,
 				54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */,
 				8F66E62549B6443C8A724320 /* CDVDevice.h */,
+				3FD90203B691495BA78908EB /* Sms.m */,
+				A2A5748EC5484E2482631EE5 /* Sms.h */,
 			);
 			name = Plugins;
 			path = "gw-mobile-hello-mum/Plugins";
@@ -436,6 +445,7 @@
 				07DC8B17A5B3462EAA7B0D4B /* UIWebViewExtension.m in Sources */,
 				A9E7757CE2FD4AEF946A1B91 /* CDVLogger.m in Sources */,
 				04B3C5DBB9E74EE6A3CA5965 /* CDVDevice.m in Sources */,
+				05606D6323484EB3BFE36D0C /* Sms.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

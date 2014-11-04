@@ -3,7 +3,7 @@
   "use strict";
 
   angular.module('app/textlist').controller('TextListCtrl', 
-    function($scope, $window, $cordovaPreferences, config, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    function($scope, $window, $cordovaSms, $cordovaPreferences, config, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
     // set area
     areasSvc.setCurrentName(config.area);
     // Set current intention
@@ -18,12 +18,16 @@
       return $scope.texts && $scope.texts.length > 0;
     };
     // User selects a text
-    $scope.textTouched = function(text) {
-      $scope.currentText = text;
+    $scope.selectText = function(text) {
+      $scope.selectedText = text;
+    };
+    // Deselect currently selected text
+    $scope.deselectText = function() {
+      $scope.selectedText = null;
     };
     // Returns true if the passed text is the currently selected text
-    $scope.isCurrent = function(text) {
-      return text == $scope.currentText; 
+    $scope.textSelected = function(text) {
+      return (text == $scope.selectedText); 
     };
     $scope.sendViaEmail = function(text) {
       // TODO: get $cordovaPreferences to work
@@ -31,11 +35,15 @@
     };
     $scope.sendViaSMS = function(text) {
       // TODO: get $cordovaPreferences to work
-      alert('send "' + text.Content + '" via SMS to number ' + $window.tempMobile);
+      // Send SMS
+      if($window.tempMobile && $window.tempMobile !== '') {
+        $cordovaSms.send($window.tempMobile, text.Content, '');
+      }
+      // Deselect text
+      $scope.deselectText();
     };
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
   });
-
 }());
