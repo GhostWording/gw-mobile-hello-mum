@@ -28,6 +28,7 @@ var getJSGlobs = function() {
     'src/lib/ionic/js/ionic.bundle' + (debug?'':'.min') + '.js',
     'src/lib/angular-translate/angular-translate' + (debug?'':'.min') + '.js',
     'src/lib/angular-cookies/angular-cookies' + (debug?'':'.min') + '.js',
+    'src/lib/ngCordova/dist/ng-cordova' + (debug?'':'.min') + '.js',
     'src/lib/gw-common/**/*.js',
     '!src/lib/gw-common/**/*.spec.js',
     'src/app/**/*.mod.js',
