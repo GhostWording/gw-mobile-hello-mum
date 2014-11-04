@@ -2,12 +2,16 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, config) {
-    $scope.mobileBlur = function() {
-      alert($scope.mobile);
+  angular.module('app/home').controller('HomeCtrl', function($scope, $cordovaPreferences, config, $window) {
+    $scope.mobileChange = function() {
+      // TODO: get $cordovaPreferences to work
+      //$cordovaPreferences.set('mobile', $scope.mobile);
+      $window.tempMobile = $scope.mobile;
     };
-    $scope.emailBlur = function() {
-      alert($scope.email);
+    $scope.emailChange = function() {
+      // TODO: get $cordovaPreferences to work
+      //$cordovaPreferences.set('email', $scope.email);
+      $window.tempEmail = $scope.email;
     };
   });
 

@@ -4,6 +4,7 @@
 
   angular.module('app/home', [
     'ionic',
+    'ngCordova.plugins.prefs',
     'app/config'
   ]);
 
