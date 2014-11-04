@@ -1,6 +1,4 @@
 .intentionList {
-  margin-left: 10px;
-  margin-right: 10px;
   margin-top: 50px;
 }
 .intentionList a {
@@ -8,10 +6,9 @@
   color: black;
 } 
 .intentionListItem {
+  color: #333333; 
   margin-bottom: 5px;
-  padding: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #aaaaaa;
-  border-radius: 8px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
 }
