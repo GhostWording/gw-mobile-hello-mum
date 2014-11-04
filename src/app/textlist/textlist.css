@@ -1,6 +1,4 @@
 .textList {
-  margin-left: 10px;
-  margin-right: 10px;
   margin-top: 50px;
 }
 .textList a {
@@ -8,20 +6,17 @@
   color: black;
 } 
 .textListItem {
-  color: #222222; 
+  color: #333333; 
   margin-bottom: 5px;
   padding: 20px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #cccccc;
-  border-radius: 8px;
+  background-color: #fff0ff;
 }
 .textListItemExpanded {
-  padding-top: 30px;
-  background-color: #fff9ff;
+  color: #222222; 
+  margin-bottom: 0px;
+  background-color: #ffe0ff;
 }
 .textListButtonBar {
-  margin-top: 25px;
 }
 .textListItemButton {
   border: none;
@@ -29,14 +24,12 @@
 }
 .textListItemButtonSendViaEmail {
   background-color: #16a085; 
-  margin-right: 5px;
 }
 .textListItemButtonSendViaSMS {
   background-color: #e67e22;
 }
 .textListItemButtonSendViaFacebook {
   background-color: #c0392b;
-  margin-left: 5px;
 }
 
  
