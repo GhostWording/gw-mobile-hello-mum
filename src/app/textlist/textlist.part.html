@@ -1,0 +1,10 @@
+<div class="textList" ng-controller="TextListCtrl">
+  <div ng-class="{textListItem:true, textListItemExpanded:isCurrent(text)}" ng-repeat="text in filteredTexts" ng-click="textTouched(text)">
+    {{text.Content}}
+    <div class="button-bar textListButtonBar" ng-if="isCurrent(text)">
+      <a class="button textListItemButton textListItemButtonSendViaEmail" ng-click="sendViaEmail(text)"><span class="icon ion-email"></span></a>
+      <a class="button textListItemButton textListItemButtonSendViaSMS" ng-click="sendViaSMS(text)"><span class="icon ion-ios7-chatboxes"></span></a>
+      <a class="button textListItemButton textListItemButtonSendViaFacebook" ng-click="sendViaFacebook(text)"><span class="icon ion-social-facebook"></span></a>
+    </div>
+  </div>
+</div>
