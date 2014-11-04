@@ -5,8 +5,8 @@
   angular.module('app/config').factory('config', function() {
     return {
       'apiUrl': 'http://api.cvd.io/',
-      'area' : 'General', 
-      'intentionSlug': 'je-t-aime'
+      'area' : 'Mother', 
+      'intentionSlug': 'happy-birthday'
     };
   });
 
