@@ -5,7 +5,7 @@
   angular.module('app', [
     'ionic',
     'app/config',
-    'app/text'
+    'app/textlist'
   ]);
 
 }());
