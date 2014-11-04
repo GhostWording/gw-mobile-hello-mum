@@ -5,8 +5,9 @@
   angular.module('app', [
     'ionic',
     'app/config',
+    'app/home',
     'app/textlist',
-    'app/home'
+    'app/intentions',
   ]);
 
 }());
