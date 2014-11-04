@@ -1,15 +1,15 @@
-<div>
+<div ng-controller="HomeCtrl">
   <br>
   <p>temporary..</p>
   <br><br>
   <div class="list">
     <label class="item item-input">
       <span class="input-label">Mums Mobile No</span>
-      <input type="tel">
+      <input type="tel" ng-model="mobile" ng-blur="mobileBlur()">
     </label>
     <label class="item item-input">
       <span class="input-label">Mums Email Address</span>
-      <input type="email">
+      <input type="email" ng-model="email" ng-blur="emailBlur()">
     </label>
   </div>
   <a href="#/intentions">
