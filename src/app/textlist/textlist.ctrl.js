@@ -3,7 +3,6 @@
   "use strict";
 
   angular.module('app/textlist').controller('TextListCtrl', function($scope, config, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
-    localStorage.clear();
     // set area
     areasSvc.setCurrentName(config.area);
     // Set current intention
