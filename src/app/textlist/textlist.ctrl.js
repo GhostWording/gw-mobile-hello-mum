@@ -3,11 +3,11 @@
   "use strict";
 
   angular.module('app/textlist').controller('TextListCtrl', 
-    function($scope, $window, $cordovaSms, $cordovaPreferences, config, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    function($scope, $window, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
     // set area
     areasSvc.setCurrentName(config.area);
     // Set current intention
-    intentionsSvc.setIntentionSlug(config.intentionSlug); 
+    intentionsSvc.setIntentionSlug(currentIntention); 
     // Fetch texts
     textsSvc.getCurrentTextList('en-EN').then(function(texts) {
       $scope.texts = texts;

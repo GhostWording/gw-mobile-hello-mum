@@ -1,4 +1,4 @@
-<div class="textList" ng-controller="TextListCtrl">
+<div class="textList">
   <div ng-repeat="text in filteredTexts">
     <div ng-class="{textListItem:true, textListItemExpanded:textSelected(text)}" ng-click="selectText(text)">
       {{text.Content}}

@@ -15,8 +15,14 @@
           templateUrl: 'app/intentions/intentions.part.html'
         })
         .state('texts', {
-          url: '/texts',
-          templateUrl: 'app/textlist/textlist.part.html'
+          url: '/texts/:intentionSlug',
+          templateUrl: 'app/textlist/textlist.part.html',
+          controller: 'TextListCtrl',
+          resolve: {
+            currentIntention: function($stateParams) {
+              return $stateParams.intentionSlug;
+            }
+          }
         });
   })
   .run(function($ionicPlatform) {
