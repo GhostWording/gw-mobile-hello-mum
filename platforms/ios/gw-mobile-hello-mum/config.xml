@@ -44,4 +44,7 @@
     <feature name="Sms">
         <param name="ios-package" value="Sms" />
     </feature>
+    <feature name="EmailComposer">
+        <param name="ios-package" value="APPEmailComposer" />
+    </feature>
 </widget>
