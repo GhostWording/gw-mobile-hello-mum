@@ -31,11 +31,13 @@
     };
     $scope.sendViaEmail = function(text) {
       // TODO: get $cordovaPreferences to work
-      cordova.plugins.email.open({
-        to:      $window.tempEmail,
-        subject: 'Hello Mum',
-        body:    text.Content 
-      });
+      if($window.tempEmail && $window.tempEmail !== '') {
+        cordova.plugins.email.open({
+          to:      $window.tempEmail,
+          subject: 'Hello Mum',
+          body:    text.Content 
+        });
+      }
     };
     $scope.sendViaSMS = function(text) {
       // TODO: get $cordovaPreferences to work
