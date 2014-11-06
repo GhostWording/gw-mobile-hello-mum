@@ -12,23 +12,12 @@
     textsSvc.getCurrentTextList('en-EN').then(function(texts) {
       $scope.texts = texts;
       $scope.filteredTexts = texts;
+      // Set current text to first
+      // TODO: for now.. we need a text suggestion mechanism to randomise the suggestion
+      $scope.currentText = $scope.texts[0];
     }); 
-    // Texts Ready
-    $scope.textsReady = function() {
-      return $scope.texts && $scope.texts.length > 0;
-    };
-    // User selects a text
-    $scope.selectText = function(text) {
-      $scope.selectedText = text;
-    };
-    // Deselect currently selected text
-    $scope.deselectText = function() {
-      $scope.selectedText = null;
-    };
-    // Returns true if the passed text is the currently selected text
-    $scope.textSelected = function(text) {
-      return (text == $scope.selectedText); 
-    };
+    // Send text via email
+    // TODO: move to service
     $scope.sendViaEmail = function(text) {
       // TODO: get $cordovaPreferences to work
       if($window.tempEmail && $window.tempEmail !== '') {
@@ -39,6 +28,8 @@
         });
       }
     };
+    // Send text via SMS
+    // TODO: move to service
     $scope.sendViaSMS = function(text) {
       // TODO: get $cordovaPreferences to work
       // Send SMS
@@ -48,8 +39,11 @@
       // Deselect text
       $scope.deselectText();
     };
+    // Send text via Facebook
+    // TODO: move to service
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
   });
+
 }());

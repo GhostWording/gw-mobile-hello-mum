@@ -1,7 +1,12 @@
-.textList {
+.textSelect {
   margin-top: 5px;
 }
-.textList a {
+.textSelectContent {
+  margin-top: 10px;
+  margin-bottom: 10px; 
+}
+/*
+.textSelect a {
   text-decoration: none; 
   color: black;
 } 
@@ -16,20 +21,21 @@
   margin-bottom: 0px;
   background-color: #fce5fc;
 }
-.textListButtonBar {
+*/
+.sendBar {
   margin-bottom: 10px;
 }
-.textListItemButton {
+.sendBarButton {
   border: none;
   color: white !important;
 }
-.textListItemButtonSendViaEmail {
+.sendBarButtonSendViaEmail {
   background-color: #16a085; 
 }
-.textListItemButtonSendViaSMS {
+.sendBarButtonSendViaSMS {
   background-color: #e67e22;
 }
-.textListItemButtonSendViaFacebook {
+.sendBarButtonSendViaFacebook {
   background-color: #c0392b;
 }
 
