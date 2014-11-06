@@ -16,8 +16,8 @@
         })
         .state('texts', {
           url: '/texts/:intentionSlug',
-          templateUrl: 'app/textlist/textlist.part.html',
-          controller: 'TextListCtrl',
+          templateUrl: 'app/textselect/textselect.part.html',
+          controller: 'TextSelectCtrl',
           resolve: {
             currentIntention: function($stateParams) {
               return $stateParams.intentionSlug;

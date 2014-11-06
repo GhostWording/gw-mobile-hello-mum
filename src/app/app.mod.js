@@ -6,7 +6,7 @@
     'ionic',
     'app/config',
     'app/home',
-    'app/textlist',
+    'app/textselect',
     'app/intentions',
   ]);
 
