@@ -1,0 +1,18 @@
+<div class="textList">
+  <div ng-repeat="text in filteredTexts">
+    <div ng-class="{textListItem:true, textListItemExpanded:textSelected(text)}" ng-click="selectText(text)">
+      {{text.Content}}
+    </div>
+    <div class="button-bar textListButtonBar" ng-if="textSelected(text)">
+      <button class="button textListItemButton textListItemButtonSendViaEmail" ng-click="sendViaEmail(text)">
+        <span class="icon ion-email"></span>
+      </button>
+      <button class="button textListItemButton textListItemButtonSendViaSMS" ng-click="sendViaSMS(text)">
+        <span class="icon ion-ios7-chatboxes"></span>
+      </button>
+      <button class="button textListItemButton textListItemButtonSendViaFacebook" ng-click="sendViaFacebook(text)">
+        <span class="icon ion-social-facebook"></span>
+      </button>
+    </div>
+  </div>
+</div>
