@@ -1,10 +1,9 @@
 <div class="textSelect">
   <div class="textSelectImageSlider">
     <ion-slide-box show-pager="false">
-      <ion-slide ng-repeat="imageNo in [1,2,3,4,5]">
-        <div class="textSelectImage">
-          <!--<img src="http://lorempixel.com/200/300/animals/?{{imageNo}}"/>-->
-          <img src="http://placekitten.com/g/300/300"/>
+      <ion-slide ng-repeat="imageUrl in imageUrls">
+        <div class="textSelectImage" style="background-image:url('{{imageUrl}}')">
+         <!-- <img ng-src="{{imageUrl}}"/>-->
         </div>
       </ion-slide>
     </ion-slide-box>

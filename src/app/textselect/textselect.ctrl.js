@@ -4,6 +4,9 @@
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
     function($scope, $window, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    // Temporary kitten image url's
+    $scope.imageUrls = config.imageUrls;
+    console.log($scope.imageUrls);
     // set area
     areasSvc.setCurrentName(config.area);
     // Set current intention
@@ -12,6 +15,7 @@
     textsSvc.getCurrentTextList('en-EN').then(function(texts) {
       $scope.texts = texts;
       $scope.filteredTexts = texts;
+      console.log($scope.filteredTexts);
       // Set current text to first
       // TODO: for now.. we need a text suggestion mechanism to randomise the suggestion
       $scope.currentText = $scope.texts[0];

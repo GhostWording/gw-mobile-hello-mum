@@ -1,17 +1,30 @@
 .textSelect {
   margin-top: 5px;
+  height: 100%;
 }
 .textSelectImageSlider {
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 50%;
+}
+.textSelectImageSlider .slider {
+  height: 100%;
 }
 .textSelectImage {
-  
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed fixed; 
 }
+/*
 .textSelectImage img {
   width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   background-repeat: no-repeat 
   background-position: center center; 
   -webkit-background-size: cover;
@@ -19,15 +32,16 @@
   -o-background-size: cover;
   background-size: cover;
 }
+*/
 .textSelectContentSlider {
+  margin-top: 10px;
   margin-bottom: 10px; 
 }
 .textSelectContent {
   color: black; 
   background-color: white;
   padding: 20px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   margin-left: 10px;
   margin-right: 10px;
 } 
