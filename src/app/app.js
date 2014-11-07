@@ -6,6 +6,7 @@
     .config(function($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
       $stateProvider
+        /*
         .state('home', {
           url: '/',
           templateUrl: 'app/home/home.part.html'
@@ -14,15 +15,15 @@
           url: '/intentions',
           templateUrl: 'app/intentions/intentions.part.html'
         })
+        */
         .state('texts', {
-          url: '/texts/:intentionSlug',
+          url: '/',
           templateUrl: 'app/textselect/textselect.part.html',
           controller: 'TextSelectCtrl',
           resolve: {
             currentIntention: function($stateParams) {
               // TODO: remove this
               return 'i-think-of-you';
-              //return $stateParams.intentionSlug;
             }
           }
         });
