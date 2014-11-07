@@ -10,7 +10,7 @@
   <!-- text slider -->
   <div class="textSelectContentSlider">
     <ion-slide-box show-pager="false">
-      <ion-slide ng-repeat="text in filteredTexts">
+      <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
         <div class="textSelectContent">
           {{text.Content}}
         </div>
