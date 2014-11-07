@@ -14,7 +14,8 @@
     // Fetch texts
     textsSvc.getCurrentTextList('en-EN').then(function(texts) {
       $scope.texts = texts;
-      $scope.filteredTexts = texts;
+      // TODO: filtering and implement issue #33
+      $scope.filteredTexts = texts.slice(0, 10);
       console.log($scope.filteredTexts);
       // Set current text to first
       // TODO: for now.. we need a text suggestion mechanism to randomise the suggestion
@@ -48,12 +49,26 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
+    // Change background color on image change
     $scope.$watch('currentImage', function(currentImage) {
       if(currentImage === undefined) currentImage = 0;
       console.log(currentImage);
       console.log(config);
       document.body.style.background = '#' + config.backgroundColours[currentImage];
     });
+  })
+    // Filter out texts over a certain length!
+    // TODO: remove (see issue
+  .filter('temporaryFilterLongTexts', function() {
+    return function(texts) {
+      var filtered = [];
+      angular.forEach(texts, function(text) {
+        if(text.Content.length < 600) {
+          filtered.push(text);
+        }
+      });
+      return filtered;
+    };
   });
 
 }());
