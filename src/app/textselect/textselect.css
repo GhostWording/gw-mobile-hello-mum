@@ -1,6 +1,6 @@
 .textSelect {
   margin-top: 5px;
-  height: 100%;
+  height: 90%;
 }
 .textSelectImageSlider {
   height: 50%;
@@ -21,7 +21,7 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
-  padding-bottom: 30px;
+  margin-bottom: 30px;
   box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
 /*
@@ -40,7 +40,7 @@
   margin-bottom: 10px; 
 }
 .textSelectContent {
-  color: black; 
+  color: rgba(0,0,0,0.7); 
   background-color: rgba(255,255,255,0.8);
   padding: 20px;
   border-radius: 10px;
@@ -66,12 +66,15 @@
 }
 */
 .sendBar {
+  margin-top: 5px;
   margin-bottom: 10px;
+}
+.sendBarButton .ion-loading-c {
+  font-size: 90px;
 }
 .sendBarButton {
   border: none;
-  color: white !important;
-  font-size: 20px;
+  color: rgba(255,255,255,0.5) !important;
 }
 .sendBarButtonSendViaEmail {
   background-color: transparent; /*#16a085;*/
