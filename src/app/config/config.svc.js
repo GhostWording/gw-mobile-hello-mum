@@ -15,7 +15,7 @@
       'backgroundColours': [
         '6b6158',
         'd9d18d',
-        'ffffff',
+        'cccccc',
         '284061'
       ]
     };
