@@ -22,19 +22,7 @@
   background-position: center center;
   background-attachment: fixed fixed; 
   margin-bottom: 30px;
-  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
-/*
-.textSelectImage img {
-  width: 100%;
-  background-repeat: no-repeat 
-  background-position: center center; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-*/
 .textSelectContentSlider {
   margin-top: 5px;
   margin-bottom: 10px; 
