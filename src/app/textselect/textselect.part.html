@@ -1,0 +1,32 @@
+<div class="textSelect">
+  <!-- image slider -->
+  <div class="textSelectImageSlider">
+    <ion-slide-box show-pager="false" active-slide="currentImage">
+      <ion-slide ng-repeat="imageUrl in imageUrls">
+        <div class="textSelectImage" style="background-image:url('{{imageUrl}}')"></div>
+      </ion-slide>
+    </ion-slide-box>
+  </div>
+  <!-- text slider -->
+  <div class="textSelectContentSlider">
+    <ion-slide-box show-pager="false">
+      <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
+        <div class="textSelectContent">
+          {{text.Content}}
+        </div>
+        <!-- send button bar -->
+        <div class="button-bar sendBar">
+          <button class="button sendBarButton sendBarButtonSendViaEmail" ng-click="sendViaEmail(currentText)">
+            <span class="icon ion-email"></span>
+          </button>
+          <button class="button sendBarButton sendBarButtonSendViaSMS" ng-click="sendViaSMS(currentText)">
+            <span class="icon ion-ios7-chatboxes"></span>
+          </button>
+          <button class="button sendBarButton sendBarButtonSendViaFacebook" ng-click="sendViaFacebook(currentText)">
+            <span class="icon ion-social-facebook"></span>
+          </button>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </div>
+</div>
