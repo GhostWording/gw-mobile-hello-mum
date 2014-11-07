@@ -6,18 +6,18 @@
     .config(function($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
       $stateProvider
-        /*
         .state('home', {
           url: '/',
           templateUrl: 'app/home/home.part.html'
         })
+        /*
         .state('intentions', {
           url: '/intentions',
           templateUrl: 'app/intentions/intentions.part.html'
         })
         */
         .state('texts', {
-          url: '/',
+          url: '/texts',
           templateUrl: 'app/textselect/textselect.part.html',
           controller: 'TextSelectCtrl',
           resolve: {
