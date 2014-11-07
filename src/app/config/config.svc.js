@@ -5,7 +5,8 @@
   angular.module('app/config').factory('config', function() {
     return {
       'apiUrl': 'http://api.cvd.io/',
-      'area' : 'HelloMum', 
+      'area': 'HelloMum', 
+      'intentionSlug': 'i-think-of-you', 
       'imageUrls': [
         'http://i.telegraph.co.uk/multimedia/archive/02830/cat_2830677b.jpg',
         'http://images4.fanpop.com/image/photos/16200000/Cute-Little-Kitten-cute-kittens-16288191-1024-768.jpg',

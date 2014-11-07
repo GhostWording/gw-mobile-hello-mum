@@ -20,7 +20,9 @@
           controller: 'TextSelectCtrl',
           resolve: {
             currentIntention: function($stateParams) {
-              return $stateParams.intentionSlug;
+              // TODO: remove this
+              return 'i-think-of-you';
+              //return $stateParams.intentionSlug;
             }
           }
         });
