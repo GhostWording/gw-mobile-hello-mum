@@ -3,7 +3,7 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
-    function($scope, $window, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
     console.log($scope.imageUrls);
@@ -48,6 +48,12 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
+    $scope.$watch('currentImage', function(currentImage) {
+      if(currentImage === undefined) currentImage = 0;
+      console.log(currentImage);
+      console.log(config);
+      document.body.style.background = '#' + config.backgroundColours[currentImage];
+    });
   });
 
 }());

@@ -12,7 +12,7 @@
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
-  border-radius: 10px;
+  border-radius: 30px;
   height: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -21,6 +21,8 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
+  padding-bottom: 30px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
 /*
 .textSelectImage img {
@@ -39,11 +41,12 @@
 }
 .textSelectContent {
   color: black; 
-  background-color: white;
+  background-color: rgba(255,255,255,0.8);
   padding: 20px;
   border-radius: 10px;
   margin-left: 10px;
   margin-right: 10px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 } 
 /*
 .textSelect a {
@@ -63,13 +66,12 @@
 }
 */
 .sendBar {
-  position: absolute;
-  bottom: 0px;
   margin-bottom: 10px;
 }
 .sendBarButton {
   border: none;
   color: white !important;
+  font-size: 20px;
 }
 .sendBarButtonSendViaEmail {
   background-color: transparent; /*#16a085;*/
