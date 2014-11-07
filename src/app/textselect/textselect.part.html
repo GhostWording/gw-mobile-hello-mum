@@ -1,19 +1,20 @@
 <div class="textSelect">
+  <!-- image slider -->
   <div class="textSelectImageSlider">
     <ion-slide-box show-pager="false" active-slide="currentImage">
       <ion-slide ng-repeat="imageUrl in imageUrls">
-        <div class="textSelectImage" style="background-image:url('{{imageUrl}}')">
-         <!-- <img ng-src="{{imageUrl}}"/>-->
-        </div>
+        <div class="textSelectImage" style="background-image:url('{{imageUrl}}')"></div>
       </ion-slide>
     </ion-slide-box>
   </div>
+  <!-- text slider -->
   <div class="textSelectContentSlider">
     <ion-slide-box show-pager="false">
       <ion-slide ng-repeat="text in filteredTexts">
         <div class="textSelectContent">
           {{text.Content}}
         </div>
+        <!-- send button bar -->
         <div class="button-bar sendBar">
           <button class="button sendBarButton sendBarButtonSendViaEmail" ng-click="sendViaEmail(currentText)">
             <span class="icon ion-email"></span>
