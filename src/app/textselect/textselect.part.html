@@ -1,7 +1,22 @@
 <div class="textSelect">
-  <img src="http://placekitten.com/g/200/300"/>
-  <div class="textSelectContent" ng-click="nextText()">
-    {{currentText.Content}}
+  <div class="textSelectImageSlider">
+    <ion-slide-box show-pager="false">
+      <ion-slide ng-repeat="imageNo in [1,2,3,4,5]">
+        <div class="textSelectImage">
+          <!--<img src="http://lorempixel.com/200/300/animals/?{{imageNo}}"/>-->
+          <img src="http://placekitten.com/g/300/300"/>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </div>
+  <div class="textSelectContentSlider">
+    <ion-slide-box show-pager="false">
+      <ion-slide ng-repeat="text in filteredTexts">
+        <div class="textSelectContent">
+          {{text.Content}}
+        </div>
+      </ion-slide>
+    </ion-slide-box>
   </div>
   <div class="button-bar sendBar">
     <button class="button sendBarButton sendBarButtonSendViaEmail" ng-click="sendViaEmail(currentText)">

@@ -1,10 +1,36 @@
 .textSelect {
   margin-top: 5px;
 }
-.textSelectContent {
-  margin-top: 10px;
+.textSelectImageSlider {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.textSelectImage {
+  
+}
+.textSelectImage img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-repeat: no-repeat 
+  background-position: center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.textSelectContentSlider {
   margin-bottom: 10px; 
 }
+.textSelectContent {
+  color: black; 
+  background-color: white;
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+} 
 /*
 .textSelect a {
   text-decoration: none; 
@@ -23,6 +49,8 @@
 }
 */
 .sendBar {
+  position: absolute;
+  bottom: 0px;
   margin-bottom: 10px;
 }
 .sendBarButton {
@@ -30,13 +58,13 @@
   color: white !important;
 }
 .sendBarButtonSendViaEmail {
-  background-color: #16a085; 
+  background-color: transparent; /*#16a085;*/
 }
 .sendBarButtonSendViaSMS {
-  background-color: #e67e22;
+  background-color: transparent; /*#e67e22;*/
 }
 .sendBarButtonSendViaFacebook {
-  background-color: #c0392b;
+  background-color: transparent; /*#c0392b;*/
 }
 
  
