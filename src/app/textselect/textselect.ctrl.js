@@ -17,19 +17,16 @@
       // TODO: filtering and implement issue #33
       $scope.filteredTexts = texts.slice(0, 10);
       console.log($scope.filteredTexts);
-      // Set current text to first
-      // TODO: for now.. we need a text suggestion mechanism to randomise the suggestion
-      $scope.currentText = $scope.texts[0];
     }); 
     // Send text via email
     // TODO: move to service
-    $scope.sendViaEmail = function(text) {
+    $scope.sendViaEmail = function(text, imageUrl) {
       // TODO: get $cordovaPreferences to work
       if($window.tempEmail && $window.tempEmail !== '') {
         cordova.plugins.email.open({
-          to:      $window.tempEmail,
+          to: $window.tempEmail,
           subject: 'Hello Mum',
-          body:    text.Content 
+          body: text.Content + '\n\n\n' + imageUrl
         });
       }
     };
@@ -56,9 +53,17 @@
       console.log(config);
       document.body.style.background = '#' + config.backgroundColours[currentImage];
     });
+    // Get current text, based on text slider index
+    $scope.getCurrentText = function() {
+      return $scope.filteredTexts[$scope.currentText?$scope.currentText:0];
+    };
+    // Get current image url, based on image slider index
+    $scope.getCurrentImageUrl = function() {
+      return $scope.imageUrls[$scope.currentImage?$scope.currentImage:0];
+    };
   })
-    // Filter out texts over a certain length!
-    // TODO: remove (see issue
+  // Filter out texts over a certain length!
+  // TODO: remove (see issue
   .filter('temporaryFilterLongTexts', function() {
     return function(texts) {
       var filtered = [];
