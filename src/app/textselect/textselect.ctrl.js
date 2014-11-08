@@ -32,11 +32,11 @@
     };
     // Send text via SMS
     // TODO: move to service
-    $scope.sendViaSMS = function(text) {
+    $scope.sendViaSMS = function(text, imageUrl) {
       // TODO: get $cordovaPreferences to work
       // Send SMS
       if($window.tempMobile && $window.tempMobile !== '') {
-        $cordovaSms.send($window.tempMobile, text.Content, '');
+        $cordovaSms.send($window.tempMobile, text.Content + '\n\n' + imageUrl, '');
       }
       // Deselect text
       $scope.deselectText();
