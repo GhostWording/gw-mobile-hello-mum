@@ -1,6 +1,6 @@
 .textSelect {
   margin-top: 10px;
-  height: 90%;
+  height: 97%;
 }
 .textSelectSlider {
   height: 100%;
@@ -9,19 +9,35 @@
   height: 100%;
 }
 .textSelectSliderContent {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 10px;
   height: 100%;
 }
 .textSelectNavBar {
-  height: 50px;
+  height: 40px;
   width: 100%;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background-color: rgba(255,255,255,0.6);
+  padding: 10px;
+}
+.textSelectNavButton {
+  color: white;
+  font-size: 30px;
+  opacity: 0.5;
+}
+.textSelectNavPrevButton {
+  float: left;
+}
+.textSelectNavNextButton {
+  float: right;
+}
+.textSelectNavSettingsButton {
+  width: 50%;
+  margin: 0 auto;
 }
 .textSelectImage {
   height: 50%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -29,21 +45,28 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
-  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
-.textSelectContent {
+.textSelectText {
   height: 30%;
   color: rgba(0,0,0,0.7); 
-  background-color: rgba(255,255,255,0.6);
   padding: 20px;
   padding-left: 50px;
   padding-right: 50px;
+  background-color: white;
+  text-align: center;
+} 
+.textSelectSendButton {
+  bottom: 0px; 
+  width: 100%;
+  color: white;
+  height: 70px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  font-size: 15px;
+  padding-top: 20px; 
+  background-color: rgba(0,0,0,0.3);
   text-align: center;
-  vertical-align: center;
-  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
-} 
+}
 .sendBar {
   margin-top: 5px;
   margin-bottom: 10px;
