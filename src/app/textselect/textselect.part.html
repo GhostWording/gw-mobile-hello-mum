@@ -4,8 +4,11 @@
     <ion-slide-box show-pager="false" active-slide="currentText">
       <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
         <div class="textSelectSliderContent">
+          <!-- nav bar -->
+          <div class="textSelectNavBar"></div>
           <!-- image -->
           <div class="textSelectImage" style="background-image:url('{{imageUrls[$index % imageUrls.length]}}')"></div>
+          <!-- content -->
           <div class="textSelectContent">
             {{text.Content}}
           </div>

@@ -1,5 +1,5 @@
 .textSelect {
-  margin-top: 0px;
+  margin-top: 10px;
   height: 90%;
 }
 .textSelectSlider {
@@ -9,11 +9,16 @@
   height: 100%;
 }
 .textSelectSliderContent {
-  margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   height: 100%;
-  
+}
+.textSelectNavBar {
+  height: 50px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: rgba(255,255,255,0.6);
 }
 .textSelectImage {
   height: 50%;
@@ -24,16 +29,19 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
   box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
 .textSelectContent {
+  height: 30%;
   color: rgba(0,0,0,0.7); 
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0.6);
   padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  text-align: center;
+  vertical-align: center;
   box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 } 
 .sendBar {
