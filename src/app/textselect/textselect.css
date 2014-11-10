@@ -14,25 +14,28 @@
   margin-bottom: 10px;
   height: 100%;
 }
-.textSelectNavBar {
-  height: 40px;
+.textSelect .navButtons {
+  z-index: 5;
+  position: absolute;
+  height: 90%;
   width: 100%;
-  padding: 10px;
-}
-.textSelectNavButton {
   color: white;
-  font-size: 30px;
-  opacity: 0.5;
+  opacity: 0.6;
+  pointer-events: none;
 }
-.textSelectNavPrevButton {
-  float: left;
+.textSelect .navButtons .previousStarredTextButton {
+  position: absolute;
+  font-size: 60px;
+  top: 37%;
+  left: 13px;
+  pointer-events: visible;
 }
-.textSelectNavNextButton {
-  float: right;
-}
-.textSelectNavSettingsButton {
-  width: 50%;
-  margin: 0 auto;
+.textSelect .navButtons .nextTextButton {
+  position: absolute;
+  font-size: 60px;
+  top: 37%;
+  right: 13px;
+  pointer-events: visible;
 }
 .textSelectImage {
   height: 50%;
@@ -52,7 +55,9 @@
   padding: 20px;
   padding-left: 50px;
   padding-right: 50px;
-  background-color: white;
+  background-color: rgba(255,255,255,0.9);
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 5px; 
   text-align: center;
 } 
 .textSelectSendButton {
@@ -60,9 +65,9 @@
   width: 100%;
   color: white;
   height: 70px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  font-size: 15px;
+  border-radius: 5px; 
+  font-size: 23px;
+  margin-top: 2px;
   padding-top: 20px; 
   background-color: rgba(0,0,0,0.3);
   text-align: center;

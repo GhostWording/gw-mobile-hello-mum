@@ -1,4 +1,9 @@
 <div class="textSelect">
+  <!-- nav buttons -->
+  <div class="navButtons">
+    <div class="previousStarredTextButton icon ion-ios7-arrow-left" ng-click="previousStarredText()" ng-if="currentText!=0"></div>
+    <div class="nextTextButton icon ion-ios7-arrow-right" ng-click="nextText()"></div>
+  </div>
   <!-- text slider -->
   <div class="textSelectSlider">
     <ion-slide-box show-pager="false" active-slide="currentText">
@@ -10,7 +15,7 @@
           <div class="textSelectText">
             {{text.Content}}
           </div>
-          <div class="textSelectSendButton">SEND!</div>
+          <div class="textSelectSendButton">send!</div>
         </div>
       </ion-slide>
     </ion-slide-box>

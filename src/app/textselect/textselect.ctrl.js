@@ -7,7 +7,9 @@
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
     console.log($scope.imageUrls);
-    // set area
+    // Zero current text
+    $scope.currentText = 0;
+    // Set area
     areasSvc.setCurrentName(config.area);
     // Set current intention
     intentionsSvc.setIntentionSlug(currentIntention); 
@@ -45,6 +47,14 @@
     // TODO: move to service
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
+    };
+    $scope.previousStarredText = function() {
+      if($scope.currentText > 0) {
+        $scope.currentText--;
+      }
+    };
+    $scope.nextText = function() {
+      $scope.currentText++;
     };
     // Change background color on text change
     $scope.$watch('currentText', function(currentText) {
