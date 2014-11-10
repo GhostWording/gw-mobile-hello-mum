@@ -13,6 +13,7 @@
   margin-left: 10px;
   margin-right: 10px;
   height: 100%;
+  
 }
 .textSelectImage {
   height: 50%;
@@ -25,11 +26,11 @@
   background-attachment: fixed fixed; 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
 }
 .textSelectContent {
   color: rgba(0,0,0,0.7); 
   background-color: rgba(255,255,255,0.8);
-  margin-top: 2px;
   padding: 20px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
