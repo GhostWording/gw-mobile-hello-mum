@@ -46,12 +46,10 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
-    // Change background color on image change
-    $scope.$watch('currentImage', function(currentImage) {
-      if(currentImage === undefined) currentImage = 0;
-      console.log(currentImage);
-      console.log(config);
-      document.body.style.background = '#' + config.backgroundColours[currentImage];
+    // Change background color on text change
+    $scope.$watch('currentText', function(currentText) {
+      if(currentText === undefined) currentText = 0;
+      document.body.style.background = '#' + config.backgroundColours[currentText % $scope.imageUrls.length];
     });
     // Get current text, based on text slider index
     $scope.getCurrentText = function() {

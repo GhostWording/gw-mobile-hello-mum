@@ -1,16 +1,10 @@
 <div class="textSelect">
-  <!-- image slider -->
-  <div class="textSelectImageSlider">
-    <ion-slide-box show-pager="false" active-slide="currentImage">
-      <ion-slide ng-repeat="imageUrl in imageUrls">
-        <div class="textSelectImage" style="background-image:url('{{imageUrl}}')"></div>
-      </ion-slide>
-    </ion-slide-box>
-  </div>
   <!-- text slider -->
-  <div class="textSelectContentSlider">
+  <div class="textSelectSlider">
     <ion-slide-box show-pager="false" active-slide="currentText">
       <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
+        <!-- image -->
+        <div class="textSelectImage" style="background-image:url('{{imageUrls[$index % imageUrls.length]}}')"></div>
         <div class="textSelectContent">
           {{text.Content}}
         </div>
