@@ -19,22 +19,29 @@
   position: absolute;
   height: 90%;
   width: 100%;
-  color: white;
+  color: black;
   opacity: 0.6;
   pointer-events: none;
 }
 .textSelect .navButtons .previousStarredTextButton {
   position: absolute;
   font-size: 60px;
-  top: 37%;
+  top: 35%;
   left: 13px;
   pointer-events: visible;
 }
 .textSelect .navButtons .nextTextButton {
   position: absolute;
   font-size: 60px;
-  top: 37%;
+  top: 35%;
   right: 13px;
+  pointer-events: visible;
+}
+.textSelect .navButtons .starTextButton {
+  position: absolute;
+  font-size: 60px;
+  top: 42%;
+  left: 45%;
   pointer-events: visible;
 }
 .textSelectImage {
