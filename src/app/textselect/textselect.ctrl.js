@@ -3,7 +3,68 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
-    function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    function($scope, $window, $document, $interval, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    // TODO: move into service?
+    $scope.starredTexts = [];
+    // Suggest a text (random at the moment)
+    // TODO: improve, or use something from gw-common
+    function suggestText() {
+      var suggestedTextIndex; 
+      var suggestedText;
+      do {
+        suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
+        suggestedText = $scope.filteredTexts[suggestedTextIndex]; 
+      } while(suggestedText.Content.length > 23492387);
+      return suggestedTextIndex;
+    }
+    // Initialise slides
+    $scope.slides = [{},{}];
+    $scope.currentSlide = 0;
+    $scope.otherSlide = 1;
+    // Create a new slide
+    function newSlide() {
+      return {
+        text: $scope.filteredTexts[suggestText()],
+        imageUrl: config.imageUrls[0]
+      };
+    }
+    // Flip the two slides over
+    function flipSlides() {
+      $scope.currentSlide=$scope.currentSlide===0?1:0;
+      $scope.otherSlide=$scope.otherSlide===0?1:0;
+    }
+    // Layout slides
+    var windowElement = angular.element($window);
+    $scope.windowWidth = windowElement[0].innerWidth;
+    $scope.windowHeight = windowElement[0].innerHeight;
+    $scope.slideImageHeight = $scope.windowHeight * 0.5;
+    // Handle swiping
+    $scope.mouseDown = function() {
+      $scope.dragging = true;
+    };
+    $scope.mouseUp = function() {
+      $scope.dragging = false;
+    };
+    $scope.mouseMove = function(event) {
+      if($scope.dragging) {
+      }
+    };
+    // Navigation
+    $scope.previousStarredText = function() {
+      $scope.slides[$scope.otherSlide] = newSlide();
+      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInRight';
+      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
+      flipSlides();
+    };
+    $scope.nextText = function() {
+      $scope.slides[$scope.otherSlide] = newSlide();
+      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInLeft';
+      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
+      flipSlides();
+    };
+    $scope.starText = function() {
+      alert('star text');
+    };
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
     console.log($scope.imageUrls);
@@ -19,6 +80,7 @@
       // TODO: filtering and implement issue #33
       $scope.filteredTexts = texts.slice(0, 10);
       console.log($scope.filteredTexts);
+      $scope.slides[$scope.currentSlide] = newSlide(0);
     }); 
     // Send text via email
     // TODO: move to service
@@ -48,20 +110,12 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
-    $scope.previousStarredText = function() {
-      if($scope.currentText > 0) {
-        $scope.currentText--;
-      }
-    };
-    $scope.nextText = function() {
-      $scope.currentText++;
-    };
     // Change background color on text change
     $scope.$watch('currentText', function(currentText) {
       if(currentText === undefined) currentText = 0;
       document.body.style.background = '#' + config.backgroundColours[currentText % $scope.imageUrls.length];
     });
-    // Get current text, based on text slider index
+    //  Get current text, based on text slider index
     $scope.getCurrentText = function() {
       return $scope.filteredTexts[$scope.currentText?$scope.currentText:0];
     };

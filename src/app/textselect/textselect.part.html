@@ -1,24 +1,33 @@
 <div class="textSelect">
   <!-- nav buttons -->
   <div class="navButtons">
-    <div class="previousStarredTextButton icon ion-ios7-arrow-left" ng-click="previousStarredText()" ng-if="currentText!=0"></div>
-    <div class="nextTextButton icon ion-ios7-arrow-right" ng-click="nextText()"></div>
+    <div class="previousStarredTextButton icon ion-ios7-arrow-left" on-tap="previousStarredText()"></div>
+    <div class="nextTextButton icon ion-ios7-arrow-right" on-tap="nextText()"></div>
+    <div class="starTextButton icon ion-ios7-star" on-tap="starText()"></div>
   </div>
-  <!-- text slider -->
-  <div class="textSelectSlider">
-    <ion-slide-box show-pager="false" active-slide="currentText">
-      <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
-        <div class="textSelectSliderContent">
-          <!-- image -->
-          <div class="textSelectImage" style="background-image:url('{{imageUrls[$index % imageUrls.length]}}')"></div>
-          <!-- content -->
-          <div class="textSelectText">
-            {{text.Content}}
-          </div>
-          <div class="textSelectSendButton">send!</div>
-        </div>
-      </ion-slide>
-    </ion-slide-box>
+  <!-- slider -->
+  <div class="textSelectSlider" style="width:{{windowWidth}}px; height:{{windowHeight+500}}px" ng-mousemove="mouseMove($event)">
+    <!-- slides -->
+    <div 
+      ng-repeat="slide in slides track by $index" 
+      class="textSelectSlide slideAnimation" 
+      ng-class="slide.animation"
+      style="width:{{windowWidth}}px;"
+      ng-if="slide.text"
+      ng-mousedown="mouseDown()" 
+      ng-mouseup="mouseUp()">
+      <!--
+      <h2 ng-if="slides[currentSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">current [{{slide.animation}}]</h2>
+      <h2 ng-if="slides[otherSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">other [{{slide.animation}}]</h2>
+      -->
+      <!-- image -->
+      <div class="textSelectImage" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+      <!-- content -->
+      <div class="textSelectText">
+        {{slide.text.Content}}
+      </div>
+      <div class="textSelectSendButton">send!</div>
+    </div>
   </div>
   <!-- send button bar -->
   <!--

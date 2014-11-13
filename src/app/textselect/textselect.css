@@ -1,23 +1,44 @@
 .textSelect {
   margin-top: 10px;
-  height: 97%;
 }
 .textSelectSlider {
-  height: 100%;
+  position: relative;
+  overflow: hidden;
 }
-.textSelectSlider .slider {
-  height: 100%;
+.textSelectSlide {
+  position: absolute;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 10px;
 }
-.textSelectSliderContent {
-  margin-left: 8px;
-  margin-right: 8px;
-  margin-bottom: 10px;
-  height: 100%;
+.slideAnimation {
+  animation-duration: 0.5s;
+  animation-timing-function: ease;  
+  animation-fill-mode: forwards;
+}
+.slideAnimateInLeft { animation-name: inLeft; }
+.slideAnimateOutLeft { animation-name: outLeft; }
+.slideAnimateInRight { animation-name: inRight; }
+.slideAnimateOutRight { animation-name: outRight; }
+@keyframes inLeft {
+  0% {transform: translatex(100%);}     
+  100% {transform: translateX(0%);}   
+}
+@keyframes outLeft {
+  0% {transform: translatex(0%);}     
+  100% {transform: translatex(-100%);}  
+}
+@keyframes inRight {
+  0% {transform: translatex(-100%);}     
+  100% {transform: translateX(0%);}   
+}
+@keyframes outRight {
+  0% {transform: translatex(0%);}     
+  100% {transform: translatex(100%);}  
 }
 .textSelect .navButtons {
   z-index: 5;
   position: absolute;
-  height: 90%;
   width: 100%;
   color: black;
   opacity: 0.6;
@@ -26,22 +47,22 @@
 .textSelect .navButtons .previousStarredTextButton {
   position: absolute;
   font-size: 60px;
-  top: 35%;
+  top: 200px;
   left: 13px;
   pointer-events: visible;
 }
 .textSelect .navButtons .nextTextButton {
   position: absolute;
   font-size: 60px;
-  top: 35%;
+  top: 200px;
   right: 13px;
   pointer-events: visible;
 }
 .textSelect .navButtons .starTextButton {
   position: absolute;
   font-size: 60px;
-  top: 42%;
-  left: 45%;
+  top: 13px;
+  left: 13px;
   pointer-events: visible;
 }
 .textSelectImage {
