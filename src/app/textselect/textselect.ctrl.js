@@ -123,18 +123,5 @@
       return $scope.imageUrls[$scope.currentImage?$scope.currentImage:0];
     };
   })
-  // Filter out texts over a certain length!
-  // TODO: remove (see issue
-  .filter('temporaryFilterLongTexts', function() {
-    return function(texts) {
-      var filtered = [];
-      angular.forEach(texts, function(text) {
-        if(text.Content.length < 600) {
-          filtered.push(text);
-        }
-      });
-      return filtered;
-    };
-  });
 
 }());
