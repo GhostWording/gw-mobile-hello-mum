@@ -10,11 +10,13 @@ var inject = require('gulp-inject');
 var replace = require('gulp-replace');
 var templateCache = require('gulp-angular-templatecache');
 var gIf = require('gulp-if');
+var postCSS = require('gulp-postcss');
 var jshint = require('gulp-jshint');
 var jshintstylish = require('jshint-stylish');
 var mergeStream = require('merge-stream');
 var streamQueue = require('streamqueue');
 var runSequence = require('run-sequence');
+var autoPrefixer = require('autoprefixer-core');
 var spawn = require('child_process').spawn;
 var bower = require('bower');
 var del = require('del');
@@ -124,7 +126,11 @@ gulp.task('process:javascript', ['jshint'], function() {
 });
 
 gulp.task('process:styles', function() {
+  // TODO: this is not ideal.. but autoprefixer is throwing out loads of annoying warnings about 3rd party css
+  console.warn = null;
   return gulp.src(getCSSGlobs(), {base:'src'})
+    // TODO: we could be more browser specific here in device builds
+    .pipe(postCSS([autoPrefixer({browsers: ['last 2 version']})]))
     .pipe(gIf(!debug, concat('app.css')))
     .pipe(gIf(!debug, minifyCSS({keepSpecialComments: 0})))
 		.pipe(gIf(!debug, replace('../fonts', 'fonts')))
