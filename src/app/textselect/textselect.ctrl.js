@@ -4,27 +4,20 @@
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
     function($scope, $window, $document, $interval, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
-    // TODO: move into service?
-    $scope.starredTexts = [];
     // Suggest a text (random at the moment)
     // TODO: improve, or use something from gw-common
     function suggestText() {
-      var suggestedTextIndex; 
-      var suggestedText;
-      do {
-        suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
-        suggestedText = $scope.filteredTexts[suggestedTextIndex]; 
-      } while(suggestedText.Content.length > 23492387);
-      return suggestedTextIndex;
+      var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
+      return $scope.filteredTexts[suggestedTextIndex]; 
     }
     // Initialise slides
     $scope.slides = [{},{}];
     $scope.currentSlide = 0;
     $scope.otherSlide = 1;
     // Create a new slide
-    function newSlide() {
+    function newSlide(text) {
       return {
-        text: $scope.filteredTexts[suggestText()],
+        text: text,
         imageUrl: config.imageUrls[0]
       };
     }
@@ -51,19 +44,25 @@
     };
     // Navigation
     $scope.previousStarredText = function() {
-      $scope.slides[$scope.otherSlide] = newSlide();
+      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateInRight';
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
       flipSlides();
     };
     $scope.nextText = function() {
-      $scope.slides[$scope.otherSlide] = newSlide();
+      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateInLeft';
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       flipSlides();
     };
+    // Starring
+    // TODO: move into service?
+    $scope.starredTexts = [];
     $scope.starText = function() {
-      alert('star text');
+      // Add current slide text to starred texts
+      $scope.starredTexts.push($scope.slides[$scope.currentSlide].text);
+      // Move on to next text
+      $scope.nextText();
     };
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
@@ -80,7 +79,7 @@
       // TODO: filtering and implement issue #33
       $scope.filteredTexts = texts.slice(0, 10);
       console.log($scope.filteredTexts);
-      $scope.slides[$scope.currentSlide] = newSlide(0);
+      $scope.slides[$scope.currentSlide] = newSlide(suggestText());
     }); 
     // Send text via email
     // TODO: move to service
