@@ -3,7 +3,12 @@
   <div class="navButtons">
     <div class="previousStarredSlideButton icon ion-ios7-arrow-left" ng-if="previousStarredSlideExists()" on-touch="previousStarredSlide()"></div>
     <div class="nextSlideButton icon ion-ios7-arrow-right" on-touch="nextSlide()"></div>
-    <div class="starSlideButton icon ion-ios7-star" ng-class="{'starSlideButtonStarred': getCurrentSlide().starred}" on-touch="toggleSlideStar()"></div>
+    <div 
+      class="toggleSlideStarButton icon ion-ios7-star" 
+      ng-class="{'starSlideButtonStarred': getCurrentSlide().starred}" 
+      style="top:{{slideImageHeight+20}}px; left:{{windowWidth/2-18}}px"
+      on-touch="toggleSlideStar()">
+    </div>
   </div>
   <!-- slider -->
   <div class="textSelectSlider" style="width:{{windowWidth}}px; height:{{windowHeight+500}}px" ng-mousemove="mouseMove($event)">

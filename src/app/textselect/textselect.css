@@ -41,7 +41,6 @@
   position: absolute;
   width: 100%;
   color: black;
-  opacity: 0.6;
   pointer-events: none;
 }
 .textSelect .navButtons .previousStarredSlideButton {
@@ -49,6 +48,7 @@
   font-size: 60px;
   top: 200px;
   left: 13px;
+  opacity: 0.4;
   pointer-events: visible;
 }
 .textSelect .navButtons .nextSlideButton {
@@ -56,17 +56,17 @@
   font-size: 60px;
   top: 200px;
   right: 13px;
+  opacity: 0.4;
   pointer-events: visible;
 }
-.textSelect .navButtons .starSlideButton {
+.textSelect .navButtons .toggleSlideStarButton {
   position: absolute;
-  font-size: 60px;
-  top: 13px;
-  left: 13px;
+  font-size: 40px;
+  opacity: 0.3;
   pointer-events: visible;
 }
 .textSelect .navButtons .starSlideButtonStarred {
-  color: #fffda1;
+  opacity: 0.8;
 }
 .textSelectImage {
   height: 50%;
@@ -83,9 +83,11 @@
 .textSelectText {
   height: 30%;
   color: rgba(0,0,0,0.7); 
-  padding: 20px;
+  padding-top: 70px;  
+  padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
+  min-height: 200px;
   background-color: rgba(255,255,255,0.9);
   border-bottom-left-radius: 5px; 
   border-bottom-right-radius: 5px; 

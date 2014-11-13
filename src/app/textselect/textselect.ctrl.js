@@ -30,7 +30,7 @@
     var windowElement = angular.element($window);
     $scope.windowWidth = windowElement[0].innerWidth;
     $scope.windowHeight = windowElement[0].innerHeight;
-    $scope.slideImageHeight = $scope.windowHeight * 0.5;
+    $scope.slideImageHeight = $scope.windowHeight * 0.45;
     // Handle swiping
     $scope.mouseDown = function() {
       $scope.dragging = true;
