@@ -12,8 +12,8 @@
   padding-bottom: 10px;
 }
 .slideAnimation {
-  animation-duration: 0.5s;
-  animation-timing-function: ease;  
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;  
   animation-fill-mode: forwards;
 }
 .slideAnimateInLeft { animation-name: inLeft; }
@@ -44,26 +44,29 @@
   opacity: 0.6;
   pointer-events: none;
 }
-.textSelect .navButtons .previousStarredTextButton {
+.textSelect .navButtons .previousStarredSlideButton {
   position: absolute;
   font-size: 60px;
   top: 200px;
   left: 13px;
   pointer-events: visible;
 }
-.textSelect .navButtons .nextTextButton {
+.textSelect .navButtons .nextSlideButton {
   position: absolute;
   font-size: 60px;
   top: 200px;
   right: 13px;
   pointer-events: visible;
 }
-.textSelect .navButtons .starTextButton {
+.textSelect .navButtons .starSlideButton {
   position: absolute;
   font-size: 60px;
   top: 13px;
   left: 13px;
   pointer-events: visible;
+}
+.textSelect .navButtons .starSlideButtonStarred {
+  color: #fffda1;
 }
 .textSelectImage {
   height: 50%;

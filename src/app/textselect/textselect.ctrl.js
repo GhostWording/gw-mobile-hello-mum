@@ -42,27 +42,66 @@
       if($scope.dragging) {
       }
     };
-    // Navigation
-    $scope.previousStarredText = function() {
-      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
-      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInRight';
-      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
-      flipSlides();
+    // Get current slide
+    $scope.getCurrentSlide = function() {
+      return $scope.slides[$scope.currentSlide];
     };
-    $scope.nextText = function() {
-      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
+    // Move to next slide
+    $scope.nextSlide = function() {
+      var currentSlide = $scope.getCurrentSlide();
+      if($scope.starredSlideIndex !== null && $scope.starredSlideIndex < $scope.starredSlides.length-1) {
+        // Move to next starred slide
+        $scope.starredSlideIndex++;
+        $scope.slides[$scope.otherSlide] = $scope.starredSlides[$scope.starredSlideIndex];
+      } else {
+        // Move to new slide
+        $scope.slides[$scope.otherSlide] = newSlide(suggestText());
+        $scope.starredSlideIndex = null;
+      }
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateInLeft';
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       flipSlides();
     };
-    // Starring
     // TODO: move into service?
-    $scope.starredTexts = [];
-    $scope.starText = function() {
-      // Add current slide text to starred texts
-      $scope.starredTexts.push($scope.slides[$scope.currentSlide].text);
-      // Move on to next text
-      $scope.nextText();
+    $scope.starredSlides = [];
+    $scope.starredSlideIndex = null;
+    // Star the current slide
+    $scope.toggleSlideStar = function() {
+      var currentSlide = $scope.slides[$scope.currentSlide];
+      // If not starred
+      if(!currentSlide.starred) {
+        // Mark slide as starred
+        currentSlide.starred = true;
+        // Add current slide to starred slides
+        $scope.starredSlides.push(currentSlide);
+        // Set the starred slide index to the end of the starred list
+        $scope.starredSlideIndex = $scope.starredSlides.length-1;
+      } else {
+        // Clear the star
+        currentSlide.starred = false;
+        // Remove current slide from starred slides
+        $scope.starredSlides.splice($scope.starredSlideIndex, 1);
+      }
+    };
+    // Check if there is a previous starred slide
+    $scope.previousStarredSlideExists = function() {
+      return $scope.starredSlides.length > 0 && ($scope.starredSlideIndex === null || $scope.starredSlideIndex > 0);
+    };
+    // Go to previous starred slide
+    $scope.previousStarredSlide = function() {
+      var currentSlide = $scope.getCurrentSlide();
+      // If we are going from a non starred slide to a starred slide
+      if(!currentSlide.starred) {
+        // Set the starred slide index to the end of the starred list
+        $scope.starredSlideIndex = $scope.starredSlides.length-1;
+      } else {
+        // Otherwise decrement the starred slide index
+        $scope.starredSlideIndex--;
+      }
+      $scope.slides[$scope.otherSlide] = $scope.starredSlides[$scope.starredSlideIndex];
+      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInRight';
+      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
+      flipSlides();
     };
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
@@ -122,6 +161,6 @@
     $scope.getCurrentImageUrl = function() {
       return $scope.imageUrls[$scope.currentImage?$scope.currentImage:0];
     };
-  })
+  });
 
 }());
