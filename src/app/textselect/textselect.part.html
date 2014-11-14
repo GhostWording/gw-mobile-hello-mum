@@ -1,46 +1,42 @@
-<div class="textSelect">
+<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
   <!-- nav buttons -->
   <div class="navButtons">
     <div 
       ng-if="previousStarredSlideExists()" 
       class="navButton prevNavButton icon ion-arrow-left-b" 
-      style="top:{{slideImageHeight-20}}px"
+      style="top:{{slideImageHeight-10}}px"
       on-touch="previousStarredSlide()">
     </div>
     <div 
       class="navButton nextNavButton icon ion-arrow-right-b" 
-      style="top:{{slideImageHeight-20}}px"
+      style="top:{{slideImageHeight-10}}px"
       on-touch="nextSlide()">
     </div>
     <div 
       class="navButton starNavButton icon ion-ios7-star" 
       ng-class="{'starNavButton': getCurrentSlide().starred, 'unstarNavButton': !getCurrentSlide().starred}" 
-      style="top:{{slideImageHeight-20}}px; left:{{windowWidth/2-20}}px"
+      style="top:{{slideImageHeight-10}}px; left:{{windowWidth/2-10}}px"
       on-touch="toggleSlideStar()">
     </div>
   </div>
-  <!-- slider -->
-  <div class="textSelectSlider" style="width:{{windowWidth}}px; height:{{windowHeight+500}}px" ng-mousemove="mouseMove($event)">
-    <!-- slides -->
-    <div 
-      ng-repeat="slide in slides track by $index" 
-      class="textSelectSlide slideAnimation" 
-      ng-class="slide.animation"
-      style="width:{{windowWidth}}px;"
-      ng-if="slide.text"
-      ng-mousedown="mouseDown()" 
-      ng-mouseup="mouseUp()">
-      <!--
-      <h2 ng-if="slides[currentSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">current [{{slide.animation}}]</h2>
-      <h2 ng-if="slides[otherSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">other [{{slide.animation}}]</h2>
-      -->
-      <!-- image -->
-      <div class="textSelectImage" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
-      <!-- content -->
-      <div class="textSelectText">
-        {{slide.text.Content}}
-      </div>
-      <div class="textSelectSendButton">send!</div>
+  <!-- slides -->
+  <div 
+    ng-repeat="slide in slides track by $index" 
+    class="slide slideAnimation" 
+    ng-class="slide.animation"
+    style="width:{{windowWidth}}px;"
+    ng-if="slide.text"
+    ng-mousedown="mouseDown()" 
+    ng-mouseup="mouseUp()">
+    <!--
+    <h2 ng-if="slides[currentSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">current [{{slide.animation}}]</h2>
+    <h2 ng-if="slides[otherSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">other [{{slide.animation}}]</h2>
+    -->
+    <!-- image -->
+    <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+    <!-- content -->
+    <div class="text">
+      {{slide.text.Content}}
     </div>
   </div>
   <!-- send button bar -->
@@ -57,4 +53,7 @@
     </button>
   </div>
   -->
+  <div class="footer">
+    <div class="sendButton" style="width:{{windowWidth-150}}px">SEND</div>
+  </div>
 </div>

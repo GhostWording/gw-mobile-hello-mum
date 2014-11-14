@@ -1,15 +1,11 @@
 .textSelect {
-  margin-top: 10px;
 }
-.textSelectSlider {
-  position: relative;
-  overflow: hidden;
-}
-.textSelectSlide {
+.textSelect .slide {
   position: absolute;
   padding-left: 8px;
   padding-right: 8px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 4px;
 }
 .slideAnimation {
   animation-duration: 0.3s;
@@ -36,6 +32,32 @@
   0% {transform: translatex(0%);}     
   100% {transform: translatex(100%);}  
 }
+.textSelect .image {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed fixed; 
+}
+.textSelect .text {
+  height: 30%;
+  color: rgba(0,0,0,0.7); 
+  padding-top: 55px;  
+  padding-bottom: 80px;
+  padding-left: 50px;
+  padding-right: 50px;
+  min-height: 200px;
+  background-color: rgba(255,255,255,0.9);
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 5px; 
+  text-align: center;
+  font-size: 1.1em;
+} 
 .textSelect .navButtons {
   position: absolute;
   z-index: 5;
@@ -47,7 +69,6 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  background-color: #e67e22;
   border-radius: 20px;
   text-align: center;
   line-height: 40px;
@@ -55,50 +76,35 @@
   pointer-events: visible;
 }
 .textSelect .prevNavButton {
+  background-color: #27ae60;
   left: 40px;
 }
 .textSelect .nextNavButton {
+  background-color: #27ae60;
   right: 40px;
 }
 .textSelect .starNavButton {
+  background-color: #e67e22;
 }
 .textSelect .unstarNavButton {
+  background-color: #27ae60;
 }
-.textSelectImage {
-  height: 50%;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat; 
-  background-position: center center;
-  background-attachment: fixed fixed; 
-}
-.textSelectText {
-  height: 30%;
-  color: rgba(0,0,0,0.7); 
-  padding-top: 50px;  
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-  min-height: 200px;
-  background-color: rgba(255,255,255,0.9);
-  border-bottom-left-radius: 5px; 
-  border-bottom-right-radius: 5px; 
-  text-align: center;
-} 
-.textSelectSendButton {
-  bottom: 0px; 
+.textSelect .footer {
+  position: fixed;
+  /* TODO: this 'fix' may not work on all android devices! */
+  backface-visibility: hidden;
+  bottom: 0px;
   width: 100%;
+}
+.textSelect .sendButton {
+  margin: 0 auto;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
   color: white;
-  height: 70px;
-  border-radius: 5px; 
-  font-size: 23px;
-  margin-top: 2px;
-  padding-top: 20px; 
-  background-color: rgba(0,0,0,0.3);
+  border-radius: 3px;
+  font-size: 1.25em;
+  background-color: #27ae60;
   text-align: center;
 }
 .sendBar {

@@ -61,6 +61,8 @@
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateInLeft';
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       flipSlides();
+      // Scroll window to top, incase we are half way down a long text
+      $window.scrollTo(0, 0);
     };
     // TODO: move into service?
     $scope.starredSlides = [];
