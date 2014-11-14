@@ -1,12 +1,21 @@
 <div class="textSelect">
   <!-- nav buttons -->
   <div class="navButtons">
-    <div class="previousStarredSlideButton icon ion-ios7-arrow-left" ng-if="previousStarredSlideExists()" on-touch="previousStarredSlide()"></div>
-    <div class="nextSlideButton icon ion-ios7-arrow-right" on-touch="nextSlide()"></div>
     <div 
-      class="toggleSlideStarButton icon ion-ios7-star" 
-      ng-class="{'starSlideButtonStarred': getCurrentSlide().starred}" 
-      style="top:{{slideImageHeight+20}}px; left:{{windowWidth/2-18}}px"
+      ng-if="previousStarredSlideExists()" 
+      class="navButton prevNavButton icon ion-arrow-left-b" 
+      style="top:{{slideImageHeight-20}}px"
+      on-touch="previousStarredSlide()">
+    </div>
+    <div 
+      class="navButton nextNavButton icon ion-arrow-right-b" 
+      style="top:{{slideImageHeight-20}}px"
+      on-touch="nextSlide()">
+    </div>
+    <div 
+      class="navButton starNavButton icon ion-ios7-star" 
+      ng-class="{'starNavButton': getCurrentSlide().starred, 'unstarNavButton': !getCurrentSlide().starred}" 
+      style="top:{{slideImageHeight-20}}px; left:{{windowWidth/2-20}}px"
       on-touch="toggleSlideStar()">
     </div>
   </div>

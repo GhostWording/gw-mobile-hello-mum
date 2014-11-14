@@ -37,36 +37,32 @@
   100% {transform: translatex(100%);}  
 }
 .textSelect .navButtons {
-  z-index: 5;
   position: absolute;
+  z-index: 5;
   width: 100%;
-  color: black;
+  color: white;
   pointer-events: none;
 }
-.textSelect .navButtons .previousStarredSlideButton {
+.textSelect .navButton {
   position: absolute;
-  font-size: 60px;
-  top: 200px;
-  left: 13px;
-  opacity: 0.4;
+  width: 40px;
+  height: 40px;
+  background-color: #e67e22;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
   pointer-events: visible;
 }
-.textSelect .navButtons .nextSlideButton {
-  position: absolute;
-  font-size: 60px;
-  top: 200px;
-  right: 13px;
-  opacity: 0.4;
-  pointer-events: visible;
+.textSelect .prevNavButton {
+  left: 40px;
 }
-.textSelect .navButtons .toggleSlideStarButton {
-  position: absolute;
-  font-size: 40px;
-  opacity: 0.3;
-  pointer-events: visible;
+.textSelect .nextNavButton {
+  right: 40px;
 }
-.textSelect .navButtons .starSlideButtonStarred {
-  opacity: 0.8;
+.textSelect .starNavButton {
+}
+.textSelect .unstarNavButton {
 }
 .textSelectImage {
   height: 50%;
@@ -83,7 +79,7 @@
 .textSelectText {
   height: 30%;
   color: rgba(0,0,0,0.7); 
-  padding-top: 70px;  
+  padding-top: 50px;  
   padding-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
