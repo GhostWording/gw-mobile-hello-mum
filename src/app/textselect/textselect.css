@@ -54,15 +54,15 @@
   height: 30%;
   color: rgba(0,0,0,0.7); 
   padding-top: 65px;  
-  padding-bottom: 80px;
+  padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  min-height: 280px;
+  min-height: 230px;
   background-color: rgba(255,255,255,0.9);
   border-bottom-left-radius: 5px; 
   border-bottom-right-radius: 5px; 
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.05em;
 } 
 .textSelect .textStarred {
   background-color: #ffffdd;
@@ -98,25 +98,12 @@
   width: 60px;
   font-size: 40px;
 }
-.textSelect .footer {
-  position: fixed;
-  /* TODO: this 'fix' may not work on all android devices! */
-  backface-visibility: hidden;
-  bottom: 0px;
-  width: 100%;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.textSelect .textFade {
-  width: 100%;
-  height: 50px;
-  color: blue; 
-}
 .textSelect .sendButton {
   width: 100%;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   color: white;
+  margin-top: 20px;
   font-size: 1.25em;
   background-color: #27ae60;
   text-align: center;
