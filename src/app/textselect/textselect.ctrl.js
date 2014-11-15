@@ -18,7 +18,7 @@
     function newSlide(text) {
       return {
         text: text,
-        imageUrl: config.imageUrls[0]
+        imageUrl: config.imageUrls[Math.floor(Math.random() * (config.imageUrls.length-1))]
       };
     }
     // Flip the two slides over
@@ -31,6 +31,11 @@
     $scope.windowWidth = windowElement[0].innerWidth;
     $scope.windowHeight = windowElement[0].innerHeight;
     $scope.slideImageHeight = $scope.windowHeight * 0.50;
+    console.log(config);
+    console.log(config.UI.navButtonVOffset);
+    console.log($scope.slideImageHeight);
+    $scope.navPosition = $scope.slideImageHeight + config.UI.navButtonVOffset;
+    console.log($scope.navPosition);
     // Handle swiping
     $scope.mouseDown = function() {
       $scope.dragging = true;
