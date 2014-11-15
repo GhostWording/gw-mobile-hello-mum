@@ -1,7 +1,13 @@
 .textSelect {
+  overflow-x: hidden;
+}
+.textSelect .slideContainer {
+  position: relative;
 }
 .textSelect .slide {
-  position: absolute;
+  position: relative;
+  float: left;
+  display: block;
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 8px;

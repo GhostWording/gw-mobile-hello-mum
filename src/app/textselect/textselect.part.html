@@ -20,6 +20,7 @@
     </div>
   </div>
   <!-- slides -->
+  <div class="slideContainer" style="width:{{windowWidth*3}}px">
   <div 
     ng-repeat="slide in slides track by $index" 
     class="slide slideAnimation" 
@@ -38,6 +39,7 @@
     <div class="text">
       {{slide.text.Content}}
     </div>
+  </div>
   </div>
   <!-- send button bar -->
   <!--
