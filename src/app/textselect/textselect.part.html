@@ -36,7 +36,7 @@
     <!-- image -->
     <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
     <!-- content -->
-    <div class="text">
+    <div class="text" ng-class="{'textStarred': slide.starred}">
       {{slide.text.Content}}
     </div>
   </div>

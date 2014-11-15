@@ -64,6 +64,9 @@
   text-align: center;
   font-size: 1.1em;
 } 
+.textSelect .textStarred {
+  background-color: #ffffdd;
+}
 .textSelect .navButtons {
   position: absolute;
   z-index: 5;
