@@ -31,11 +31,7 @@
     $scope.windowWidth = windowElement[0].innerWidth;
     $scope.windowHeight = windowElement[0].innerHeight;
     $scope.slideImageHeight = $scope.windowHeight * 0.50;
-    console.log(config);
-    console.log(config.UI.navButtonVOffset);
-    console.log($scope.slideImageHeight);
     $scope.navPosition = $scope.slideImageHeight + config.UI.navButtonVOffset;
-    console.log($scope.navPosition);
     // Handle swiping
     $scope.mouseDown = function() {
       $scope.dragging = true;
@@ -112,7 +108,6 @@
     };
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
-    console.log($scope.imageUrls);
     // Zero current text
     $scope.currentText = 0;
     // Set area
@@ -124,7 +119,6 @@
       $scope.texts = texts;
       // TODO: filtering and implement issue #33
       $scope.filteredTexts = texts.slice(0, 10);
-      console.log($scope.filteredTexts);
       $scope.slides[$scope.currentSlide] = newSlide(suggestText());
     }); 
     // Send text via email
@@ -155,11 +149,6 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
-    // Change background color on text change
-    $scope.$watch('currentText', function(currentText) {
-      if(currentText === undefined) currentText = 0;
-      document.body.style.background = '#' + config.backgroundColours[currentText % $scope.imageUrls.length];
-    });
     //  Get current text, based on text slider index
     $scope.getCurrentText = function() {
       return $scope.filteredTexts[$scope.currentText?$scope.currentText:0];
