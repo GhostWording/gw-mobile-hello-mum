@@ -59,7 +59,6 @@
   font-size: 1.05em;
 } 
 .textSelect .textStarred {
-  background-color: #ffffdd;
 }
 .textSelect .navButtons {
   position: absolute;
@@ -91,7 +90,7 @@
 .textSelect .unstarNavButton {
   width: 60px;
   font-size: 40px;
-  color: yellow;
+  color: #A69A1E;
 }
 .textSelect .sendButton {
   width: 100%;

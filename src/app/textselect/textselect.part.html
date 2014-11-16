@@ -14,7 +14,7 @@
     </div>
     <div 
       class="navButton starNavButton icon ion-ios7-star" 
-      ng-class="{'starNavButton': getCurrentSlide().starred, 'unstarNavButton': !getCurrentSlide().starred}" 
+      ng-class="{'starNavButton': !getCurrentSlide().starred, 'unstarNavButton': getCurrentSlide().starred}" 
       style="top:{{navPosition}}px; left:{{windowWidth/2-30}}px"
       on-touch="toggleSlideStar()">
     </div>
