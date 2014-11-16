@@ -8,7 +8,7 @@
       'area': 'HelloMum', 
       'intentionSlug': 'i-think-of-you', 
       'UI': {
-        'navButtonVOffset': 20
+        'navButtonVOffset': 10
       },
       'imageUrls': [
         'http://critterbabies.com/wp-content/gallery/kittens/803864926_1375572583.jpg',
