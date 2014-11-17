@@ -90,7 +90,9 @@
 }
 .textSelect .unstarNavButton {
   width: 60px;
-  color: #DBCD6E;
+  /*color: #DBCD6E;*/
+  /*color: #f39c12;*/
+  color: #2980b9;
 }
 .textSelect .sendButton {
   width: 100%;
@@ -99,7 +101,7 @@
   color: white;
   margin-top: 25px;
   font-size: 1.25em;
-  background-color: #27ae60;
+  background-color: #2980b9;
   text-align: center;
 }
 .sendBar {
