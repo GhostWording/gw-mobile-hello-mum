@@ -5,7 +5,7 @@
   angular.module('app/textselect').controller('TextSelectCtrl', 
     function($scope, $window, $document, $interval, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
     // Suggest a text (random at the moment)
-    // TODO: improve, or use something from gw-common
+    // TODO: improve or use something from gw-common
     function suggestText() {
       var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
       return $scope.filteredTexts[suggestedTextIndex]; 
@@ -15,10 +15,12 @@
     $scope.currentSlide = 0;
     $scope.otherSlide = 1;
     // Create a new slide
-    function newSlide(text) {
+    function newSlide(text, zIndex) {
       return {
         text: text,
-        imageUrl: config.imageUrls[Math.floor(Math.random() * (config.imageUrls.length-1))]
+        imageUrl: config.imageUrls[Math.floor(Math.random() * (config.imageUrls.length-1))],
+        opacity: 1,
+        zIndex: zIndex!==undefined?zIndex:0
       };
     }
     // Flip the two slides over
@@ -32,79 +34,9 @@
     $scope.windowHeight = windowElement[0].innerHeight;
     $scope.slideImageHeight = $scope.windowHeight * 0.50;
     $scope.navPosition = $scope.slideImageHeight + config.UI.navButtonVOffset;
-    // Handle swiping
-    $scope.mouseDown = function() {
-      $scope.dragging = true;
-    };
-    $scope.mouseUp = function() {
-      $scope.dragging = false;
-    };
-    $scope.mouseMove = function(event) {
-      if($scope.dragging) {
-      }
-    };
     // Get current slide
     $scope.getCurrentSlide = function() {
       return $scope.slides[$scope.currentSlide];
-    };
-    // Move to next slide
-    $scope.nextSlide = function() {
-      var currentSlide = $scope.getCurrentSlide();
-      if($scope.starredSlideIndex !== null && $scope.starredSlideIndex < $scope.starredSlides.length-1) {
-        // Move to next starred slide
-        $scope.starredSlideIndex++;
-        $scope.slides[$scope.otherSlide] = $scope.starredSlides[$scope.starredSlideIndex];
-      } else {
-        // Move to new slide
-        $scope.slides[$scope.otherSlide] = newSlide(suggestText());
-        $scope.starredSlideIndex = null;
-      }
-      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInLeft';
-      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
-      flipSlides();
-      // Scroll window to top, incase we are half way down a long text
-      $window.scrollTo(0, 0);
-    };
-    // TODO: move into service?
-    $scope.starredSlides = [];
-    $scope.starredSlideIndex = null;
-    // Star the current slide
-    $scope.toggleSlideStar = function() {
-      var currentSlide = $scope.slides[$scope.currentSlide];
-      // If not starred
-      if(!currentSlide.starred) {
-        // Mark slide as starred
-        currentSlide.starred = true;
-        // Add current slide to starred slides
-        $scope.starredSlides.push(currentSlide);
-        // Set the starred slide index to the end of the starred list
-        $scope.starredSlideIndex = $scope.starredSlides.length-1;
-      } else {
-        // Clear the star
-        currentSlide.starred = false;
-        // Remove current slide from starred slides
-        $scope.starredSlides.splice($scope.starredSlideIndex, 1);
-      }
-    };
-    // Check if there is a previous starred slide
-    $scope.previousStarredSlideExists = function() {
-      return $scope.starredSlides.length > 0 && ($scope.starredSlideIndex === null || $scope.starredSlideIndex > 0);
-    };
-    // Go to previous starred slide
-    $scope.previousStarredSlide = function() {
-      var currentSlide = $scope.getCurrentSlide();
-      // If we are going from a non starred slide to a starred slide
-      if(!currentSlide.starred) {
-        // Set the starred slide index to the end of the starred list
-        $scope.starredSlideIndex = $scope.starredSlides.length-1;
-      } else {
-        // Otherwise decrement the starred slide index
-        $scope.starredSlideIndex--;
-      }
-      $scope.slides[$scope.otherSlide] = $scope.starredSlides[$scope.starredSlideIndex];
-      $scope.slides[$scope.otherSlide].animation = 'slideAnimateInRight';
-      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
-      flipSlides();
     };
     // Temporary kitten image url's
     $scope.imageUrls = config.imageUrls;
@@ -119,8 +51,25 @@
       $scope.texts = texts;
       // TODO: filtering and implement issue #33
       $scope.filteredTexts = texts.slice(0, 10);
-      $scope.slides[$scope.currentSlide] = newSlide(suggestText());
+      $scope.slides[$scope.currentSlide] = newSlide(suggestText(), 20);
+      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
     }); 
+    $scope.like = function() {
+      // Scroll current slide out to right
+      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
+      // Bring other slide forward
+      $scope.slides[$scope.otherSlide].animation = 'slideAnimateBringIn';
+      // Flip slides
+      flipSlides();
+    };
+    $scope.dontLike = function() {
+      // Scroll current slide out to left
+      $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
+      // Bring other slide forward
+      $scope.slides[$scope.otherSlide].animation = 'slideAnimateBringIn';
+      // Flip slides
+      flipSlides();
+    };
     // Send text via email
     // TODO: move to service
     $scope.sendViaEmail = function(text, imageUrl) {
@@ -149,14 +98,91 @@
     $scope.sendViaFacebook = function(text) {
       alert('send "' + text.Content + '" via Facebook');
     };
-    //  Get current text, based on text slider index
-    $scope.getCurrentText = function() {
-      return $scope.filteredTexts[$scope.currentText?$scope.currentText:0];
-    };
-    // Get current image url, based on image slider index
-    $scope.getCurrentImageUrl = function() {
-      return $scope.imageUrls[$scope.currentImage?$scope.currentImage:0];
-    };
+    // TODO: DOM manipulation in controller, this should be removed when we switch textselect to a directive
+    var slideContainer = document.getElementsByClassName('slideContainer')[0];
+    // Mobile touch start handler
+    slideContainer.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      dragStart(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    }, true);
+    // Mobile touch move handler
+    slideContainer.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      dragMove(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    }, true);
+    // Mobile touch end handler
+    slideContainer.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      dragEnd(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+    }, true);
+    // Desktop drag listeners
+    slideContainer.addEventListener('mousedown', function(e) {dragStart(e.x, e.y);}, true);
+    slideContainer.addEventListener('mousemove', function(e) {dragMove(e.x, e.y);}, true);
+    slideContainer.addEventListener('mouseup', function(e) {dragEnd(e.x, e.y);}, true);
+    // Start dragging slide
+    var dragState;
+    function dragStart(x,y) {
+      if(dragState) return;
+      dragState = {
+        startX: x,
+        startY: y
+      };
+      offsetSlide($scope.currentSlide, 0, 0);
+      fadeSlide($scope.currentSlide, 1);
+      $scope.slides[$scope.currentSlide].animation = null; 
+      $scope.slides[$scope.currentSlide].zIndex = 20;
+      // Get a new other slide
+      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
+      offsetSlide($scope.otherSlide, 0, 0);
+      $scope.$apply();
+    }
+    // Dragging slide
+    function dragMove(x,y) {
+      if (!dragState) return;
+      dragState.dragging = true; 
+      if(!dragState.axis) dragState.axis = (Math.abs(x-dragState.startX) > Math.abs(y-dragState.startY))?'x':'y';
+      var offsetX = 0;
+      var offsetY = 0;
+      if(dragState.axis === 'x') {
+        offsetX = x - dragState.startX; 
+        fadeSlide($scope.otherSlide, Math.min(Math.abs(offsetX / $scope.windowWidth) + 0.1, 1));
+      } else {
+        offsetY = Math.min(y - dragState.startY, 0);
+      }
+      offsetSlide($scope.currentSlide, offsetX, offsetY);
+    }
+    // End dragging slide
+    function dragEnd(x,y) {
+      if(!dragState) return;
+      var dragDist = x - dragState.startX;
+      // If like threshold reached
+      if(dragDist > $scope.windowWidth / 4) {
+        // Like the text
+        $scope.like();
+      // If dontlike threshold reached
+      } else if(dragDist < -$scope.windowWidth / 4) {
+        // Dontlike the text
+        $scope.dontLike();
+      } else {
+        // If dragging sideways
+        if(dragState.axis === 'x') {
+          // Animate back to center if like/dontlike threshold not reached
+          $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
+        }
+      }
+      $scope.$apply();
+      dragState = null;
+    }
+    function offsetSlide(index, offsetX, offsetY) {
+      var slideElement = document.getElementsByClassName('slide')[index];
+      // Note: translate3d gives a smoother touchmove frequency on android for some reason
+      var translation = 'translate3d(' + offsetX + 'px,' + offsetY +'px, 0)';
+      slideElement.style.webkitTransform = translation;
+      slideElement.style.transform = translation;
+    }
+    function fadeSlide(index, opacity) {
+      var slideElement = document.getElementsByClassName('slide')[index];
+      slideElement.style.opacity = opacity;
+    }
   });
-
 }());

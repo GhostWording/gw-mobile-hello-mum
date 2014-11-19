@@ -1,5 +1,6 @@
 <div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
   <!-- nav buttons -->
+  <!--
   <div class="navButtons">
     <div 
       ng-if="previousStarredSlideExists()" 
@@ -19,22 +20,21 @@
       on-touch="toggleSlideStar()">
     </div>
   </div>
+  -->
   <!-- slides -->
   <div class="slideContainer" style="width:{{windowWidth}}px">
   <div 
     ng-repeat="slide in slides track by $index" 
     class="slide slideAnimation" 
     ng-class="slide.animation"
-    style="width:{{windowWidth}}px;"
-    ng-if="slide.text"
-    ng-mousedown="mouseDown()" 
-    ng-mouseup="mouseUp()">
-    <!--
-    <h2 ng-if="slides[currentSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">current [{{slide.animation}}]</h2>
-    <h2 ng-if="slides[otherSlide] == slide" style="color:white; position:relative; top: 20px; left: 20px">other [{{slide.animation}}]</h2>
-    -->
+    ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
+    ng-if="slide.text">
     <!-- image -->
     <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+    <!--
+    <div ng-if="$index == currentSlide" style="background-color:red; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
+    <div ng-if="$index == otherSlide" style="background-color:blue; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
+    -->
     <!-- content -->
     <div class="text" ng-class="{'textStarred': slide.starred}">
       {{slide.text.Content}}

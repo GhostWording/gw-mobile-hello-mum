@@ -16,25 +16,27 @@
   animation-timing-function: ease-out;  
   animation-fill-mode: forwards;
 }
-.slideAnimateInLeft { animation-name: inLeft; }
 .slideAnimateOutLeft { animation-name: outLeft; }
-.slideAnimateInRight { animation-name: inRight; }
 .slideAnimateOutRight { animation-name: outRight; }
-@keyframes inLeft {
-  0% {transform: translatex(100%);}     
-  100% {transform: translateX(0%);}   
-}
+.slideAnimateBringIn { animation-name: bringIn; }
+.slideAnimateToCenter { animation-name: toCenter; }
 @keyframes outLeft {
-  0% {transform: translatex(0%);}     
-  100% {transform: translatex(-100%);}  
-}
-@keyframes inRight {
-  0% {transform: translatex(-100%);}     
-  100% {transform: translateX(0%);}   
+  from { z-index: 20; }
+  90% { z-index: 20; }
+  to { z-index: 0; transform: translate3d(-100%,0,0); }
 }
 @keyframes outRight {
-  0% {transform: translatex(0%);}     
-  100% {transform: translatex(100%);}  
+  from { z-index: 20; }
+  90% { z-index: 20; }
+  to { z-index: 0; transform: translate3d(100%,0,0); }  
+}
+@keyframes bringIn {
+  from { z-index: 0; }
+  90% { z-index: 0; }
+  to { z-index: 20; opacity:1; transform: translate3d(0,0,0); }  
+}
+@keyframes toCenter {
+  to { transform: translate3d(0,0,0); }  
 }
 .textSelect .image {
   width: 100%;
@@ -49,12 +51,12 @@
 .textSelect .text {
   height: 30%;
   color: rgba(0,0,0,0.7); 
-  padding-top: 70px;  
+  padding-top: 40px;  
   padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
   min-height: 230px;
-  background-color: rgba(255,255,255,0.9);
+  background-color: white;
   text-align: center;
   font-size: 1.05em;
 } 
@@ -123,6 +125,4 @@
 }
 .sendBarButtonSendViaFacebook {
   background-color: transparent; /*#c0392b;*/
-}
-
- 
+} 
