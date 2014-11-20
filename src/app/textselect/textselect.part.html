@@ -22,25 +22,26 @@
   </div>
   -->
   <!-- slides -->
-  <div class="slideContainer" style="width:{{windowWidth}}px">
-  <div 
-    ng-repeat="slide in slides track by $index" 
-    class="slide slideAnimation" 
-    ng-class="slide.animation"
-    ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
-    ng-if="slide.text">
-    <!-- image -->
-    <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
-    <!--
-    <div ng-if="$index == currentSlide" style="background-color:red; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
-    <div ng-if="$index == otherSlide" style="background-color:blue; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
-    -->
-    <!-- content -->
-    <div class="text" ng-class="{'textStarred': slide.starred}">
-      {{slide.text.Content}}
-      <div class="sendButton">SEND</div>
+  <div class="slideContainer" style="width:{{windowWidth*2+10}}px">
+    <div 
+      ng-repeat="slide in slides track by $index" 
+      class="slide slideAnimation" 
+      ng-class="slide.animation"
+      ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
+      ng-if="slide.text">
+      <!-- image -->
+      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+      <!--
+      <div ng-if="$index == currentSlide" style="background-color:red; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
+      <div ng-if="$index == otherSlide" style="background-color:blue; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
+      -->
+      <!-- content -->
+      <div class="text" ng-class="{'textStarred': slide.starred}">
+        {{slide.text.Content}}
+        <div class="sendButton">SEND</div>
+        <div class="slideBottom"></div>
+      </div>
     </div>
-  </div>
   </div>
   <!-- send button bar -->
   <!--

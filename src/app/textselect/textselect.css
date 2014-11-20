@@ -5,14 +5,17 @@
   position: relative;
 }
 .textSelect .slide {
+  /* 
+  There is an android bug where overflow-x:hidden does not work
+  with abosolute positioned elements so we have to use position:relative 
+  */
   position: relative;
-  float: left;
   display: block;
-  width:0px;
-  height:0px;
+  width: 0px;
+  height: 0px;
 }
 .slideAnimation {
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   animation-timing-function: ease-out;  
   animation-fill-mode: forwards;
 }
@@ -55,7 +58,7 @@
   padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  min-height: 230px;
+  height: 2000px;
   background-color: white;
   text-align: center;
   font-size: 1.05em;
@@ -102,6 +105,7 @@
   line-height: 50px;
   color: white;
   margin-top: 25px;
+  margin-bottom: 10px;
   font-size: 1.25em;
   background-color: #2980b9;
   text-align: center;

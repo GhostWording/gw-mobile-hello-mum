@@ -3,7 +3,7 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
-    function($scope, $window, $document, $interval, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
     // Suggest a text (random at the moment)
     // TODO: improve or use something from gw-common
     function suggestText() {
@@ -120,14 +120,18 @@
     slideContainer.addEventListener('mousemove', function(e) {dragMove(e.x, e.y);}, true);
     slideContainer.addEventListener('mouseup', function(e) {dragEnd(e.x, e.y);}, true);
     // Start dragging slide
-    var dragState;
+    var dragState = {};
     function dragStart(x,y) {
-      if(dragState) return;
-      dragState = {
-        startX: x,
-        startY: y
-      };
-      offsetSlide($scope.currentSlide, 0, 0);
+      dragState.dragging = true; 
+      dragState.axis = null;
+      dragState.startX = x;
+      if(dragState.offsetY) {
+        console.log(dragState.offsetY);
+        dragState.startY = -dragState.offsetY + y;
+      } else {
+        dragState.startY = y;
+      }
+      offsetSlide($scope.currentSlide, 0, dragState.offsetY);
       fadeSlide($scope.currentSlide, 1);
       $scope.slides[$scope.currentSlide].animation = null; 
       $scope.slides[$scope.currentSlide].zIndex = 20;
@@ -138,40 +142,49 @@
     }
     // Dragging slide
     function dragMove(x,y) {
-      if (!dragState) return;
-      dragState.dragging = true; 
+      if (!dragState.dragging) return;
       if(!dragState.axis) dragState.axis = (Math.abs(x-dragState.startX) > Math.abs(y-dragState.startY))?'x':'y';
-      var offsetX = 0;
-      var offsetY = 0;
+      dragState.offsetX = 0;
+      dragState.offsetY = 0;
       if(dragState.axis === 'x') {
-        offsetX = x - dragState.startX; 
-        fadeSlide($scope.otherSlide, Math.min(Math.abs(offsetX / $scope.windowWidth) + 0.1, 1));
+        dragState.offsetX = x - dragState.startX; 
+        fadeSlide($scope.otherSlide, Math.min(Math.abs(dragState.offsetX / $scope.windowWidth) + 0.1, 1));
       } else {
-        offsetY = Math.min(y - dragState.startY, 0);
+        var slideBottomElement = document.querySelector('.textSelect .slideBottom');
+        var slideHeight = getSlideHeight($scope.currentSlide);
+        var maxOffsetY = Math.max(slideHeight - $scope.windowHeight, 0);
+        dragState.offsetY = Math.max(Math.min(y - dragState.startY, 0), -maxOffsetY);
+        console.log(dragState.offsetY);
       }
-      offsetSlide($scope.currentSlide, offsetX, offsetY);
+      offsetSlide($scope.currentSlide, dragState.offsetX, dragState.offsetY);
     }
     // End dragging slide
     function dragEnd(x,y) {
-      if(!dragState) return;
-      var dragDist = x - dragState.startX;
-      // If like threshold reached
-      if(dragDist > $scope.windowWidth / 4) {
-        // Like the text
-        $scope.like();
-      // If dontlike threshold reached
-      } else if(dragDist < -$scope.windowWidth / 4) {
-        // Dontlike the text
-        $scope.dontLike();
-      } else {
-        // If dragging sideways
-        if(dragState.axis === 'x') {
+      if(!dragState.dragging) return;
+      // Clear dragging flag
+      dragState.dragging = false;
+      // If dragging sideways
+      if(dragState.axis === 'x') {
+        var dragDist = x - dragState.startX;
+        var likeDontLikeDistanceThreshold = $scope.windowWidth / 6;
+        // If like threshold reached
+        if(dragDist > likeDontLikeDistanceThreshold) {
+          // Like the text
+          $scope.like();
+        // If dontlike threshold reached
+        } else if(dragDist < -likeDontLikeDistanceThreshold) {
+          // Dontlike the text
+          $scope.dontLike();
+        } else {
           // Animate back to center if like/dontlike threshold not reached
           $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
         }
       }
       $scope.$apply();
-      dragState = null;
+    }
+    function getSlideHeight(index) {
+      var slideElement = document.getElementsByClassName('slideBottom')[index];
+      return slideElement.offsetTop;
     }
     function offsetSlide(index, offsetX, offsetY) {
       var slideElement = document.getElementsByClassName('slide')[index];
