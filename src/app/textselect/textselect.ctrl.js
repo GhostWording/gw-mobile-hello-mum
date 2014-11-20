@@ -60,6 +60,8 @@
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
       // Bring other slide forward
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateBringIn';
+      // Hide send bar
+      $scope.sendBarVisible = false;
       // Flip slides
       flipSlides();
     };
@@ -68,6 +70,8 @@
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
       $scope.slides[$scope.otherSlide].animation = 'slideAnimateBringIn';
+      // Hide send bar
+      $scope.sendBarVisible = false;
       // Flip slides
       flipSlides();
     };
@@ -82,6 +86,9 @@
       offsetSlide($scope.currentSlide, 0, 0);
       fadeSlide($scope.otherSlide, 0);
       $scope.dislike();
+    };
+    $scope.sendButtonClick = function() {
+      $scope.sendBarVisible = true;
     };
     // Send text via email
     // TODO: move to service
@@ -103,8 +110,6 @@
       if($window.tempMobile && $window.tempMobile !== '') {
         $cordovaSms.send($window.tempMobile, text.Content + '\n\n' + imageUrl, '');
       }
-      // Deselect text
-      $scope.deselectText();
     };
     // Send text via Facebook
     // TODO: move to service

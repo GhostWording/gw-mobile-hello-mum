@@ -87,28 +87,27 @@
   line-height: 50px;
   color: white;
   margin-top: 25px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 1.25em;
   background-color: #2980b9;
   text-align: center;
 }
 .sendBar {
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-.sendBarButton .ion-loading-c {
-  font-size: 90px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  height: 50px;
 }
 .sendBarButton {
-  border: none;
-  color: rgba(255,255,255,0.5) !important;
+  color: #2980b9;
+  position: absolute;
 }
-.sendBarButtonSendViaEmail {
-  background-color: transparent; /*#16a085;*/
+.sendViaEmail {
+  left: 25%;
 }
-.sendBarButtonSendViaSMS {
-  background-color: transparent; /*#e67e22;*/
+.sendViaSMS {
+  left: 46%;
 }
-.sendBarButtonSendViaFacebook {
-  background-color: transparent; /*#c0392b;*/
-} 
+.sendViaFacebook {
+  right: 25%;
+}
