@@ -30,9 +30,8 @@
       $scope.otherSlide=$scope.otherSlide===0?1:0;
     }
     // Layout slides
-    var windowElement = angular.element($window);
-    $scope.windowWidth = windowElement[0].innerWidth;
-    $scope.windowHeight = windowElement[0].innerHeight;
+    $scope.windowWidth = $window.deviceWidth;    
+    $scope.windowHeight = $window.deviceHeight;
     $scope.slideImageHeight = $scope.windowHeight * 0.50;
     $scope.navPosition = $scope.slideImageHeight + config.UI.navButtonVOffset;
     // Get current slide
