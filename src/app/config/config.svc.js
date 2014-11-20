@@ -7,6 +7,7 @@
       'apiUrl': 'http://api.cvd.io/',
       'area': 'HelloMum', 
       'intentionSlug': 'i-think-of-you', 
+      'recipientId': 'Mother',
       'UI': {
         'navButtonVOffset': 10
       },
