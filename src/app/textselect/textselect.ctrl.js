@@ -172,13 +172,13 @@
           // Like the text
           $scope.like();
           // Clear Y offset
-          dragState.yOffset = 0;
+          dragState.yOffset = null;
         // If dislike threshold reached
         } else if(dragDist < -likeDontLikeDistanceThreshold) {
           // Dislike the text
           $scope.dislike();
           // Clear Y offset
-          dragState.yOffset = 0;
+          dragState.yOffset = null;
         } else {
           // Animate back to center if like/dislike threshold not reached
           $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
