@@ -62,7 +62,7 @@
       // Flip slides
       flipSlides();
     };
-    $scope.dontLike = function() {
+    $scope.dislike = function() {
       // Scroll current slide out to left
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
@@ -171,12 +171,16 @@
         if(dragDist > likeDontLikeDistanceThreshold) {
           // Like the text
           $scope.like();
-        // If dontlike threshold reached
+          // Clear Y offset
+          dragState.yOffset = 0;
+        // If dislike threshold reached
         } else if(dragDist < -likeDontLikeDistanceThreshold) {
-          // Dontlike the text
-          $scope.dontLike();
+          // Dislike the text
+          $scope.dislike();
+          // Clear Y offset
+          dragState.yOffset = 0;
         } else {
-          // Animate back to center if like/dontlike threshold not reached
+          // Animate back to center if like/dislike threshold not reached
           $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
         }
       }

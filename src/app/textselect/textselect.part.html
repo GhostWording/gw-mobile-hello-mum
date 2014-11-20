@@ -1,28 +1,18 @@
 <div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
-  <!-- nav buttons -->
-  <!--
-  <div class="navButtons">
-    <div 
-      ng-if="previousStarredSlideExists()" 
-      class="navButton prevNavButton icon ion-ios7-arrow-back" 
-      style="top:{{navPosition}}px"
-      on-touch="previousStarredSlide()">
-    </div>
-    <div 
-      class="navButton nextNavButton icon ion-ios7-arrow-forward" 
-      style="top:{{navPosition}}px"
-      on-touch="nextSlide()">
-    </div>
-    <div 
-      class="navButton starNavButton icon ion-ios7-star" 
-      ng-class="{'starNavButton': !getCurrentSlide().starred, 'unstarNavButton': getCurrentSlide().starred}" 
-      style="top:{{navPosition}}px; left:{{windowWidth/2-30}}px"
-      on-touch="toggleSlideStar()">
-    </div>
-  </div>
-  -->
   <!-- slides -->
-  <div class="slideContainer" style="width:{{windowWidth*2+10}}px">
+  <div class="slideContainer" style="width:{{windowWidth}}px">
+    <!-- decision buttons -->
+    <div class="decisionButtons" style="width:{{windowWidth}}px; top:{{slideImageHeight+40}}px">
+      <div 
+        class="like icon ion-heart" 
+        on-touch="like()">
+      </div>
+      <div 
+        class="dislike icon ion-heart-broken" 
+        on-touch="dislike()">
+      </div>
+    </div>
+    <!-- slides -->
     <div 
       ng-repeat="slide in slides track by $index" 
       class="slide slideAnimation" 
@@ -31,14 +21,13 @@
       ng-if="slide.text">
       <!-- image -->
       <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
-      <!--
-      <div ng-if="$index == currentSlide" style="background-color:red; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
-      <div ng-if="$index == otherSlide" style="background-color:blue; width:{{windowWidth}}px; height:{{slideImageHeight}}px"></div>
-      -->
       <!-- content -->
       <div class="text" ng-class="{'textStarred': slide.starred}">
+        <!-- text -->
         {{slide.text.Content}}
+        <!-- send button -->
         <div class="sendButton">SEND</div>
+        <!-- bottom of slide marker -->
         <div class="slideBottom"></div>
       </div>
     </div>

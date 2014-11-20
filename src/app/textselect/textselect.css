@@ -15,7 +15,7 @@
   height: 0px;
 }
 .slideAnimation {
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-out;  
   animation-fill-mode: forwards;
 }
@@ -65,39 +65,21 @@
 } 
 .textSelect .textStarred {
 }
-.textSelect .navButtons {
+.textSelect .decisionButtons {
+  z-index: 1000;
   position: absolute;
-  z-index: 5;
-  width: 100%;
-  color: Black;
-  pointer-events: none;
-}
-.textSelect .navButton {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  font-size: 35px;
+  top: 20px;
+  font-size: 40px;
+  color: #2980b9;
   pointer-events: visible;
 }
-.textSelect .prevNavButton {
-  opacity: 0.3;
-  left: 0px;
+.textSelect .decisionButtons .like {
+  position: absolute;
+  right: 10px;
 }
-.textSelect .nextNavButton {
-  opacity: 0.3;
-  right: 0px;
-}
-.textSelect .starNavButton {
-  opacity: 0.3;
-  width: 60px;
-}
-.textSelect .unstarNavButton {
-  width: 60px;
-  /*color: #DBCD6E;*/
-  /*color: #f39c12;*/
-  color: #2980b9;
+.textSelect .decisionButtons .dislike {
+  position: absolute;
+  left: 10px;
 }
 .textSelect .sendButton {
   width: 100%;
