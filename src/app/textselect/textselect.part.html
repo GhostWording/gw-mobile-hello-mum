@@ -31,9 +31,9 @@
         <div class="sendButton" ng-if="!sendBarVisible" ng-click="sendButtonClick()">SEND</div>
         <!-- send bar -->
         <div class="sendBar" ng-if="sendBarVisible" style="width:{{windowWidth/2}}px">
-          <div class="sendBarButton sendViaEmail icon ion-email" ng-click="sendViaEmail(slide.text, getCurrentImageUrl())"></div>
-          <div class="sendBarButton sendViaSMS icon ion-ios7-chatboxes" ng-click="sendViaSMS(slide.text, getCurrentImageUrl())"></div>
-          <div class="sendBarButton sendViaFacebook icon ion-social-facebook" ng-click="sendViaFacebook(slide.text, getCurrentImageUrl())"></div>
+          <div class="sendBarButton sendViaEmail icon ion-email" ng-click="sendViaEmail(slide.text, slide.imageUrl)"></div>
+          <div class="sendBarButton sendViaSMS icon ion-ios7-chatboxes" ng-click="sendViaSMS(slide.text, slide.imageUrl)"></div>
+          <div class="sendBarButton sendViaFacebook icon ion-social-facebook" ng-click="sendViaFacebook(slide.text, slide.imageUrl)"></div>
         </div>
         <!-- bottom of slide marker -->
         <div class="slideBottom"></div>
