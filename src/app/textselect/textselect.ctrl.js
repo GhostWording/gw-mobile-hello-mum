@@ -50,7 +50,7 @@
     textsSvc.getCurrentTextList('en-EN').then(function(texts) {
       $scope.texts = texts;
       // TODO: filtering and implement issue #33
-      $scope.filteredTexts = texts.slice(0, 10);
+      $scope.filteredTexts = texts;
       $scope.slides[$scope.currentSlide] = newSlide(suggestText(), 20);
       $scope.slides[$scope.otherSlide] = newSlide(suggestText());
     }); 
