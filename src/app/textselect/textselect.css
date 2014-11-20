@@ -1,16 +1,48 @@
 .textSelect {
-  margin-top: 0px;
-  height: 90%;
+  overflow-x: hidden;
 }
-.textSelectSlider {
-  margin-top: 5px;
-  height: 100%;
+.textSelect .slideContainer {
+  position: relative;
 }
-.textSelectSlider .slider {
-  height: 100%;
+.textSelect .slide {
+  /* 
+  There is an android bug where overflow-x:hidden does not work
+  with abosolute positioned elements so we have to use position:relative 
+  */
+  position: relative;
+  display: block;
+  width: 0px;
+  height: 0px;
 }
-.textSelectImage {
-  height: 50%;
+.slideAnimation {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;  
+  animation-fill-mode: forwards;
+}
+.slideAnimateOutLeft { animation-name: outLeft; }
+.slideAnimateOutRight { animation-name: outRight; }
+.slideAnimateBringIn { animation-name: bringIn; }
+.slideAnimateToCenter { animation-name: toCenter; }
+@keyframes outLeft {
+  from { z-index: 20; }
+  90% { z-index: 20; }
+  to { z-index: 0; transform: translate3d(-100%,0,0); }
+}
+@keyframes outRight {
+  from { z-index: 20; }
+  90% { z-index: 20; }
+  to { z-index: 0; transform: translate3d(100%,0,0); }  
+}
+@keyframes bringIn {
+  from { z-index: 0; }
+  90% { z-index: 0; }
+  to { z-index: 20; opacity:1; transform: translate3d(0,0,0); }  
+}
+@keyframes toCenter {
+  to { transform: translate3d(0,0,0); }  
+}
+.textSelect .image {
+  width: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,36 +50,64 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
-  margin-bottom: 5px;
 }
-.textSelectContent {
+.textSelect .text {
+  height: 30%;
   color: rgba(0,0,0,0.7); 
-  background-color: rgba(255,255,255,0.8);
-  padding: 20px;
-  border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+  padding-top: 40px;  
+  padding-bottom: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  height: 2000px;
+  background-color: white;
+  text-align: center;
+  font-size: 1.05em;
 } 
-.sendBar {
-  margin-top: 5px;
-  margin-bottom: 10px;
+.textSelect .textStarred {
 }
-.sendBarButton .ion-loading-c {
-  font-size: 90px;
+.textSelect .decisionButtons {
+  z-index: 1000;
+  position: absolute;
+  top: 20px;
+  font-size: 50px;
+  color: white;
+  pointer-events: visible;
+}
+.textSelect .decisionButtons .like {
+  position: absolute;
+  right: 15px;
+}
+.textSelect .decisionButtons .dislike {
+  position: absolute;
+  left: 15px;
+}
+.textSelect .sendButton {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: white;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-size: 1.25em;
+  background-color: #2980b9;
+  text-align: center;
+}
+.sendBar {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  height: 50px;
 }
 .sendBarButton {
-  border: none;
-  color: rgba(255,255,255,0.5) !important;
+  color: #2980b9;
+  position: absolute;
 }
-.sendBarButtonSendViaEmail {
-  background-color: transparent; /*#16a085;*/
+.sendViaEmail {
+  left: 25%;
 }
-.sendBarButtonSendViaSMS {
-  background-color: transparent; /*#e67e22;*/
+.sendViaSMS {
+  left: 46%;
 }
-.sendBarButtonSendViaFacebook {
-  background-color: transparent; /*#c0392b;*/
+.sendViaFacebook {
+  right: 25%;
 }
-
- 

@@ -1,26 +1,43 @@
-<div class="textSelect">
-  <!-- text slider -->
-  <div class="textSelectSlider">
-    <ion-slide-box show-pager="false" active-slide="currentText">
-      <ion-slide ng-repeat="text in filteredTexts | temporaryFilterLongTexts">
-        <!-- image -->
-        <div class="textSelectImage" style="background-image:url('{{imageUrls[$index % imageUrls.length]}}')"></div>
-        <div class="textSelectContent">
-          {{text.Content}}
+<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
+  <!-- slides -->
+  <div class="slideContainer" style="width:{{windowWidth}}px">
+    <!-- decision buttons -->
+    <!--
+    <div class="decisionButtons" style="width:{{windowWidth}}px; top:{{slideImageHeight/2}}px">
+      <div 
+        class="like icon ion-heart" 
+        on-touch="likeIconClick()">
+      </div>
+      <div 
+        class="dislike icon ion-heart-broken" 
+        on-touch="dislikeIconClick()">
+      </div>
+    </div>
+    -->
+    <!-- slides -->
+    <div 
+      ng-repeat="slide in slides track by $index" 
+      class="slide slideAnimation" 
+      ng-class="slide.animation"
+      ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
+      ng-if="slide.text">
+      <!-- image -->
+      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+      <!-- content -->
+      <div class="text" ng-class="{'textStarred': slide.starred}">
+        <!-- text -->
+        {{slide.text.Content}}
+        <!-- send button -->
+        <div class="sendButton" ng-if="!sendBarVisible" ng-click="sendButtonClick()">SEND</div>
+        <!-- send bar -->
+        <div class="sendBar" ng-if="sendBarVisible" style="width:{{windowWidth/2}}px">
+          <div class="sendBarButton sendViaEmail icon ion-email" ng-click="sendViaEmail(slide.text, slide.imageUrl)"></div>
+          <div class="sendBarButton sendViaSMS icon ion-ios7-chatboxes" ng-click="sendViaSMS(slide.text, slide.imageUrl)"></div>
+          <div class="sendBarButton sendViaFacebook icon ion-social-facebook" ng-click="sendViaFacebook(slide.text, slide.imageUrl)"></div>
         </div>
-        <!-- send button bar -->
-        <div class="button-bar sendBar">
-          <button class="button sendBarButton sendBarButtonSendViaEmail" ng-click="sendViaEmail(text, getCurrentImageUrl())">
-            <span class="icon ion-email"></span>
-          </button>
-          <button class="button sendBarButton sendBarButtonSendViaSMS" ng-click="sendViaSMS(text, getCurrentImageUrl())">
-            <span class="icon ion-ios7-chatboxes"></span>
-          </button>
-          <button class="button sendBarButton sendBarButtonSendViaFacebook" ng-click="sendViaFacebook(text)">
-            <span class="icon ion-social-facebook"></span>
-          </button>
-        </div>
-      </ion-slide>
-    </ion-slide-box>
+        <!-- bottom of slide marker -->
+        <div class="slideBottom"></div>
+      </div>
+    </div>
   </div>
 </div>
