@@ -4,6 +4,7 @@
 
   angular.module('app/textselect').controller('TextSelectCtrl', 
     function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
+    var dragState = {};
     // Suggest a text (random at the moment)
     // TODO: improve or use something from gw-common
     function suggestText() {
@@ -70,6 +71,18 @@
       // Flip slides
       flipSlides();
     };
+    $scope.likeIconClick = function() {
+      delete dragState.offsetY;
+      offsetSlide($scope.currentSlide, 0, 0);
+      fadeSlide($scope.otherSlide, 0);
+      $scope.like();
+    };
+    $scope.dislikeIconClick = function() {
+      delete dragState.offsetY;
+      offsetSlide($scope.currentSlide, 0, 0);
+      fadeSlide($scope.otherSlide, 0);
+      $scope.dislike();
+    };
     // Send text via email
     // TODO: move to service
     $scope.sendViaEmail = function(text, imageUrl) {
@@ -120,7 +133,6 @@
     slideContainer.addEventListener('mousemove', function(e) {dragMove(e.x, e.y);}, true);
     slideContainer.addEventListener('mouseup', function(e) {dragEnd(e.x, e.y);}, true);
     // Start dragging slide
-    var dragState = {};
     function dragStart(x,y) {
       dragState.dragging = true; 
       dragState.axis = null;
@@ -171,14 +183,10 @@
         if(dragDist > likeDontLikeDistanceThreshold) {
           // Like the text
           $scope.like();
-          // Clear Y offset
-          dragState.yOffset = null;
         // If dislike threshold reached
         } else if(dragDist < -likeDontLikeDistanceThreshold) {
           // Dislike the text
           $scope.dislike();
-          // Clear Y offset
-          dragState.yOffset = null;
         } else {
           // Animate back to center if like/dislike threshold not reached
           $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
