@@ -52,7 +52,8 @@
         text: text,
         imageUrl: config.imageUrls[imageIndex],
         opacity: 1,
-        zIndex: zIndex!==undefined?zIndex:0
+        zIndex: zIndex!==undefined?zIndex:0,
+        swipeDirection: 'none'
       };
       imageIndex++;
       if(imageIndex > config.imageUrls.length-1) imageIndex = 0;
@@ -202,12 +203,21 @@
     // Dragging slide
     function dragMove(x,y) {
       if (!dragState.dragging) return;
+      var currentSlide = $scope.slides[$scope.currentSlide];
       if(!dragState.axis) dragState.axis = (Math.abs(x-dragState.startX) > Math.abs(y-dragState.startY))?'x':'y';
       dragState.offsetX = 0;
       dragState.offsetY = 0;
       if(dragState.axis === 'x') {
         dragState.offsetX = x - dragState.startX; 
         fadeSlide($scope.otherSlide, Math.min(Math.abs(dragState.offsetX / $scope.windowWidth) + 0.1, 1));
+        if(dragState.offsetX < 0 && currentSlide.swipeDirection !== 'left') {
+          currentSlide.swipeDirection = 'left';
+          $scope.$apply();
+        }
+        if(dragState.offsetX > 0 && currentSlide.swipeDirection !== 'right') {
+          currentSlide.swipeDirection = 'right';
+          $scope.$apply();
+        }
       } else {
         var slideBottomElement = document.querySelector('.textSelect .slideBottom');
         var slideHeight = getSlideHeight($scope.currentSlide);
@@ -220,6 +230,7 @@
     // End dragging slide
     function dragEnd(x,y) {
       if(!dragState.dragging) return;
+      var currentSlide = $scope.slides[$scope.currentSlide];
       // Clear dragging flag
       dragState.dragging = false;
       // If dragging sideways
@@ -236,7 +247,9 @@
           $scope.dislike();
         } else {
           // Animate back to center if like/dislike threshold not reached
-          $scope.slides[$scope.currentSlide].animation = 'slideAnimateToCenter';
+          currentSlide.animation = 'slideAnimateToCenter';
+          // Clear swipe direction
+          currentSlide.swipeDirection = 'none';
         }
       }
       $scope.$apply();

@@ -65,6 +65,26 @@
 } 
 .textSelect .textStarred {
 }
+.swipeIndicator {
+  width: 100%;
+}
+.swipeIndicator .outer {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.swipeIndicator .inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+.swipeIndicator .icon {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 13em;
+  color: #2980b9;
+  opacity: 0.8;
+}
 .textSelect .decisionButtons {
   z-index: 1000;
   position: absolute;
