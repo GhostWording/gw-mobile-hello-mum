@@ -45,6 +45,12 @@ var getCSSGlobs = function() {
   ];
 };
 
+var getImageGlobs = function() {
+  return [
+    'src/app/**/*.jpg'
+  ];
+};
+
 var getFontGlobs = function() {
   return [
     'src/lib/ionic/fonts/**/ionicons.ttf',
@@ -137,6 +143,11 @@ gulp.task('process:styles', function() {
     .pipe(gulp.dest('www'));
 });
 
+gulp.task('process:images', function() {
+  return gulp.src(getImageGlobs(), {base:'src'})
+    .pipe(gulp.dest('www'));
+});
+
 gulp.task('process:fonts', function() {
   if(debug) {
     var options = {base:'src'};
@@ -149,7 +160,7 @@ gulp.task('process:fonts', function() {
 });
 
 gulp.task('build', function(done) {
-  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts'], 'process:index', done);
+  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images'], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {

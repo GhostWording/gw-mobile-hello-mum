@@ -46,13 +46,17 @@
       return suggestedText;
     }
     // Create a new slide
+    var imageIndex = 0;
     function newSlide(text, zIndex) {
-      return {
+      var slide = {
         text: text,
-        imageUrl: config.imageUrls[Math.floor(Math.random() * (config.imageUrls.length-1))],
+        imageUrl: config.imageUrls[imageIndex],
         opacity: 1,
         zIndex: zIndex!==undefined?zIndex:0
       };
+      imageIndex++;
+      if(imageIndex > config.imageUrls.length-1) imageIndex = 0;
+      return slide;
     }
     // Flip the two slides over
     function flipSlides() {
