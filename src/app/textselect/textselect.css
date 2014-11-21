@@ -115,11 +115,11 @@
 .sendBar {
   margin-top: 30px;
   margin-bottom: 20px;
-  font-size: 30px;
   height: 50px;
 }
 .sendBarButton {
   color: #2980b9;
+  font-size: 2.5em;
   position: absolute;
 }
 .sendViaEmail {
