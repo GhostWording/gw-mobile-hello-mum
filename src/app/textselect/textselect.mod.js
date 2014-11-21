@@ -4,8 +4,8 @@
 
   angular.module('app/textselect', [
     'ngCordova.plugins.prefs',
-    'ngCordova.plugins.sms',
     'common/texts',
+    'mobile/send',
     'app/config'
   ]);
 
