@@ -2,19 +2,49 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', 
-    function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, filteredTextListSvc, filtersSvc) {
-    var dragState = {};
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
+    // Fetch text list from server and filter to mother recipient type
+    function fetchTexts(done) {
+      // Set area
+      areasSvc.setCurrentName(config.area);
+      // Set current intention
+      intentionsSvc.setIntentionSlug(currentIntention); 
+      // Get recipient types
+      // TODO: show an error to the user if we couldn't fetch recipient types (#51)
+      recipientTypesSvc.getRecipients().then(function(){
+        // Get recipient type tag
+        var recipientTypeTag = recipientTypesSvc.getThisOneNow(config.recipientId).RecipientTypeTag;
+        // Fetch text list
+        // TODO: show an error to the user if we couldn't fetch texts (#51)
+        // TODO: handle localisation
+        textsSvc.getCurrentTextList('en-EN').then(function(texts) {
+          var user = {};
+          // Set recipient type tag on filters service
+          filtersSvc.setRecipientTypeTag(recipientTypeTag);
+          // Get filters          
+          var filters = filtersSvc.filters; 
+          // Set up filtered text list service
+          filteredTextListSvc.setFilteredAndOrderedList(texts, user, filters.preferredStyles);
+          // filter texts
+          var filteredTexts = filteredTextListSvc.getFilteredTextList();
+          // Done
+          done(filteredTexts);
+        }); 
+      });
+    }
     // Suggest a text (random at the moment)
     // TODO: improve or use something from gw-common
     function suggestText() {
-      var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
-      return $scope.filteredTexts[suggestedTextIndex]; 
+      // TODO: do something when the texts run out!
+      if($scope.filteredTexts.length <= 2) return null;
+      var currentText = $scope.slides[$scope.currentSlide].text;
+      var suggestedText;
+      do {
+        var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
+        suggestedText = $scope.filteredTexts[suggestedTextIndex];
+      } while(suggestedText == currentText);
+      return suggestedText;
     }
-    // Initialise slides
-    $scope.slides = [{},{}];
-    $scope.currentSlide = 0;
-    $scope.otherSlide = 1;
     // Create a new slide
     function newSlide(text, zIndex) {
       return {
@@ -29,7 +59,11 @@
       $scope.currentSlide=$scope.currentSlide===0?1:0;
       $scope.otherSlide=$scope.otherSlide===0?1:0;
     }
-    // Layout slides
+    // Initialise slides
+    var dragState = {};
+    $scope.slides = [{},{}];
+    $scope.currentSlide = 0;
+    $scope.otherSlide = 1;
     $scope.windowWidth = $window.deviceWidth;    
     $scope.windowHeight = $window.deviceHeight;
     $scope.slideImageHeight = $scope.windowHeight * 0.50;
@@ -42,19 +76,16 @@
     $scope.imageUrls = config.imageUrls;
     // Zero current text
     $scope.currentText = 0;
-    // Set area
-    areasSvc.setCurrentName(config.area);
-    // Set current intention
-    intentionsSvc.setIntentionSlug(currentIntention); 
     // Fetch texts
-    textsSvc.getCurrentTextList('en-EN').then(function(texts) {
-      $scope.texts = texts;
-      // TODO: filtering and implement issue #33
-      $scope.filteredTexts = texts.slice(0, 10);
+    fetchTexts(function(texts) {
+      // Store texts
+      $scope.filteredTexts = texts;
+      // Initialise slides with first two texts
       $scope.slides[$scope.currentSlide] = newSlide(suggestText(), 20);
       $scope.slides[$scope.otherSlide] = newSlide(suggestText());
-    }); 
-    $scope.like = function() {
+    });
+    // Like the current text
+    $scope.like = function(text) {
       // Scroll current slide out to right
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
       // Bring other slide forward
@@ -64,7 +95,12 @@
       // Flip slides
       flipSlides();
     };
-    $scope.dislike = function() {
+    // Dislike the current text
+    $scope.dislike = function(text) {
+      console.assert($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text)!=-1);
+      // Remove text from text list
+      $scope.filteredTexts.splice($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text), 1);
+      console.log($scope.filteredTexts.length);
       // Scroll current slide out to left
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
@@ -74,18 +110,21 @@
       // Flip slides
       flipSlides();
     };
+    // Like icon clicked
     $scope.likeIconClick = function() {
       delete dragState.offsetY;
       offsetSlide($scope.currentSlide, 0, 0);
       fadeSlide($scope.otherSlide, 0);
       $scope.like();
     };
+    // Dislike icon clicked
     $scope.dislikeIconClick = function() {
       delete dragState.offsetY;
       offsetSlide($scope.currentSlide, 0, 0);
       fadeSlide($scope.otherSlide, 0);
       $scope.dislike();
     };
+    // Send button clicked
     $scope.sendButtonClick = function() {
       $scope.sendBarVisible = true;
     };
