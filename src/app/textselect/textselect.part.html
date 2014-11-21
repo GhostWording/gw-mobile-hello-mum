@@ -22,7 +22,17 @@
       ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
       ng-if="slide.text">
       <!-- image -->
-      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')"></div>
+      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')">
+        <!-- swipe indicator -->
+        <div class="swipeIndicator" style="height:{{slideImageHeight}}px" ng-if="slide.swipeDirection!=='none'">
+          <div class="outer">
+            <div class="inner">
+              <div class="icon ion-close-round" ng-if="slide.swipeDirection==='left'"></div>
+              <div class="icon ion-heart" ng-if="slide.swipeDirection==='right'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- content -->
       <div class="text" ng-class="{'textStarred': slide.starred}">
         <!-- text -->
