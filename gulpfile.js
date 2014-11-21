@@ -64,6 +64,7 @@ var partialGlobs = [
 
 var jshintGlobs = [
   'src/lib/gw-common/**/*.js',
+  'src/lib/gw-mobile-common/**/*.js',
   'src/app/**/*.js'
 ];
 
