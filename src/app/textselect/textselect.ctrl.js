@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaSms, $cordovaPreferences, config, currentIntention, areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, currentIntention, areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
     // Fetch text list from server and filter to mother recipient type
     function fetchTexts(done) {
       // Set area
@@ -133,31 +133,21 @@
     $scope.sendButtonClick = function() {
       $scope.sendBarVisible = true;
     };
-    // Send text via email
-    // TODO: move to service
-    $scope.sendViaEmail = function(text, imageUrl) {
-      // TODO: get $cordovaPreferences to work
-      if($window.tempEmail && $window.tempEmail !== '') {
-        cordova.plugins.email.open({
-          to: $window.tempEmail,
-          subject: 'Hello Mum',
-          body: text.Content + '\n\n\n' + imageUrl
-        });
-      }
+    // Send Via Email clicked
+    $scope.sendViaEmailClick = function(slide) {
+      // TODO: get $cordovaPreferences to work (#35)
+      sendEmail.setEmailAddress($window.tempEmail);
+      sendEmail.send(slide.text.Content, slide.imageUrl);
     };
-    // Send text via SMS
-    // TODO: move to service
-    $scope.sendViaSMS = function(text, imageUrl) {
-      // TODO: get $cordovaPreferences to work
-      // Send SMS
-      if($window.tempMobile && $window.tempMobile !== '') {
-        $cordovaSms.send($window.tempMobile, text.Content + '\n\n' + imageUrl, '');
-      }
+    // Send Via SMS clicked
+    $scope.sendViaSMSClick = function(slide) {
+      // TODO: get $cordovaPreferences to work (#35)
+      sendSMS.setMobileNumber($window.tempMobile);
+      sendSMS.send(slide.text.Content, slide.imageUrl);
     };
-    // Send text via Facebook
-    // TODO: move to service
-    $scope.sendViaFacebook = function(text) {
-      alert('send "' + text.Content + '" via Facebook');
+    // Send Via Facebook clicked
+    $scope.sendViaFacebookClick = function(slide) {
+      sendFacebook.send(slide.text.Content, slide.imageUrl);
     };
     // TODO: DOM manipulation in controller, this should be removed when we switch textselect to a directive
     var slideContainer = document.getElementsByClassName('slideContainer')[0];
