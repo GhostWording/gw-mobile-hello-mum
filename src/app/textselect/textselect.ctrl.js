@@ -35,8 +35,14 @@
     // Suggest a text (random at the moment)
     // TODO: improve or use something from gw-common
     function suggestText() {
-      var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
-      return $scope.filteredTexts[suggestedTextIndex]; 
+      if($scope.filteredTexts.length <= 2) return null;
+      var currentText = $scope.slides[$scope.currentSlide].text;
+      var suggestedText;
+      do {
+        var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
+        suggestedText = $scope.filteredTexts[suggestedTextIndex];
+      } while(suggestedText == currentText);
+      return suggestedText;
     }
     // Create a new slide
     function newSlide(text, zIndex) {
@@ -78,7 +84,7 @@
       $scope.slides[$scope.otherSlide] = newSlide(suggestText());
     });
     // Like the current text
-    $scope.like = function() {
+    $scope.like = function(text) {
       // Scroll current slide out to right
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutRight';
       // Bring other slide forward
@@ -89,7 +95,11 @@
       flipSlides();
     };
     // Dislike the current text
-    $scope.dislike = function() {
+    $scope.dislike = function(text) {
+      console.assert($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text)!=-1);
+      // Remove text from text list
+      $scope.filteredTexts.splice($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text), 1);
+      console.log($scope.filteredTexts.length);
       // Scroll current slide out to left
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
