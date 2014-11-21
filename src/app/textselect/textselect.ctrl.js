@@ -35,6 +35,7 @@
     // Suggest a text (random at the moment)
     // TODO: improve or use something from gw-common
     function suggestText() {
+      // TODO: do something when the texts run out!
       if($scope.filteredTexts.length <= 2) return null;
       var currentText = $scope.slides[$scope.currentSlide].text;
       var suggestedText;
