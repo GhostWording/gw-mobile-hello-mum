@@ -62,7 +62,8 @@ var getFontGlobs = function() {
 };
 
 var partialGlobs = [
-  'src/app/**/*.part.html'
+  'src/**/lib/gw-mobile-common/**/*.part.html',
+  'src/**/app/**/*.part.html'
 ];
 
 var jshintGlobs = [
@@ -128,7 +129,7 @@ gulp.task('process:javascript', ['jshint'], function() {
   if(debug) {partSrcOpt.base = 'src';}
   var partialStream = gulp.src(partialGlobs, partSrcOpt)
     .pipe(gIf(!debug, minifyHTML({})))
-    .pipe(gIf(!debug, templateCache('partials.js', {module:appModule, root:'app'})));
+    .pipe(gIf(!debug, templateCache('partials.js', {module:appModule, root:'.'})));
   return streamQueue({objectMode:true}, jsStream, partialStream)
     .pipe(gIf(!debug, concat('app.js')))
     .pipe(gIf(!debug, uglify({mangle:false})))
