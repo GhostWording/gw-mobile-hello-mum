@@ -44,7 +44,8 @@ var getJSGlobs = function() {
 var getCSSGlobs = function() {
   return [
     'src/lib/ionic/css/ionic' + (debug?'':'.min') + '.css',
-    'src/app/**/*.css'
+    'src/lib/gw-mobile-common/**/*.css',
+    'src/app/**/*.css',
   ];
 };
 
