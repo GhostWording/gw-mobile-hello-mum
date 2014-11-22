@@ -23,14 +23,13 @@
       <div class="text" ng-class="{'textStarred': slide.starred}">
         <!-- text -->
         {{slide.text.Content}}
-        <!-- send button -->
-        <div class="sendButton" ng-if="!sendBarVisible" ng-click="sendButtonClick()">SEND</div>
         <!-- send bar -->
-        <div class="sendBar" ng-if="sendBarVisible" style="width:{{windowWidth/2}}px">
-          <div class="sendBarButton sendViaEmail icon ion-email" ng-click="sendViaEmailClick(slide)"></div>
-          <div class="sendBarButton sendViaSMS icon ion-ios7-chatboxes" ng-click="sendViaSMSClick(slide)"></div>
-          <div class="sendBarButton sendViaFacebook icon ion-social-facebook" ng-click="sendViaFacebookClick(slide)"></div>
-        </div>
+        <gw-mob-sendbar 
+          emailaddress="emailAddress" 
+          mobilenumber="mobileNumber" 
+          text="slide.text.Content"
+          imageurl="slide.imageUrl">
+        </gw-mob-sendbar>
         <!-- bottom of slide marker -->
         <div class="slideBottom"></div>
       </div>
