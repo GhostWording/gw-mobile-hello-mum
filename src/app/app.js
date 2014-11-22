@@ -10,22 +10,10 @@
           url: '/',
           templateUrl: 'app/home/home.part.html'
         })
-        /*
-        .state('intentions', {
-          url: '/intentions',
-          templateUrl: 'app/intentions/intentions.part.html'
-        })
-        */
         .state('texts', {
           url: '/texts',
           templateUrl: 'app/textselect/textselect.part.html',
-          controller: 'TextSelectCtrl',
-          resolve: {
-            currentIntention: function($stateParams) {
-              // TODO: remove this
-              return 'i-think-of-you';
-            }
-          }
+          controller: 'TextSelectCtrl'
         });
   })
   .run(function($ionicPlatform) {
