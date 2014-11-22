@@ -3,6 +3,9 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, currentIntention, areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
+    // TODO: remove once we pick from contacts (#12)
+    $scope.emailAddress = $window.tempEmail;
+    $scope.mobileNumber = $window.tempMobile;
     // Fetch text list from server and filter to mother recipient type
     function fetchTexts(done) {
       // Set area
@@ -113,26 +116,6 @@
       $scope.sendBarVisible = false;
       // Flip slides
       flipSlides();
-    };
-    // Send button clicked
-    $scope.sendButtonClick = function() {
-      $scope.sendBarVisible = true;
-    };
-    // Send Via Email clicked
-    $scope.sendViaEmailClick = function(slide) {
-      // TODO: get $cordovaPreferences to work (#35)
-      sendEmail.setEmailAddress($window.tempEmail);
-      sendEmail.send(slide.text.Content, slide.imageUrl);
-    };
-    // Send Via SMS clicked
-    $scope.sendViaSMSClick = function(slide) {
-      // TODO: get $cordovaPreferences to work (#35)
-      sendSMS.setMobileNumber($window.tempMobile);
-      sendSMS.send(slide.text.Content, slide.imageUrl);
-    };
-    // Send Via Facebook clicked
-    $scope.sendViaFacebookClick = function(slide) {
-      sendFacebook.send(slide.text.Content, slide.imageUrl);
     };
     // TODO: DOM manipulation in controller, this should be removed when we switch textselect to a directive
     var slideContainer = document.getElementsByClassName('slideContainer')[0];
