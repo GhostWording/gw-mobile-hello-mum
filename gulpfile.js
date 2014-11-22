@@ -33,6 +33,7 @@ var getJSGlobs = function() {
     'src/lib/ngCordova/dist/ng-cordova' + (debug?'':'.min') + '.js',
     'src/lib/gw-common/**/*.js',
     '!src/lib/gw-common/**/*.spec.js',
+    'src/lib/gw-mobile-common/**/*.mod.js',
     'src/lib/gw-mobile-common/**/*.js',
     '!src/lib/gw-mobile-common/**/*.spec.js',
     'src/app/**/*.mod.js',
