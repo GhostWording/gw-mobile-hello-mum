@@ -1,20 +1,6 @@
 <div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
   <!-- slides -->
   <div class="slideContainer" style="width:{{windowWidth}}px">
-    <!-- decision buttons -->
-    <!--
-    <div class="decisionButtons" style="width:{{windowWidth}}px; top:{{slideImageHeight/2}}px">
-      <div 
-        class="like icon ion-heart" 
-        on-touch="likeIconClick()">
-      </div>
-      <div 
-        class="dislike icon ion-heart-broken" 
-        on-touch="dislikeIconClick()">
-      </div>
-    </div>
-    -->
-    <!-- slides -->
     <div 
       ng-repeat="slide in slides track by $index" 
       class="slide slideAnimation" 

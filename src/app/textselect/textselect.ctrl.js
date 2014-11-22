@@ -105,7 +105,6 @@
       console.assert($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text)!=-1);
       // Remove text from text list
       $scope.filteredTexts.splice($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text), 1);
-      console.log($scope.filteredTexts.length);
       // Scroll current slide out to left
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
@@ -114,20 +113,6 @@
       $scope.sendBarVisible = false;
       // Flip slides
       flipSlides();
-    };
-    // Like icon clicked
-    $scope.likeIconClick = function() {
-      delete dragState.offsetY;
-      offsetSlide($scope.currentSlide, 0, 0);
-      fadeSlide($scope.otherSlide, 0);
-      $scope.like();
-    };
-    // Dislike icon clicked
-    $scope.dislikeIconClick = function() {
-      delete dragState.offsetY;
-      offsetSlide($scope.currentSlide, 0, 0);
-      fadeSlide($scope.otherSlide, 0);
-      $scope.dislike();
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
@@ -176,7 +161,6 @@
       dragState.axis = null;
       dragState.startX = x;
       if(dragState.offsetY) {
-        console.log(dragState.offsetY);
         dragState.startY = -dragState.offsetY + y;
       } else {
         dragState.startY = y;
@@ -213,7 +197,6 @@
         var slideHeight = getSlideHeight($scope.currentSlide);
         var maxOffsetY = Math.max(slideHeight - $scope.windowHeight, 0);
         dragState.offsetY = Math.max(Math.min(y - dragState.startY, 0), -maxOffsetY);
-        console.log(dragState.offsetY);
       }
       offsetSlide($scope.currentSlide, dragState.offsetX, dragState.offsetY);
     }
