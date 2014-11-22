@@ -2,52 +2,10 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, currentIntention, areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, texts) {
     // TODO: remove once we pick from contacts (#12)
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
-    // Fetch text list from server and filter to mother recipient type
-    function fetchTexts(done) {
-      // Set area
-      areasSvc.setCurrentName(config.area);
-      // Set current intention
-      intentionsSvc.setIntentionSlug(currentIntention); 
-      // Get recipient types
-      // TODO: show an error to the user if we couldn't fetch recipient types (#51)
-      recipientTypesSvc.getRecipients().then(function(){
-        // Get recipient type tag
-        var recipientTypeTag = recipientTypesSvc.getThisOneNow(config.recipientId).RecipientTypeTag;
-        // Fetch text list
-        // TODO: show an error to the user if we couldn't fetch texts (#51)
-        // TODO: handle localisation
-        textsSvc.getCurrentTextList('en-EN').then(function(texts) {
-          var user = {};
-          // Set recipient type tag on filters service
-          filtersSvc.setRecipientTypeTag(recipientTypeTag);
-          // Get filters          
-          var filters = filtersSvc.filters; 
-          // Set up filtered text list service
-          filteredTextListSvc.setFilteredAndOrderedList(texts, user, filters.preferredStyles);
-          // filter texts
-          var filteredTexts = filteredTextListSvc.getFilteredTextList();
-          // Done
-          done(filteredTexts);
-        }); 
-      });
-    }
-    // Suggest a text (random at the moment)
-    // TODO: improve or use something from gw-common
-    function suggestText() {
-      // TODO: do something when the texts run out!
-      if($scope.filteredTexts.length <= 2) return null;
-      var currentText = $scope.slides[$scope.currentSlide].text;
-      var suggestedText;
-      do {
-        var suggestedTextIndex = Math.floor(Math.random() * ($scope.filteredTexts.length-1));
-        suggestedText = $scope.filteredTexts[suggestedTextIndex];
-      } while(suggestedText == currentText);
-      return suggestedText;
-    }
     // Create a new slide
     var imageIndex = 0;
     function newSlide(text, zIndex) {
@@ -85,12 +43,12 @@
     // Zero current text
     $scope.currentText = 0;
     // Fetch texts
-    fetchTexts(function(texts) {
-      // Store texts
-      $scope.filteredTexts = texts;
+    texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
+      // Store text list
+      $scope.textList = textList;
       // Initialise slides with first two texts
-      $scope.slides[$scope.currentSlide] = newSlide(suggestText(), 20);
-      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
+      $scope.slides[$scope.currentSlide] = newSlide(texts.suggest(), 20);
+      $scope.slides[$scope.otherSlide] = newSlide(texts.suggest());
     });
     // Like the current text
     $scope.like = function(text) {
@@ -105,9 +63,9 @@
     };
     // Dislike the current text
     $scope.dislike = function(text) {
-      console.assert($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text)!=-1);
+      console.assert($scope.textList.indexOf($scope.slides[$scope.currentSlide].text)!=-1);
       // Remove text from text list
-      $scope.filteredTexts.splice($scope.filteredTexts.indexOf($scope.slides[$scope.currentSlide].text), 1);
+      $scope.textList.splice($scope.textList.indexOf($scope.slides[$scope.currentSlide].text), 1);
       // Scroll current slide out to left
       $scope.slides[$scope.currentSlide].animation = 'slideAnimateOutLeft';
       // Bring other slide forward
@@ -153,7 +111,7 @@
       $scope.slides[$scope.currentSlide].animation = null; 
       $scope.slides[$scope.currentSlide].zIndex = 20;
       // Get a new other slide
-      $scope.slides[$scope.otherSlide] = newSlide(suggestText());
+      $scope.slides[$scope.otherSlide] = newSlide(texts.suggest($scope.slides[$scope.currentSlide].text));
       offsetSlide($scope.otherSlide, 0, 0);
       $scope.$apply();
     }
