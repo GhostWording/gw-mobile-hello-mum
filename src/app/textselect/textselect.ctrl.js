@@ -3,6 +3,7 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, texts) {
+    $scope.swipeDirection = 'none';
     // TODO: remove once we pick from contacts (#12)
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
@@ -13,8 +14,7 @@
         text: text,
         imageUrl: config.imageUrls[imageIndex],
         opacity: 1,
-        zIndex: zIndex!==undefined?zIndex:0,
-        swipeDirection: 'none'
+        zIndex: zIndex!==undefined?zIndex:0
       };
       imageIndex++;
       if(imageIndex > config.imageUrls.length-1) imageIndex = 0;
@@ -125,12 +125,12 @@
       if(dragState.axis === 'x') {
         dragState.offsetX = x - dragState.startX; 
         fadeSlide($scope.otherSlide, Math.min(Math.abs(dragState.offsetX / $scope.windowWidth) + 0.1, 1));
-        if(dragState.offsetX < 0 && currentSlide.swipeDirection !== 'left') {
-          currentSlide.swipeDirection = 'left';
+        if(dragState.offsetX < 0 && $scope.swipeDirection !== 'left') {
+          $scope.swipeDirection = 'left';
           $scope.$apply();
         }
-        if(dragState.offsetX > 0 && currentSlide.swipeDirection !== 'right') {
-          currentSlide.swipeDirection = 'right';
+        if(dragState.offsetX > 0 && $scope.swipeDirection !== 'right') {
+          $scope.swipeDirection = 'right';
           $scope.$apply();
         }
       } else {
@@ -163,7 +163,7 @@
           // Animate back to center if like/dislike threshold not reached
           currentSlide.animation = 'slideAnimateToCenter';
           // Clear swipe direction
-          currentSlide.swipeDirection = 'none';
+          $scope.swipeDirection = 'none';
         }
       }
       $scope.$apply();

@@ -1,4 +1,13 @@
 <div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
+  <!-- swipe indicator -->
+  <div class="swipeIndicator" style="height:{{slideImageHeight}}px" ng-if="swipeDirection!=='none'">
+    <div class="outer">
+      <div class="inner">
+        <div class="icon ion-close-round" ng-if="swipeDirection==='left'"></div>
+        <div class="icon ion-heart" ng-if="swipeDirection==='right'"></div>
+      </div>
+    </div>
+  </div>
   <!-- slides -->
   <div class="slideContainer" style="width:{{windowWidth}}px">
     <div 
@@ -9,15 +18,6 @@
       ng-if="slide.text">
       <!-- image -->
       <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')">
-        <!-- swipe indicator -->
-        <div class="swipeIndicator" style="height:{{slideImageHeight}}px" ng-if="slide.swipeDirection!=='none'">
-          <div class="outer">
-            <div class="inner">
-              <div class="icon ion-close-round" ng-if="slide.swipeDirection==='left'"></div>
-              <div class="icon ion-heart" ng-if="slide.swipeDirection==='right'"></div>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- text -->
       <div class="text">
