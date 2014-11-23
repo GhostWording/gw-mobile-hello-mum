@@ -16,13 +16,12 @@
       ng-class="slide.animation"
       ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
       ng-if="slide.text">
-      <!-- image -->
-      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')">
-      </div>
-      <!-- text -->
-      <div class="text">
-        {{slide.text.Content}}
-      </div>
+      <!-- image/text slide -->
+      <gw-mob-imagetextslide
+        text="slide.text.Content"
+        imageurl="slide.imageUrl"
+        imageheight="slideImageHeight">
+      </gw-mob-imagetextslide>
       <!-- send bar -->
       <gw-mob-sendbar 
         emailaddress="emailAddress" 
