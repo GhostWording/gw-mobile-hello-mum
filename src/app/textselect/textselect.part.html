@@ -19,20 +19,19 @@
           </div>
         </div>
       </div>
-      <!-- content -->
-      <div class="text" ng-class="{'textStarred': slide.starred}">
-        <!-- text -->
+      <!-- text -->
+      <div class="text">
         {{slide.text.Content}}
-        <!-- send bar -->
-        <gw-mob-sendbar 
-          emailaddress="emailAddress" 
-          mobilenumber="mobileNumber" 
-          text="slide.text.Content"
-          imageurl="slide.imageUrl">
-        </gw-mob-sendbar>
-        <!-- bottom of slide marker -->
-        <div class="slideBottom"></div>
       </div>
+      <!-- send bar -->
+      <gw-mob-sendbar 
+        emailaddress="emailAddress" 
+        mobilenumber="mobileNumber" 
+        text="slide.text.Content"
+        imageurl="slide.imageUrl">
+      </gw-mob-sendbar>
+      <!-- bottom of slide marker -->
+      <div class="slideBottom"></div>
     </div>
   </div>
 </div>
