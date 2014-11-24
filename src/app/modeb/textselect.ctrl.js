@@ -9,6 +9,7 @@
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
     // Get device width and height
+    // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
