@@ -2,11 +2,11 @@
   <!-- slideswipe -->
   <gw-mob-slideswipe
     ng-if="textList"
-    getnextitem="getNextText()"
+    getnextitem="getNextText(currentText)"
+    getpreviousitem="getPreviousText(currentText)"
+    currentitem="$parent.currentText"
     devicewidth="deviceWidth"
-    deviceheight="deviceHeight"
-    swipeleft="swipeLeft()"
-    swiperight="swipeRight()">
+    deviceheight="deviceHeight">
     <!-- slide -->
     <gw-mob-slide>
       <!-- image/text slide -->

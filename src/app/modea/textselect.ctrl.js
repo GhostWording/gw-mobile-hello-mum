@@ -3,8 +3,8 @@
   "use strict";
 
   angular.module('app/textselect').controller('TextSelectModeACtrl', function($scope, $window, $document, $cordovaPreferences, config, texts) {
-    var textImageMap = {};
     var imageIndex = 0;
+    var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
@@ -16,28 +16,61 @@
     $scope.slideImageHeight = $scope.deviceHeight * 0.50;
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
-      // Store text list
-      $scope.textList = textList;
+      // Pick 6 texts
+      $scope.textList = [];
+      for(var i=0; i<6; i++) {
+        var text = texts.suggest();
+        $scope.textList.push(text);
+      }
     });
-    $scope.getNextText = function() {
-      // Get a text
-      var text = texts.suggest();
-      // Associate image with text
+    // Given a text, get the next one in the sequence
+    $scope.getNextText = function(currentText) {
+      var text;
+      // If no current text
+      if(!currentText) {
+        // Use the first in the sequence 
+        text = $scope.textList[0]; 
+      } else {
+        var currentTextIndex = $scope.textList.indexOf(currentText);
+        console.assert(currentTextIndex != -1);
+        // If we are are at the end of the sequence
+        if(currentTextIndex > $scope.textList.length-2) {
+          // Return null
+          return null;
+        }
+        text = $scope.textList[currentTextIndex+1];
+      }
+      // If no image associated with text
+      if($scope.getTextImageUrl(text) === undefined) {
+        // Associate one
+        associateImageWithText(text);
+      }
+      // Return text
+      return text;  
+    };
+    // Given a text, get the previous one in the sequence
+    $scope.getPreviousText = function(currentText) {
+      var currentTextIndex = $scope.textList.indexOf(currentText);
+      // If we are at the beginning of the sequence
+      if(currentTextIndex === 0) {
+        // Return null
+        return null;
+      }
+      // Return previous text
+      return $scope.textList[currentTextIndex-1];
+    };
+    // Associate an image with a text
+    function associateImageWithText(text) {
       // TODO: we need the images on the server to add a link to the send text
       textImageMap[text.TextId] = config.imageUrls[imageIndex]; 
       // Increment image index
       imageIndex++;
       if(imageIndex > config.imageUrls.length-1) imageIndex = 0;
-      // Return text
-      return text;  
-    };
+    }
     // Get the url of the image associated with the text
     $scope.getTextImageUrl = function(text) {
+      if(!text) return null;
       return textImageMap[text.TextId]; 
-    };
-    $scope.swipeLeft = function() {
-    };
-    $scope.swipeRight = function() {
     };
   });
 }());
