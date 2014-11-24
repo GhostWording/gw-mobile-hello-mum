@@ -34,28 +34,9 @@
     $scope.getTextImageUrl = function(text) {
       return textImageMap[text.TextId]; 
     };
-    $scope.indicatorClasses = {};
-    $scope.dragLeft = function() {
-      $scope.indicatorClasses['ion-close-round'] = true;
-      $scope.indicatorClasses['ion-heart'] = false;
-      $scope.indicatorClasses.center = false;
-      $scope.indicatorClasses.animateSwipe = false;
-    };
-    $scope.dragRight = function() {
-      $scope.indicatorClasses['ion-close-round'] = false;
-      $scope.indicatorClasses['ion-heart'] = true;
-      $scope.indicatorClasses.center = false;
-      $scope.indicatorClasses.animateSwipe = false;
-    };
-    $scope.center = function() {
-      $scope.indicatorClasses.center = true;
-      $scope.indicatorClasses.animateSwipe = false;
-    };
     $scope.swipeLeft = function() {
-      $scope.indicatorClasses.animateSwipe = true;
     };
     $scope.swipeRight = function() {
-      $scope.indicatorClasses.animateSwipe = true;
     };
   });
 }());
