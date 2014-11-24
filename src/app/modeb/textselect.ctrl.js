@@ -33,6 +33,7 @@
     };
     // Get the url of the image associated with the text
     $scope.getTextImageUrl = function(text) {
+      if(!text) return null;
       return textImageMap[text.TextId]; 
     };
     $scope.indicatorClasses = {};
