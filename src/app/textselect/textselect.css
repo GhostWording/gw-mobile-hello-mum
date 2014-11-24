@@ -1,87 +1,43 @@
-.textSelect {
-  overflow-x: hidden;
-}
-.textSelect .slideContainer {
-  position: relative;
-}
-.textSelect .slide {
-  /* 
-  There is an android bug where overflow-x:hidden does not work
-  with abosolute positioned elements so we have to use position:relative 
-  */
-  position: relative;
-  display: block;
-  width: 0px;
-  height: 0px;
-}
-.slideAnimation {
-  animation-duration: 0.3s;
-  animation-timing-function: ease-out;  
-  animation-fill-mode: forwards;
-}
-.slideAnimateOutLeft { animation-name: outLeft; }
-.slideAnimateOutRight { animation-name: outRight; }
-.slideAnimateBringIn { animation-name: bringIn; }
-.slideAnimateToCenter { animation-name: toCenter; }
-@keyframes outLeft {
-  from { z-index: 20; }
-  90% { z-index: 20; }
-  to { z-index: 0; transform: translate3d(-100%,0,0); }
-}
-@keyframes outRight {
-  from { z-index: 20; }
-  90% { z-index: 20; }
-  to { z-index: 0; transform: translate3d(100%,0,0); }  
-}
-@keyframes bringIn {
-  from { z-index: 0; }
-  90% { z-index: 0; }
-  to { z-index: 20; opacity:1; transform: translate3d(0,0,0); }  
-}
-@keyframes toCenter {
-  to { transform: translate3d(0,0,0); }  
-}
-.textSelect .image {
+.textSelect .sendBarContainer {
   width: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat; 
-  background-position: center center;
-  background-attachment: fixed fixed; 
-}
-.textSelect .text {
-  height: 30%;
-  color: rgba(0,0,0,0.7); 
-  padding-top: 40px;  
-  padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  height: 2000px;
-  background-color: white;
-  text-align: center;
-  font-size: 1.05em;
-} 
-.textSelect .textStarred {
+  padding-bottom: 30px;
 }
-.swipeIndicator {
+.textSelect .swipeIndicator {
+  pointer-events: none;
+  position: absolute;
+  z-index: 300;
   width: 100%;
 }
-.swipeIndicator .outer {
+.textSelect .swipeIndicator .outer {
   display: table;
   height: 100%;
   width: 100%;
 }
-.swipeIndicator .inner {
+.textSelect .swipeIndicator .inner {
   display: table-cell;
   vertical-align: middle;
 }
-.swipeIndicator .icon {
+.textSelect .swipeIndicator .icon {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  font-size: 13em;
+  font-size: 12em;
+  opacity: 1.0;
   color: #2980b9;
-  opacity: 0.8;
+}
+.textSelect .swipeIndicator .center {
+  opacity: 0;
+}
+.textSelect .swipeIndicator .animateSwipe { 
+  animation-name: indicatorAnimateSwipe; 
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;  
+  animation-fill-mode: forwards;
+}
+@keyframes indicatorAnimateSwipe {
+  from { opacity: 1.0; }
+  65% {opacity: 1.0; }
+  to { opacity: 0.0; }
 }

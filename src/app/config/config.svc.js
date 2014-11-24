@@ -27,8 +27,7 @@
         'app/kittens/013.jpg',
         'app/kittens/014.jpg',
         'app/kittens/015.jpg',
-        'app/kittens/016.jpg',
-        'app/kittens/017.jpg'
+        'app/kittens/016.jpg'
       ]
     };
   });

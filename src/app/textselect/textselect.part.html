@@ -1,38 +1,40 @@
 <div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
-  <!-- slides -->
-  <div class="slideContainer" style="width:{{windowWidth}}px">
-    <div 
-      ng-repeat="slide in slides track by $index" 
-      class="slide slideAnimation" 
-      ng-class="slide.animation"
-      ng-style="{width:windowWidth+'px', 'z-index':slide.zIndex}"
-      ng-if="slide.text">
-      <!-- image -->
-      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{slide.imageUrl}}')">
-        <!-- swipe indicator -->
-        <div class="swipeIndicator" style="height:{{slideImageHeight}}px" ng-if="slide.swipeDirection!=='none'">
-          <div class="outer">
-            <div class="inner">
-              <div class="icon ion-close-round" ng-if="slide.swipeDirection==='left'"></div>
-              <div class="icon ion-heart" ng-if="slide.swipeDirection==='right'"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- content -->
-      <div class="text" ng-class="{'textStarred': slide.starred}">
-        <!-- text -->
-        {{slide.text.Content}}
-        <!-- send bar -->
-        <gw-mob-sendbar 
-          emailaddress="emailAddress" 
-          mobilenumber="mobileNumber" 
-          text="slide.text.Content"
-          imageurl="slide.imageUrl">
-        </gw-mob-sendbar>
-        <!-- bottom of slide marker -->
-        <div class="slideBottom"></div>
+  <!-- swipe indicator -->
+  <div class="swipeIndicator" style="height:{{slideImageHeight}}px">
+    <div class="outer">
+      <div class="inner">
+        <div class="icon" ng-class="indicatorClasses"></div>
       </div>
     </div>
   </div>
+  <!-- slideswipe -->
+  <gw-mob-slideswipe
+    ng-if="textList"
+    getnextitem="getNextText()"
+    devicewidth="deviceWidth"
+    deviceheight="deviceHeight"
+    dragleft="dragLeft()"
+    dragright="dragRight()"
+    swipeleft="swipeLeft()"
+    swiperight="swipeRight()"
+    center="center()">
+    <!-- slide -->
+    <gw-mob-slide>
+      <!-- image/text slide -->
+      <gw-mob-imagetextslide
+        text="item.Content"
+        imageurl="getTextImageUrl(item)"
+        imageheight="slideImageHeight">
+      </gw-mob-imagetextslide>
+      <!-- send bar -->
+      <div class="sendBarContainer">
+        <gw-mob-sendbar 
+          emailaddress="emailAddress" 
+          mobilenumber="mobileNumber" 
+          text="item.Content"
+          imageurl="item.imageUrl">
+        </gw-mob-sendbar>
+      </div>
+    </gw-mob-slide>
+  </gw-mob-slideswipe>
 </div>
