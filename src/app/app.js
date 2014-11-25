@@ -10,10 +10,13 @@
           url: '/',
           templateUrl: 'app/home/home.part.html'
         })
-        .state('texts', {
-          url: '/texts',
-          templateUrl: 'app/textselect/textselect.part.html',
-          controller: 'TextSelectCtrl'
+        .state('modea', {
+          url: '/modea',
+          templateUrl: 'app/modea/textselect.part.html'
+        })
+        .state('modeb', {
+          url: '/modeb',
+          templateUrl: 'app/modeb/textselect.part.html'
         });
   })
   .run(function($ionicPlatform) {

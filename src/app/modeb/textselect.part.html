@@ -1,4 +1,4 @@
-<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px">
+<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeBCtrl">
   <!-- swipe indicator -->
   <div class="swipeIndicator" style="height:{{slideImageHeight}}px">
     <div class="outer">
@@ -10,6 +10,7 @@
   <!-- slideswipe -->
   <gw-mob-slideswipe
     ng-if="textList"
+    tindermode="true"
     getnextitem="getNextText()"
     devicewidth="deviceWidth"
     deviceheight="deviceHeight"

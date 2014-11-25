@@ -2,13 +2,14 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $cordovaPreferences, sendSMS, sendEmail, sendFacebook, config, texts) {
+  angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $cordovaPreferences, config, texts) {
     var textImageMap = {};
-    var imageIndex = 0;
+    var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     // TODO: remove once we pick from contacts (#12)
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
     // Get device width and height
+    // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
@@ -32,6 +33,7 @@
     };
     // Get the url of the image associated with the text
     $scope.getTextImageUrl = function(text) {
+      if(!text) return null;
       return textImageMap[text.TextId]; 
     };
     $scope.indicatorClasses = {};

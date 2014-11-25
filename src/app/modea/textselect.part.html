@@ -1,0 +1,29 @@
+<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeACtrl">
+  <!-- slideswipe -->
+  <gw-mob-slideswipe
+    ng-if="textList"
+    getnextitem="getNextText(currentText)"
+    getpreviousitem="getPreviousText(currentText)"
+    currentitem="$parent.currentText"
+    devicewidth="deviceWidth"
+    deviceheight="deviceHeight">
+    <!-- slide -->
+    <gw-mob-slide>
+      <!-- image/text slide -->
+      <gw-mob-imagetextslide
+        text="item.Content"
+        imageurl="getTextImageUrl(item)"
+        imageheight="slideImageHeight">
+      </gw-mob-imagetextslide>
+      <!-- send bar -->
+      <div class="sendBarContainer" ng-show="item.TextId!==-1">
+        <gw-mob-sendbar 
+          emailaddress="emailAddress" 
+          mobilenumber="mobileNumber" 
+          text="item.Content"
+          imageurl="item.imageUrl">
+        </gw-mob-sendbar>
+      </div>
+    </gw-mob-slide>
+  </gw-mob-slideswipe>
+</div>
