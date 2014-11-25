@@ -4,7 +4,7 @@
 
   angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $cordovaPreferences, config, texts) {
     var textImageMap = {};
-    var imageIndex = 0;
+    var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     // TODO: remove once we pick from contacts (#12)
     $scope.emailAddress = $window.tempEmail;
     $scope.mobileNumber = $window.tempMobile;
