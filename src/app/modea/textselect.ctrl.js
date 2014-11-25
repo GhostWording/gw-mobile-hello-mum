@@ -25,7 +25,6 @@
         } while($scope.textList.indexOf(text) !== -1); 
         $scope.textList.push(text);
       }
-      console.log($scope.textList);
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -36,15 +35,15 @@
         text = $scope.textList[0]; 
       } else {
         var currentTextIndex = $scope.textList.indexOf(currentText);
-        //alert('current: ' + currentText.TextId);
-        console.assert(currentTextIndex != -1);
+        if(currentTextIndex === -1) return null;
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
-          // Return null
-          return null;
+          // Return "come back tomorrow" text
+          text = {Content:'Come back tomorrow for more messages!', TextId:-1}; 
+          associateImageWithText(text);
+          return text;
         }
         text = $scope.textList[currentTextIndex+1];
-        //alert('next:' + text.TextId); 
       }
       // If no image associated with text
       if($scope.getTextImageUrl(text) === undefined) {
@@ -57,6 +56,11 @@
     // Given a text, get the previous one in the sequence
     $scope.getPreviousText = function(currentText) {
       var currentTextIndex = $scope.textList.indexOf(currentText);
+      // If we are on the "come back tomorrow" text
+      if(currentTextIndex === -1) {
+        // Return the last item in the sequence
+        return $scope.textList[$scope.textList.length-1];
+      }
       // If we are at the beginning of the sequence
       if(currentTextIndex === 0) {
         // Return null
