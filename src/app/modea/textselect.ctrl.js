@@ -19,9 +19,13 @@
       // Pick 6 texts
       $scope.textList = [];
       for(var i=0; i<6; i++) {
-        var text = texts.suggest();
+        var text;
+        do {
+          text = texts.suggest();
+        } while($scope.textList.indexOf(text) !== -1); 
         $scope.textList.push(text);
       }
+      console.log($scope.textList);
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -32,6 +36,7 @@
         text = $scope.textList[0]; 
       } else {
         var currentTextIndex = $scope.textList.indexOf(currentText);
+        //alert('current: ' + currentText.TextId);
         console.assert(currentTextIndex != -1);
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
@@ -39,6 +44,7 @@
           return null;
         }
         text = $scope.textList[currentTextIndex+1];
+        //alert('next:' + text.TextId); 
       }
       // If no image associated with text
       if($scope.getTextImageUrl(text) === undefined) {
