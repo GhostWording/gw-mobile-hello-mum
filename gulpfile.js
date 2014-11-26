@@ -49,18 +49,15 @@ var getCSSGlobs = function() {
   ];
 };
 
-var getImageGlobs = function() {
-  return [
-    'src/app/**/*.jpg'
-  ];
-};
+var imageGlobs = [
+  'src/app/**/*.jpg',
+  'src/app/**/*.png'
+];
 
-var getFontGlobs = function() {
-  return [
-    'src/lib/ionic/fonts/**/ionicons.ttf',
-    'src/lib/ionic/fonts/**/ionicons.woff'
-  ];
-};
+var fontGlobs = [
+  'src/lib/ionic/fonts/**/ionicons.ttf',
+  'src/lib/ionic/fonts/**/ionicons.woff'
+];
 
 var partialGlobs = [
   'src/**/lib/gw-mobile-common/**/*.part.html',
@@ -150,7 +147,7 @@ gulp.task('process:styles', function() {
 });
 
 gulp.task('process:images', function() {
-  return gulp.src(getImageGlobs(), {base:'src'})
+  return gulp.src(imageGlobs, {base:'src'})
     .pipe(gulp.dest('www'));
 });
 
@@ -161,7 +158,7 @@ gulp.task('process:fonts', function() {
   } else {
     var dest = 'www/fonts';
   }
-  return gulp.src(getFontGlobs(), options)
+  return gulp.src(fontGlobs, options)
     .pipe(gulp.dest(dest));
 });
 
@@ -198,6 +195,12 @@ gulp.task('watch', function(done) {
     });
     gulp.watch(partialGlobs, function() {
       runSequence('process:javascript', 'process:index');
+    });
+    gulp.watch(imageGlobs, function() {
+      runSequence('process:images');
+    });
+    gulp.watch(fontGlobs, function() {
+      runSequence('process:fonts');
     });
   });
 });
