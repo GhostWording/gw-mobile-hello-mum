@@ -1,0 +1,38 @@
+.popupTemp .popup-container {
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+}
+.popupTemp .popup-container .popup {
+  width: 90%;
+  height: 100%;
+  background-color: #56abdf;
+  border-radius: 10px;
+  text-align: center;
+}
+.popupTemp .popup .closeIcon {
+  float: right;
+  color: white;
+  margin: 10px;
+  font-size: 1.7em;
+  font-weight: bold;
+}
+.popupTemp .popup .swipeImage {
+  clear: both;
+  margin-top: 10%;
+}
+.popupTemp .popup .swipeImage img {
+  width: 45%;
+}
+.popupTemp .popup .okText {
+  margin-top: 10%;
+}
+.popupTemp .popup .okText img {
+  width: 90%;
+} 
+.popupTemp .popup-head {
+  display: none;
+}
+.popupTemp .popup-buttons {
+  display: none;
+}

@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $cordovaPreferences, config, texts) {
+  angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $timeout, $cordovaPreferences, instructions, config, texts) {
     var textImageMap = {};
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     // TODO: remove once we pick from contacts (#12)
@@ -14,6 +14,8 @@
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
     $scope.slideImageHeight = $scope.deviceHeight * 0.50;
+    // Show instructions
+    showInstructions();
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
       // Store text list
@@ -59,5 +61,16 @@
     $scope.swipeRight = function() {
       $scope.indicatorClasses.animateSwipe = true;
     };
+    function showInstructions() {
+      // TODO: having to add a class to body so we can style the popup instance.. see ionic issue: #1962
+      var bodyElement = angular.element(document.getElementsByTagName('body')[0]); 
+      bodyElement.addClass('popupTemp'); 
+      $scope.$on('$destroy', function() {
+        bodyElement.removeClass('popupTemp');
+      });
+      $timeout(function() {
+        instructions.show($scope);
+      }, 500);
+    }
   });
 }());
