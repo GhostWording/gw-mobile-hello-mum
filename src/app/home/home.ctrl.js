@@ -6,7 +6,7 @@
     // TODO: remove
     var devSettingsPopup;
     $scope.showDevSettings = function() {
-      $scope.devSettings = {};
+      $scope.devSettings = $window.devSettings?$window.devSettings:{};
       devSettingsPopup = $ionicPopup.show({
         templateUrl: 'app/home/devsettings.part.html',
         title: 'DEVELOPMENT SETTINGS',

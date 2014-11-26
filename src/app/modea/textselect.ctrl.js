@@ -6,8 +6,8 @@
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
-    $scope.emailAddress = $window.tempEmail;
-    $scope.mobileNumber = $window.tempMobile;
+    $scope.emailAddress = $window.devSettings.emailAddress;
+    $scope.mobileNumber = $window.devSettings.mobileNumber;
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
