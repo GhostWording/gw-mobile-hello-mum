@@ -2,11 +2,12 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $timeout, $ionicPopup, $cordovaPreferences, config) {
+  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $location, $ionicPopup, $cordovaPreferences, config) {
     // TODO: remove
+    var devSettingsPopup;
     $scope.showDevSettings = function() {
-      $scope.data = {};
-      var devSettingsPopup = $ionicPopup.show({
+      $scope.devSettings = {};
+      devSettingsPopup = $ionicPopup.show({
         templateUrl: 'app/home/devsettings.part.html',
         title: 'DEVELOPMENT SETTINGS',
         scope: $scope,
@@ -14,21 +15,25 @@
           { text: 'Close' },
         ]
       });
+      devSettingsPopup.then(function() {
+        $window.devSettings = $scope.devSettings;
+        if(devSettings.mode) {
+          console.log($window.devSettings);
+          switch(devSettings.mode) {
+            case 'a': $location.path('/modea'); break; 
+            case 'b': $location.path('/modeb'); break; 
+          }
+        }
+      });
     };
-    /*
-    $scope.mobile = $window.tempMobile;
-    $scope.mobileChange = function() {
-      // TODO: get $cordovaPreferences to work
-      //$cordovaPreferences.set('mobile', $scope.mobile);
-      $window.tempMobile = $scope.mobile;
+    $scope.modeAClick = function() {
+      $scope.devSettings.mode = 'a';
+      devSettingsPopup.close();
     };
-    $scope.email = $window.tempEmail;
-    $scope.emailChange = function() {
-      // TODO: get $cordovaPreferences to work
-      //$cordovaPreferences.set('email', $scope.email);
-      $window.tempEmail = $scope.email;
+    $scope.modeBClick = function() {
+      $scope.devSettings.mode = 'b';
+      devSettingsPopup.close();
     };
-    */
   });
 
 }());
