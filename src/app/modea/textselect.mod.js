@@ -8,6 +8,7 @@
     'mobile/slide/imagetextslide',
     'mobile/sendbar',
     'mobile/send',
+    'mobile/settings',
     'app/config',
     'app/texts'
   ]);

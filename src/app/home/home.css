@@ -17,3 +17,11 @@
 .home .arrow img {
   transform: scale(0.7, 0.7);
 }
+.home .settingsIcon {
+  position: absolute;
+  color: white;
+  bottom: 20px;
+  left: 20px;
+  font-size: 3em;
+}
+
