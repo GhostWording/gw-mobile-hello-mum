@@ -2,12 +2,12 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $timeout, $cordovaPreferences, instructions, config, texts) {
+  angular.module('app/textselect').controller('TextSelectModeBCtrl', function($scope, $window, $document, $timeout, $cordovaPreferences, instructions, settings, config, texts) {
     var textImageMap = {};
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     // TODO: remove once we pick from contacts (#12)
-    $scope.emailAddress = $window.devSettings.emailAddress;
-    $scope.mobileNumber = $window.devSettings.mobileNumber;
+    $scope.emailAddress = settings.emailAddress;
+    $scope.mobileNumber = settings.mobileNumber;
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -62,15 +62,9 @@
       $scope.indicatorClasses.animateSwipe = true;
     };
     function showInstructions() {
-      // TODO: having to add a class to body so we can style the popup instance.. see ionic issue: #1962
-      var bodyElement = angular.element(document.getElementsByTagName('body')[0]); 
-      bodyElement.addClass('popupTemp'); 
-      $scope.$on('$destroy', function() {
-        bodyElement.removeClass('popupTemp');
-      });
       $timeout(function() {
         instructions.show($scope);
-      }, 500);
+      }, 700);
     }
   });
 }());

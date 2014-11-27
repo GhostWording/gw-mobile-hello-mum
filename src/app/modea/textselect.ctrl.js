@@ -2,12 +2,12 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectModeACtrl', function($scope, $window, $document, $cordovaPreferences, config, texts) {
+  angular.module('app/textselect').controller('TextSelectModeACtrl', function($scope, $window, $document, $cordovaPreferences, config, settings, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
-    $scope.emailAddress = $window.devSettings.emailAddress;
-    $scope.mobileNumber = $window.devSettings.mobileNumber;
+    $scope.emailAddress = settings.emailAddress;
+    $scope.mobileNumber = settings.mobileNumber;
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
