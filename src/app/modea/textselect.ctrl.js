@@ -82,5 +82,12 @@
       if(!text) return null;
       return textImageMap[text.TextId]; 
     };
+    // Like icon clicked
+    $scope.likeIconClick = function(item) {
+      item.liked = !item.liked;
+    };
+    // Dislike icon clicked
+    $scope.dislikeIconClick = function(item) {
+    };
   });
 }());

@@ -1,4 +1,4 @@
-<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeACtrl">
+<div class="textSelectModeA" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeACtrl">
   <!-- slideswipe -->
   <gw-mob-slideswipe
     ng-if="textList"
@@ -23,6 +23,13 @@
           text="item.Content"
           imageurl="item.imageUrl">
         </gw-mob-sendbar>
+      </div>
+      <!-- like/dislike icons -->
+      <div class="likeDislikeIconsContainer">
+        <div class="likeDislikeIcons">
+          <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
+          <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
+        </div>
       </div>
     </gw-mob-slide>
   </gw-mob-slideswipe>
