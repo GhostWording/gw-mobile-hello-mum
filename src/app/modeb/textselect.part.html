@@ -1,4 +1,4 @@
-<div class="textSelect" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeBCtrl">
+<div class="textSelectModeB" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeBCtrl">
   <!-- swipe indicator -->
   <div class="swipeIndicator" style="height:{{slideImageHeight}}px">
     <div class="outer">
@@ -21,12 +21,17 @@
     center="center()">
     <!-- slide -->
     <gw-mob-slide>
-      <!-- image/text slide -->
-      <gw-mob-imagetextslide
-        text="item.Content"
-        imageurl="getTextImageUrl(item)"
-        imageheight="slideImageHeight">
-      </gw-mob-imagetextslide>
+      <!-- image -->
+      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{getTextImageUrl(item)}}')"></div>
+      <!-- like/dislike icons -->
+      <div class="likeDislikeIconsContainer">
+        <div class="likeDislikeIcons">
+          <div class="dislikeIcon icon ion-sad" ng-click="dislikeIconClick()"></div> 
+          <div class="likeIcon icon ion-happy" ng-click="likeIconClick()"></div> 
+        </div>
+      </div>
+      <!-- text -->
+      <div class="text">{{item.Content}}</div>
       <!-- send bar -->
       <div class="sendBarContainer">
         <gw-mob-sendbar 

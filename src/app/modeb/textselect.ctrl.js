@@ -38,6 +38,12 @@
       if(!text) return null;
       return textImageMap[text.TextId]; 
     };
+    $scope.likeIconClick = function() {
+      alert('like');
+    };
+    $scope.dislikeIconClick = function() {
+      alert('dislike');
+    };
     $scope.indicatorClasses = {};
     $scope.dragLeft = function() {
       $scope.indicatorClasses['ion-close-round'] = true;
