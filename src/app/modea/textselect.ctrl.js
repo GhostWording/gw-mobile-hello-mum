@@ -22,7 +22,7 @@
         var text;
         do {
           text = texts.suggest();
-        } while($scope.textList.indexOf(text) !== -1); 
+        } while($scope.textList.indexOf(text) !== -1 && text.Content.length > 200); 
         $scope.textList.push(text);
       }
     });
@@ -58,6 +58,11 @@
       var currentTextIndex = $scope.textList.indexOf(currentText);
       // If we are on the "come back tomorrow" text
       if(currentTextIndex === -1) {
+        // If there are no texts in the sequence
+        if($scope.textList.length === 0) {
+          // Return null
+          return null;
+        }
         // Return the last item in the sequence
         return $scope.textList[$scope.textList.length-1];
       }
@@ -81,6 +86,18 @@
     $scope.getTextImageUrl = function(text) {
       if(!text) return null;
       return textImageMap[text.TextId]; 
+    };
+    // Like icon clicked
+    $scope.likeIconClick = function(item) {
+      item.liked = !item.liked;
+    };
+    // Dislike icon clicked
+    $scope.dislikeIconClick = function(item) {
+      // Swipe slide off to left
+      $scope.swipeLeft();
+      // Remove current text from textlist
+      var currentTextIndex = $scope.textList.indexOf($scope.currentText);
+      $scope.textList.splice(currentTextIndex, 1);
     };
   });
 }());

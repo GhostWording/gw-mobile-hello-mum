@@ -1,25 +1,65 @@
-.textSelect .sendBarContainer {
+.textSelectModeB .sendBarContainer {
   width: 100%;
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 30px;
 }
-.textSelect .swipeIndicator {
+.textSelectModeB .image {
+  width: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed fixed; 
+}
+.textSelectModeB .likeDislikeIconsContainer {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+}
+.textSelectModeB .likeDislikeIcons {
+  display: inline-block;
+  color: #2980b9;
+  font-size: 3.0em;
+}
+.textSelectModeB .likeDislikeIcons:after {
+  content: " ";
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+.textSelectModeB .likeDislikeIcons .icon {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.textSelectModeB .text {
+  color: rgba(0,0,0,0.7); 
+  padding-top: 10px;  
+  padding-bottom: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+  font-size: 1.05em;
+} 
+.textSelectModeB .swipeIndicator {
   pointer-events: none;
   position: absolute;
   z-index: 300;
   width: 100%;
 }
-.textSelect .swipeIndicator .outer {
+.textSelectModeB .swipeIndicator .outer {
   display: table;
   height: 100%;
   width: 100%;
 }
-.textSelect .swipeIndicator .inner {
+.textSelectModeB .swipeIndicator .inner {
   display: table-cell;
   vertical-align: middle;
 }
-.textSelect .swipeIndicator .icon {
+.textSelectModeB .swipeIndicator .icon {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -27,10 +67,10 @@
   opacity: 1.0;
   color: #2980b9;
 }
-.textSelect .swipeIndicator .center {
+.textSelectModeB .swipeIndicator .center {
   opacity: 0;
 }
-.textSelect .swipeIndicator .animateSwipe { 
+.textSelectModeB .swipeIndicator .animateSwipe { 
   animation-name: indicatorAnimateSwipe; 
   animation-duration: 0.25s;
   animation-timing-function: ease-out;  
