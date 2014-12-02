@@ -22,7 +22,7 @@
 .textSelectModeB .likeDislikeIcons {
   display: inline-block;
   color: #2980b9;
-  font-size: 3.6em;
+  font-size: 3.0em;
 }
 .textSelectModeB .likeDislikeIcons:after {
   content: " ";
