@@ -39,10 +39,12 @@
       return textImageMap[text.TextId]; 
     };
     $scope.likeIconClick = function() {
-      alert('like');
+      // Trigger a swipe right in slideswipe
+      $scope.swipeRight();
     };
     $scope.dislikeIconClick = function() {
-      alert('dislike');
+      // Trigger a swipe right in slideswipe 
+      $scope.swipeLeft();
     };
     $scope.indicatorClasses = {};
     $scope.draggedLeft = function() {
