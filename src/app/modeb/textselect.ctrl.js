@@ -45,26 +45,26 @@
       alert('dislike');
     };
     $scope.indicatorClasses = {};
-    $scope.dragLeft = function() {
+    $scope.draggedLeft = function() {
       $scope.indicatorClasses['ion-close-round'] = true;
       $scope.indicatorClasses['ion-heart'] = false;
       $scope.indicatorClasses.center = false;
       $scope.indicatorClasses.animateSwipe = false;
     };
-    $scope.dragRight = function() {
+    $scope.draggedRight = function() {
       $scope.indicatorClasses['ion-close-round'] = false;
       $scope.indicatorClasses['ion-heart'] = true;
       $scope.indicatorClasses.center = false;
       $scope.indicatorClasses.animateSwipe = false;
     };
-    $scope.center = function() {
+    $scope.centered = function() {
       $scope.indicatorClasses.center = true;
       $scope.indicatorClasses.animateSwipe = false;
     };
-    $scope.swipeLeft = function() {
+    $scope.swipedLeft = function() {
       $scope.indicatorClasses.animateSwipe = true;
     };
-    $scope.swipeRight = function() {
+    $scope.swipedRight = function() {
       $scope.indicatorClasses.animateSwipe = true;
     };
     function showInstructions() {
