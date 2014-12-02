@@ -8,7 +8,7 @@
       settings.show();
     };
     // Next arrow clicked
-    $scope.nextArrowClick = function() {
+    $scope.launch = function() {
       switch(settings.tinderMode) {
         case false: $location.path('/modea'); break; 
         case true: $location.path('/modeb'); break; 
