@@ -25,8 +25,8 @@ Prerequisites
 #### xcode (building for ios - osx only)
 [developer.apple.com](https://developer.apple.com/xcode/downloads/)
 
-Installation
-------------
+Install
+-------
 
 ```sh
 git clone git@github.com:GhostWording/gw-mobile-hello-mum.git
@@ -35,31 +35,31 @@ npm install
 bower install
 ```
 
-Building
---------
+Run in Browser
+--------------
 
-**browser**
 ```gulp build``` or ```gulp watch```
+```gulp serve```
+
+Run in emulator
+---------------
 
 **android**
-```gulp build:android```
+```gulp emulate:android```
 
 **ios**
-```gulp build:ios``` (osx only)
+```gulp emulate:ios``` (osx only)
 
 postfix --debug for debug build.
 
-Running
--------
-
-**browser**
-```gulp serve```
+Run on Device
+-------------
 
 **android**
 ```gulp run:android```
 
 **ios**
-```gulp run:ios```
+```gulp run:ios``` (osx only)
 
 postfix --debug for debug build.
 
