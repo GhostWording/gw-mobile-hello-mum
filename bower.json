@@ -1,17 +1,13 @@
 {
   "name": "gw-mobile-hello-mum",
   "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.13"
-  },
   "dependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.13-nightly-840",
+    "ngCordova": "~0.1.6-alpha",
     "gw-common": "git@github.com:GhostWording/gw-common.git#ff3908c81851abfc546b0cccececda493d0727f6",
-    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#21af3beae3638d8b9646a0175b0a0b002322b6f9", 
-    "angular-translate": "~2.0.1",
-    "angular-cookies": "~1.2.9",
-    "ngCordova": "~0.1.6-alpha"
+    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#21af3beae3638d8b9646a0175b0a0b002322b6f9"
   },
   "resolutions": {
-    "angular": "1.2.26"
+    "angular": "~1.3.5"
   }
 }
