@@ -22,7 +22,7 @@
         var text;
         do {
           text = texts.suggest();
-        } while($scope.textList.indexOf(text) !== -1 && text.Content.length > 200); 
+        } while($scope.textList.indexOf(text) !== -1); 
         $scope.textList.push(text);
       }
     });
