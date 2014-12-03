@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "gw-common": "git@github.com:GhostWording/gw-common.git#ff3908c81851abfc546b0cccececda493d0727f6",
-    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#0934cb40e52d6848b35b52837b8bfc67686b9a67", 
+    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#1aae1f5f7cf60f38e8292382698ed15543c6b836", 
     "angular-translate": "~2.0.1",
     "angular-cookies": "~1.2.9",
     "ngCordova": "~0.1.6-alpha"
