@@ -14,7 +14,7 @@
     <feature name="EmailComposer">
         <param name="android-package" value="de.appplant.cordova.emailcomposer.EmailComposer" />
     </feature>
-    <name>Hello Mum</name>
+    <name>HelloMum</name>
     <description>
     GhostWording Hello Mum Mobile App
   </description>
