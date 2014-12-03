@@ -97,6 +97,14 @@ gulp.task('ionic:run:ios', function(done) {
   exec('ionic', ['run','ios'], done);  
 });
 
+gulp.task('ionic:emulate:android', function(done) {
+  exec('ionic', ['emulate','android'], done);  
+});
+
+gulp.task('ionic:emulate:ios', function(done) {
+  exec('ionic', ['emulate','ios'], done);  
+});
+
 gulp.task('ionic:serve', function(done) {
   exec('ionic', ['serve'], done);  
 });
@@ -172,6 +180,14 @@ gulp.task('build:android', function(done) {
 
 gulp.task('build:ios', function(done) {
   runSequence('build', 'ionic:build:ios', done);
+});
+
+gulp.task('emulate:android', function(done) {
+  runSequence('build', 'ionic:emulate:android', done);
+});
+
+gulp.task('emulate:ios', function(done) {
+  runSequence('build', 'ionic:emulate:ios', done);
 });
 
 gulp.task('run:android', function(done) {
