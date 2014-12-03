@@ -8,6 +8,7 @@
 /platforms/ios/gw-mobile-proto.xcodeproj/xcuserdata/
 /platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata/
 /platforms/ios/gw-mobile-proto.xcodeproj/project.xcworkspace/xcuserdata/
+/platforms/ios/cordova/console.log
 .DS_Store
 *.swp
 *.swo
