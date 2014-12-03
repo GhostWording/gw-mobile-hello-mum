@@ -35,13 +35,12 @@ npm install
 bower install
 ```
 
-Run in Browser
+Run in browser
 --------------
 
-```gulp build``` or ```gulp watch```
-```gulp serve```
+```gulp build``` or ```gulp watch``` then ```gulp serve```
 
-Run in emulator
+Run on emulator
 ---------------
 
 **android**
@@ -52,7 +51,7 @@ Run in emulator
 
 postfix --debug for debug build.
 
-Run on Device
+Run on device
 -------------
 
 **android**
@@ -63,7 +62,7 @@ Run on Device
 
 postfix --debug for debug build.
 
-Linking With Common
+Linking with common
 -------------------
 
 Simultaneous development of gw-mobile-hello-mum and gw-common
@@ -85,7 +84,7 @@ gw-common
 
 gw-mobile-hello-mum/src/lib/gw-common
 
-Linking With Mobile Common
+Linking with mobile common
 --------------------------
 
 Simultaneous development of gw-mobile-hello-mum and gw-mobile-common
