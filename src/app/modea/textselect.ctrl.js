@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectModeACtrl', function($scope, $window, $document, $cordovaPreferences, config, settings, texts) {
+  angular.module('app/textselecta').controller('TextSelectModeACtrl', function($scope, $window, $document, $cordovaPreferences, config, settings, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)

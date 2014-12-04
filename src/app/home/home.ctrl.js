@@ -9,9 +9,10 @@
     };
     // Next arrow clicked
     $scope.launch = function() {
-      switch(settings.tinderMode) {
-        case false: $location.path('/modea'); break; 
-        case true: $location.path('/modeb'); break; 
+      switch(settings.mode) {
+        case 'A': $location.path('/modea'); break; 
+        case 'B': $location.path('/modeb'); break; 
+        case 'C': $location.path('/modec'); break; 
       }
     };
   });

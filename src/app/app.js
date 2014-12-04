@@ -17,6 +17,10 @@
         .state('modeb', {
           url: '/modeb',
           templateUrl: 'app/modeb/textselect.part.html'
+        })
+        .state('modec', {
+          url: '/modec',
+          templateUrl: 'app/modec/textselect.part.html'
         });
   })
   .run(function($ionicPlatform) {

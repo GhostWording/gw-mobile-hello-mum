@@ -23,6 +23,13 @@
   background-color: transparent;
   color: white;
 }
+.settings .item-select select {
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
 .settings .item-toggle {
   height: 50px;
 }
