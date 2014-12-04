@@ -5,8 +5,10 @@
   angular.module('app').controller('AppCtrl', function($scope, $window, config, settings) {
     // Set settings template
     settings.setTemplateUrl('app/settings/settings.part.html');
-    // Default to tinder mode
-    settings.tinderMode = true;
+    // Default to mode C
+    if(!settings.mode) {
+      settings.mode = 'C';
+    }
     // Get device width and height
     // TODO: move into device service
     var windowElement = angular.element($window);
