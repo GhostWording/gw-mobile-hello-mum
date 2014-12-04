@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselectc').controller('TextSelectModeCCtrl', function($scope, $window, $document, $cordovaPreferences, config, settings, texts) {
+  angular.module('app/textselectc').controller('TextSelectModeCCtrl', function($scope, $window, $document, config, settings, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
@@ -14,25 +14,53 @@
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
     $scope.slideImageHeight = $scope.deviceHeight * 0.50;
-    // Given an image, get the previous one in the sequence
-    $scope.getPreviousImage = function(currentImage) {
-      return {url: config.imageUrls[0]};
-    };
+    // Pick images
+    $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
-      return {url: config.imageUrls[0]};
+      var image;
+      // If no current image
+      if(!currentImage) {
+        // Use the first in the sequence 
+        image = $scope.imageList[0]; 
+      } else {
+        var currentImageIndex = $scope.imageList.indexOf(currentImage);
+        if(currentImageIndex === -1) return null;
+        // If we are are at the end of the sequence
+        if(currentImageIndex > $scope.textList.length-2) {
+          // Return end of file image
+          return config.endOfFileImageUrl;
+        }
+        image = $scope.imageList[currentImageIndex+1];
+      }
+      // Return text
+      return image;  
+    };
+    // Given an image, get the previous one in the sequence
+    $scope.getPreviousImage = function(currentImage) {
+      var currentImageIndex = $scope.imageList.indexOf(currentImage);
+      // If we are on the end of file image
+      if(currentImageIndex === -1) {
+        // If there are no images in the sequence
+        if($scope.imageList.length === 0) {
+          // Return null
+          return null;
+        }
+        // Return the last image in the sequence
+        return $scope.imageList[$scope.imageList.length-1];
+      }
+      // If we are at the beginning of the sequence
+      if(currentImageIndex === 0) {
+        // Return null
+        return null;
+      }
+      // Return previous image
+      return $scope.imageList[currentImageIndex-1];
     };
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
-      // Pick 6 texts
-      $scope.textList = [];
-      for(var i=0; i<6; i++) {
-        var text;
-        do {
-          text = texts.suggest();
-        } while($scope.textList.indexOf(text) !== -1); 
-        $scope.textList.push(text);
-      }
+      // Pick texts
+      $scope.textList = pickTexts(config.textsPerDay);
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -46,17 +74,11 @@
         if(currentTextIndex === -1) return null;
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
-          // Return "come back tomorrow" text
+          // Return end of file text
           text = {Content:'Come back tomorrow for more messages!', TextId:-1}; 
-          associateImageWithText(text);
           return text;
         }
         text = $scope.textList[currentTextIndex+1];
-      }
-      // If no image associated with text
-      if($scope.getTextImageUrl(text) === undefined) {
-        // Associate one
-        associateImageWithText(text);
       }
       // Return text
       return text;  
@@ -64,7 +86,7 @@
     // Given a text, get the previous one in the sequence
     $scope.getPreviousText = function(currentText) {
       var currentTextIndex = $scope.textList.indexOf(currentText);
-      // If we are on the "come back tomorrow" text
+      // If we are on the end of file text
       if(currentTextIndex === -1) {
         // If there are no texts in the sequence
         if($scope.textList.length === 0) {
@@ -82,19 +104,6 @@
       // Return previous text
       return $scope.textList[currentTextIndex-1];
     };
-    // Associate an image with a text
-    function associateImageWithText(text) {
-      // TODO: we need the images on the server to add a link to the send text
-      textImageMap[text.TextId] = config.imageUrls[imageIndex]; 
-      // Increment image index
-      imageIndex++;
-      if(imageIndex > config.imageUrls.length-1) imageIndex = 0;
-    }
-    // Get the url of the image associated with the text
-    $scope.getTextImageUrl = function(text) {
-      if(!text) return null;
-      return textImageMap[text.TextId]; 
-    };
     // Like icon clicked
     $scope.likeIconClick = function(item) {
       item.liked = !item.liked;
@@ -107,5 +116,28 @@
       var currentTextIndex = $scope.textList.indexOf($scope.currentText);
       $scope.textList.splice(currentTextIndex, 1);
     };
+    function pickTexts(numTexts) {
+      var textList = [];
+      for(var i=0; i<numTexts; i++) {
+        var text;
+        do {
+          text = texts.suggest();
+        } while(textList.indexOf(text) !== -1); 
+        textList.push(text);
+      }
+      return textList;
+    }
+    function pickImages(candidateImageUrls, numImages) {
+      var imageList = [];
+      for(var i=0; i<numImages; i++) {
+        var image;
+        do {
+          image = candidateImageUrls[Math.floor(Math.random() * candidateImageUrls.length)];
+        } while(imageList.indexOf(image) !== -1); 
+        imageList.push(image);
+      }
+      return imageList;
+    }
   });
+
 }());

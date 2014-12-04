@@ -8,9 +8,8 @@
       'area': 'HelloMum', 
       'intentionSlug': 'i-think-of-you', 
       'recipientId': 'Mother',
-      'UI': {
-        'navButtonVOffset': 10
-      },
+      'imagesPerDay': 8,
+      'textsPerDay': 8,
       'imageUrls': [
         'app/kittens/001.jpg',
         'app/kittens/002.jpg',
@@ -28,7 +27,8 @@
         'app/kittens/014.jpg',
         'app/kittens/015.jpg',
         'app/kittens/016.jpg'
-      ]
+      ],
+      'endOfFileImageUrl': 'app/kittens/017.jpg'
     };
   });
 
