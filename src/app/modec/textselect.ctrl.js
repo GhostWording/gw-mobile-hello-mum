@@ -14,6 +14,14 @@
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
     $scope.slideImageHeight = $scope.deviceHeight * 0.50;
+    // Given an image, get the previous one in the sequence
+    $scope.getPreviousImage = function(currentImage) {
+      return {url: config.imageUrls[0]};
+    };
+    // Given an image, get the next one in the sequence
+    $scope.getNextImage = function(currentImage) {
+      return {url: config.imageUrls[0]};
+    };
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
       // Pick 6 texts

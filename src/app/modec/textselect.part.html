@@ -1,5 +1,19 @@
 <div class="textSelectModeC" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeCCtrl">
-  <!-- slideswipe -->
+  <!-- IMAGE SLIDES -->
+  <gw-mob-slideswipe
+    ng-if="textList"
+    getnextitem="getNextImage(currentImage)"
+    getpreviousitem="getPreviousImage(currentImage)"
+    currentitem="$parent.currentImage"
+    devicewidth="deviceWidth"
+    deviceheight="slideImageHeight">
+    <!-- slide -->
+    <gw-mob-slide>
+      <!-- image -->
+      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item.url}}')"></div>
+    </gw-mob-slide>
+  </gw-mob-slideswipe>
+  <!-- TEXT SLIDES -->
   <gw-mob-slideswipe
     ng-if="textList"
     getnextitem="getNextText(currentText)"
@@ -11,12 +25,8 @@
     deviceheight="deviceHeight">
     <!-- slide -->
     <gw-mob-slide>
-      <!-- image/text slide -->
-      <gw-mob-imagetextslide
-        text="item.Content"
-        imageurl="getTextImageUrl(item)"
-        imageheight="slideImageHeight">
-      </gw-mob-imagetextslide>
+      <!-- text -->
+      <div class="text">{{item.Content}}</div>
       <!-- send bar -->
       <div class="sendBarContainer" ng-show="item.TextId!==-1">
         <gw-mob-sendbar 
