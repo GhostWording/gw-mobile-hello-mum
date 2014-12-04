@@ -1,10 +1,9 @@
 <div class="textSelectModeC" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeCCtrl">
-  <!-- IMAGE SLIDES -->
+  <!-- image slides -->
   <gw-mob-slideswipe
-    ng-if="textList"
     getnextitem="getNextImage(currentImage)"
     getpreviousitem="getPreviousImage(currentImage)"
-    currentitem="$parent.currentImage"
+    currentitem="currentImage"
     devicewidth="deviceWidth"
     deviceheight="slideImageHeight">
     <!-- slide -->
@@ -13,7 +12,19 @@
       <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
     </gw-mob-slide>
   </gw-mob-slideswipe>
-  <!-- TEXT SLIDES -->
+  <!-- image dot indicator -->
+  <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
+    <div class="dotIndicatorCenter">
+      <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
+    </div>
+  </div>
+  <!-- text dot indicator -->
+  <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
+    <div class="dotIndicatorCenter">
+      <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
+    </div>
+  </div>
+  <!-- text slides -->
   <gw-mob-slideswipe
     ng-if="textList"
     getnextitem="getNextText(currentText)"
@@ -37,12 +48,14 @@
         </gw-mob-sendbar>
       </div>
       <!-- like/dislike icons -->
+      <!--
       <div class="likeDislikeIconsContainer" ng-show="item.TextId!==-1">
         <div class="likeDislikeIcons">
           <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
           <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
         </div>
       </div>
+      -->
     </gw-mob-slide>
   </gw-mob-slideswipe>
 </div>

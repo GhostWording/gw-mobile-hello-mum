@@ -57,6 +57,15 @@
       // Return previous image
       return $scope.imageList[currentImageIndex-1];
     };
+    // Get the index of the current image slide for the dot indicator
+    $scope.getImageIndex = function(currentImage) {
+      var index = $scope.imageList.indexOf(currentImage);
+      // Account for eof image
+      if(index === -1) {
+        index = $scope.imageList.length;
+      }
+      return index;
+    }; 
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
       // Pick texts
@@ -104,6 +113,16 @@
       // Return previous text
       return $scope.textList[currentTextIndex-1];
     };
+    // Get the index of the current text slide for the dot indicator
+    $scope.getTextIndex = function(currentText) {
+      if(!$scope.textList) return null;
+      var index = $scope.textList.indexOf(currentText);
+      // Account for eof text
+      if(index === -1) {
+        index = $scope.textList.length;
+      }
+      return index;
+    }; 
     // Like icon clicked
     $scope.likeIconClick = function(item) {
       item.liked = !item.liked;

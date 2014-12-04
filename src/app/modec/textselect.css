@@ -1,6 +1,6 @@
 .textSelectModeC .text {
   color: rgba(0,0,0,0.7); 
-  padding-top: 50px;  
+  padding-top: 65px;  
   padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
@@ -16,6 +16,31 @@
   background-repeat: no-repeat; 
   background-position: center center;
   background-attachment: fixed fixed; 
+}
+.textSelectModeC .dotIndicatorContainer {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none;
+}
+.textSelectModeC .dotIndicatorCenter {
+  float: right;
+  right: 50%;
+  position: relative;
+}
+.textSelectModeC .dotIndicator {
+  float: right;
+  right: -50%;
+  position: relative;
+}
+.textSelectModeC .dotIndicator .dot {
+  font-size: 20px;
+  opacity: 0.15;
+  color: black;
+}
+.textSelectModeC .dotIndicator .currentDot {
+  color: #2980b9;
+  opacity: 1;
 }
 .textSelectModeC .sendBarContainer {
   width: 100%;
