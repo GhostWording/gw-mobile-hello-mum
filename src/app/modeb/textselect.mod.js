@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect', [
+  angular.module('app/textselectb', [
     'ngCordova.plugins.prefs',
     'mobile/slide/slideswipe',
     'mobile/slide/imagetextslide',

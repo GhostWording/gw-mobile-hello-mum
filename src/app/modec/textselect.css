@@ -1,0 +1,28 @@
+.textSelectModeC .sendBarContainer {
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+}
+.textSelectModeC .likeDislikeIconsContainer {
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+}
+.textSelectModeC .likeDislikeIcons {
+  display: inline-block;
+  color: #2980b9;
+  font-size: 3.0em;
+}
+.textSelectModeC .likeDislikeIcons:after {
+  content: " ";
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+.textSelectModeC .likeDislikeIcons .icon {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
