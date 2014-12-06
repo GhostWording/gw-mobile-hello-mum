@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselectc').controller('TextSelectModeCCtrl', function($scope, $window, $document, config, settings, texts) {
+  angular.module('app/textselectc').controller('TextSelectModeCCtrl', function($scope, $window, $document, $ionicScrollDelegate, config, settings, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
@@ -66,6 +66,10 @@
       }
       return index;
     }; 
+    // Text slide swiped
+    $scope.textSwiped = function() {
+      $ionicScrollDelegate.scrollTop(true); 
+    };
     // Fetch text list
     texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
       // Pick texts

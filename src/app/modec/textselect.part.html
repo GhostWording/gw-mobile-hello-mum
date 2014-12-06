@@ -1,13 +1,13 @@
 <ion-view>
-  <ion-content class="textSelectModeC" scroll="true" has-bouncing="false" ng-controller="TextSelectModeCCtrl">
+  <ion-content class="textSelectModeC" scroll="true" scrollbar-y="false" has-bouncing="false" ng-controller="TextSelectModeCCtrl">
     <div style="width:{{windowWidth}}px">
       <!-- image slides -->
       <gw-mob-slideswipe
         getnextitem="getNextImage(currentImage)"
         getpreviousitem="getPreviousImage(currentImage)"
         currentitem="currentImage"
-        devicewidth="deviceWidth"
-        deviceheight="slideImageHeight">
+        width="deviceWidth"
+        height="slideImageHeight">
         <!-- slide -->
         <gw-mob-slide>
           <!-- image -->
@@ -28,8 +28,9 @@
         currentitem="$parent.currentText"
         swipeLeft="$parent.swipeLeft"
         swipeRight="$parent.swipeRight"
-        devicewidth="deviceWidth"
-        deviceheight="deviceHeight">
+        swipedleft="textSwiped()"
+        swipedright="textSwiped()"
+        width="deviceWidth">
         <!-- slide -->
         <gw-mob-slide>
           <!-- text -->
