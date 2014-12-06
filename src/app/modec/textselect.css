@@ -1,6 +1,4 @@
 .textSelectModeC {
-  overflow-y: scroll;
-  overflow-scrolling: touch;
 }
 .textSelectModeC .text {
   color: rgba(0,0,0,0.7); 
