@@ -2,7 +2,7 @@
   "name": "gw-mobile-hello-mum",
   "private": "true",
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.13-nightly-840",
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.13-nightly-857",
     "ngCordova": "~0.1.6-alpha",
     "angular-translate": "~2.0.1",
     "angular-cookies": "~1.2.9",

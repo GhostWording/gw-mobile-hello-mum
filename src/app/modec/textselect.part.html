@@ -1,61 +1,66 @@
-<div class="textSelectModeC" style="width:{{windowWidth}}px; height:{{windowHeight}}px" ng-controller="TextSelectModeCCtrl">
-  <!-- image slides -->
-  <gw-mob-slideswipe
-    getnextitem="getNextImage(currentImage)"
-    getpreviousitem="getPreviousImage(currentImage)"
-    currentitem="currentImage"
-    devicewidth="deviceWidth"
-    deviceheight="slideImageHeight">
-    <!-- slide -->
-    <gw-mob-slide>
-      <!-- image -->
-      <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
-    </gw-mob-slide>
-  </gw-mob-slideswipe>
-  <!-- image dot indicator -->
-  <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
-    <div class="dotIndicatorCenter">
-      <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
-    </div>
-  </div>
-  <!-- text dot indicator -->
-  <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
-    <div class="dotIndicatorCenter">
-      <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
-    </div>
-  </div>
-  <!-- text slides -->
-  <gw-mob-slideswipe
-    ng-if="textList"
-    getnextitem="getNextText(currentText)"
-    getpreviousitem="getPreviousText(currentText)"
-    currentitem="$parent.currentText"
-    swipeLeft="$parent.swipeLeft"
-    swipeRight="$parent.swipeRight"
-    devicewidth="deviceWidth"
-    deviceheight="deviceHeight">
-    <!-- slide -->
-    <gw-mob-slide>
-      <!-- text -->
-      <div class="text">{{item.Content}}</div>
-      <!-- send bar -->
-      <div class="sendBarContainer" ng-show="item.TextId!==-1">
-        <gw-mob-sendbar 
-          emailaddress="emailAddress" 
-          mobilenumber="mobileNumber" 
-          text="item.Content"
-          imageurl="item.imageUrl">
-        </gw-mob-sendbar>
-      </div>
-      <!-- like/dislike icons -->
-      <!--
-      <div class="likeDislikeIconsContainer" ng-show="item.TextId!==-1">
-        <div class="likeDislikeIcons">
-          <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
-          <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
+<ion-view>
+  <ion-content class="textSelectModeC" scroll="true" scrollbar-y="false" has-bouncing="false" ng-controller="TextSelectModeCCtrl">
+    <div style="width:{{windowWidth}}px">
+      <!-- image slides -->
+      <gw-mob-slideswipe
+        getnextitem="getNextImage(currentImage)"
+        getpreviousitem="getPreviousImage(currentImage)"
+        currentitem="currentImage"
+        width="deviceWidth"
+        height="slideImageHeight">
+        <!-- slide -->
+        <gw-mob-slide>
+          <!-- image -->
+          <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
+        </gw-mob-slide>
+      </gw-mob-slideswipe>
+      <!-- image dot indicator -->
+      <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
+        <div class="dotIndicatorCenter">
+          <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
         </div>
       </div>
-      -->
-    </gw-mob-slide>
-  </gw-mob-slideswipe>
-</div>
+      <!-- text slides -->
+      <gw-mob-slideswipe
+        ng-if="textList"
+        getnextitem="getNextText(currentText)"
+        getpreviousitem="getPreviousText(currentText)"
+        currentitem="$parent.currentText"
+        swipeLeft="$parent.swipeLeft"
+        swipeRight="$parent.swipeRight"
+        swipedleft="textSwiped()"
+        swipedright="textSwiped()"
+        width="deviceWidth">
+        <!-- slide -->
+        <gw-mob-slide>
+          <!-- text -->
+          <div class="text">{{item.Content}}</div>
+          <!-- send bar -->
+          <div class="sendBarContainer" ng-show="item.TextId!==-1">
+            <gw-mob-sendbar 
+              emailaddress="emailAddress" 
+              mobilenumber="mobileNumber" 
+              text="item.Content"
+              imageurl="item.imageUrl">
+            </gw-mob-sendbar>
+          </div>
+          <!-- like/dislike icons -->
+          <!--
+          <div class="likeDislikeIconsContainer" ng-show="item.TextId!==-1">
+            <div class="likeDislikeIcons">
+              <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
+              <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
+            </div>
+          </div>
+          -->
+        </gw-mob-slide>
+      </gw-mob-slideswipe>
+      <!-- text dot indicator -->
+      <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
+        <div class="dotIndicatorCenter">
+          <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
