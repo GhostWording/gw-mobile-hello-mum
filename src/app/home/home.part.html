@@ -1,8 +1,8 @@
-<div ng-controller="HomeCtrl" class="home" style="background-image: url('app/home/home.jpg')">
-  <div class="settingsIcon icon ion-gear-a" ng-click="settingsClick()"></div>
-  <div class="arrow" ng-click="launch()">
-    <img src="app/home/arrow.png"/>
-  </div>
-  <div class="launchArea" ng-click="launch()">
-  </div>
-</div>
+<ion-view>
+  <ion-content class="home" style="background-image: url('app/home/home.jpg')" scroll="false" ng-controller="HomeCtrl">
+    <div class="settingsIcon icon ion-gear-a" ng-click="settingsClick()"></div>
+    <div class="arrow" ng-click="launch()">
+      <img src="app/home/arrow.png"/>
+    </div>
+  </ion-content>
+</ion-view>
