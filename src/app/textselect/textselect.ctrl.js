@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $ionicScrollDelegate, config, settings, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $ionicScrollDelegate, config, settings, send, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // TODO: remove once we pick from contacts (#12)
@@ -142,6 +142,10 @@
       var currentTextIndex = $scope.textList.indexOf($scope.currentText);
       $scope.textList.splice(currentTextIndex, 1);
       $scope.currentText = $scope.textList[currentTextIndex];
+    };
+    // Send button clicked
+    $scope.sendButtonClick = function() {
+      send.show();  
     };
     // Settings button clicked
     $scope.settingsClick = function() {
