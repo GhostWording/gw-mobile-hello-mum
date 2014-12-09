@@ -1,5 +1,11 @@
-<ion-view>
-  <ion-content class="textSelectModeC" scroll="true" scrollbar-y="false" has-bouncing="false" ng-controller="TextSelectModeCCtrl">
+<ion-view class="textSelectModeC" ng-controller="TextSelectModeCCtrl">
+  <!-- bottom bar -->
+  <div class="bottomBar" ng-if="!endOfTextVisible()">
+    <div class="likeDislikeIcon icon ion-thumbsdown" ng-click="dislikeIconClick()"></div> 
+    <div class="sendButton" ng-click="sendButtonClick()">Send</div>
+    <div class="likeDislikeIcon ion-thumbsup" ng-click="likeIconClick(item)"></div> 
+  </div>
+  <ion-content scroll="true" scrollbar-y="false" has-bouncing="false">
     <div style="width:{{windowWidth}}px">
       <!-- image slides -->
       <gw-mob-slideswipe
@@ -25,8 +31,8 @@
         ng-if="textList"
         getnextitem="getNextText(currentText)"
         getpreviousitem="getPreviousText(currentText)"
-        currentitem="$parent.currentText"
-        swipeLeft="$parent.swipeLeft"
+        currentitem="$parent.$parent.currentText"
+        swipeLeft="$parent.$parent.swipeLeft"
         swipeRight="$parent.swipeRight"
         swipedleft="textSwiped()"
         swipedright="textSwiped()"
@@ -35,24 +41,6 @@
         <gw-mob-slide>
           <!-- text -->
           <div class="text">{{item.Content}}</div>
-          <!-- send bar -->
-          <div class="sendBarContainer" ng-show="item.TextId!==-1">
-            <gw-mob-sendbar 
-              emailaddress="emailAddress" 
-              mobilenumber="mobileNumber" 
-              text="item.Content"
-              imageurl="item.imageUrl">
-            </gw-mob-sendbar>
-          </div>
-          <!-- like/dislike icons -->
-          <!--
-          <div class="likeDislikeIconsContainer" ng-show="item.TextId!==-1">
-            <div class="likeDislikeIcons">
-              <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
-              <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
-            </div>
-          </div>
-          -->
         </gw-mob-slide>
       </gw-mob-slideswipe>
       <!-- text dot indicator -->
