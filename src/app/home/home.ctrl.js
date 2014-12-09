@@ -2,11 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $location, $timeout, $ionicPopup, $cordovaPreferences, config, settings) {
-    // Settings icon clicked
-    $scope.settingsClick = function() {
-      settings.show();
-    };
+  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $location, $timeout, $ionicPopup, $cordovaPreferences, config) {
     // Next arrow clicked
     $scope.launch = function() {
       switch(settings.mode) {
