@@ -1,14 +1,14 @@
 <ion-view class="textSelectModeC" ng-controller="TextSelectModeCCtrl">
   <!-- bottom bar -->
   <div class="bottomBar">
-    <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
+    <div class="likeDislikeIcon icon ion-thumbsdown" ng-click="dislikeIconClick()"></div> 
     <gw-mob-sendbar 
       emailaddress="emailAddress" 
       mobilenumber="mobileNumber" 
       text="'text'"
       imageurl="'image'">
     </gw-mob-sendbar>
-    <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
+    <div class="likeDislikeIcon ion-thumbsup" ng-click="likeIconClick(item)"></div> 
   </div>
   <ion-content scroll="true" scrollbar-y="false" has-bouncing="false">
     <div style="width:{{windowWidth}}px">
