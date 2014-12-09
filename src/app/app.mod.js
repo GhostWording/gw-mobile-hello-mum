@@ -6,9 +6,7 @@
     'ionic',
     'app/config',
     'app/home',
-    'app/textselecta',
-    'app/textselectb',
-    'app/textselectc'
+    'app/textselect',
   ]);
 
 }());
