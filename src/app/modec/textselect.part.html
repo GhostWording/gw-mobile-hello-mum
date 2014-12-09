@@ -1,5 +1,16 @@
-<ion-view>
-  <ion-content class="textSelectModeC" scroll="true" scrollbar-y="false" has-bouncing="false" ng-controller="TextSelectModeCCtrl">
+<ion-view class="textSelectModeC" ng-controller="TextSelectModeCCtrl">
+  <!-- bottom bar -->
+  <div class="bottomBar">
+    <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
+    <gw-mob-sendbar 
+      emailaddress="emailAddress" 
+      mobilenumber="mobileNumber" 
+      text="'text'"
+      imageurl="'image'">
+    </gw-mob-sendbar>
+    <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
+  </div>
+  <ion-content scroll="true" scrollbar-y="false" has-bouncing="false">
     <div style="width:{{windowWidth}}px">
       <!-- image slides -->
       <gw-mob-slideswipe
@@ -42,17 +53,6 @@
         <div class="dotIndicatorCenter">
           <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
         </div>
-      </div>
-      <!-- bottom bar -->
-      <div class="bottomBar">
-        <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
-        <gw-mob-sendbar 
-          emailaddress="emailAddress" 
-          mobilenumber="mobileNumber" 
-          text="'text'"
-          imageurl="'image'">
-        </gw-mob-sendbar>
-        <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
       </div>
     </div>
   </ion-content>
