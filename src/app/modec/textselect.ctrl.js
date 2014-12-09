@@ -147,6 +147,7 @@
     $scope.settingsClick = function() {
       settings.show();  
     };
+    // Select (n) unique texts
     function pickTexts(numTexts) {
       var textList = [];
       for(var i=0; i<numTexts; i++) {
@@ -158,6 +159,7 @@
       }
       return textList;
     }
+    // Select (n) unique images
     function pickImages(candidateImageUrls, numImages) {
       var imageList = [];
       for(var i=0; i<numImages; i++) {
