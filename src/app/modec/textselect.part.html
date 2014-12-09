@@ -1,53 +1,53 @@
 <ion-view class="textSelectModeC" ng-controller="TextSelectModeCCtrl">
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="!endOfTextVisible()">
-    <div class="likeDislikeIcon icon ion-thumbsdown" ng-click="dislikeIconClick()"></div> 
+    <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
-    <div class="likeDislikeIcon ion-thumbsup" ng-click="likeIconClick(item)"></div> 
+    <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
   </div>
-  <ion-content scroll="true" scrollbar-y="false" has-bouncing="false">
-    <div style="width:{{windowWidth}}px">
-      <!-- image slides -->
-      <gw-mob-slideswipe
-        getnextitem="getNextImage(currentImage)"
-        getpreviousitem="getPreviousImage(currentImage)"
-        currentitem="currentImage"
-        width="deviceWidth"
-        height="slideImageHeight">
-        <!-- slide -->
-        <gw-mob-slide>
-          <!-- image -->
-          <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
-        </gw-mob-slide>
-      </gw-mob-slideswipe>
-      <!-- image dot indicator -->
-      <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
-        <div class="dotIndicatorCenter">
-          <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
-        </div>
+  <ion-content scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
+    <!-- settings button -->
+    <div class="settingsButton icon ion-gear-a" ng-click="settingsClick()"></div>
+    <!-- image slides -->
+    <gw-mob-slideswipe
+      getnextitem="getNextImage(currentImage)"
+      getpreviousitem="getPreviousImage(currentImage)"
+      currentitem="currentImage"
+      width="deviceWidth"
+      height="slideImageHeight">
+      <!-- slide -->
+      <gw-mob-slide>
+        <!-- image -->
+        <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
+      </gw-mob-slide>
+    </gw-mob-slideswipe>
+    <!-- image dot indicator -->
+    <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
+      <div class="dotIndicatorCenter">
+        <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
       </div>
-      <!-- text slides -->
-      <gw-mob-slideswipe
-        ng-if="textList"
-        getnextitem="getNextText(currentText)"
-        getpreviousitem="getPreviousText(currentText)"
-        currentitem="$parent.$parent.currentText"
-        swipeLeft="$parent.$parent.swipeLeft"
-        swipeRight="$parent.swipeRight"
-        swipedleft="textSwiped()"
-        swipedright="textSwiped()"
-        width="deviceWidth">
-        <!-- slide -->
-        <gw-mob-slide>
-          <!-- text -->
-          <div class="text">{{item.Content}}</div>
-        </gw-mob-slide>
-      </gw-mob-slideswipe>
-      <!-- text dot indicator -->
-      <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
-        <div class="dotIndicatorCenter">
-          <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
-        </div>
+    </div>
+    <!-- text slides -->
+    <gw-mob-slideswipe
+      ng-if="textList"
+      getnextitem="getNextText(currentText)"
+      getpreviousitem="getPreviousText(currentText)"
+      currentitem="$parent.$parent.currentText"
+      swipeLeft="$parent.$parent.swipeLeft"
+      swipeRight="$parent.swipeRight"
+      swipedleft="textSwiped()"
+      swipedright="textSwiped()"
+      width="deviceWidth">
+      <!-- slide -->
+      <gw-mob-slide>
+        <!-- text -->
+        <div class="text">{{item.Content}}</div>
+      </gw-mob-slide>
+    </gw-mob-slideswipe>
+    <!-- text dot indicator -->
+    <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
+      <div class="dotIndicatorCenter">
+        <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
       </div>
     </div>
   </ion-content>

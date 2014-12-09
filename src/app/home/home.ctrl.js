@@ -2,19 +2,10 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $location, $timeout, $ionicPopup, $cordovaPreferences, config, settings) {
-    // Settings icon clicked
-    $scope.settingsClick = function() {
-      settings.show();
-    };
-    // Next arrow clicked
-    $scope.launch = function() {
-      switch(settings.mode) {
-        case 'A': $location.path('/modea'); break; 
-        case 'B': $location.path('/modeb'); break; 
-        case 'C': $location.path('/modec'); break; 
-      }
-    };
+  angular.module('app/home').controller('HomeCtrl', function($scope, $window, $location, $timeout, $ionicPopup, $cordovaPreferences, config) {
+    $timeout(function() {
+      $location.path('/modec');
+    }, 2000); 
   });
 
 }());

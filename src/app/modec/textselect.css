@@ -44,12 +44,27 @@
   color: #5abbe5;
   opacity: 1;
 }
+.textSelectModeC .settingsButton {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 25px;
+  color: rgba(255,255,255,0.7);
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 3px;
+  vertical-align: center;
+  text-align: center;
+}
 .textSelectModeC .bottomBar {
   position: absolute;
   display: flex;
   bottom: 0px;
   width: 100%;
-  z-index: 3000;
+  z-index: 200;
   padding-top: 50px;
   padding-bottom: 15px;
   padding-left: 15px;
@@ -71,13 +86,13 @@
   vertical-align: center;
   pointer-events: all;
 }
-.textSelectModeC .bottomBar .likeDislikeIcon {
-  padding: 10px;
+.textSelectModeC .bottomBar .likeDislikeButton {
   width: 40px;
   height: 40px;
+  line-height: 40px;
   font-size: 23px;
   color: white;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.1);
   border-radius: 3px;
   vertical-align: center;
   text-align: center;

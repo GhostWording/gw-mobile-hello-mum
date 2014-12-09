@@ -5,8 +5,7 @@
   angular.module('app/home', [
     'ionic',
     'ngCordova.plugins.prefs',
-    'app/config',
-    'mobile/settings'
+    'app/config'
   ]);
 
 }());

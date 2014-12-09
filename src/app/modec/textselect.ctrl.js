@@ -131,18 +131,23 @@
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;
     };
-    // Like icon clicked
-    $scope.likeIconClick = function(item) {
+    // Like button clicked
+    $scope.likeButtonClick = function(item) {
       item.liked = !item.liked;
     };
-    // Dislike icon clicked
-    $scope.dislikeIconClick = function(item) {
+    // Dislike button clicked
+    $scope.dislikeButtonClick = function(item) {
       $scope.swipeLeft();
       // Remove current text from textlist
       var currentTextIndex = $scope.textList.indexOf($scope.currentText);
       $scope.textList.splice(currentTextIndex, 1);
       $scope.currentText = $scope.textList[currentTextIndex];
     };
+    // Settings button clicked
+    $scope.settingsClick = function() {
+      settings.show();  
+    };
+    // Select (n) unique texts
     function pickTexts(numTexts) {
       var textList = [];
       for(var i=0; i<numTexts; i++) {
@@ -154,6 +159,7 @@
       }
       return textList;
     }
+    // Select (n) unique images
     function pickImages(candidateImageUrls, numImages) {
       var imageList = [];
       for(var i=0; i<numImages; i++) {
