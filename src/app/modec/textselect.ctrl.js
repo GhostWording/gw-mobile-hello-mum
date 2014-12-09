@@ -127,17 +127,21 @@
       }
       return index;
     }; 
+    // End of text visible
+    $scope.endOfTextVisible = function() {
+      return $scope.textList.indexOf($scope.currentText) === -1;
+    };
     // Like icon clicked
     $scope.likeIconClick = function(item) {
       item.liked = !item.liked;
     };
     // Dislike icon clicked
     $scope.dislikeIconClick = function(item) {
-      // Swipe slide off to left
       $scope.swipeLeft();
       // Remove current text from textlist
       var currentTextIndex = $scope.textList.indexOf($scope.currentText);
       $scope.textList.splice(currentTextIndex, 1);
+      $scope.currentText = $scope.textList[currentTextIndex];
     };
     function pickTexts(numTexts) {
       var textList = [];
