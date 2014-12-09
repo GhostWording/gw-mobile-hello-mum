@@ -143,6 +143,10 @@
       $scope.textList.splice(currentTextIndex, 1);
       $scope.currentText = $scope.textList[currentTextIndex];
     };
+    // Settings button clicked
+    $scope.settingsClick = function() {
+      settings.show();  
+    };
     function pickTexts(numTexts) {
       var textList = [];
       for(var i=0; i<numTexts; i++) {
