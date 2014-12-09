@@ -35,24 +35,6 @@
         <gw-mob-slide>
           <!-- text -->
           <div class="text">{{item.Content}}</div>
-          <!-- send bar -->
-          <div class="sendBarContainer" ng-show="item.TextId!==-1">
-            <gw-mob-sendbar 
-              emailaddress="emailAddress" 
-              mobilenumber="mobileNumber" 
-              text="item.Content"
-              imageurl="item.imageUrl">
-            </gw-mob-sendbar>
-          </div>
-          <!-- like/dislike icons -->
-          <!--
-          <div class="likeDislikeIconsContainer" ng-show="item.TextId!==-1">
-            <div class="likeDislikeIcons">
-              <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
-              <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
-            </div>
-          </div>
-          -->
         </gw-mob-slide>
       </gw-mob-slideswipe>
       <!-- text dot indicator -->
@@ -60,6 +42,17 @@
         <div class="dotIndicatorCenter">
           <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
         </div>
+      </div>
+      <!-- bottom bar -->
+      <div class="bottomBar">
+        <div class="dislikeIcon icon ion-ios7-close" ng-click="dislikeIconClick()"></div> 
+        <gw-mob-sendbar 
+          emailaddress="emailAddress" 
+          mobilenumber="mobileNumber" 
+          text="'text'"
+          imageurl="'image'">
+        </gw-mob-sendbar>
+        <div class="likeIcon icon" ng-class="{'ion-ios7-heart':item.liked, 'ion-ios7-heart-outline':!item.liked}" ng-click="likeIconClick(item)"></div> 
       </div>
     </div>
   </ion-content>
