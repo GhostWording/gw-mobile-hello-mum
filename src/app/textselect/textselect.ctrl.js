@@ -5,9 +5,6 @@
   angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $ionicScrollDelegate, config, settings, send, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
-    // TODO: remove once we pick from contacts (#12)
-    $scope.emailAddress = settings.emailAddress;
-    $scope.mobileNumber = settings.mobileNumber;
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -145,6 +142,11 @@
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
+      // Show the send popup
+      send.setEmailAddress(settings.emailAddress);
+      send.setEmailSubject(config.emailSubject);
+      send.setMobileNumber(settings.mobileNumber);
+      send.setMessage($scope.currentText.Content);
       send.show();  
     };
     // Settings button clicked
