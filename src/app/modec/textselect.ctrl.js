@@ -131,12 +131,12 @@
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;
     };
-    // Like icon clicked
-    $scope.likeIconClick = function(item) {
+    // Like button clicked
+    $scope.likeButtonClick = function(item) {
       item.liked = !item.liked;
     };
-    // Dislike icon clicked
-    $scope.dislikeIconClick = function(item) {
+    // Dislike button clicked
+    $scope.dislikeButtonClick = function(item) {
       $scope.swipeLeft();
       // Remove current text from textlist
       var currentTextIndex = $scope.textList.indexOf($scope.currentText);

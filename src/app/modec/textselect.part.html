@@ -1,9 +1,11 @@
 <ion-view class="textSelectModeC" ng-controller="TextSelectModeCCtrl">
+  <!-- settings button -->
+  <div class="settingsButton icon ion-gear-a" ng-click="settingsClick()"></div>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="!endOfTextVisible()">
-    <div class="likeDislikeIcon icon ion-thumbsdown" ng-click="dislikeIconClick()"></div> 
+    <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
-    <div class="likeDislikeIcon ion-thumbsup" ng-click="likeIconClick(item)"></div> 
+    <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
   </div>
   <ion-content scroll="true" scrollbar-y="false" has-bouncing="false">
     <div style="width:{{windowWidth}}px">
