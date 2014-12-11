@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'notoserif-italic';
+  src: url('./fonts/notoserif-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'notoserif-bolditalic';
+  src: url('./fonts/notoserif-bolditalic.woff') format('woff');
+}
 .appView {
   padding: 0px;
   margin: 0px;
