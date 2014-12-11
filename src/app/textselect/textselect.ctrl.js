@@ -10,7 +10,7 @@
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
-    $scope.slideImageHeight = $scope.deviceHeight * 0.50;
+    $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
     // Pick images
     $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
     // Given an image, get the next one in the sequence
