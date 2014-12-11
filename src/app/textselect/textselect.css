@@ -7,9 +7,10 @@
   padding-right: 40px;
   font-family: 'notoserif-italic';
   font-size: 1.2em;
-  line-height: 1.35em;
+  line-height: 1.4em;
   text-align: left;
-  color: #1c79b6; 
+  color: #001f46; 
+  opacity: 0.7;
 } 
 .textSelect .image {
   width: 100%;
@@ -45,7 +46,7 @@
   color: black;
 }
 .textSelect .dotIndicator .currentDot {
-  color: #5abbe5;
+  color: #339ee6;
   opacity: 1;
 }
 .textSelect .settingsButton {
@@ -89,7 +90,7 @@
   margin-left: 50px;
   margin-right: 50px;
   border-radius: 3px;
-  background-color: #5abbe5;
+  background-color: #339ee6;
   height: 40px;
   line-height: 40px;
   color: white;
@@ -97,6 +98,7 @@
   text-align: center;
   vertical-align: center;
   pointer-events: all;
+  font-family: 'notoserif-italic';
 }
 .textSelect .bottomBar .likeDislikeButton {
   width: 40px;
