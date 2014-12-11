@@ -11,7 +11,7 @@
       'imagesPerDay': 8,
       'textsPerDay': 8,
       'emailSubject': 'Hello Mum',
-      'imageHeightFactor': '0.6',
+      'imageHeightFactor': '0.55',
       'imageUrls': [
         'app/kittens/001.jpg',
         'app/kittens/002.jpg',
