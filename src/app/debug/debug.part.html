@@ -1,30 +1,33 @@
 <ion-view class="debug" ng-controller="DebugCtrl">
+  <ion-header-bar align-title="left" class="bar-dark">
+    <div class="buttons">
+      <button class="button" ng-click="backButtonClick()">Back</button>
+    </div>
+  </ion-header-bar>
   <ion-tabs class="tabs-dark">
     <ion-tab title="Texts" icon-on="ion-document-text" icon-off="ion-document-text">
-      <ion-header-bar align-title="left" class="bar-dark">
-        <div class="buttons">
-          <button class="button" ng-click="backButtonClick()">Back</button>
-        </div>
-        <h1 class="title">Debug</h1>
-      </ion-header-bar>
-      <ion-content scroll="true" scrollbar-y="true" has-bouncing="true" has-tabs="true" has-footer="true" padding="true">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="true">
         <ion-refresher
           pulling-text="Pull to refresh..."
           on-refresh="refreshTextList()">
         </ion-refresher>
+        <br><br>
         <ion-list>
           <ion-item class="textListItem item-text-wrap" ng-repeat="text in textList"><p>{{text.Content}}</p></ion-item>
         </ion-list>
+        <br><br>
       </ion-content>
     </ion-tab>
     <ion-tab title="Images" icon-on="ion-images" icon-off="ion-images">
       <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
+        <br><br>
         <ion-list>
           <ion-item class="imageListItem item-text-wrap" ng-repeat="imageUrl in imageUrls">
             <p>{{imageUrl}}</p>
             <div class="image" style="background-image:url('{{imageUrl}}')"></div>
           </ion-item>
         </ion-list>
+        <br><br>
       </ion-content>
     </ion-tab>
   </ion-tabs>
