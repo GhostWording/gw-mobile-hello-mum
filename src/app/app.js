@@ -3,7 +3,8 @@
   "use strict";
 
   angular.module('app')
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+      $ionicConfigProvider.platform.android.tabs.position("bottom");
       $urlRouterProvider.otherwise('/');
       $stateProvider
         .state('home', {
