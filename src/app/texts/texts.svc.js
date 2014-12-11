@@ -2,20 +2,36 @@
 
   "use strict";
 
-  angular.module('app/texts').factory('texts', function(areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc) {
+  angular.module('app/texts').factory('texts', function(areasSvc, intentionsSvc, textsSvc, recipientTypesSvc, filteredTextListSvc, filtersSvc, cacheSvc) {
+    var _area;
+    var _intention;
+    var _recipientType;
     var _textList;
     var texts = {
+      // Set the area
+      setArea: function(area) {
+        _area = area; 
+      },
+      // Set the intention
+      setIntention: function(intention) {
+        _intention = intention; 
+      },
+      // Set the recipient type
+      setRecipientType: function(recipientType) {
+        _recipientType = recipientType; 
+      },
+      // Fetch text list
       // TODO: return a promise
-      fetch: function(area, intentionSlug, recipientId, done) {
+      fetch: function(done) {
         // Set area
-        areasSvc.setCurrentName(area);
+        areasSvc.setCurrentName(_area);
         // Set current intention
-        intentionsSvc.setIntentionSlug(intentionSlug); 
+        intentionsSvc.setIntentionSlug(_intention); 
         // Get recipient types
         // TODO: show an error to the user if we couldn't fetch recipient types (#51)
         recipientTypesSvc.getRecipients().then(function(){
           // Get recipient type tag
-          var recipientTypeTag = recipientTypesSvc.getThisOneNow(recipientId).RecipientTypeTag;
+          var recipientTypeTag = recipientTypesSvc.getThisOneNow(_recipientType).RecipientTypeTag;
           // Fetch text list
           // TODO: show an error to the user if we couldn't fetch texts (#51)
           // TODO: handle localisation
@@ -33,6 +49,10 @@
             done(_textList);
           }); 
         });
+      },
+      // Clear cached texts
+      clear: function() {
+        cacheSvc.reInitializeCacheEntry(_area + '/' + _intention + '/texts.en-EN');
       },
       // Suggest a text (random at the moment)
       // TODO: improve or use something from gw-common
