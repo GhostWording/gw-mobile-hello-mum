@@ -1,4 +1,4 @@
-<ion-view class="debugView" ng-controller="DebugCtrl">
+<ion-view class="debug" ng-controller="DebugCtrl">
   <ion-tabs class="tabs-dark">
     <ion-tab title="Texts" icon-on="ion-document-text" icon-off="ion-document-text">
       <ion-header-bar align-title="left" class="bar-dark">
@@ -19,7 +19,12 @@
     </ion-tab>
     <ion-tab title="Images" icon-on="ion-images" icon-off="ion-images">
       <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
-        <div class="imageListItem" ng-repeat="imageUrl in imageUrls" style="background-image:url('{{imageUrl}}')"><p>{{imageUrl}}</p></div>
+        <ion-list>
+          <ion-item class="imageListItem item-text-wrap" ng-repeat="imageUrl in imageUrls">
+            <p>{{imageUrl}}</p>
+            <div class="image" style="background-image:url('{{imageUrl}}')"></div>
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ion-tab>
   </ion-tabs>
