@@ -55,8 +55,9 @@ var imageGlobs = [
 ];
 
 var fontGlobs = [
-  'src/lib/ionic/fonts/**/ionicons.ttf',
-  'src/lib/ionic/fonts/**/ionicons.woff'
+  'src/lib/ionic/fonts/**/ionicons.woff',
+  'src/app/fonts/**/notoserif-italic.woff',
+  'src/app/fonts/**/notoserif-bolditalic.woff'
 ];
 
 var partialGlobs = [
@@ -151,6 +152,7 @@ gulp.task('process:styles', function() {
     .pipe(gIf(!debug, concat('app.css')))
     .pipe(gIf(!debug, minifyCSS({keepSpecialComments: 0})))
 		.pipe(gIf(!debug, replace('../fonts', 'fonts')))
+		.pipe(gIf(!debug, replace('./fonts', 'fonts')))
     .pipe(gulp.dest('www'));
 });
 
