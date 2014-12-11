@@ -7,6 +7,7 @@
     'app/config',
     'app/home',
     'app/textselect',
+    'app/debug'
   ]);
 
 }());

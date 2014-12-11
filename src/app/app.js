@@ -13,6 +13,10 @@
         .state('textselect', {
           url: '/textselect',
           templateUrl: 'app/textselect/textselect.part.html'
+        })
+        .state('debug', {
+          url: '/debug',
+          templateUrl: 'app/debug/debug.part.html'
         });
     })
     .run(function($ionicPlatform) {
