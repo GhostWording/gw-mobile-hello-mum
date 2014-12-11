@@ -1,13 +1,15 @@
 .textSelect {
 }
 .textSelect .text {
-  color: rgba(0,0,0,0.7); 
   padding-top: 40px;  
   padding-bottom: 100px;
-  padding-left: 50px;
-  padding-right: 50px;
-  text-align: center;
-  font-size: 1.05em;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: 'notoserif-italic';
+  font-size: 1.2em;
+  line-height: 1.35em;
+  text-align: left;
+  color: #1c79b6; 
 } 
 .textSelect .image {
   width: 100%;
@@ -36,7 +38,9 @@
   position: relative;
 }
 .textSelect .dotIndicator .dot {
-  font-size: 20px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 18px;
   opacity: 0.15;
   color: black;
 }
