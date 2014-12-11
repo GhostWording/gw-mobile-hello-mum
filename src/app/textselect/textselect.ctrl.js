@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $ionicScrollDelegate, config, settings, send, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $location, $ionicScrollDelegate, config, settings, send, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -68,7 +68,10 @@
       $ionicScrollDelegate.scrollTop(true); 
     };
     // Fetch text list
-    texts.fetch(config.area, config.intentionSlug, config.recipientId, function(textList) {
+    texts.setArea(config.area);
+    texts.setIntention(config.intention);
+    texts.setRecipientType(config.recipientType);
+    texts.fetch(function(textList) {
       // Pick texts
       $scope.textList = pickTexts(config.textsPerDay);
     });
@@ -150,8 +153,17 @@
       send.show();  
     };
     // Settings button clicked
-    $scope.settingsClick = function() {
+    $scope.settingsButtonClick = function() {
       settings.show();  
+    };
+    // Debug button clicked
+    var debugClickCount = 0;
+    $scope.debugButtonClick = function() {
+      debugClickCount ++;
+      if(debugClickCount === 10) {
+        debugClickCount = 0;
+        $location.path('/debug');
+      }
     };
     // Select (n) unique texts
     function pickTexts(numTexts) {

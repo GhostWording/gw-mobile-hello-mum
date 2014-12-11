@@ -3,7 +3,8 @@
   "use strict";
 
   angular.module('app')
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+      $ionicConfigProvider.platform.android.tabs.position("bottom");
       $urlRouterProvider.otherwise('/');
       $stateProvider
         .state('home', {
@@ -13,6 +14,10 @@
         .state('textselect', {
           url: '/textselect',
           templateUrl: 'app/textselect/textselect.part.html'
+        })
+        .state('debug', {
+          url: '/debug',
+          templateUrl: 'app/debug/debug.part.html'
         });
     })
     .run(function($ionicPlatform) {
