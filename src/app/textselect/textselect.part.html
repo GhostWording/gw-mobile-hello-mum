@@ -19,8 +19,12 @@
       height="slideImageHeight">
       <!-- slide -->
       <gw-mob-slide>
-        <!-- image -->
-        <div class="image" style="height:{{slideImageHeight}}px; background-image:url('{{item}}')"></div>
+        <div class="imageContainer" style="height:{{slideImageHeight}}px">
+          <!-- more images text -->
+          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">Come tomorrow<br>for more kittens!</div>
+          <!-- image -->
+          <div class="image" style="background-image:url('{{item}}')"></div>
+        </div>
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- image dot indicator -->
