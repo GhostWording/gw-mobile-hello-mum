@@ -1,4 +1,12 @@
 .send .sendButton {
   color: #339ee6;
 }
+.send .sendLabel {
+  font-family: 'notoserif-italic';
+}
+.send .cancelButton {
+  color: white;
+  background-color: #339ee6;
+  font-family: 'notoserif-italic';
+}
 

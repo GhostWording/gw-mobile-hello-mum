@@ -13,6 +13,8 @@
     $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
     // Pick images
     $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
+    // Default to bottom bar visible
+    $scope.bottomBarVisible = true;
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
       var image;
@@ -150,6 +152,10 @@
       send.setEmailSubject(config.emailSubject);
       send.setMobileNumber(settings.mobileNumber);
       send.setMessage($scope.currentText.Content);
+      $scope.bottomBarVisible = false;
+      send.onClose(function() {
+        $scope.bottomBarVisible = true;
+      }); 
       send.show();  
     };
     // Settings button clicked
