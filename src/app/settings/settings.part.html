@@ -1,13 +1,28 @@
 <div class="settings">
   <div class="closeIcon icon ion-close-round" ng-click="close()"></div>
-  <div class="list">
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">mums mobile number</span>
-      <input type="text" ng-model="settings.mobileNumber">
-    </label>
-    <label class="item item-input item-stacked-label">
-      <span class="input-label">mums email address</span>
-      <input type="text" ng-model="settings.emailAddress">
-    </label>
-  </div>
+  <ion-tabs class="tabs-light">
+    <ion-tab title="Mum" icon-on="ion-android-contact" icon-off="ion-android-contact">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">mums mobile number</span>
+          <input type="text" ng-model="settings.mobileNumber">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">mums email address</span>
+          <input type="text" ng-model="settings.emailAddress">
+        </label>
+      </div>
+    </ion-tab>
+    <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
+      <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>
+    </ion-tab>
+    <ion-tab title="Images" icon-on="ion-image" icon-off="ion-image">
+      <p>Images</p>
+    </ion-tab>
+    <ion-tab title="Notifications" icon-on="ion-clock" icon-off="ion-clock">
+      <p>Images</p>
+    </ion-tab>
+  </ion-tabs>
 </div>
