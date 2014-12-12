@@ -1,6 +1,6 @@
 <ion-view class="textSelect" ng-controller="TextSelectCtrl">
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="!endOfTextVisible()">
+  <div class="bottomBar" ng-if="!endOfTextVisible() && bottomBarVisible">
     <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
     <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
