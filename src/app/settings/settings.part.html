@@ -1,28 +1,56 @@
 <div class="settings">
-  <div class="closeIcon icon ion-close-round" ng-click="close()"></div>
   <ion-tabs class="tabs-light">
     <ion-tab title="Mum" icon-on="ion-android-contact" icon-off="ion-android-contact">
-      <div class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">mums mobile number</span>
-          <input type="text" ng-model="settings.mobileNumber">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">mums email address</span>
-          <input type="text" ng-model="settings.emailAddress">
-        </label>
-      </div>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Mums mobile number</span>
+        <input type="text" ng-model="settings.mobileNumber">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Mums email address</span>
+        <input type="text" ng-model="settings.emailAddress">
+      </label>
     </ion-tab>
     <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
-      <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
-      <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
-      <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>
+      <div class="radioGroup">
+        <label class="radioGroupLabel">Thinking of you</label>
+        <div class="radioGroupButtons">
+          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'none'" name="thinkOfYou">none</ion-radio>
+          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'few'" name="thinkOfYou">few</ion-radio>
+          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'many'" name="thinkOfYou">many</ion-radio>
+        </div>
+      </div>
+      <div class="radioGroup">
+        <label class="radioGroupLabel">Come to dinner</label>
+        <div class="radioGroupButtons">
+          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'none'" name="comeToDinner">none</ion-radio>
+          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'few'" name="comeToDinner">few</ion-radio>
+          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'many'" name="comeToDinner">many</ion-radio>
+        </div>
+      </div>
     </ion-tab>
     <ion-tab title="Images" icon-on="ion-image" icon-off="ion-image">
-      <p>Images</p>
+      <div class="radioGroup">
+        <label class="radioGroupLabel">Kittens</label>
+        <div class="radioGroupButtons">
+          <ion-radio ng-model="settings.imageKittens" ng-value="'none'" name="kittens">none</ion-radio>
+          <ion-radio ng-model="settings.imageKittens" ng-value="'few'" name="kittens">few</ion-radio>
+          <ion-radio ng-model="settings.imageKittens" ng-value="'many'" name="kittens">many</ion-radio>
+        </div>
+      </div>
+      <div class="radioGroup">
+        <label class="radioGroupLabel">Nature</label>
+        <div class="radioGroupButtons">
+          <ion-radio ng-model="settings.imageNature" ng-value="'none'" name="nature">none</ion-radio>
+          <ion-radio ng-model="settings.imageNature" ng-value="'few'" name="nature">few</ion-radio>
+          <ion-radio ng-model="settings.imageNature" ng-value="'many'" name="nature">many</ion-radio>
+        </div>
+      </div>
     </ion-tab>
     <ion-tab title="Notifications" icon-on="ion-clock" icon-off="ion-clock">
-      <p>Images</p>
+      <p>Notifications</p>
     </ion-tab>
   </ion-tabs>
+  <div class="doneButtonContainer">
+    <div class="doneButton" ng-click="close()">Done</div>
+  </div>
 </div>
