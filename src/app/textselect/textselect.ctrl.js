@@ -13,6 +13,8 @@
     $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
     // Pick images
     $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
+    // Put settings on the scope
+    $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
     // Given an image, get the next one in the sequence
@@ -154,7 +156,7 @@
       send.setMessage($scope.currentText.Content);
       $scope.bottomBarVisible = false;
       send.onClose(function() {
-        $scope.bottomBarVisible = true;
+        $scope.contactPopupVisible = true;
       }); 
       send.show();  
     };
@@ -170,6 +172,12 @@
         debugClickCount = 0;
         $location.path('/debug');
       }
+    };
+    $scope.contactOkButtonClick = function() {
+      $scope.contactPopupVisible = false;
+    };
+    $scope.contactCancelButtonClick = function() {
+      $scope.contactPopupVisible = false;
     };
     // Select (n) unique texts
     function pickTexts(numTexts) {
