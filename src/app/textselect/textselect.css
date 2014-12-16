@@ -136,6 +136,9 @@
 .textSelect .send {
   margin-top: 150px;
 }
+.textSelect .contactPopup .popupContent {
+  width: 70%;
+}
 .textSelect .contact {
   margin-top: 50px;
   background-color: white;

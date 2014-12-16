@@ -1,13 +1,18 @@
 <ion-view class="textSelect" ng-controller="TextSelectCtrl">
   <!-- send popup -->
   <gw-mob-popup class="sendPopup" ng-if="sendPopupVisible">
-    <gw-mob-send>
+    <gw-mob-send
+      sendsms="sendSMS()"
+      sendemail="sendEmail()"
+      sendfacebook="sendFacebook()">
     </gw-mob-send>
     <div class="popupButton" ng-click="sendCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- contact picker popup -->
   <gw-mob-popup class="contactPopup" ng-if="contactPopupVisible">
     <gw-mob-contact
+      showemailaddress="!emailAddressValid(settings.emailAddress)"
+      showmobilenumber="!mobileNumberValid(settings.mobileNumber)"
       emailaddresslabel="'Mum\'s Email Address'"
       mobilenumberlabel="'Mum\'s Mobile Number'"
       emailaddress="settings.emailAddress"

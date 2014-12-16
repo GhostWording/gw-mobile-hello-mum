@@ -150,20 +150,54 @@
     // Send button clicked
     $scope.sendButtonClick = function() {
       $scope.sendPopupVisible = true;
-      /*
-      // Show the send popup
-      send.setEmailAddress(settings.emailAddress);
-      send.setEmailSubject(config.emailSubject);
-      send.setMobileNumber(settings.mobileNumber);
-      send.setMessage($scope.currentText.Content);
-      $scope.bottomBarVisible = false;
-      send.onClose(function() {
-        $scope.contactPopupVisible = true;
-      }); 
-      send.show();  
-      */
     };
+    // Send cancel button clicked
     $scope.sendCancelButtonClick = function() {
+      $scope.sendPopupVisible = false;
+    };
+    // Returns true if the passed email is valid
+    // TODO: move to send 
+    $scope.emailAddressValid = function(emailAddress) {
+      // TODO: make this better
+      return settings.emailAddress && settings.emailAddress!=='';
+    };
+    // Returns true if the passed mobile number is valid
+    // TODO: move to send 
+    $scope.mobileNumberValid = function(mobileNumber) {
+      // TODO: make this better
+      return settings.mobileNumber && settings.mobileNumber!=='';
+    };
+    // Send via SMS
+    $scope.sendSMS = function() {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // If we have a mobile number 
+      if($scope.mobileNumberValid(settings.mobileNumber)) {
+        // Send the SMS
+        sendSMS.setMobileNumber(settings.mobileNumber);
+        sendSMS.send($scope.currentText.Content); 
+      } else {
+        // Show the contact popup
+        $scope.contactPopupVisible = true;
+      }
+    };
+    // Send via Email
+    $scope.sendEmail = function() {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // If we have a valid email address 
+      if($scope.emailAddressValid(settings.emailAddress)) {
+        // Send the Email
+        sendEmail.setEmailAddress(settings.emailAddress);
+        sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+      } else {
+        // Show the contact popup
+        $scope.contactPopupVisible = true;
+      }
+    };
+    // Send via Facebook
+    $scope.sendFacebook = function() {
+      // Hide the send popup
       $scope.sendPopupVisible = false;
     };
     // Settings button clicked
