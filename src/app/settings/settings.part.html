@@ -1,14 +1,10 @@
-<div class="settings">
+<div class="settings" ng-controller="SettingsCtrl">
   <ion-tabs class="tabs-light">
     <ion-tab title="Mum" icon-on="ion-android-contact" icon-off="ion-android-contact">
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Mums mobile number</span>
-        <input type="text" ng-model="settings.mobileNumber">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Mums email address</span>
-        <input type="text" ng-model="settings.emailAddress">
-      </label>
+      <gw-mob-contact
+        emailaddress="settings.emailAddress"
+        mobilenumber="settings.mobileNumber">
+      </gw-mob-contact>
     </ion-tab>
     <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
       <div class="radioGroup">
