@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $location, $ionicScrollDelegate, config, settings, send, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -149,6 +149,8 @@
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
+      $scope.sendPopupVisible = true;
+      /*
       // Show the send popup
       send.setEmailAddress(settings.emailAddress);
       send.setEmailSubject(config.emailSubject);
@@ -159,6 +161,10 @@
         $scope.contactPopupVisible = true;
       }); 
       send.show();  
+      */
+    };
+    $scope.sendCancelButtonClick = function() {
+      $scope.sendPopupVisible = false;
     };
     // Settings button clicked
     $scope.settingsButtonClick = function() {
