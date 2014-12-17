@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $document, $location, $ionicScrollDelegate, config, settings, send, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -13,6 +13,8 @@
     $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
     // Pick images
     $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
+    // Put settings on the scope
+    $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
     // Given an image, get the next one in the sequence
@@ -147,16 +149,88 @@
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
-      // Show the send popup
-      send.setEmailAddress(settings.emailAddress);
-      send.setEmailSubject(config.emailSubject);
-      send.setMobileNumber(settings.mobileNumber);
-      send.setMessage($scope.currentText.Content);
-      $scope.bottomBarVisible = false;
-      send.onClose(function() {
-        $scope.bottomBarVisible = true;
-      }); 
-      send.show();  
+      $scope.sendPopupVisible = true;
+    };
+    // Send cancel button clicked
+    $scope.sendCancelButtonClick = function() {
+      $scope.sendPopupVisible = false;
+    };
+    // Returns true if the passed email is valid
+    // TODO: move to send 
+    $scope.emailAddressValid = function(emailAddress) {
+      // TODO: make this better
+      return settings.emailAddress && settings.emailAddress!=='';
+    };
+    // Returns true if the passed mobile number is valid
+    // TODO: move to send 
+    $scope.mobileNumberValid = function(mobileNumber) {
+      // TODO: make this better
+      return settings.mobileNumber && settings.mobileNumber!=='';
+    };
+    // Send via SMS
+    $scope.sendSMS = function() {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // Set the send method to SMS
+      $scope.sendMethod = 'SMS';
+      // If we have a mobile number 
+      if($scope.mobileNumberValid(settings.mobileNumber)) {
+        // Send the SMS
+        sendSMS.setMobileNumber(settings.mobileNumber);
+        sendSMS.send($scope.currentText.Content); 
+      } else {
+        // Show the contact popup
+        $scope.contactPopupVisible = true;
+      }
+    };
+    // Send via Email
+    $scope.sendEmail = function() {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // Set the send method to Email
+      $scope.sendMethod = 'Email';
+      // If we have a valid email address 
+      if($scope.emailAddressValid(settings.emailAddress)) {
+        // Send the Email
+        sendEmail.setEmailAddress(settings.emailAddress);
+        sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+      } else {
+        // Show the contact popup
+        $scope.contactPopupVisible = true;
+      }
+    };
+    // Send via Facebook
+    $scope.sendFacebook = function() {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // Alert for now..
+      // TODO: implement
+      alert('sending "' + $scope.currentText.Content + '" via Facebook');
+    };
+    // Determine contact send button visiblity
+    $scope.contactSendButtonVisible = function() {
+      return ($scope.sendMethod==='SMS' && $scope.mobileNumberValid(settings.mobileNumber)) || 
+        ($scope.sendMethod==='Email' && $scope.emailAddressValid(settings.emailAddress)); 
+    };
+    // Send clicked on the contact picker
+    $scope.contactSendButtonClick = function() {
+      // Hide the contact popup
+      $scope.contactPopupVisible = false;
+      // TODO: validate
+      switch($scope.sendMethod) {
+        case 'SMS': {
+          // Send the SMS
+          sendSMS.setMobileNumber(settings.mobileNumber);
+          sendSMS.send($scope.currentText.Content); 
+          break;
+        }
+        case 'Email': {
+          // Send the Email
+          sendEmail.setEmailAddress(settings.emailAddress);
+          sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+          break;
+        }
+      }
     };
     // Settings button clicked
     $scope.settingsButtonClick = function() {
@@ -170,6 +244,12 @@
         debugClickCount = 0;
         $location.path('/debug');
       }
+    };
+    $scope.contactOkButtonClick = function() {
+      $scope.contactPopupVisible = false;
+    };
+    $scope.contactCancelButtonClick = function() {
+      $scope.contactPopupVisible = false;
     };
     // Select (n) unique texts
     function pickTexts(numTexts) {

@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"de.appplant.cordova.emailcomposer.EmailComposer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -36,6 +40,20 @@
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
                             "count": 1
                         }
                     ]
@@ -57,6 +75,9 @@
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         },
         "de.appplant.cordova.plugin.email-composer": {
+            "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
+        },
+        "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         }
     },

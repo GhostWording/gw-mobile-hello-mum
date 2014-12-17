@@ -10,6 +10,8 @@
     'mobile/dotindicator',
     'mobile/send',
     'mobile/settings',
+    'mobile/popup',
+    'mobile/contact',
     'app/config',
     'app/texts'
   ]);

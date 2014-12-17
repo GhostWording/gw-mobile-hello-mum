@@ -52,16 +52,9 @@
   padding-right: 10px;
   padding-top: 15px;
   border-style: solid;
+  border-width: 0px;
   border-top-width: 2px;
   border-top-color: #339ee6; 
-}
-/* item */
-.settings .item {
-  border: none;
-  margin-top: 5px;
-  padding: 0px;
-  background-color: transparent;
-  color: #aaaaaa;
 }
 /* select */
 .settings .item-select select {
@@ -85,6 +78,7 @@
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 /* input */
+/*
 .settings .input-label {
   padding-bottom: 8px;
   font-size: 14px;
@@ -101,6 +95,7 @@
   font-size: 1em;
   padding-left: 10px;
 }
+*/
 /* radio boxes */
 .settings .radioGroup {
   clear: both;
@@ -114,6 +109,7 @@
 }
 .settings .item-radio {
   float: left;
+  border: none;
 }
 .settings .item-radio .item-content {
   margin: 4px;
@@ -136,12 +132,12 @@
 .settings .item-radio .radio-icon {
   display: none;
 }
+/* pick from contact button */
 /* done button */
 .settings .doneButtonContainer {
   z-index: 1000;
   width: 100%;
   position: absolute;
-  bottom: 20px;
   height: 40px;
 }
 .settings .doneButton {

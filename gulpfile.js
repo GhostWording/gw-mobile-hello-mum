@@ -123,7 +123,7 @@ gulp.task('process:index', function() {
     .pipe(gIf(!debug, replace('<!-- style:css --><!-- endinject -->','<link rel="stylesheet" href="app.css">')))
     .pipe(gIf(debug, inject(gulp.src(getJSGlobs(), {base:'src', read: false}), {name: 'app', ignorePath:'src'})))
     .pipe(gIf(debug, inject(gulp.src(getCSSGlobs(), {base:'src', read: false}), {name: 'style', ignorePath:'src'})))
-    .pipe(gIf(!debug, minifyHTML({})))
+    .pipe(gIf(!debug, minifyHTML({empty:true})))
     .pipe(gulp.dest('www'));
 });
 
@@ -135,7 +135,7 @@ gulp.task('process:javascript', ['jshint'], function() {
   var partSrcOpt = {cwd:'.'};
   if(debug) {partSrcOpt.base = 'src';}
   var partialStream = gulp.src(partialGlobs, partSrcOpt)
-    .pipe(gIf(!debug, minifyHTML({})))
+    .pipe(gIf(!debug, minifyHTML({empty:true})))
     .pipe(gIf(!debug, templateCache('partials.js', {module:appModule, root:'.'})));
   return streamQueue({objectMode:true}, jsStream, partialStream)
     .pipe(gIf(!debug, concat('app.js')))
