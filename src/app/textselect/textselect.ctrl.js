@@ -214,6 +214,8 @@
     };
     // Send clicked on the contact picker
     $scope.contactSendButtonClick = function() {
+      // Hide the contact popup
+      $scope.contactPopupVisible = false;
       // TODO: validate
       switch($scope.sendMethod) {
         case 'SMS': {
