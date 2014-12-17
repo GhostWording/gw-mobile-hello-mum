@@ -207,6 +207,11 @@
       // TODO: implement
       alert('sending "' + $scope.currentText.Content + '" via Facebook');
     };
+    // Determine contact send button visiblity
+    $scope.contactSendButtonVisible = function() {
+      return ($scope.sendMethod==='SMS' && $scope.mobileNumberValid(settings.mobileNumber)) || 
+        ($scope.sendMethod==='Email' && $scope.emailAddressValid(settings.emailAddress)); 
+    };
     // Send clicked on the contact picker
     $scope.contactSendButtonClick = function() {
       // TODO: validate

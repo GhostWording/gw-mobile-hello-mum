@@ -18,7 +18,7 @@
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton" ng-click="contactSendButtonClick()">Send</div>
+    <div class="popupButton" ng-if="contactSendButtonVisible()" ng-click="contactSendButtonClick()">Send</div>
     <div class="popupButton" ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->
