@@ -11,14 +11,14 @@
   <!-- contact picker popup -->
   <gw-mob-popup class="contactPopup" ng-if="contactPopupVisible">
     <gw-mob-contact
-      showemailaddress="!emailAddressValid(settings.emailAddress)"
-      showmobilenumber="!mobileNumberValid(settings.mobileNumber)"
+      showemailaddress="sendMethod==='Email'"
+      showmobilenumber="sendMethod==='SMS'"
       emailaddresslabel="'Mum\'s Email Address'"
       mobilenumberlabel="'Mum\'s Mobile Number'"
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton" ng-click="contactOkButtonClick()">Send</div>
+    <div class="popupButton" ng-click="contactSendButtonClick()">Send</div>
     <div class="popupButton" ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->

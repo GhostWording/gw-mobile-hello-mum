@@ -171,6 +171,8 @@
     $scope.sendSMS = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
+      // Set the send method to SMS
+      $scope.sendMethod = 'SMS';
       // If we have a mobile number 
       if($scope.mobileNumberValid(settings.mobileNumber)) {
         // Send the SMS
@@ -185,6 +187,8 @@
     $scope.sendEmail = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
+      // Set the send method to Email
+      $scope.sendMethod = 'Email';
       // If we have a valid email address 
       if($scope.emailAddressValid(settings.emailAddress)) {
         // Send the Email
@@ -199,6 +203,27 @@
     $scope.sendFacebook = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
+      // Alert for now..
+      // TODO: implement
+      alert('sending "' + $scope.currentText.Content + '" via Facebook');
+    };
+    // Send clicked on the contact picker
+    $scope.contactSendButtonClick = function() {
+      // TODO: validate
+      switch($scope.sendMethod) {
+        case 'SMS': {
+          // Send the SMS
+          sendSMS.setMobileNumber(settings.mobileNumber);
+          sendSMS.send($scope.currentText.Content); 
+          break;
+        }
+        case 'Email': {
+          // Send the Email
+          sendEmail.setEmailAddress(settings.emailAddress);
+          sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+          break;
+        }
+      }
     };
     // Settings button clicked
     $scope.settingsButtonClick = function() {
