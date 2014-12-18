@@ -4,8 +4,8 @@
 
   angular.module('app/home', [
     'ionic',
-    'ngCordova.plugins.prefs',
-    'app/config'
+    'app/config',
+    'app/genderselect'
   ]);
 
 }());

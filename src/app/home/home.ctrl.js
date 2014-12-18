@@ -8,8 +8,8 @@
       $ionicViewService.nextViewOptions({
         disableBack: true
       });
-      // Go to main view
-      $location.path('/textselect');
+      // Go to gender select
+      $location.path('/genderselect');
     }, 500); 
   });
 
