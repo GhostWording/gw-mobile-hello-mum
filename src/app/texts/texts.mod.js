@@ -3,8 +3,9 @@
   "use strict";
 
   angular.module('app/texts', [
-    'common/texts',
-    'common/services/cache'
+    'common/i18n',
+    'common/services/helperSvc',
+    'common/helloMum'
   ]);
 
 }());
