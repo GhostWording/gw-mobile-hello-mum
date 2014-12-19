@@ -6,12 +6,11 @@
     // Clear cache and re-fetch texts
     $scope.refreshTextList = function() {
       // Fetch text list
-      texts.setArea(config.area);
-      texts.setIntention(config.intention);
-      texts.setRecipientType(config.recipientType);
       texts.clear();
-      texts.fetch(function(textList) {
-        $scope.textList = textList;
+      texts.fetch(function() {
+        // Get all texts  
+        $scope.intentions = texts.getAll();
+        console.log($scope.intentions);
         // Stop the ion-refresher from spinning
         $scope.$broadcast('scroll.refreshComplete');
       });
