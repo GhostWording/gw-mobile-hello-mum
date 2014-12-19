@@ -2,11 +2,10 @@
 
   "use strict";
 
-  angular.module('app/home', [
+  angular.module('app/genderselect', [
     'ionic',
     'app/config',
-    'app/settings',
-    'app/genderselect'
+    'app/settings'
   ]);
 
 }());
