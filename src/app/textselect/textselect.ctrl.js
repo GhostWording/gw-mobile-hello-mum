@@ -72,12 +72,9 @@
       $ionicScrollDelegate.scrollTop(true); 
     };
     // Fetch text list
-    texts.setArea(config.area);
-    texts.setIntention(config.intention);
-    texts.setRecipientType(config.recipientType);
     texts.fetch(function(textList) {
-      // Pick texts
-      $scope.textList = pickTexts(config.textsPerDay);
+      console.log(textList);
+      $scope.textList = textList;
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -92,7 +89,7 @@
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
           // Return end of file text
-          text = {Content:'Come tomorrow for more messages!', TextId:-1}; 
+          text = {text:{Content:'Come tomorrow for more messages!', TextId:-1}}; 
           return text;
         }
         text = $scope.textList[currentTextIndex+1];

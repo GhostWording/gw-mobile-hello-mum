@@ -22,7 +22,7 @@
     <div class="popupButton" ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="!endOfTextVisible() && bottomBarVisible">
+  <div class="bottomBar" ng-if="textList && !endOfTextVisible() && bottomBarVisible">
     <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
     <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
@@ -69,7 +69,7 @@
       <!-- slide -->
       <gw-mob-slide>
         <!-- text -->
-        <div class="text">{{item.Content}}</div>
+        <div class="text">{{item.text.Content}}</div>
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- text dot indicator -->
