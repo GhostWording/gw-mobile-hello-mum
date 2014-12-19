@@ -69,7 +69,11 @@
       <!-- slide -->
       <gw-mob-slide>
         <!-- text -->
-        <div class="text">{{item.text.Content}}</div>
+        <div class="text">
+          {{item.text.Content}}
+          <!-- author -->
+          <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
+        </div>
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- text dot indicator -->

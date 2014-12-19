@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -128,6 +128,9 @@
       }
       return index;
     }; 
+    $scope.textIsQuote = function(text) {
+      return helperSvc.isQuote(text); 
+    };
     // End of text visible
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;

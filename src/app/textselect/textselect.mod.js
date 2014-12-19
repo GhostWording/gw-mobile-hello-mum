@@ -5,6 +5,7 @@
   angular.module('app/textselect', [
     'ionic',
     'ngCordova.plugins.prefs',
+    'common/services/helperSvc',
     'mobile/slide/slideswipe',
     'mobile/slide/imagetextslide',
     'mobile/dotindicator',
