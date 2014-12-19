@@ -89,7 +89,7 @@
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
           // Return end of file text
-          text = {text:{Content:'Come tomorrow for more messages!', TextId:-1}}; 
+          text = {text:{Content:'See you tomorrow for more messages!', TextId:-1}}; 
           return text;
         }
         text = $scope.textList[currentTextIndex+1];
