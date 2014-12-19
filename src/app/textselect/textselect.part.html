@@ -22,7 +22,7 @@
     <div class="popupButton" ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="!endOfTextVisible() && bottomBarVisible">
+  <div class="bottomBar" ng-if="textList && !endOfTextVisible() && bottomBarVisible">
     <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
     <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
@@ -43,7 +43,7 @@
       <gw-mob-slide>
         <div class="imageContainer" style="height:{{slideImageHeight}}px">
           <!-- more images text -->
-          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">Come tomorrow<br>for more kittens!</div>
+          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">See you tomorrow<br>for more kittens!</div>
           <!-- image -->
           <div class="image" style="background-image:url('{{item}}')"></div>
         </div>
@@ -69,7 +69,11 @@
       <!-- slide -->
       <gw-mob-slide>
         <!-- text -->
-        <div class="text">{{item.Content}}</div>
+        <div class="text">
+          {{item.text.Content}}
+          <!-- author -->
+          <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
+        </div>
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- text dot indicator -->

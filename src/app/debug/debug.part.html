@@ -12,9 +12,12 @@
           on-refresh="refreshTextList()">
         </ion-refresher>
         <br><br>
-        <ion-list>
-          <ion-item class="textListItem item-text-wrap" ng-repeat="text in textList"><p>{{text.Content}}</p></ion-item>
-        </ion-list>
+        <div class="intention" ng-repeat="intention in intentions">
+          <h2>{{intention.intention.name}}</h2>
+          <ion-list>
+            <ion-item class="textListItem item-text-wrap" ng-repeat="text in intention.textList"><p>{{text.Content}}</p></ion-item>
+          </ion-list>
+        </div>
         <br><br>
       </ion-content>
     </ion-tab>

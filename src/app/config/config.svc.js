@@ -5,9 +5,6 @@
   angular.module('app/config').factory('config', function() {
     return {
       'apiUrl': 'http://api.cvd.io/',
-      'area': 'HelloMum',
-      'intention': 'i-think-of-you', 
-      'recipientType': 'Mother',
       'imagesPerDay': 8,
       'textsPerDay': 8,
       'emailSubject': 'Hello Mum',

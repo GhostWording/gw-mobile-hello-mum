@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -71,13 +71,10 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
     };
-    // Fetch text list
-    texts.setArea(config.area);
-    texts.setIntention(config.intention);
-    texts.setRecipientType(config.recipientType);
-    texts.fetch(function(textList) {
-      // Pick texts
-      $scope.textList = pickTexts(config.textsPerDay);
+    // Fetch all texts
+    texts.fetch(function() {
+      // choose (n) texts 
+      $scope.textList = texts.choose(config.textsPerDay);
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -92,7 +89,7 @@
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
           // Return end of file text
-          text = {Content:'Come tomorrow for more messages!', TextId:-1}; 
+          text = {text:{Content:'See you tomorrow for more messages!', TextId:-1}}; 
           return text;
         }
         text = $scope.textList[currentTextIndex+1];
@@ -131,6 +128,9 @@
       }
       return index;
     }; 
+    $scope.textIsQuote = function(text) {
+      return helperSvc.isQuote(text); 
+    };
     // End of text visible
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;
@@ -177,7 +177,7 @@
       if($scope.mobileNumberValid(settings.mobileNumber)) {
         // Send the SMS
         sendSMS.setMobileNumber(settings.mobileNumber);
-        sendSMS.send($scope.currentText.Content); 
+        sendSMS.send(prepareContentForSending()); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
@@ -193,19 +193,19 @@
       if($scope.emailAddressValid(settings.emailAddress)) {
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
-        sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+        sendEmail.send(config.emailSubject, prepareContentForSending()); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
       }
-    };
+    };    
     // Send via Facebook
     $scope.sendFacebook = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
       // Alert for now..
       // TODO: implement
-      alert('sending "' + $scope.currentText.Content + '" via Facebook');
+      alert('sending "' + prepareContentForSending() + '" via Facebook');
     };
     // Determine contact send button visiblity
     $scope.contactSendButtonVisible = function() {
@@ -221,13 +221,13 @@
         case 'SMS': {
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
-          sendSMS.send($scope.currentText.Content); 
+          sendSMS.send($scope.currentText.text.Content); 
           break;
         }
         case 'Email': {
           // Send the Email
           sendEmail.setEmailAddress(settings.emailAddress);
-          sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+          sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
           break;
         }
       }
@@ -238,9 +238,15 @@
     };
     // Debug button clicked
     var debugClickCount = 0;
+    var previousClickTime = new Date().getTime(); 
     $scope.debugButtonClick = function() {
+      var currentClickTime = new Date().getTime(); 
+      if(currentClickTime - previousClickTime > 500) {
+        debugClickCount = 0;
+      }
+      previousClickTime = currentClickTime; 
       debugClickCount ++;
-      if(debugClickCount === 10) {
+      if(debugClickCount === 3) {
         debugClickCount = 0;
         $location.path('/debug');
       }
@@ -274,6 +280,19 @@
         imageList.push(image);
       }
       return imageList;
+    }
+    // Prepare text content for sending 
+    function prepareContentForSending() {
+      // Get current text
+      var text = $scope.currentText.text;
+      // Get current text content
+      var content = text.Content;
+      // Add author if quote
+      if($scope.textIsQuote(text)) {
+        content += ' - ' + text.Author;
+      }
+      // Return prepared content
+      return content;
     }
   });
 
