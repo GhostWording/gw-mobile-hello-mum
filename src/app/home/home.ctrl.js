@@ -2,14 +2,20 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout) {
+  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, settings) {
     $timeout(function() {
       // Prevent user from returning to this screen
       $ionicViewService.nextViewOptions({
         disableBack: true
       });
-      // Go to main view
-      $location.path('/textselect');
+      // If we dont know the users gender
+      if(!settings.userGender) {
+        // Go to gender select
+        $location.path('/genderselect');
+      } else {
+        // Go to text select
+        $location.path('/textselect');
+      }
     }, 500); 
   });
 

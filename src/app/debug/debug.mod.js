@@ -4,7 +4,8 @@
 
   angular.module('app/debug', [
     'app/texts',
-    'app/config'
+    'app/config',
+    'app/settings'
   ]);
 
 }());
