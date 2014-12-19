@@ -177,7 +177,7 @@
       if($scope.mobileNumberValid(settings.mobileNumber)) {
         // Send the SMS
         sendSMS.setMobileNumber(settings.mobileNumber);
-        sendSMS.send($scope.currentText.text.Content); 
+        sendSMS.send(prepareContentForSending()); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
@@ -193,19 +193,19 @@
       if($scope.emailAddressValid(settings.emailAddress)) {
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
-        sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
+        sendEmail.send(config.emailSubject, prepareContentForSending()); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
       }
-    };
+    };    
     // Send via Facebook
     $scope.sendFacebook = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
       // Alert for now..
       // TODO: implement
-      alert('sending "' + $scope.currentText.text.Content + '" via Facebook');
+      alert('sending "' + prepareContentForSending() + '" via Facebook');
     };
     // Determine contact send button visiblity
     $scope.contactSendButtonVisible = function() {
@@ -280,6 +280,19 @@
         imageList.push(image);
       }
       return imageList;
+    }
+    // Prepare text content for sending 
+    function prepareContentForSending() {
+      // Get current text
+      var text = $scope.currentText.text;
+      // Get current text content
+      var content = text.Content;
+      // Add author if quote
+      if($scope.textIsQuote(text)) {
+        content += ' - ' + text.Author;
+      }
+      // Return prepared content
+      return content;
     }
   });
 
