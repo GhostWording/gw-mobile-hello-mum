@@ -1,6 +1,15 @@
 <ion-view>
   <ion-content class="genderSelect" scroll="false" ng-controller="GenderSelectCtrl">
-    <p ng-click="maleGenderClick()">MALE</p>
-    <p ng-click="femaleGenderClick()">FEMALE</p>
+    <div class="title">I am..</div>
+    <div class="genderContainer">
+      <div class="genderBox">
+        <div class="genderButton icon ion-male" ng-click="maleGenderClick()"></div>
+        <p class="genderLabel">Male</p>
+      </div>
+      <div class="genderBox">
+        <div class="genderButton icon ion-female" ng-click="femaleGenderClick()"></div>
+        <p class="genderLabel">Female</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

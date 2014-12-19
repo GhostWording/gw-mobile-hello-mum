@@ -4,7 +4,8 @@
 
   angular.module('app/genderselect', [
     'ionic',
-    'app/config'
+    'app/config',
+    'app/settings'
   ]);
 
 }());
