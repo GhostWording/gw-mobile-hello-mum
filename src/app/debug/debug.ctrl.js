@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/debug').controller('DebugCtrl', function($scope, $location, config, texts, settings) {
+  angular.module('app/debug').controller('DebugCtrl', function($scope, $location, $timeout, config, texts, settings) {
     // Clear cache and re-fetch texts
     $scope.refreshTextList = function() {
       // Fetch text list
@@ -16,7 +16,10 @@
       });
     };
     // Initial fetch
-    $scope.refreshTextList();
+    // NOTE: delay so the view transistion happens immediately
+    $timeout(function() {
+      $scope.refreshTextList();
+    }, 1000);
     // Back button clicked
     $scope.backButtonClick = function() {
       $location.path('/textselect');
