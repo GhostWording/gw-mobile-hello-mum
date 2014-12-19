@@ -235,9 +235,15 @@
     };
     // Debug button clicked
     var debugClickCount = 0;
+    var previousClickTime = new Date().getTime(); 
     $scope.debugButtonClick = function() {
+      var currentClickTime = new Date().getTime(); 
+      if(currentClickTime - previousClickTime > 500) {
+        debugClickCount = 0;
+      }
+      previousClickTime = currentClickTime; 
       debugClickCount ++;
-      if(debugClickCount === 10) {
+      if(debugClickCount === 3) {
         debugClickCount = 0;
         $location.path('/debug');
       }
