@@ -174,7 +174,7 @@
       if($scope.mobileNumberValid(settings.mobileNumber)) {
         // Send the SMS
         sendSMS.setMobileNumber(settings.mobileNumber);
-        sendSMS.send($scope.currentText.Content); 
+        sendSMS.send($scope.currentText.text.Content); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
@@ -190,7 +190,7 @@
       if($scope.emailAddressValid(settings.emailAddress)) {
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
-        sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+        sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
@@ -202,7 +202,7 @@
       $scope.sendPopupVisible = false;
       // Alert for now..
       // TODO: implement
-      alert('sending "' + $scope.currentText.Content + '" via Facebook');
+      alert('sending "' + $scope.currentText.text.Content + '" via Facebook');
     };
     // Determine contact send button visiblity
     $scope.contactSendButtonVisible = function() {
@@ -218,13 +218,13 @@
         case 'SMS': {
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
-          sendSMS.send($scope.currentText.Content); 
+          sendSMS.send($scope.currentText.text.Content); 
           break;
         }
         case 'Email': {
           // Send the Email
           sendEmail.setEmailAddress(settings.emailAddress);
-          sendEmail.send(config.emailSubject, $scope.currentText.Content); 
+          sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
           break;
         }
       }
