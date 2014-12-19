@@ -6,6 +6,7 @@
     return {
       'apiUrl': 'http://api.cvd.io/',
       'imagesPerDay': 8,
+      'textsPerDay': 8,
       'emailSubject': 'Hello Mum',
       'imageHeightFactor': '0.55',
       'imageUrls': [
