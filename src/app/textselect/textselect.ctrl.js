@@ -71,10 +71,10 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
     };
-    // Fetch text list
-    texts.fetch(function(textList) {
-      console.log(textList);
-      $scope.textList = textList;
+    // Fetch all texts
+    texts.fetch(function() {
+      // choose (n) texts 
+      $scope.textList = texts.choose(config.textsPerDay);
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
