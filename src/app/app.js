@@ -42,12 +42,11 @@
         $window.deviceWidth = windowElement[0].innerWidth;
         $window.deviceHeight = windowElement[0].innerHeight;
         // Set up default notification
-        notification.clear();
-        if(!notification.isSet()) {
-          notification.set('4:20', '!!!!!');
-          notification.onTrigger = function() {
-            alert('triggered');
-          };
+        if(notification.available()) {
+          notification.clear();
+          if(!notification.isSet()) {
+            notification.set('4:20', '!!!!!');
+          }
         }
       });
   });

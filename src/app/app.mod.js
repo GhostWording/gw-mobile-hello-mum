@@ -4,6 +4,7 @@
 
   angular.module('app', [
     'ionic',
+    'mobile/notification',
     'app/config',
     'app/settings',
     'app/home',
