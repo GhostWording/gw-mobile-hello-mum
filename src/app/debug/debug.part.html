@@ -5,6 +5,12 @@
     </div>
   </ion-header-bar>
   <ion-tabs class="tabs-dark">
+    <ion-tab title="Misc" icon-on="ion-wrench" icon-off="ion-wrench">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
+        <br><br>
+        <button class="button" ng-click="clearSettingsClick()">Clear Settings</button>
+      </ion-content>
+    </ion-tab> 
     <ion-tab title="Texts" icon-on="ion-document-text" icon-off="ion-document-text">
       <ion-content scroll="true" scrollbar-y="true" has-bouncing="true">
         <ion-refresher
@@ -33,11 +39,5 @@
         <br><br>
       </ion-content>
     </ion-tab>
-    <ion-tab title="Misc" icon-on="ion-wrench" icon-off="ion-wrench">
-      <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
-        <br><br>
-        <button class="button" ng-click="clearSettingsClick()">Clear Settings</button>
-      </ion-content>
-    </ion-tab> 
   </ion-tabs>
 </ion-view>
