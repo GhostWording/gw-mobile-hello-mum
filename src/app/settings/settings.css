@@ -66,16 +66,18 @@
 /* toggle */
 .settings .item-toggle {
   height: 50px;
+  border-style: none;
 }
 .settings .track {
-  border-color: rgba(0, 0, 0, 0.0) !important;
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-color: #339ee6 !important;
+  background-color: #339ee6 !important;
 }
 .settings .toggle {
   right: 0px;
 }
 .settings .toggle input:checked + .track {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: #339ee6 !important;
+  background-opacity: 0.5;
 }
 /* input */
 /*

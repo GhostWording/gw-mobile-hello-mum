@@ -7,19 +7,17 @@
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
-    // Notifications
-    $scope.notify = {
-      hour: 12,
-      minute: 45
-    };
-    $scope.$watch('notify.hour', function() {
+    // Watch notificaton hour
+    $scope.$watch('settings.notificationHour', function() {
       setNotification();
     });
-    $scope.$watch('notify.minute', function() {
+    // Watch notificaton minute
+    $scope.$watch('settings.notificationMinute', function() {
       setNotification();
     });
     // Update notification
     function setNotification() {
+      console.log($scope.settings);
     }
   });
 
