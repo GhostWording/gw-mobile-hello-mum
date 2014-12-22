@@ -96,6 +96,18 @@
   padding-left: 10px;
 }
 */
+/* time picker */
+.settings .timePicker {
+  float: right;
+}
+.settings .timePicker .arrow {
+  color: #339ee6;
+} 
+.settings .timePicker .value {
+  color: #339ee6;
+  border-color :#339ee6;
+  font-family: 'notoserif-italic';
+} 
 /* radio boxes */
 .settings .radioGroup {
   clear: both;
