@@ -24,7 +24,7 @@
           templateUrl: 'app/debug/debug.part.html'
         });
     })
-    .run(function($ionicPlatform) {
+    .run(function($window, $ionicPlatform, config, settings, notification) {
       $ionicPlatform.ready(function() {
         // Hide accessory bar
         if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -32,6 +32,26 @@
         }
         if(window.StatusBar) {
           StatusBar.styleDefault();
+        }
+        // Set settings template
+        settings.setTemplateUrl('app/settings/settings.part.html');
+        // Set up default settings
+        // TODO: move this into settings
+        if(settings.notification === undefined) settings.notification = true;
+        if(settings.notificationHour === undefined) settings.notificationHour = 18;
+        if(settings.notificationMinute === undefined) settings.notificationMinute = 0;
+        settings.save();
+        console.log(settings);
+        // Get device width and height
+        // TODO: move into device service
+        var windowElement = angular.element($window);
+        $window.deviceWidth = windowElement[0].innerWidth;
+        $window.deviceHeight = windowElement[0].innerHeight;
+        // Set up default notification
+        if(settings.notification) {
+          notification.set(settings.notificationHour, settings.notificationMinute, config.notificationMessage);
+        } else {
+          notification.clear();
         }
       });
   });

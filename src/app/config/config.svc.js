@@ -8,6 +8,7 @@
       'imagesPerDay': 8,
       'textsPerDay': 8,
       'emailSubject': 'Hello Mum',
+      'notificationMessage': 'Send a message to mum?',
       'imageHeightFactor': '0.55',
       'imageUrls': [
         'app/kittens/001.jpg',

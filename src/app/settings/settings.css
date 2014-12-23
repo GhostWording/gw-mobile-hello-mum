@@ -66,16 +66,18 @@
 /* toggle */
 .settings .item-toggle {
   height: 50px;
+  border-style: none;
 }
 .settings .track {
-  border-color: rgba(0, 0, 0, 0.0) !important;
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-color: #339ee6 !important;
+  background-color: #339ee6 !important;
 }
 .settings .toggle {
   right: 0px;
 }
 .settings .toggle input:checked + .track {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: #339ee6 !important;
+  background-opacity: 0.5;
 }
 /* input */
 /*
@@ -96,13 +98,24 @@
   padding-left: 10px;
 }
 */
+/* time picker */
+.settings .timePicker {
+  float: right;
+}
+.settings .timePicker .arrow {
+  color: #339ee6;
+} 
+.settings .timePicker .value {
+  color: #339ee6;
+  border-color :#339ee6;
+  font-family: 'notoserif-italic';
+} 
 /* radio boxes */
 .settings .radioGroup {
   clear: both;
 }
 .settings .radioGroupLabel {
   margin-top: 18px;
-  float: left;
 }
 .settings .radioGroupButtons {
   float: right;

@@ -48,6 +48,7 @@
 		09139097FF5640BE873A6493 /* CDVContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 71338BBA42C348BA971F5300 /* CDVContact.m */; };
 		5FC9940140514DB5AF7AFBE2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F55550E91B45AAB8599E46 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CBF2C97D61E64ABD8AC6A407 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC183D675D824DF19B46C568 /* AddressBookUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		61E69DD6D56A4CB0AB710609 /* APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E0CDE6AED84D61A4D83DF3 /* APPLocalNotification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		5A1450D145C2480CA097D2A4 /* CDVContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVContact.h"; path = "org.apache.cordova.contacts/CDVContact.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		C0F55550E91B45AAB8599E46 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		BC183D675D824DF19B46C568 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AddressBookUI.framework"; path = "System/Library/Frameworks/AddressBookUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		F3E0CDE6AED84D61A4D83DF3 /* APPLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "APPLocalNotification.m"; path = "de.appplant.cordova.plugin.local-notification/APPLocalNotification.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		69F6B662A8EE437D8402D26D /* APPLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPLocalNotification.h"; path = "de.appplant.cordova.plugin.local-notification/APPLocalNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +273,8 @@
 				71338BBA42C348BA971F5300 /* CDVContact.m */,
 				496647BA3F044255B8337509 /* CDVContacts.h */,
 				5A1450D145C2480CA097D2A4 /* CDVContact.h */,
+				F3E0CDE6AED84D61A4D83DF3 /* APPLocalNotification.m */,
+				69F6B662A8EE437D8402D26D /* APPLocalNotification.h */,
 			);
 			name = Plugins;
 			path = "HelloMum/Plugins";
@@ -472,6 +477,7 @@
 				CC4904E598EB49D5AFD3CD37 /* APPEmailComposer.m in Sources */,
 				DC1A51C600054513ACBC4D3E /* CDVContacts.m in Sources */,
 				09139097FF5640BE873A6493 /* CDVContact.m in Sources */,
+				61E69DD6D56A4CB0AB710609 /* APPLocalNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
