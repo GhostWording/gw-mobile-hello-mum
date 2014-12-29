@@ -23,18 +23,27 @@
   <gw-mob-popup class="textPopup" ng-if="errorPopupVisible">
     <div>Message Send Error</div>
   </gw-mob-popup>
-  <!-- contact picker popup -->
-  <gw-mob-popup class="contactPopup" ng-if="contactPopupVisible">
+  <!-- email contact picker popup -->
+  <gw-mob-popup class="contactPopup" ng-if="emailContactPopupVisible">
     <gw-mob-contact
-      showemailaddress="sendMethod==='Email'"
-      showmobilenumber="sendMethod==='SMS'"
+      showmobilenumber="false"
       emailaddresslabel="'Mum\'s Email Address'"
+      emailaddress="settings.emailAddress"
+      mobilenumber="settings.mobileNumber">
+    </gw-mob-contact>
+    <div class="popupButton pad" ng-if="emailAddressValid()" ng-click="sendEmail()">Send</div>
+    <div class="popupButton" ng-class="{'pad':!emailAddressValid()}"ng-click="contactCancelButtonClick()">Cancel</div>
+  </gw-mob-popup>
+  <!-- sms contact picker popup -->
+  <gw-mob-popup class="contactPopup" ng-if="smsContactPopupVisible">
+    <gw-mob-contact
+      showemailaddress="false"
       mobilenumberlabel="'Mum\'s Mobile Number'"
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton pad" ng-if="contactSendButtonVisible()" ng-click="contactSendButtonClick()">Send</div>
-    <div class="popupButton" ng-class="{'pad':!contactSendButtonVisible()}"ng-click="contactCancelButtonClick()">Cancel</div>
+    <div class="popupButton pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">Send</div>
+    <div class="popupButton" ng-class="{'pad':!mobileNumberValid()}"ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="textList && !endOfTextVisible() && bottomBarVisible">

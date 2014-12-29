@@ -158,25 +158,28 @@
     };
     // Returns true if the passed email is valid
     // TODO: move to send 
-    $scope.emailAddressValid = function(emailAddress) {
+    $scope.emailAddressValid = function() {
       // TODO: make this better
       return settings.emailAddress && settings.emailAddress!=='';
     };
     // Returns true if the passed mobile number is valid
     // TODO: move to send 
-    $scope.mobileNumberValid = function(mobileNumber) {
+    $scope.mobileNumberValid = function() {
       // TODO: make this better
       return settings.mobileNumber && settings.mobileNumber!=='';
     };
     // Send via SMS
     $scope.sendSMS = function() {
-      if($scope.smsImagePopupVisible) {
+      // Hide the send popup
+      $scope.sendPopupVisible = false;
+      // If the sms image warning or sms contact picker popups are visible
+      if($scope.smsImagePopupVisible || $scope.smsContactPopupVisible) {
         // Hide the SMS image warning poup
         $scope.smsImagePopupVisible = false;
-        // Set the send method to SMS
-        $scope.sendMethod = 'SMS';
+        // Hide the SMS contact picker
+        $scope.smsContactPopupVisible = false;
         // If we have a mobile number 
-        if($scope.mobileNumberValid(settings.mobileNumber)) {
+        if($scope.mobileNumberValid()) {
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
           sendSMS.send(prepareContentForSending()).then(function() {
@@ -187,12 +190,10 @@
             showErrorPopup();
           }); 
         } else {
-          // Show the contact popup
-          $scope.contactPopupVisible = true;
+          // Show the sms contact popup
+          $scope.smsContactPopupVisible = true;
         }
       } else {
-        // Hide the send popup
-        $scope.sendPopupVisible = false;
         // Show the SMS image warning popup
         $scope.smsImagePopupVisible = true;
       }
@@ -201,19 +202,19 @@
     $scope.sendEmail = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
+      // Hide the Email contact picker
+      $scope.emailContactPopupVisible = false;
       // Hide the SMS image warning poup
       $scope.smsImagePopupVisible = false;
-      // Set the send method to Email
-      $scope.sendMethod = 'Email';
       // If we have a valid email address 
-      if($scope.emailAddressValid(settings.emailAddress)) {
+      if($scope.emailAddressValid()) {
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
         sendEmail.send(config.emailSubject, prepareContentForSending());
       } else {
         // Show the contact popup
-        $scope.contactPopupVisible = true;
+        $scope.emailContactPopupVisible = true;
       }
     };    
     // Send via Facebook
@@ -223,27 +224,6 @@
       // Alert for now..
       // TODO: implement
       alert('sending "' + prepareContentForSending() + '" via Facebook');
-    };
-    // Determine contact send button visiblity
-    $scope.contactSendButtonVisible = function() {
-      return ($scope.sendMethod==='SMS' && $scope.mobileNumberValid(settings.mobileNumber)) || 
-        ($scope.sendMethod==='Email' && $scope.emailAddressValid(settings.emailAddress)); 
-    };
-    // Send clicked on the contact picker
-    $scope.contactSendButtonClick = function() {
-      // Hide the contact popup
-      $scope.contactPopupVisible = false;
-      // TODO: validate
-      switch($scope.sendMethod) {
-        case 'SMS': {
-          $scope.sendSMS();
-          break;
-        }
-        case 'Email': {
-          $scope.sendEmail();
-          break;
-        }
-      }
     };
     // Settings button clicked
     $scope.settingsButtonClick = function() {
@@ -268,7 +248,8 @@
       $scope.contactPopupVisible = false;
     };
     $scope.contactCancelButtonClick = function() {
-      $scope.contactPopupVisible = false;
+      $scope.smsContactPopupVisible = false;
+      $scope.emailContactPopupVisible = false;
     };
     // Select (n) unique texts
     function pickTexts(numTexts) {
