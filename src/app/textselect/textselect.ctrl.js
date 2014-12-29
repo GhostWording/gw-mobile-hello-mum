@@ -193,6 +193,7 @@
       if($scope.emailAddressValid(settings.emailAddress)) {
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
+        sendEmail.setAttachmentPath($scope.currentImage);
         sendEmail.send(config.emailSubject, prepareContentForSending()); 
       } else {
         // Show the contact popup
@@ -227,6 +228,7 @@
         case 'Email': {
           // Send the Email
           sendEmail.setEmailAddress(settings.emailAddress);
+          sendEmail.setAttachmentPath($scope.currentImage);
           sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
           break;
         }
