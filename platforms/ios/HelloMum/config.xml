@@ -28,9 +28,6 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="Sms">
-        <param name="ios-package" value="Sms" />
-    </feature>
     <feature name="EmailComposer">
         <param name="ios-package" value="APPEmailComposer" />
     </feature>

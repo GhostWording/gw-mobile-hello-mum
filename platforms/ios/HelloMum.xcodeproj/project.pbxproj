@@ -41,7 +41,6 @@
 		07DC8B17A5B3462EAA7B0D4B /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CBF2519DDD44BFAF1C2CAB /* UIWebViewExtension.m */; };
 		A9E7757CE2FD4AEF946A1B91 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B1710F4BDE4E3181BA0CBF /* CDVLogger.m */; };
 		04B3C5DBB9E74EE6A3CA5965 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */; };
-		05606D6323484EB3BFE36D0C /* Sms.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD90203B691495BA78908EB /* Sms.m */; };
 		CA1D8C8E91F94096932777D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18963A42376D467A8485B4EE /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CC4904E598EB49D5AFD3CD37 /* APPEmailComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FA0EA1A0FE4D1CB6679E71 /* APPEmailComposer.m */; };
 		DC1A51C600054513ACBC4D3E /* CDVContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8D46DBE208465D833118BF /* CDVContacts.m */; };
@@ -120,8 +119,6 @@
 		51264CCB15F14879BBFE4AA7 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		8F66E62549B6443C8A724320 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		3FD90203B691495BA78908EB /* Sms.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Sms.m"; path = "org.apache.cordova.plugin.sms/Sms.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		A2A5748EC5484E2482631EE5 /* Sms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Sms.h"; path = "org.apache.cordova.plugin.sms/Sms.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		18963A42376D467A8485B4EE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		30FA0EA1A0FE4D1CB6679E71 /* APPEmailComposer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "APPEmailComposer.m"; path = "de.appplant.cordova.plugin.email-composer/APPEmailComposer.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		74D66339AAE148EDA1924BBA /* APPEmailComposer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPEmailComposer.h"; path = "de.appplant.cordova.plugin.email-composer/APPEmailComposer.h"; sourceTree = "<group>"; fileEncoding = 4; };
@@ -265,8 +262,6 @@
 				51264CCB15F14879BBFE4AA7 /* CDVLogger.h */,
 				54C3F3093FE242ED8ACA2D04 /* CDVDevice.m */,
 				8F66E62549B6443C8A724320 /* CDVDevice.h */,
-				3FD90203B691495BA78908EB /* Sms.m */,
-				A2A5748EC5484E2482631EE5 /* Sms.h */,
 				30FA0EA1A0FE4D1CB6679E71 /* APPEmailComposer.m */,
 				74D66339AAE148EDA1924BBA /* APPEmailComposer.h */,
 				8B8D46DBE208465D833118BF /* CDVContacts.m */,
@@ -473,7 +468,6 @@
 				07DC8B17A5B3462EAA7B0D4B /* UIWebViewExtension.m in Sources */,
 				A9E7757CE2FD4AEF946A1B91 /* CDVLogger.m in Sources */,
 				04B3C5DBB9E74EE6A3CA5965 /* CDVDevice.m in Sources */,
-				05606D6323484EB3BFE36D0C /* Sms.m in Sources */,
 				CC4904E598EB49D5AFD3CD37 /* APPEmailComposer.m in Sources */,
 				DC1A51C600054513ACBC4D3E /* CDVContacts.m in Sources */,
 				09139097FF5640BE873A6493 /* CDVContact.m in Sources */,
