@@ -17,10 +17,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"org.apache.cordova.plugin.sms.Sms\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"de.appplant.cordova.emailcomposer.EmailComposer\" /></feature>",
                             "count": 1
                         },
@@ -31,6 +27,10 @@
                         {
                             "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Sms\"><param name=\"android-package\" value=\"org.apache.cordova.plugin.sms.Sms\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -39,15 +39,15 @@
                 "parents": {
                     "/manifest": [
                         {
+                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
+                            "count": 1
+                        },
+                        {
                             "xml": "<uses-permission android:name=\"android.permission.SEND_SMS\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />",
                             "count": 1
                         }
                     ],
@@ -93,9 +93,6 @@
         "org.apache.cordova.device": {
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         },
-        "org.apache.cordova.plugin.sms": {
-            "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
-        },
         "de.appplant.cordova.plugin.email-composer": {
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         },
@@ -103,6 +100,9 @@
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         },
         "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
+        },
+        "org.apache.cordova.plugin.sms": {
             "PACKAGE_NAME": "com.ionicframework.gwmobilehellomum989200"
         }
     },
