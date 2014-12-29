@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $timeout, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
     var textImageMap = {};
     // Get device width and height
@@ -179,7 +179,13 @@
         if($scope.mobileNumberValid(settings.mobileNumber)) {
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
-          sendSMS.send(prepareContentForSending()); 
+          sendSMS.send(prepareContentForSending()).then(function() {
+            // Show sent popup
+            showSentPopup();
+          }, function() {
+            // Show error popup
+            showErrorPopup();
+          }); 
         } else {
           // Show the contact popup
           $scope.contactPopupVisible = true;
@@ -204,7 +210,7 @@
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
-        sendEmail.send(config.emailSubject, prepareContentForSending()); 
+        sendEmail.send(config.emailSubject, prepareContentForSending());
       } else {
         // Show the contact popup
         $scope.contactPopupVisible = true;
@@ -230,16 +236,11 @@
       // TODO: validate
       switch($scope.sendMethod) {
         case 'SMS': {
-          // Send the SMS
-          sendSMS.setMobileNumber(settings.mobileNumber);
-          sendSMS.send($scope.currentText.text.Content); 
+          $scope.sendSMS();
           break;
         }
         case 'Email': {
-          // Send the Email
-          sendEmail.setEmailAddress(settings.emailAddress);
-          sendEmail.setAttachmentPath($scope.currentImage);
-          sendEmail.send(config.emailSubject, $scope.currentText.text.Content); 
+          $scope.sendEmail();
           break;
         }
       }
@@ -305,6 +306,24 @@
       }
       // Return prepared content
       return content;
+    }
+    // Show sent popup
+    function showSentPopup() {
+      // Show the SMS sent popup
+      $scope.sentPopupVisible = true;
+      // And hide it after 1 second
+      $timeout(function() {
+        $scope.sentPopupVisible = false;
+      }, 1000);
+    }
+    // Show error popup
+    function showErrorPopup() {
+      // Show the error popup
+      $scope.errorPopupVisible = true;
+      // And hide it after 1 second
+      $timeout(function() {
+        $scope.errorPopupVisible = false;
+      }, 1000);
     }
   });
 
