@@ -154,6 +154,7 @@
     // Send cancel button clicked
     $scope.sendCancelButtonClick = function() {
       $scope.sendPopupVisible = false;
+      $scope.smsImagePopupVisible = false;
     };
     // Returns true if the passed email is valid
     // TODO: move to send 
@@ -169,24 +170,33 @@
     };
     // Send via SMS
     $scope.sendSMS = function() {
-      // Hide the send popup
-      $scope.sendPopupVisible = false;
-      // Set the send method to SMS
-      $scope.sendMethod = 'SMS';
-      // If we have a mobile number 
-      if($scope.mobileNumberValid(settings.mobileNumber)) {
-        // Send the SMS
-        sendSMS.setMobileNumber(settings.mobileNumber);
-        sendSMS.send(prepareContentForSending()); 
+      if($scope.smsImagePopupVisible) {
+        // Hide the SMS image warning poup
+        $scope.smsImagePopupVisible = false;
+        // Set the send method to SMS
+        $scope.sendMethod = 'SMS';
+        // If we have a mobile number 
+        if($scope.mobileNumberValid(settings.mobileNumber)) {
+          // Send the SMS
+          sendSMS.setMobileNumber(settings.mobileNumber);
+          sendSMS.send(prepareContentForSending()); 
+        } else {
+          // Show the contact popup
+          $scope.contactPopupVisible = true;
+        }
       } else {
-        // Show the contact popup
-        $scope.contactPopupVisible = true;
+        // Hide the send popup
+        $scope.sendPopupVisible = false;
+        // Show the SMS image warning popup
+        $scope.smsImagePopupVisible = true;
       }
     };
     // Send via Email
     $scope.sendEmail = function() {
       // Hide the send popup
       $scope.sendPopupVisible = false;
+      // Hide the SMS image warning poup
+      $scope.smsImagePopupVisible = false;
       // Set the send method to Email
       $scope.sendMethod = 'Email';
       // If we have a valid email address 

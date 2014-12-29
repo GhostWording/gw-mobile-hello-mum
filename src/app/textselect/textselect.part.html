@@ -6,6 +6,13 @@
       sendemail="sendEmail()"
       sendfacebook="sendFacebook()">
     </gw-mob-send>
+    <div class="popupButton pad" ng-click="sendCancelButtonClick()">Cancel</div>
+  </gw-mob-popup>
+  <!-- sms image popup -->
+  <gw-mob-popup class="smsImagePopup" ng-if="smsImagePopupVisible">
+    <div>Cannot send image</div>
+    <div class="popupButton pad" ng-click="sendSMS()">Send Text Only</div>
+    <div class="popupButton" ng-click="sendEmail()">Send Email</div>
     <div class="popupButton" ng-click="sendCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- contact picker popup -->
@@ -18,8 +25,8 @@
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton" ng-if="contactSendButtonVisible()" ng-click="contactSendButtonClick()">Send</div>
-    <div class="popupButton" ng-click="contactCancelButtonClick()">Cancel</div>
+    <div class="popupButton pad" ng-if="contactSendButtonVisible()" ng-click="contactSendButtonClick()">Send</div>
+    <div class="popupButton" ng-class="{'pad':!contactSendButtonVisible()}"ng-click="contactCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="textList && !endOfTextVisible() && bottomBarVisible">

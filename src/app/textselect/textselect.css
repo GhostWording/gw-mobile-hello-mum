@@ -153,18 +153,28 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-bottom: 10px;
   border-radius: 3px;
   background-color: #339ee6;
-  width: 150px;
+  width: 200px;
   height: 40px;
   line-height: 40px;
-  font-size: 1.25em;
+  font-size: 15px;
   vertical-align: center;
   color: white;
   text-align: center;
   font-family: 'notoserif-italic';
 }
+.textSelect .pad {
+  margin-top: 50px;
+}
 .textSelect .contact {
   padding: 40px;
+}
+.textSelect .smsImagePopup {
+  padding-top: 80px;
+  font-size: 1.25em;
+  font-family: 'notoserif-italic';
+  text-align: center;
+  color: white;
 }
