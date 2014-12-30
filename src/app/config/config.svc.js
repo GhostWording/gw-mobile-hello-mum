@@ -9,7 +9,7 @@
       'textsPerDay': 8,
       'emailSubject': 'Hello Mum',
       'notificationMessage': 'Send a message to mum?',
-      'imageHeightFactor': '0.5',
+      'imageHeightFactor': '0.55',
       'endOfFileImageUrl': 'app/messageimage/eof.jpg'
     };
   });
