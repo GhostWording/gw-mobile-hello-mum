@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
+var insert = require('gulp-insert');
 var sass = require('gulp-sass');
 var minifyCSS = require('gulp-minify-css');
 var minifyHTML = require('gulp-minify-html');
@@ -10,6 +11,7 @@ var inject = require('gulp-inject');
 var replace = require('gulp-replace');
 var templateCache = require('gulp-angular-templatecache');
 var gIf = require('gulp-if');
+var gFile = require('gulp-file');
 var postCSS = require('gulp-postcss');
 var jshint = require('gulp-jshint');
 var jshintstylish = require('jshint-stylish');
@@ -19,6 +21,7 @@ var runSequence = require('run-sequence');
 var autoPrefixer = require('autoprefixer-core');
 var spawn = require('child_process').spawn;
 var bower = require('bower');
+var glob = require('glob');
 var del = require('del');
 
 var debug = gutil.env.debug;
@@ -52,10 +55,6 @@ var getCSSGlobs = function() {
 var imageGlobs = [
   'src/app/**/*.jpg',
   'src/app/**/*.png'
-];
-
-var messageImageGlobs = [
-  'src/app/messageimage/**/*.jpg'
 ];
 
 var fontGlobs = [
@@ -138,6 +137,7 @@ gulp.task('process:javascript', ['jshint'], function() {
   // TODO: try and remove this
   var partSrcOpt = {cwd:'.'};
   if(debug) {partSrcOpt.base = 'src';}
+  var messageImageStream = gulp.src(partialGlobs, partSrcOpt)
   var partialStream = gulp.src(partialGlobs, partSrcOpt)
     .pipe(gIf(!debug, minifyHTML({empty:true})))
     .pipe(gIf(!debug, templateCache('partials.js', {module:appModule, root:'.'})));
@@ -145,6 +145,11 @@ gulp.task('process:javascript', ['jshint'], function() {
     .pipe(gIf(!debug, concat('app.js')))
     .pipe(gIf(!debug, uglify({mangle:false})))
     .pipe(gulp.dest('www'));
+});
+
+gulp.task('process:messageimages', function() {
+  var messageImagePaths = glob.sync('app/messageimage/**/*.jpg', {cwd:'src'});
+  return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
 gulp.task('process:styles', function() {
@@ -177,7 +182,7 @@ gulp.task('process:fonts', function() {
 });
 
 gulp.task('build', function(done) {
-  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images'], 'process:index', done);
+  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images', 'process:messageimages'], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {
