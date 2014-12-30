@@ -58,6 +58,7 @@
     <div class="debugButton" ng-click="debugButtonClick()"></div>
     <!-- image slides -->
     <gw-mob-slideswipe
+      ng-if="imageList"
       getnextitem="getNextImage(currentImage)"
       getpreviousitem="getPreviousImage(currentImage)"
       currentitem="$parent.currentImage"
@@ -74,7 +75,7 @@
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- image dot indicator -->
-    <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px">
+    <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px" ng-if="imageList">
       <div class="dotIndicatorCenter">
         <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
       </div>

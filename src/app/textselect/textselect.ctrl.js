@@ -2,8 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $window, $location, $timeout, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
-    var imageIndex = Math.floor(Math.random()*config.imageUrls.length);
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Get device width and height
     // TODO: move into service
@@ -11,8 +10,6 @@
     $scope.deviceHeight = $window.deviceHeight;    
     // Calculate slide image height
     $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
-    // Pick images
-    $scope.imageList = pickImages(config.imageUrls, config.imagesPerDay);
     // Put settings on the scope
     $scope.settings = settings;
     // Default to bottom bar visible
@@ -71,10 +68,15 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
     };
-    // Fetch all texts
-    texts.fetch(function() {
-      // choose (n) texts 
-      $scope.textList = texts.choose(config.textsPerDay);
+    // Load message image urls
+    $http.get('messageimages.json').success(function(imageUrls) {
+      // Pick images
+      $scope.imageList = pickImages(imageUrls, config.imagesPerDay);
+      // Fetch all texts
+      texts.fetch(function() {
+        // choose (n) texts 
+        $scope.textList = texts.choose(config.textsPerDay);
+      });
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
