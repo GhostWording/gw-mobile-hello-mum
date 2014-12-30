@@ -94,6 +94,11 @@
       <gw-mob-slide>
         <!-- text -->
         <div class="text">
+          <!-- title -->
+          <div class="titleContainer">
+            <div class="title" ng-show="item.intention.label">{{item.intention.label}}</div>
+          </div>
+          <!-- content -->
           {{item.text.Content}}
           <!-- author -->
           <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>

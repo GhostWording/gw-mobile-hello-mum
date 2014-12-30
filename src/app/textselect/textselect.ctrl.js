@@ -128,6 +128,9 @@
       }
       return index;
     }; 
+    $scope.getTitle = function() {
+      return 'Joke Of The Day';
+    };
     $scope.textIsQuote = function(text) {
       return helperSvc.isQuote(text); 
     };
