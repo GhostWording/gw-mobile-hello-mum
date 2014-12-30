@@ -140,6 +140,10 @@
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;
     };
+    // End of image visible
+    $scope.endOfImageVisible = function() {
+      return $scope.imageList.indexOf($scope.currentImage) === -1;
+    };
     // Like button clicked
     $scope.likeButtonClick = function(item) {
       item.liked = !item.liked;
