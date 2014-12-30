@@ -4,7 +4,8 @@
     <gw-mob-send
       sendsms="sendSMS()"
       sendemail="sendEmail()"
-      sendfacebook="sendFacebook()">
+      sendfacebook="sendFacebook()"
+      showsendfacebook="false">
     </gw-mob-send>
     <div class="popupButton pad" ng-click="sendCancelButtonClick()">Cancel</div>
   </gw-mob-popup>
@@ -47,9 +48,11 @@
   </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="textList && !endOfTextVisible() && bottomBarVisible">
-    <div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div> 
+    <!--TODO: Like button disabled for v1.0.0 - implement-->
+    <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
-    <div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div> 
+    <!--TODO: Like button disabled for v1.0.0 - implement-->
+    <!--<div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div>--> 
   </div>
   <ion-content scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
     <!-- settings button -->
