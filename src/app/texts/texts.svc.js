@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc) {
+  angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings) {
     var _weightedIntentions;
     var _textLists;
     var texts = {
@@ -32,7 +32,7 @@
           // Will randomly choose an intention then a text
           var choice = chooseText(_weightedIntentions);
           // Texts may look better without quotation marks
-          choice.text.Content = helperSvc.replaceAngledQuotes(choice.text.Content," ");
+          choice.text.Content = helperSvc.replaceAngledQuotes(choice.text.Content,"");
           selectedTexts.push(choice);
         }
         return selectedTexts; 
@@ -63,15 +63,26 @@
     };
 
     function getWeightedIntentions() {
-      // Get slugs and default weights for hello mum intentions (
+      // Get slugs and default weights for hello mum intentions
       var weightedIntentions = helloMumSvc.intentionDefaultWeights();
-
-      // TODO : adjust intention userWeight properties according to user choice (none, few, many)
-      // .....
-
+      // Iterate through weighted intentions
+      for(var i=0; i<weightedIntentions.length; i++) {
+        // Find the intention preference in the settings
+        var preference = settings[weightedIntentions[i].name];
+        if(preference) {
+          // Preference exists
+          var weight = 1;
+          switch(preference) {
+            case 'none': weight = 0; break;
+            case 'few': weight = 1; break;
+            case 'many': weight = 4; break;
+          }
+          weightedIntentions[i].userWeight = weight;
+        }
+      }
+      console.log(weightedIntentions);
       // Set intention weights = defaultWeight * userWeight
       helloMumSvc.setIntentionWeights(weightedIntentions);
-
       return weightedIntentions;
     }
 
@@ -82,8 +93,6 @@
       do {
          choice = helloMumSvc.pickOneTextFromWeightedIntentionArray(weightedIntentions);
       } while (happyWithText(choice.text) === false);
-      //console.log(choice.text.SortBy + ' ** ' + choice.text.Content);
-      //console.log(choice.text);
       return choice;
     }
 
