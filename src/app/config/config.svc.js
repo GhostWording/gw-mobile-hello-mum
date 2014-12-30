@@ -10,25 +10,7 @@
       'emailSubject': 'Hello Mum',
       'notificationMessage': 'Send a message to mum?',
       'imageHeightFactor': '0.5',
-      'imageUrls': [
-        'app/kittens/001.jpg',
-        'app/kittens/002.jpg',
-        'app/kittens/003.jpg',
-        'app/kittens/004.jpg',
-        'app/kittens/005.jpg',
-        'app/kittens/006.jpg',
-        'app/kittens/007.jpg',
-        'app/kittens/008.jpg',
-        'app/kittens/009.jpg',
-        'app/kittens/010.jpg',
-        'app/kittens/011.jpg',
-        'app/kittens/012.jpg',
-        'app/kittens/013.jpg',
-        'app/kittens/014.jpg',
-        'app/kittens/015.jpg',
-        'app/kittens/016.jpg'
-      ],
-      'endOfFileImageUrl': 'app/kittens/eof.jpg'
+      'endOfFileImageUrl': 'app/messageimage/eof.jpg'
     };
   });
 
