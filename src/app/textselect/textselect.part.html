@@ -51,7 +51,7 @@
     <!--TODO: Like button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
     <div class="sendButton" ng-click="sendButtonClick()">Send</div>
-    <!--TODO: Like button disabled for v1.0.0 - implement-->
+    <!--TODO: Dislike button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div>--> 
   </div>
   <ion-content scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
@@ -64,7 +64,7 @@
       ng-if="imageList"
       getnextitem="getNextImage(currentImage)"
       getpreviousitem="getPreviousImage(currentImage)"
-      currentitem="$parent.currentImage"
+      currentitem="$parent.$parent.currentImage"
       width="deviceWidth"
       height="slideImageHeight">
       <!-- slide -->
