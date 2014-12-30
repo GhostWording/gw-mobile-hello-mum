@@ -54,6 +54,10 @@ var imageGlobs = [
   'src/app/**/*.png'
 ];
 
+var messageImageGlobs = [
+  'src/app/messageimage/**/*.jpg'
+];
+
 var fontGlobs = [
   'src/lib/ionic/fonts/**/ionicons.woff',
   'src/app/fonts/**/notoserif-italic.woff',
