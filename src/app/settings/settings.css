@@ -115,7 +115,9 @@
   clear: both;
 }
 .settings .radioGroupLabel {
-  margin-top: 18px;
+  float: left;
+  padding-top: 6px;
+  white-space: nowrap;
 }
 .settings .radioGroupButtons {
   float: right;
@@ -130,13 +132,13 @@
   border-width: 1px;
   border-color: #339ee6;
   border-radius: 3px;
-  font-size: 1em;
+  font-size: 0.75em;
   color: #339ee6;
   text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 .settings .item-radio input:checked ~ .item-content {
   color: white;

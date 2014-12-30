@@ -256,18 +256,6 @@
       $scope.smsContactPopupVisible = false;
       $scope.emailContactPopupVisible = false;
     };
-    // Select (n) unique texts
-    function pickTexts(numTexts) {
-      var textList = [];
-      for(var i=0; i<numTexts; i++) {
-        var text;
-        do {
-          text = texts.suggest();
-        } while(textList.indexOf(text) !== -1); 
-        textList.push(text);
-      }
-      return textList;
-    }
     // Select (n) unique images
     function pickImages(candidateImageUrls, numImages) {
       var imageList = [];

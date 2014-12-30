@@ -9,21 +9,15 @@
       </gw-mob-contact>
     </ion-tab>
     <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
-      <div class="radioGroup">
-        <label class="radioGroupLabel">Thinking of you</label>
+      <div>
+      <div class="radioGroup" ng-repeat="intention in intentions">
+        <div class="radioGroupLabel">{{intention.label}}</div>
         <div class="radioGroupButtons">
-          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'none'" name="thinkOfYou">none</ion-radio>
-          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'few'" name="thinkOfYou">few</ion-radio>
-          <ion-radio ng-model="settings.intentionThinkOfYou" ng-value="'many'" name="thinkOfYou">many</ion-radio>
+          <ion-radio ng-model="settings[intention.name]" ng-value="'none'" name="{{intention.name}}">none</ion-radio>
+          <ion-radio ng-model="settings[intention.name]" ng-value="'few'" name="{{intention.name}}">few</ion-radio>
+          <ion-radio ng-model="settings[intention.name]" ng-value="'many'" name="{{intention.name}}">many</ion-radio>
         </div>
       </div>
-      <div class="radioGroup">
-        <label class="radioGroupLabel">Come to dinner</label>
-        <div class="radioGroupButtons">
-          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'none'" name="comeToDinner">none</ion-radio>
-          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'few'" name="comeToDinner">few</ion-radio>
-          <ion-radio ng-model="settings.intentionComeToDinner" ng-value="'many'" name="comeToDinner">many</ion-radio>
-        </div>
       </div>
     </ion-tab>
     <!--
