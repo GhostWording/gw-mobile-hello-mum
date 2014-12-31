@@ -72,11 +72,35 @@
     $http.get('messageimages.json').success(function(imageUrls) {
       // Pick images
       $scope.imageList = pickImages(imageUrls, config.imagesPerDay);
-      // Fetch all texts
-      texts.fetch(function() {
-        // choose (n) texts 
-        $scope.textList = texts.choose(config.textsPerDay);
-      });
+      // If welcome texts have been shown twice
+      if(settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes) {
+        // Trigger a fetch of all texts
+        texts.fetch().then(function() {
+          // Choose (n) texts from all texts
+          $scope.textList = texts.choose(config.textsPerDay);
+        }, function() {
+          // TODO: improve this
+          alert('no internet connectivity');
+        });
+      } else {
+        // Fetch welcome texts
+        texts.fetchWelcome().then(function() {
+          $scope.textList = texts.chooseWelcome(config.textsPerDay);
+          // Trigger a fetch of all texts
+          texts.fetch();
+          // Flag welcome texts as shown
+          if(settings.welcomeTextsShownCount === undefined) {
+            settings.welcomeTextsShownCount = 1;
+          } else {
+            settings.welcomeTextsShownCount ++;
+          }
+          // Save settings
+          settings.save(); 
+        }, function() {
+          // TODO: improve this
+          alert('no internet connectivity');
+        });
+      }
     });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
@@ -260,6 +284,9 @@
       $scope.smsContactPopupVisible = false;
       $scope.emailContactPopupVisible = false;
     };
+    // Select (n) texts
+    function pickTexts(numTexts) {
+    }
     // Select (n) unique images
     function pickImages(candidateImageUrls, numImages) {
       var imageList = [];
@@ -303,6 +330,7 @@
         $scope.errorPopupVisible = false;
       }, 1000);
     }
+    // Chose
   });
 
 }());
