@@ -24,10 +24,13 @@
     $scope.backButtonClick = function() {
       $location.path('/textselect');
     };
-    // Clear settings
-    $scope.clearSettingsClick = function() {
+    // Clear local storage
+    $scope.clearLocalStorageClick = function() {
+      // Clear settings
       settings.clear();
-      alert('settings cleared');
+      // Clear local storage
+      localStorage.clear();
+      alert('cleared');
     };
     // Get image urls
     $scope.imageUrls = config.imageUrls;

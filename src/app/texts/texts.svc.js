@@ -5,9 +5,34 @@
   angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings) {
     var _weightedIntentions;
     var _textLists;
+    var _welcomeTextList;
     var texts = {
+      // Fetch welcome text list
+      fetchWelcome: function() {
+        return helloMumTextsSvc.getWelcomeTextList('HelloMum', 'en-EN').then(function(textList) {
+          _welcomeTextList = textList;
+          return textList;
+        }); 
+      }, 
+      chooseWelcome: function(n) {
+        var pickedTextList = helloMumTextsSvc.pickWelcomeTexts(_welcomeTextList, n); 
+        var returnTextList = []; 
+        // Having to do this because unlike pickOneTextFromWeightedIntentionArray pickWelcomeTexts does not return intention/text pairs 
+        for(var i=0; i<pickedTextList.length; i++) {
+          var intentionLabel = null;
+          var text = pickedTextList[i];
+          switch(text.IntentionId) {
+            case '2E2986': intentionLabel = 'Thought Of The Day'; break;
+            case '0B1EA1': intentionLabel = 'Joke Of The Day'; break;
+            case '67CC40': intentionLabel = 'Thought Of The Day'; break;
+          }
+          text.Content = helperSvc.replaceAngledQuotes(text.Content,"");
+          returnTextList.push({text: pickedTextList[i], intention:{label:intentionLabel}}); 
+        }
+        return returnTextList;
+      },
       // Fetch text list
-      fetch: function(done) {
+      fetch: function() {
         // TODO : if we know the user gender, we should set it before calling filtering functions (or use a watch to refilter)
         //helloMumSvc.setUserGender('H'); // you would do that if you learn that recipient gender is Male
         // TODO : add mechanism to check for cache staleness somewhere in the app
@@ -18,9 +43,9 @@
         var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions,currentLanguage.currentCulture()); // 'en-EN' can be used as hard coded culture
 
         // When all texts have been fetched
-        $q.all(textListPromises).then(function (resolvedTextLists) {
+        return $q.all(textListPromises).then(function (resolvedTextLists) {
           _textLists = resolvedTextLists;  
-          done();
+          return _textLists;
         });
       },
       choose: function(n) {
@@ -80,7 +105,6 @@
           weightedIntentions[i].userWeight = weight;
         }
       }
-      console.log(weightedIntentions);
       // Set intention weights = defaultWeight * userWeight
       helloMumSvc.setIntentionWeights(weightedIntentions);
       return weightedIntentions;

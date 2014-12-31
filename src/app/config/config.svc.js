@@ -7,6 +7,7 @@
       'apiUrl': 'http://api.cvd.io/',
       'imagesPerDay': 8,
       'textsPerDay': 8,
+      'showWelcomeTextTimes': 2,
       'emailSubject': 'Hello Mum',
       'notificationMessage': 'Send a message to mum?',
       'imageHeightFactor': '0.55',

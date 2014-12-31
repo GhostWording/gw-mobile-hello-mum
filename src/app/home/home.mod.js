@@ -6,7 +6,8 @@
     'ionic',
     'app/config',
     'app/settings',
-    'app/genderselect'
+    'app/genderselect',
+    'app/texts'
   ]);
 
 }());
