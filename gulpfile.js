@@ -149,6 +149,8 @@ gulp.task('process:javascript', ['jshint'], function() {
 
 gulp.task('process:messageimages', function() {
   var messageImagePaths = glob.sync('app/messageimage/**/*.jpg', {cwd:'src'});
+  // Remove eof image so it won't be picked
+  messageImagePaths.splice(messageImagePaths.indexOf('app/messageimage/eof.jpg'), 1);
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
