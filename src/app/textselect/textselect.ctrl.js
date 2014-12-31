@@ -203,6 +203,8 @@
     };
     // Send via SMS
     $scope.sendSMS = function() {
+      // Save the settings
+      settings.save();
       // Hide the send popup
       $scope.sendPopupVisible = false;
       // If the sms image warning or sms contact picker popups are visible
@@ -233,6 +235,8 @@
     };
     // Send via Email
     $scope.sendEmail = function() {
+      // Save the settings
+      settings.save();
       // Hide the send popup
       $scope.sendPopupVisible = false;
       // Hide the Email contact picker
