@@ -22,8 +22,8 @@
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
     // Watch notification toggle
-    $scope.$watch('settings.notification', function(notification) {
-      if(notification) {
+    $scope.$watch('settings.notification', function(notificationEnabled) {
+      if(notificationEnabled) {
         setNotification();
       } else {
         notification.clear();
