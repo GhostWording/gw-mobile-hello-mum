@@ -47,8 +47,8 @@
         // Set up default settings
         // TODO: move this into settings
         if(settings.notification === undefined) settings.notification = true;
-        if(settings.notificationHour === undefined) settings.notificationHour = 18;
-        if(settings.notificationminute === undefined) settings.notificationminute = 0;
+        if(settings.notificationHour === undefined) settings.notificationHour = config.defaultNotificationHour;
+        if(settings.notificationminute === undefined) settings.notificationMinute = config.defaultNotificationMinute;
         if(settings.motherName === undefined) settings.motherName = 'Mum';
         settings.save();
         console.log(settings);
