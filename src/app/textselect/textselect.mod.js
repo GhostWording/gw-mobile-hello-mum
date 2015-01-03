@@ -14,7 +14,8 @@
     'mobile/popup',
     'mobile/contact',
     'app/config',
-    'app/texts'
+    'app/texts',
+    'app/mumpetname'
   ]);
 
 }());

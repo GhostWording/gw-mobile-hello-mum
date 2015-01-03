@@ -24,7 +24,7 @@
           templateUrl: 'app/debug/debug.part.html'
         });
     })
-    .run(function($window, $ionicPlatform, $cordovaDevice, config, settings, notification, analytics) {
+    .run(function($window, $ionicPlatform, $cordovaDevice, config, settings, notification, analytics, mumPetName) {
       $ionicPlatform.ready(function() {
         // Set up analytics
         analytics.setArea('HelloMum');
@@ -49,7 +49,7 @@
         if(settings.notification === undefined) settings.notification = true;
         if(settings.notificationHour === undefined) settings.notificationHour = config.defaultNotificationHour;
         if(settings.notificationminute === undefined) settings.notificationMinute = config.defaultNotificationMinute;
-        if(settings.motherName === undefined) settings.motherName = 'Mum';
+        if(settings.mumPetName === undefined) settings.mumPetName = 'Mum';
         settings.save();
         console.log(settings);
         // Get device width and height
@@ -59,10 +59,7 @@
         $window.deviceHeight = windowElement[0].innerHeight;
         // Set up default notification
         if(settings.notification) {
-          var message = config.notificationMessage;
-          message = message.replace('Mum', settings.motherName);
-          message = message.replace('mum', settings.motherName.toLowerCase());
-          notification.set(settings.notificationHour, settings.notificationMinute, message);
+          notification.set(settings.notificationHour, settings.notificationMinute, mumPetName.repace(config.notificationMessage, settings.mumPetName));
         } else {
           notification.clear();
         }
