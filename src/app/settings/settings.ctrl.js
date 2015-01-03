@@ -30,10 +30,19 @@
       'Mam',
       'Mother'
     ];
+    // Set default intention weights
+    for(var i=0; i<$scope.intentions.length; i++) {
+      if($scope.settings[$scope.intentions[i].name] === undefined) {
+        $scope.settings[$scope.intentions[i].name] = 'few'; 
+      }
+    }
+    $scope.settings.save();
+    // Intention weight adjusted
     $scope.intentionWeightChange = function(intention) {
       // Report intention weight change
       analytics.reportEvent('Command', intention.name, 'Settings', 'click', $scope.settings[intention.name]);        
     };
+    // Notification time/enable adjusted
     $scope.notificationChange = function() {
       if($scope.settings.notification) {
         // Report notification time
