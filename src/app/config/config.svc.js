@@ -11,7 +11,9 @@
       'emailSubject': 'Hello Mum',
       'notificationMessage': 'Say hello to mum? (new kittens!)',
       'imageHeightFactor': '0.55',
-      'endOfFileImageUrl': 'app/messageimage/eof.jpg'
+      'endOfFileImageUrl': 'app/messageimage/eof.jpg',
+      'defaultNotificationHour': 16,
+      'defaultNotificationMinute': 0
     };
   });
 
