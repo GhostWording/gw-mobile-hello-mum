@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, config, settings, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Get device width and height
     // TODO: move into service
@@ -67,6 +67,13 @@
     // Text slide swiped
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
+      // Report Text Swipe
+      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'Init');
+    };
+    // Image slide swiped
+    $scope.imageSwiped = function() {
+      // Report Image Swipe
+      analytics.reportEvent('Image', $scope.currentImage, 'TextSelect', 'Init');
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {
@@ -218,9 +225,13 @@
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
           sendSMS.send(prepareContentForSending()).then(function() {
+            // Report SMS send
+            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
             // Show sent popup
             showSentPopup();
           }, function() {
+            // Report SMS send fail
+            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
             // Show error popup
             showErrorPopup();
           }); 
@@ -249,6 +260,8 @@
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
         sendEmail.send(config.emailSubject, prepareContentForSending());
+        // Report email send
+        analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
       } else {
         // Show the contact popup
         $scope.emailContactPopupVisible = true;

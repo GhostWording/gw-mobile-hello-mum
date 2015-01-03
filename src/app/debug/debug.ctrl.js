@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/debug').controller('DebugCtrl', function($scope, $location, $timeout, config, texts, settings) {
+  angular.module('app/debug').controller('DebugCtrl', function($scope, $location, $timeout, config, texts, settings, analytics) {
     // Clear cache and re-fetch texts
     $scope.refreshTextList = function() {
       // Fetch text list
@@ -30,10 +30,14 @@
       settings.clear();
       // Clear local storage
       localStorage.clear();
+      // Clear analytic events
+      $scope.analyticEvents = null;
       alert('cleared');
     };
     // Get image urls
     $scope.imageUrls = config.imageUrls;
+    // Get analytic events
+    $scope.analyticEvents = analytics.getEvents();   
   });
 
 }());
