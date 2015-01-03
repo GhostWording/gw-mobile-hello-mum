@@ -41,7 +41,7 @@
     <feature name="Sms">
         <param name="ios-package" value="Sms" />
     </feature>
-    <name>HelloMum</name>
+    <name>HelloMother</name>
     <description>
     GhostWording Hello Mum Mobile App
   </description>

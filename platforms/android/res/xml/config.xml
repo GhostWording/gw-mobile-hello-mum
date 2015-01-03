@@ -20,7 +20,7 @@
     <feature name="Sms">
         <param name="android-package" value="org.apache.cordova.plugin.sms.Sms" />
     </feature>
-    <name>HelloMum</name>
+    <name>HelloMother</name>
     <description>
     GhostWording Hello Mum Mobile App
   </description>
