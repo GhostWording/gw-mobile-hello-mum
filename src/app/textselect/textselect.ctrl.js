@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Get device width and height
     // TODO: move into service
@@ -85,8 +85,8 @@
         texts.fetch().then(function() {
           // Choose (n) texts from all texts
           $scope.textList = texts.choose(config.textsPerDay);
-          // Replace "Mum"
-          replaceMum($scope.textList);
+          // Replace mother pet names with the one in settings
+          replacePetNames($scope.textList, settings.mumPetName);
         }, function() {
           // TODO: improve this
           alert('no internet connectivity');
@@ -95,8 +95,8 @@
         // Fetch welcome texts
         texts.fetchWelcome().then(function() {
           $scope.textList = texts.chooseWelcome(config.textsPerDay);
-          // Replace "Mum"
-          replaceMum($scope.textList);
+          // Replace mother pet names with the one in settings
+          replacePetNames($scope.textList, settings.mumPetName);
           // Trigger a fetch of all texts
           texts.fetch();
           // Flag welcome texts as shown
@@ -263,7 +263,7 @@
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
-        sendEmail.send(config.emailSubject.replace('Mum', settings.motherName), prepareContentForSending());
+        sendEmail.send(mumPetName.replace(config.emailSubject, settings.mumPetName), prepareContentForSending());
         // Report email send
         analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
       } else {
@@ -355,11 +355,10 @@
         $scope.errorPopupVisible = false;
       }, 1000);
     }
-    // Replace "Mum"
-    function replaceMum(textList) {
+    // Replace mother pet names
+    function replacePetNames(textList, replacement) {
       for(var i=0; i<textList.length; i++) {
-        textList[i].text.Content = textList[i].text.Content.replace('Mum', settings.motherName); 
-        textList[i].text.Content = textList[i].text.Content.replace('mum', settings.motherName.toLowerCase());
+        textList[i].text.Content = mumPetName.replace(textList[i].text.Content, replacement); 
       }
     }
   });
