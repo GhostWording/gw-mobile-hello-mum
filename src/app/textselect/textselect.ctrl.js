@@ -326,6 +326,10 @@
       var text = $scope.currentText.text;
       // Get current text content
       var content = text.Content;
+      // Add intention label
+      if($scope.currentText.intention.label) {
+        content = $scope.currentText.intention.label + ' - ' + content;
+      }
       // Add author if quote
       if($scope.textIsQuote(text)) {
         content += ' - ' + text.Author;
