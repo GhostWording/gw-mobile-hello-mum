@@ -39,5 +39,17 @@
         <br><br>
       </ion-content>
     </ion-tab>
+    <ion-tab title="Analytics" icon-on="ion-arrow-graph-up-left" icon-off="ion-arrow-graph-up-left">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
+        <br><br>
+        <ion-list>
+          <ion-item class="analyticEvent item-text-wrap" ng-repeat="analyticEvent in analyticEvents">
+            <p>{{analyticEvent | json}}</p>
+          </ion-item>
+          <br><br>
+        </ion-list>
+        <br><br>
+      </ion-content>
+    </ion-tab>
   </ion-tabs>
 </ion-view>

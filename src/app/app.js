@@ -24,8 +24,15 @@
           templateUrl: 'app/debug/debug.part.html'
         });
     })
-    .run(function($window, $ionicPlatform, config, settings, notification) {
+    .run(function($window, $ionicPlatform, config, settings, notification, analytics) {
       $ionicPlatform.ready(function() {
+        // Set up analytics
+        analytics.setArea('HelloMum');
+        analytics.setLanguage('en');
+        analytics.setRecipientId('Mother');
+        analytics.setDeviceId('blah');
+        // Report app start up
+        analytics.reportEvent('Init', 'Init', 'App', 'Init');        
         // Hide accessory bar
         if(window.cordova && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
