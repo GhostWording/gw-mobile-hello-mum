@@ -59,7 +59,7 @@
         $window.deviceHeight = windowElement[0].innerHeight;
         // Set up default notification
         if(settings.notification) {
-          notification.set(settings.notificationHour, settings.notificationMinute, mumPetName.repace(config.notificationMessage, settings.mumPetName));
+          notification.set(settings.notificationHour, settings.notificationMinute, mumPetName.replace(config.notificationMessage, settings.mumPetName));
         } else {
           notification.clear();
         }

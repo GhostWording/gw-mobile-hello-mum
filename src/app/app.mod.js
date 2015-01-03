@@ -10,6 +10,7 @@
     'app/settings',
     'app/home',
     'app/textselect',
+    'app/mumpetname',
     'app/debug'
   ]);
 

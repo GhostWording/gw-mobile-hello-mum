@@ -41,7 +41,7 @@
         // Report notification time
         analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', $scope.settings.notificationHour + ":" + $scope.settings.notificationMinute);        
         // Set notification 
-        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.repace(config.notificationMessage, $scope.settings.mumPetName));
+        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.replace(config.notificationMessage, $scope.settings.mumPetName));
       } else {
         // Report notification disabled
         analytics.reportEvent('Command', 'NotificationDisabled', 'Settings', 'click');        

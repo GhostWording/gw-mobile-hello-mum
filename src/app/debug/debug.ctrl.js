@@ -7,9 +7,10 @@
     $scope.refreshTextList = function() {
       // Fetch text list
       texts.clear();
-      texts.fetch(function() {
+      texts.fetch().then(function() {
         // Get all texts  
         $scope.intentions = texts.getAll();
+        console.log('intentions');
         console.log($scope.intentions);
         // Stop the ion-refresher from spinning
         $scope.$broadcast('scroll.refreshComplete');
