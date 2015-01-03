@@ -57,11 +57,22 @@
   border-top-color: #339ee6; 
 }
 /* select */
-.settings .item-select select {
+.settings .item-select {
+  padding-left: 10px;
+  font-family: 'notoserif-italic';
+  -webkit-appearance: none;
+  font-size: 16px;
+  color: #339ee6;
+  height: 40px;
+  border-color: #339ee6;
+  border: solid;
+  border-width: 1px;
+  border-radius: 3px;
   background-color: transparent;
-  color: black;
   padding-top: 10px;
   padding-bottom: 0px;
+  height: 40px;
+  margin-bottom: 10px;
 }
 /* toggle */
 .settings .item-toggle {
@@ -79,25 +90,6 @@
   background-color: #339ee6 !important;
   background-opacity: 0.5;
 }
-/* input */
-/*
-.settings .input-label {
-  padding-bottom: 8px;
-  font-size: 14px;
-  color: #aaaaaa;
-}
-.settings input {
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  width: 60%;
-  border-color: #339ee6;
-  color: #339ee6;
-  font-size: 1em;
-  padding-left: 10px;
-}
-*/
 /* time picker */
 .settings .timePicker {
   float: right;
@@ -146,6 +138,19 @@
 }
 .settings .item-radio .radio-icon {
   display: none;
+}
+.settings .motherNameSelect {
+  margin-top: 5px;
+}
+.settings .motherNameSelect select {
+  left: 0;
+  padding-left: 8px;
+  padding-top: 9px;
+  margin-left: 0px;
+  font-family: 'notoserif-italic';
+  color: #339ee6;
+  font-size: 16px;
+  direction: ltr;
 }
 /* pick from contact button */
 /* done button */
