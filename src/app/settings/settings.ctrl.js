@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $scope, config, notification, analytics) {
+  angular.module('app/settings').controller('SettingsCtrl', function($window, $scope, config, notification, analytics, mumPetName) {
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -21,15 +21,8 @@
       {name: 'positive-thoughts', label:'Poisitive Thoughts'},
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
-    // Mother names
-    $scope.motherNames = [
-      'Mum',
-      'Mummy',
-      'Mommy',
-      'Mom',
-      'Mam',
-      'Mother'
-    ];
+    // Mum pet names
+    $scope.mumPetNames = mumPetName.getNames();
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
       if($scope.settings[$scope.intentions[i].name] === undefined) {
@@ -48,10 +41,7 @@
         // Report notification time
         analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', $scope.settings.notificationHour + ":" + $scope.settings.notificationMinute);        
         // Set notification 
-        var message = config.notificationMessage;
-        message = message.replace('Mum', settings.motherName);
-        message = message.replace('mum', settings.motherName.toLowerCase());
-        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, message);
+        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.repace(config.notificationMessage, $scope.settings.mumPetName));
       } else {
         // Report notification disabled
         analytics.reportEvent('Command', 'NotificationDisabled', 'Settings', 'click');        

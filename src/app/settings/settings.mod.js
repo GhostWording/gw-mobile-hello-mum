@@ -6,7 +6,8 @@
     'mobile/timepicker',
     'mobile/settings',
     'mobile/notification',
-    'app/config'
+    'app/config',
+    'app/mumpetname'
   ]);
 
 }());
