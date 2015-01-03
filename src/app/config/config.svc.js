@@ -9,7 +9,7 @@
       'textsPerDay': 8,
       'showWelcomeTextTimes': 2,
       'emailSubject': 'Hello Mum',
-      'notificationMessage': 'Send a message to mum?',
+      'notificationMessage': 'Say hello to mum? (new kittens!)',
       'imageHeightFactor': '0.55',
       'endOfFileImageUrl': 'app/messageimage/eof.jpg'
     };

@@ -1,6 +1,13 @@
 <div class="settings" ng-controller="SettingsCtrl">
   <ion-tabs class="tabs-light">
     <ion-tab title="Mum" icon-on="ion-android-contact" icon-off="ion-android-contact">
+      <div class="group">
+        <label class="inputLabel">Refer To Mum As</label>
+        <div class="motherNameSelect item item-input item-select">
+          <label> </label>
+          <select ng-options="motherName for motherName in motherNames" ng-model="settings.motherName"></select>
+        </div>
+      </div>
       <gw-mob-contact
         emailaddresslabel="'Mum\'s Email Address'"
         mobilenumberlabel="'Mum\'s Mobile Number'"

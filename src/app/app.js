@@ -48,7 +48,8 @@
         // TODO: move this into settings
         if(settings.notification === undefined) settings.notification = true;
         if(settings.notificationHour === undefined) settings.notificationHour = 18;
-        if(settings.notificationMinute === undefined) settings.notificationMinute = 0;
+        if(settings.notificationminute === undefined) settings.notificationminute = 0;
+        if(settings.motherName === undefined) settings.motherName = 'Mum';
         settings.save();
         console.log(settings);
         // Get device width and height
@@ -58,7 +59,10 @@
         $window.deviceHeight = windowElement[0].innerHeight;
         // Set up default notification
         if(settings.notification) {
-          notification.set(settings.notificationHour, settings.notificationMinute, config.notificationMessage);
+          var message = config.notificationMessage;
+          message = message.replace('Mum', settings.motherName);
+          message = message.replace('mum', settings.motherName.toLowerCase());
+          notification.set(settings.notificationHour, settings.notificationMinute, message);
         } else {
           notification.clear();
         }

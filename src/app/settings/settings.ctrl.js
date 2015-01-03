@@ -21,6 +21,15 @@
       {name: 'positive-thoughts', label:'Poisitive Thoughts'},
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
+    // Mother names
+    $scope.motherNames = [
+      'Mum',
+      'Mummy',
+      'Mommy',
+      'Mom',
+      'Mam',
+      'Mother'
+    ];
     $scope.intentionWeightChange = function(intention) {
       // Report intention weight change
       analytics.reportEvent('Command', intention.name, 'Settings', 'click', $scope.settings[intention.name]);        
@@ -30,7 +39,10 @@
         // Report notification time
         analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', $scope.settings.notificationHour + ":" + $scope.settings.notificationMinute);        
         // Set notification 
-        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, config.notificationMessage);
+        var message = config.notificationMessage;
+        message = message.replace('Mum', settings.motherName);
+        message = message.replace('mum', settings.motherName.toLowerCase());
+        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, message);
       } else {
         // Report notification disabled
         analytics.reportEvent('Command', 'NotificationDisabled', 'Settings', 'click');        

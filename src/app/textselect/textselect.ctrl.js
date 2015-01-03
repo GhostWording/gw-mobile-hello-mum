@@ -85,6 +85,8 @@
         texts.fetch().then(function() {
           // Choose (n) texts from all texts
           $scope.textList = texts.choose(config.textsPerDay);
+          // Replace "Mum"
+          replaceMum($scope.textList);
         }, function() {
           // TODO: improve this
           alert('no internet connectivity');
@@ -93,6 +95,8 @@
         // Fetch welcome texts
         texts.fetchWelcome().then(function() {
           $scope.textList = texts.chooseWelcome(config.textsPerDay);
+          // Replace "Mum"
+          replaceMum($scope.textList);
           // Trigger a fetch of all texts
           texts.fetch();
           // Flag welcome texts as shown
@@ -259,7 +263,7 @@
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
-        sendEmail.send(config.emailSubject, prepareContentForSending());
+        sendEmail.send(config.emailSubject.replace('Mum', settings.motherName), prepareContentForSending());
         // Report email send
         analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
       } else {
@@ -347,7 +351,13 @@
         $scope.errorPopupVisible = false;
       }, 1000);
     }
-    // Chose
+    // Replace "Mum"
+    function replaceMum(textList) {
+      for(var i=0; i<textList.length; i++) {
+        textList[i].text.Content = textList[i].text.Content.replace('Mum', settings.motherName); 
+        textList[i].text.Content = textList[i].text.Content.replace('mum', settings.motherName.toLowerCase());
+      }
+    }
   });
 
 }());
