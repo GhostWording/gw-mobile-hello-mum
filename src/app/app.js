@@ -24,13 +24,15 @@
           templateUrl: 'app/debug/debug.part.html'
         });
     })
-    .run(function($window, $ionicPlatform, config, settings, notification, analytics) {
+    .run(function($window, $ionicPlatform, $cordovaDevice, config, settings, notification, analytics) {
       $ionicPlatform.ready(function() {
         // Set up analytics
         analytics.setArea('HelloMum');
         analytics.setLanguage('en');
         analytics.setRecipientId('Mother');
-        analytics.setDeviceId('blah');
+        if($window.device) {
+          analytics.setDeviceId($cordovaDevice.getUUID());
+        }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
         // Hide accessory bar
