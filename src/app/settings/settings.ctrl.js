@@ -3,6 +3,8 @@
   "use strict";
 
   angular.module('app/settings').controller('SettingsCtrl', function($window, $scope, config, notification, analytics, mumPetName) {
+    // Report settings page init
+    analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
