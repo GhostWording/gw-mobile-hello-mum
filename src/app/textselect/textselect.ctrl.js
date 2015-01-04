@@ -4,6 +4,8 @@
 
   angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
+    // Report text select page init
+    analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');        
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -68,12 +70,12 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
       // Report Text Swipe
-      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'Init');
+      analytics.reportEvent('Command', 'TextSwipe', 'TextSelect', 'swipe', $scope.currentText.text.TextId);        
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
       // Report Image Swipe
-      analytics.reportEvent('Image', $scope.currentImage, 'TextSelect', 'Init');
+      analytics.reportEvent('Command', 'ImageSwipe', 'TextSelect', 'swipe', $scope.currentImage);        
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {

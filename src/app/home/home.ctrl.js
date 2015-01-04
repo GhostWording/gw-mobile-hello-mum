@@ -2,8 +2,10 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, settings, texts) {
+  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, settings, texts, analytics) {
     $timeout(function() {
+      // Report home page init
+      analytics.reportEvent('Init', 'Page', 'Home', 'Init');        
       // Prevent user from returning to this screen
       $ionicViewService.nextViewOptions({
         disableBack: true
