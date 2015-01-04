@@ -20,6 +20,9 @@
     <feature name="Sms">
         <param name="android-package" value="org.apache.cordova.plugin.sms.Sms" />
     </feature>
+    <feature name="UniversalAnalytics">
+        <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
+    </feature>
     <name>HelloMother</name>
     <description>
     GhostWording Hello Mum Mobile App
@@ -33,7 +36,4 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
-    <feature name="UniversalAnalytics">
-        <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
-    </feature>
 </widget>
