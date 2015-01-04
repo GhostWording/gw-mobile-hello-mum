@@ -36,6 +36,8 @@
           analytics.setDeviceId($cordovaDevice.getUUID());
           // Initialise google analytics
           analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
+          // Initialise server analytics
+          analytics.initServerAnalytics();
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
