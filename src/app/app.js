@@ -30,8 +30,12 @@
         analytics.setArea('HelloMum');
         analytics.setLanguage('en');
         analytics.setRecipientId('Mother');
+        // If we are on a device (not browser)
         if($window.device) {
+          // Set the device ID
           analytics.setDeviceId($cordovaDevice.getUUID());
+          // Initialise google analytics
+          analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
