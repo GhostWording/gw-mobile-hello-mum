@@ -13,7 +13,9 @@
       'imageHeightFactor': '0.55',
       'endOfFileImageUrl': 'app/messageimage/eof.jpg',
       'defaultNotificationHour': 16,
-      'defaultNotificationMinute': 0
+      'defaultNotificationMinute': 0,
+      'googleAnalyticsTrackerId': 'UA-47718196-5',
+      'googleAnalyticsDebugMode': true
     };
   });
 
