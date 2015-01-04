@@ -70,12 +70,12 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
       // Report Text Swipe
-      analytics.reportEvent('Command', 'TextSwipe', 'TextSelect', 'swipe', $scope.currentText.text.TextId);        
+      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect');        
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
       // Report Image Swipe
-      analytics.reportEvent('Command', 'ImageSwipe', 'TextSelect', 'swipe', $scope.currentImage);        
+      analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect');        
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {
