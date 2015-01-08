@@ -9,6 +9,28 @@
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
+    $scope.ddSelectOptions = [
+        {
+            text: 'Option1',
+            iconCls: 'someicon'
+        },
+        {
+            text: 'Option2',
+            someprop: 'somevalue'
+        },
+        {
+            // Any option with divider set to true will be a divider
+            // in the menu and cannot be selected.
+            divider: true
+        },
+        {
+            // Example of an option with the 'href' property
+            text: 'Option4',
+            href: '#option4'
+        }
+    ];
+
+    $scope.ddSelectSelected = {};
     // Intentions
     $scope.intentions = [
       {name: 'how-are-you', label:'How Are You'},
@@ -24,7 +46,11 @@
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
     // Mum pet names
-    $scope.mumPetNames = mumPetName.getNames();
+    var mumPetNames = mumPetName.getNames();
+    $scope.mumPetNames = [];
+    for(var p=0; p<mumPetNames.length; p++) {
+      $scope.mumPetNames.push({text:mumPetNames[p]}); 
+    }
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
       if($scope.settings[$scope.intentions[i].name] === undefined) {
