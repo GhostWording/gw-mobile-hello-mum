@@ -13,6 +13,8 @@
           'Mommy',
           'Mom',
           'Mam',
+          'Maa',
+          'Mama',
           'Mother'
         ];
       },
