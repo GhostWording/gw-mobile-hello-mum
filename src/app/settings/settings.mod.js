@@ -3,6 +3,7 @@
   "use strict";
 
   angular.module('app/settings', [
+    'ngDropdowns',
     'mobile/timepicker',
     'mobile/settings',
     'mobile/notification',
