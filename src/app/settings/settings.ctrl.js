@@ -9,28 +9,6 @@
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
-    $scope.ddSelectOptions = [
-        {
-            text: 'Option1',
-            iconCls: 'someicon'
-        },
-        {
-            text: 'Option2',
-            someprop: 'somevalue'
-        },
-        {
-            // Any option with divider set to true will be a divider
-            // in the menu and cannot be selected.
-            divider: true
-        },
-        {
-            // Example of an option with the 'href' property
-            text: 'Option4',
-            href: '#option4'
-        }
-    ];
-
-    $scope.ddSelectSelected = {};
     // Intentions
     $scope.intentions = [
       {name: 'how-are-you', label:'How Are You'},
@@ -45,12 +23,20 @@
       {name: 'positive-thoughts', label:'Poisitive Thoughts'},
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
-    // Mum pet names
+    // Initialise mum pet names dropdown data
     var mumPetNames = mumPetName.getNames();
     $scope.mumPetNames = [];
     for(var p=0; p<mumPetNames.length; p++) {
-      $scope.mumPetNames.push({text:mumPetNames[p]}); 
+      var petNameSelectObject = {text:mumPetNames[p]};
+      $scope.mumPetNames.push(petNameSelectObject); 
+      if(mumPetNames[p] === $scope.settings.mumPetName) {
+        $scope.mumPetName = petNameSelectObject;
+      }
     }
+    $scope.$watch('mumPetName', function(petNameSelectObject) {
+      $scope.settings.mumPetName = petNameSelectObject.text;
+      $scope.settings.save();
+    }, true);
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
       if($scope.settings[$scope.intentions[i].name] === undefined) {
