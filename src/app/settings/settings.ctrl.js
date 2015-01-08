@@ -23,8 +23,20 @@
       {name: 'positive-thoughts', label:'Poisitive Thoughts'},
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
-    // Mum pet names
-    $scope.mumPetNames = mumPetName.getNames();
+    // Initialise mum pet names dropdown data
+    var mumPetNames = mumPetName.getNames();
+    $scope.mumPetNames = [];
+    for(var p=0; p<mumPetNames.length; p++) {
+      var petNameSelectObject = {text:mumPetNames[p]};
+      $scope.mumPetNames.push(petNameSelectObject); 
+      if(mumPetNames[p] === $scope.settings.mumPetName) {
+        $scope.mumPetName = petNameSelectObject;
+      }
+    }
+    $scope.$watch('mumPetName', function(petNameSelectObject) {
+      $scope.settings.mumPetName = petNameSelectObject.text;
+      $scope.settings.save();
+    }, true);
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
       if($scope.settings[$scope.intentions[i].name] === undefined) {

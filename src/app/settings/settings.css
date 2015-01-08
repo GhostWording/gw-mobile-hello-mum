@@ -9,12 +9,13 @@
 }
 /* tabs */
 .settings .tabs {
-  top: 30px;
+  top: 10px;
   height: 80px;
   background-color: transparent;
   border: none !important;
   border-color: white;
   border-width: 0px;
+  box-shadow: none !important;
 }
 .settings .tabs-striped .tabs {
   background-color: transparent;
@@ -46,7 +47,7 @@
   color: #339ee6;
 }
 .settings .tab-content {
-  top: 110px;
+  top: 85px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
@@ -57,22 +58,18 @@
   border-top-color: #339ee6; 
 }
 /* select */
-.settings .item-select {
-  padding-left: 10px;
-  font-family: 'notoserif-italic';
-  -webkit-appearance: none;
+.wrap-dd-select {
+  margin: 0px;
+  width: 100%;
+  font-weight: normal;
   font-size: 16px;
   color: #339ee6;
-  height: 40px;
   border-color: #339ee6;
   border: solid;
   border-width: 1px;
   border-radius: 3px;
-  background-color: transparent;
-  padding-top: 10px;
-  padding-bottom: 0px;
-  height: 40px;
-  margin-bottom: 10px;
+  box-shadow: none;
+  margin-top: 6px;
 }
 /* toggle */
 .settings .item-toggle {
