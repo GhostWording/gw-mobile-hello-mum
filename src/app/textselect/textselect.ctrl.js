@@ -139,6 +139,10 @@
         });
       }
     });
+    // Watch mum pet name setting, and re-replace on change
+    $scope.$watch('settings.mumPetName', function() {
+      replacePetNames($scope.textList, settings.mumPetName);
+    });
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
       var text;
