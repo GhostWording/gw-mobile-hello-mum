@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $ionicScrollDelegate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');        
@@ -16,6 +16,14 @@
     $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
+    // Flash swipe arrows
+    $scope.swipeArrowsVisible = false;
+    var swipeArrowFlashCount = 0;
+    var swipeArrowInterval = $interval(function() {
+      $scope.swipeArrowsVisible = !$scope.swipeArrowsVisible;
+      swipeArrowFlashCount++;
+      if(swipeArrowFlashCount > 7) $interval.cancel(swipeArrowInterval);
+    }, 200);
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
       var image;
@@ -76,6 +84,22 @@
     $scope.imageSwiped = function() {
       // Report Image Swipe
       analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect');        
+    };
+    // Image left swipe arrow clicked
+    $scope.imageLeftSwipeArrowClick = function() {
+      $scope.imageSwipeRight();
+    };
+    // Image right swipe arrow clicked
+    $scope.imageRightSwipeArrowClick = function() {
+      $scope.imageSwipeLeft();
+    };
+    // Text left swipe arrow clicked
+    $scope.textLeftSwipeArrowClick = function() {
+      $scope.textSwipeRight();
+    };
+    // Text right swipe arrow clicked
+    $scope.textRightSwipeArrowClick = function() {
+      $scope.textSwipeLeft();
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {

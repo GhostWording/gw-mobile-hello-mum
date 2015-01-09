@@ -59,12 +59,17 @@
     <div class="settingsButton icon ion-gear-a" ng-click="settingsButtonClick()"></div>
     <!-- debug button -->
     <div class="debugButton" ng-click="debugButtonClick()"></div>
+    <!-- swipe arrows -->
+    <i class="swipeArrow swipeArrowRight icon ion-chevron-right" style="top:{{slideImageHeight/2}}px" ng-if="swipeArrowsVisible"></i>
+    <i class="swipeArrow swipeArrowRight icon ion-chevron-right" style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" ng-if="swipeArrowsVisible"></i>
     <!-- image slides -->
     <gw-mob-slideswipe
       ng-if="imageList"
       getnextitem="getNextImage(currentImage)"
       getpreviousitem="getPreviousImage(currentImage)"
       currentitem="$parent.$parent.currentImage"
+      swipeleft="$parent.$parent.imageSwipeLeft"
+      swiperight="$parent.$parent.imageSwipeRight"
       swipedleft="imageSwiped()"
       swipedright="imageSwiped()"
       width="deviceWidth"
@@ -92,7 +97,7 @@
       getpreviousitem="getPreviousText(currentText)"
       currentitem="$parent.$parent.currentText"
       swipeLeft="$parent.$parent.swipeLeft"
-      swipeRight="$parent.swipeRight"
+      swipeRight="$parent.$parent.swipeRight"
       swipedleft="textSwiped()"
       swipedright="textSwiped()"
       width="deviceWidth">

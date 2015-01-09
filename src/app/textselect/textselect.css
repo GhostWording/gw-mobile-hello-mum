@@ -68,6 +68,18 @@
   align-content: center;
   flex-direction: column;
 }
+.textSelect .swipeArrow {
+  position: absolute;
+  color: #339ee6;
+  font-size: 50px;
+  z-index: 3000;
+}
+.textSelect .swipeArrowLeft {
+  left: 10px;
+}
+.textSelect .swipeArrowRight {
+  right: 10px;
+}
 .textSelect .dotIndicatorContainer {
   position: absolute;
   width: 100%;
