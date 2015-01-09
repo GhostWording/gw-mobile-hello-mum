@@ -78,12 +78,12 @@
     $scope.textSwiped = function() {
       $ionicScrollDelegate.scrollTop(true); 
       // Report Text Swipe
-      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect');        
+      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'Swipe'); 
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
       // Report Image Swipe
-      analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect');        
+      analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect', 'Swipe'); 
     };
     // Image left swipe arrow clicked
     $scope.imageLeftSwipeArrowClick = function() {
