@@ -84,7 +84,9 @@ gulp.task('install', ['git-check'], function() {
 });
 
 gulp.task('clean', function(done) {
-  del('www', done);
+  del('www', function() {
+    del('platforms/android/out/', done);
+  });
 });
 
 gulp.task('ionic:build:android', function(done) {
@@ -109,10 +111,6 @@ gulp.task('ionic:emulate:android', function(done) {
 
 gulp.task('ionic:emulate:ios', function(done) {
   exec('ionic', ['emulate','ios'], done);  
-});
-
-gulp.task('cordova:publish:android', function(done) {
-  exec('cordova', ['build','--release','android'], done);  
 });
 
 gulp.task('ionic:serve', function(done) {
@@ -215,10 +213,6 @@ gulp.task('run:android', function(done) {
 
 gulp.task('run:ios', function(done) {
   runSequence('build', 'ionic:run:ios', done);
-});
-
-gulp.task('publish:android', function(done) {
-  runSequence('build', 'cordova:publish:android', done);
 });
 
 gulp.task('watch', function(done) {
