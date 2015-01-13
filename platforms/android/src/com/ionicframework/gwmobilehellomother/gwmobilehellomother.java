@@ -17,12 +17,12 @@
        under the License.
  */
 
-package com.ionicframework.gwmobilehellomum989200;
+package com.ionicframework.gwmobilehellomother;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class gwmobilehellomum extends CordovaActivity
+public class gwmobilehellomother extends CordovaActivity
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

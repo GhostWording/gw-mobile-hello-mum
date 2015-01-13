@@ -84,7 +84,9 @@ gulp.task('install', ['git-check'], function() {
 });
 
 gulp.task('clean', function(done) {
-  del('www', done);
+  del('www', function() {
+    del('platforms/android/out/', done);
+  });
 });
 
 gulp.task('ionic:build:android', function(done) {
