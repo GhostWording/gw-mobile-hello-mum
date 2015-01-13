@@ -111,8 +111,10 @@ Publishing
 
 **android**
 
+```sh
 gulp build:android
 cordova build android --release
+```
 <enter keystore password>
 
-After which a signed apk can be found in platforms/android/ant-build (..-release.apk)
+After which a signed apk can be found in platforms/android/ant-build/<app>-release.apk
