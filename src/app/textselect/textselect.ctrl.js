@@ -22,7 +22,7 @@
     var swipeArrowInterval = $interval(function() {
       $scope.swipeArrowsVisible = !$scope.swipeArrowsVisible;
       swipeArrowFlashCount++;
-      if(swipeArrowFlashCount > 7) $interval.cancel(swipeArrowInterval);
+      if(swipeArrowFlashCount > 19) $interval.cancel(swipeArrowInterval);
     }, 200);
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
