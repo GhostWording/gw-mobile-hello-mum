@@ -149,13 +149,12 @@
   font-size: 16px;
   direction: ltr;
 }
-/* pick from contact button */
 /* done button */
-.settings .doneButtonContainer {
+.settings .doneButtonHit {
   z-index: 1000;
   width: 100%;
   position: absolute;
-  height: 40px;
+  height: 60px;
 }
 .settings .doneButton {
   display: block;
