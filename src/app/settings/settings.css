@@ -108,26 +108,21 @@
   padding-bottom: 10px;
 }
 /* radio boxes */
+/* radio boxes */
 .settings .radioGroup {
-  text-align: center;
+  clear: both;
 }
-.settings .reminderLabel {
-  width: 100%;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
+.settings .radioGroupLabel {
+  float: left;
+  padding-top: 6px;
   white-space: nowrap;
 }
 .settings .radioGroupButtons {
+  float: right;
 }
 .settings .item-radio {
+  float: left;
   border: none;
-}
-.settings .item-toggle {
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 0px;
-  width: 55px;
 }
 .settings .item-radio .item-content {
   margin: 4px;
@@ -149,6 +144,20 @@
 }
 .settings .item-radio .radio-icon {
   display: none;
+}
+/* reminder screen */
+.settings .reminderLabel {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+.settings .item-toggle {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 0px;
+  width: 55px;
 }
 .settings .motherNameSelect {
   margin-top: 5px;
