@@ -24,18 +24,16 @@
     </ion-tab>
     <ion-tab title="Reminder" icon-on="ion-clock" icon-off="ion-clock">
       <div class="radioGroup">
-        <div style="float:left; margin-top:10px">
-          <label class="radioGroupLabel">Daily reminder</label>
-        </div>
-        <div style="float:right">
+        <div class="reminderLabel">Daily reminder</div>
+        <div>
           <ion-toggle ng-model="settings.notification" ng-change="notificationChange()" toggle-class="toggle-calm"></ion-toggle>
         </div>
       </div>
       <div class="radioGroup" ng-show="settings.notification">
-        <div style="float:left; margin-top:40px">
-          <label class="radioGroupLabel">Time of day</label>
+        <div class="reminderLabel">Time of day</div>
+        <div class="timePickerContainer">
+          <gw-mob-timepicker class="timePicker" hour="settings.notificationHour" minute="settings.notificationMinute" change="notificationChange()" minutestep="15">
         </div>
-        <gw-mob-timepicker hour="settings.notificationHour" minute="settings.notificationMinute" change="notificationChange()" minutestep="15">
         </gw-mob-timepicker>
       </div>
     </ion-tab>
