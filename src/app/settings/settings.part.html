@@ -41,14 +41,15 @@
     </ion-tab>
     <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
       <div>
-      <div class="radioGroup" ng-repeat="intention in intentions">
-        <div class="radioGroupLabel">{{intention.label}}</div>
-        <div class="radioGroupButtons">
-          <ion-radio ng-model="settings[intention.name]" ng-value="'none'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">none</ion-radio>
-          <ion-radio ng-model="settings[intention.name]" ng-value="'few'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">few</ion-radio>
-          <ion-radio ng-model="settings[intention.name]" ng-value="'many'"ng-change="intentionWeightChange(intention)" name="{{intention.name}}">many</ion-radio>
+        <div class="messageText">What types of messages would you like to send?</div>
+        <div class="radioGroup" ng-repeat="intention in intentions">
+          <div class="radioGroupLabel">{{intention.label}}</div>
+          <div class="radioGroupButtons">
+            <ion-radio ng-model="settings[intention.name]" ng-value="'none'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">none</ion-radio>
+            <ion-radio ng-model="settings[intention.name]" ng-value="'few'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">few</ion-radio>
+            <ion-radio ng-model="settings[intention.name]" ng-value="'many'"ng-change="intentionWeightChange(intention)" name="{{intention.name}}">many</ion-radio>
+          </div>
         </div>
-      </div>
       </div>
     </ion-tab>
     <!--

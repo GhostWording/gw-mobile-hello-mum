@@ -99,6 +99,10 @@
   border-color :#339ee6;
   font-family: 'notoserif-italic';
 } 
+.settings .messageText {
+  color: #339ee6;
+  padding-bottom: 10px;
+}
 /* radio boxes */
 .settings .radioGroup {
   clear: both;
