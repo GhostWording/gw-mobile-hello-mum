@@ -22,16 +22,32 @@
         mobilenumber="settings.mobileNumber">
       </gw-mob-contact>
     </ion-tab>
-    <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
-      <div>
-      <div class="radioGroup" ng-repeat="intention in intentions">
-        <div class="radioGroupLabel">{{intention.label}}</div>
-        <div class="radioGroupButtons">
-          <ion-radio ng-model="settings[intention.name]" ng-value="'none'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">none</ion-radio>
-          <ion-radio ng-model="settings[intention.name]" ng-value="'few'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">few</ion-radio>
-          <ion-radio ng-model="settings[intention.name]" ng-value="'many'"ng-change="intentionWeightChange(intention)" name="{{intention.name}}">many</ion-radio>
+    <ion-tab title="Reminder" icon-on="ion-clock" icon-off="ion-clock">
+      <div class="radioGroup">
+        <div class="reminderLabel">Daily reminder</div>
+        <div>
+          <ion-toggle ng-model="settings.notification" ng-change="notificationChange()" toggle-class="toggle-calm"></ion-toggle>
         </div>
       </div>
+      <div class="radioGroup" ng-show="settings.notification">
+        <div class="reminderLabel">Time of day</div>
+        <div class="timePickerContainer">
+          <gw-mob-timepicker class="timePicker" hour="settings.notificationHour" minute="settings.notificationMinute" change="notificationChange()" minutestep="15">
+        </div>
+        </gw-mob-timepicker>
+      </div>
+    </ion-tab>
+    <ion-tab title="Messages" icon-on="ion-chatbox" icon-off="ion-chatbox">
+      <div>
+        <div class="messageText">What types of messages would you like to send?</div>
+        <div class="radioGroup" ng-repeat="intention in intentions">
+          <div class="radioGroupLabel">{{intention.label}}</div>
+          <div class="radioGroupButtons">
+            <ion-radio ng-model="settings[intention.name]" ng-value="'none'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">none</ion-radio>
+            <ion-radio ng-model="settings[intention.name]" ng-value="'few'" ng-change="intentionWeightChange(intention)" name="{{intention.name}}">few</ion-radio>
+            <ion-radio ng-model="settings[intention.name]" ng-value="'many'"ng-change="intentionWeightChange(intention)" name="{{intention.name}}">many</ion-radio>
+          </div>
+        </div>
       </div>
     </ion-tab>
     <!--
@@ -55,23 +71,6 @@
       </div>
     </ion-tab>
     -->
-    <ion-tab title="Reminder" icon-on="ion-clock" icon-off="ion-clock">
-      <div class="radioGroup">
-        <div style="float:left; margin-top:10px">
-          <label class="radioGroupLabel">Daily reminder</label>
-        </div>
-        <div style="float:right">
-          <ion-toggle ng-model="settings.notification" ng-change="notificationChange()" toggle-class="toggle-calm"></ion-toggle>
-        </div>
-      </div>
-      <div class="radioGroup" ng-show="settings.notification">
-        <div style="float:left; margin-top:40px">
-          <label class="radioGroupLabel">Time of day</label>
-        </div>
-        <gw-mob-timepicker hour="settings.notificationHour" minute="settings.notificationMinute" change="notificationChange()" minutestep="15">
-        </gw-mob-timepicker>
-      </div>
-    </ion-tab>
   </ion-tabs>
   <div class="doneButtonHit" style="top:{{deviceHeight-60}}px" ng-click="close()">
     <div class="doneButton">Done</div>

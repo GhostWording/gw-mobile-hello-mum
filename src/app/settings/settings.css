@@ -88,8 +88,12 @@
   background-opacity: 0.5;
 }
 /* time picker */
+.settings .timePickerContainer {
+  width: 100%;
+  text-align: center;
+}
 .settings .timePicker {
-  float: right;
+  display: inline-block;
 }
 .settings .timePicker .arrow {
   color: #339ee6;
@@ -99,21 +103,31 @@
   border-color :#339ee6;
   font-family: 'notoserif-italic';
 } 
+.settings .messageText {
+  color: #339ee6;
+  padding-bottom: 10px;
+}
 /* radio boxes */
 .settings .radioGroup {
-  clear: both;
+  text-align: center;
 }
-.settings .radioGroupLabel {
-  float: left;
-  padding-top: 6px;
+.settings .reminderLabel {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
   white-space: nowrap;
 }
 .settings .radioGroupButtons {
-  float: right;
 }
 .settings .item-radio {
-  float: left;
   border: none;
+}
+.settings .item-toggle {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 0px;
+  width: 55px;
 }
 .settings .item-radio .item-content {
   margin: 4px;

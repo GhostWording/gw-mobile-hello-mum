@@ -19,7 +19,7 @@
       {name: 'I-love-you', label:'I Love You'},
       {name: 'I-miss-you', label:'I Miss You'},
       {name: 'I-am-here-for-you', label:'Here For You'},
-      {name: 'facebook-status', label:'Facebook Status'},
+      {name: 'facebook-status', label:'Mood Of The Day'},
       {name: 'positive-thoughts', label:'Poisitive Thoughts'},
       {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
     ];
