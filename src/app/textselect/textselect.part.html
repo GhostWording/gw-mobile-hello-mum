@@ -40,8 +40,12 @@
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton pad" ng-if="emailAddressValid()" ng-click="sendEmail()">Send</div>
-    <div class="popupButton" ng-class="{'pad':!emailAddressValid()}"ng-click="contactCancelButtonClick()">Cancel</div>
+    <div class="popupButtonHit pad" ng-if="emailAddressValid()" ng-click="sendEmail()">
+      <div class="popupButton">Send</div>
+    </div>
+    <div class="popupButtonHit" ng-class="{'pad':!emailAddressValid()}" ng-click="contactCancelButtonClick()">
+      <div class="popupButton">Cancel</div>
+    </div>
   </gw-mob-popup>
   <!-- sms contact picker popup -->
   <gw-mob-popup class="contactPopup" ng-if="smsContactPopupVisible">
