@@ -1,7 +1,6 @@
 /node_modules/
 /src/lib/
 /www/
-/platforms
 .DS_Store
 *.swp
 *.swo
