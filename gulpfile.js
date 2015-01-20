@@ -15,12 +15,12 @@ var gFile = require('gulp-file');
 var postCSS = require('gulp-postcss');
 var jshint = require('gulp-jshint');
 var jshintstylish = require('jshint-stylish');
+var jimp = require('gulp-jimp');
 var mergeStream = require('merge-stream');
 var streamQueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var autoPrefixer = require('autoprefixer-core');
 var spawn = require('child_process').spawn;
-var bower = require('bower');
 var glob = require('glob');
 var del = require('del');
 
@@ -76,41 +76,10 @@ var jshintGlobs = [
   'src/app/**/*.js'
 ];
 
-gulp.task('install', ['git-check'], function() {
-  return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
-});
-
 gulp.task('clean', function(done) {
-  del('www', function() {
+  del(['www/**/*','!www/.gitignore'], function() {
     del('platforms/android/out/', done);
   });
-});
-
-gulp.task('ionic:build:android', function(done) {
-  exec('ionic', ['build','android'], done);  
-});
-
-gulp.task('ionic:build:ios', function(done) {
-  exec('ionic', ['build','ios'], done);  
-});
-
-gulp.task('ionic:run:android', function(done) {
-  exec('ionic', ['run','android'], done);  
-});
-
-gulp.task('ionic:run:ios', function(done) {
-  exec('ionic', ['run','ios'], done);  
-});
-
-gulp.task('ionic:emulate:android', function(done) {
-  exec('ionic', ['emulate','android'], done);  
-});
-
-gulp.task('ionic:emulate:ios', function(done) {
-  exec('ionic', ['emulate','ios'], done);  
 });
 
 gulp.task('ionic:serve', function(done) {
@@ -187,32 +156,62 @@ gulp.task('process:fonts', function() {
     .pipe(gulp.dest(dest));
 });
 
+gulp.task('process:platform:ios', function(done) {
+  runSequence('process:icons:ios', done);
+});
+
+gulp.task('process:icons:ios', function(done) {
+  // TODO: implement
+  done();
+});
+
+gulp.task('process:platform:android', function(done) {
+  runSequence('process:icons:android', done);
+});
+
+gulp.task('process:icons:android', function(done) {
+  // TODO: implement
+  done();
+});
+
 gulp.task('build', function(done) {
   runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images', 'process:messageimages'], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {
-  runSequence('build', 'ionic:build:android', done);
-});
-
-gulp.task('build:ios', function(done) {
-  runSequence('build', 'ionic:build:ios', done);
+  runSequence('build', 'process:platform:android', function() {
+    exec('ionic', ['build','android'], done);  
+  });
 });
 
 gulp.task('emulate:android', function(done) {
-  runSequence('build', 'ionic:emulate:android', done);
-});
-
-gulp.task('emulate:ios', function(done) {
-  runSequence('build', 'ionic:emulate:ios', done);
+  runSequence('build', 'process:platform:android', function() {
+    exec('ionic', ['emulate','android'], done);  
+  });
 });
 
 gulp.task('run:android', function(done) {
-  runSequence('build', 'ionic:run:android', done);
+  runSequence('build', 'process:platform:android', function() {
+    exec('ionic', ['run','android'], done);  
+  });
+});
+
+gulp.task('build:ios', function(done) {
+  runSequence('build', 'process:platform:ios', function() {
+    exec('ionic', ['build','ios'], done);  
+  });
+});
+
+gulp.task('emulate:ios', function(done) {
+  runSequence('build', 'process:platform:ios', function() {
+    exec('ionic', ['emulate','ios'], done);  
+  });
 });
 
 gulp.task('run:ios', function(done) {
-  runSequence('build', 'ionic:run:ios', done);
+  runSequence('build', 'process:platform:ios', function() {
+    exec('ionic', ['run','ios'], done);  
+  });
 });
 
 gulp.task('watch', function(done) {
@@ -240,20 +239,7 @@ gulp.task('watch', function(done) {
 
 gulp.task('serve', ['ionic:serve']);
 
-gulp.task('git:check', function(done) {
-  if (!sh.which('git')) {
-    console.log(
-      '  ' + gutil.colors.red('Git is not installed.'),
-      '\n  Git, the version control system, is required to download Ionic.',
-      '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
-      '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
-    );
-    process.exit(1);
-  }
-  done();
-});
-
-gulp.task('default', ['sass']);
+gulp.task('default', ['build']);
 
 function exec(command, params, done) {
   var child = spawn(command, params, {cwd: process.cwd()});
