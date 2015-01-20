@@ -1,6 +1,6 @@
-/node_modules/
-/src/lib/
-/www/
+/node_modules
+/src/lib
+/platforms
 .DS_Store
 *.swp
 *.swo
