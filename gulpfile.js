@@ -76,7 +76,7 @@ var jshintGlobs = [
 ];
 
 gulp.task('clean', function(done) {
-  del('www', function() {
+  del(['www/**/*','!www/.gitignore'], function() {
     del('platforms/android/out/', done);
   });
 });
