@@ -20,7 +20,6 @@ var streamQueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var autoPrefixer = require('autoprefixer-core');
 var spawn = require('child_process').spawn;
-var bower = require('bower');
 var glob = require('glob');
 var del = require('del');
 
@@ -75,13 +74,6 @@ var jshintGlobs = [
   'src/lib/gw-mobile-common/**/*.js',
   'src/app/**/*.js'
 ];
-
-gulp.task('install', ['git-check'], function() {
-  return bower.commands.install()
-    .on('log', function(data) {
-      gutil.log('bower', gutil.colors.cyan(data.id), data.message);
-    });
-});
 
 gulp.task('clean', function(done) {
   del('www', function() {
