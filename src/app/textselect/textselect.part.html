@@ -5,65 +5,70 @@
       sendsms="sendSMS()"
       sendemail="sendEmail()"
       sendfacebook="sendFacebook()"
-      showsendfacebook="false">
+      showsendfacebook="false"
+      sendemaillabel="{{'SND_EMAIL' | translate}}"
+      sendsmslabel="{{'SND_SMS' | translate}}"
+      sendfacebooklabel="{{'SND_FB' | translate}}">
     </gw-mob-send>
     <div class="popupButtonHit pad" ng-click="sendCancelButtonClick()">
-      <div class="popupButton">Cancel</div>
+      <div class="popupButton">{{'CANCEL' | translate}}</div>
     </div>
   </gw-mob-popup>
   <!-- sms image popup -->
   <gw-mob-popup class="textPopup" ng-if="smsImagePopupVisible">
-    <div>SMS won't send the image</div>
+    <div>{{'SMS_IMAGE_WARN' | translate}}</div>
     <div class="popupButtonHit pad" ng-click="sendSMS()">
-      <div class="popupButton">Send Text Only</div>
+      <div class="popupButton">{{'SEND_TEXT_ONLY' | translate}}</div>
     </div>
     <div class="popupButtonHit" ng-click="sendEmail()">
-      <div class="popupButton" >Send by Email</div>
+      <div class="popupButton" >{{'SEND_BY_EMAIL' | translate}}</div>
     </div>
     <div class="popupButtonHit" ng-click="sendCancelButtonClick()">
-      <div class="popupButton">Cancel</div>
+      <div class="popupButton">{{'CANCEL' | translate}}</div>
     </div>
   </gw-mob-popup>
   <!-- sent popup -->
   <gw-mob-popup class="textPopup" ng-if="sentPopupVisible">
-    <div>Message Sent</div>
+    <div>{{'MES_SEND_SUC' | translate}}</div>
   </gw-mob-popup>
   <!-- error popup -->
   <gw-mob-popup class="textPopup" ng-if="errorPopupVisible">
-    <div>Message Send Error</div>
+    <div>{{'MES_SEND_ERR' | translate}}</div>
   </gw-mob-popup>
   <!-- email contact picker popup -->
   <gw-mob-popup class="contactPopup" ng-if="emailContactPopupVisible">
     <gw-mob-contact
       showmobilenumber="false"
-      emailaddresslabel="'Mum\'s Email Address'"
+      emailaddresslabel="{{'MUM_EMAIL' | translate}}"
+      selectbuttontext="{{'SEL_CONT' | translate}}"
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
     <div class="popupButtonHit pad" ng-if="emailAddressValid()" ng-click="sendEmail()">
-      <div class="popupButton">Send</div>
+      <div class="popupButton"><p>{{'SEND' | translate}}</p></div>
     </div>
     <div class="popupButtonHit" ng-class="{'pad':!emailAddressValid()}" ng-click="contactCancelButtonClick()">
-      <div class="popupButton">Cancel</div>
+      <div class="popupButton">{{'CANCEL' | translate}}</div>
     </div>
   </gw-mob-popup>
   <!-- sms contact picker popup -->
   <gw-mob-popup class="contactPopup" ng-if="smsContactPopupVisible">
     <gw-mob-contact
       showemailaddress="false"
-      mobilenumberlabel="'Mum\'s Mobile Number'"
+      mobilenumberlabel="{{'MUM_MOB' | translate}}"
+      selectbuttontext="{{'SEL_CONT' | translate}}"
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">Send</div>
-    <div class="popupButton" ng-class="{'pad':!mobileNumberValid()}"ng-click="contactCancelButtonClick()">Cancel</div>
+    <div class="popupButton pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">{{'SEND' | translate}}</div>
+    <div class="popupButton" ng-class="{'pad':!mobileNumberValid()}"ng-click="contactCancelButtonClick()">{{'CANCEL' | translate}}</div>
   </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="textList && !endOfTextVisible() && imageList && !endOfImageVisible() && bottomBarVisible">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
     <div class="sendButtonHit" ng-click="sendButtonClick()">
-      <div class="sendButton">Send</div>
+      <div class="sendButton">{{'SEND' | translate}}</div>
     </div>
     <!--TODO: Dislike button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div>--> 
@@ -96,7 +101,7 @@
       <gw-mob-slide>
         <div class="imageContainer" style="height:{{slideImageHeight}}px">
           <!-- more images text -->
-          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">See you tomorrow<br>for more kittens!</div>
+          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">{{'EOF_IMAGE' | translate}}</div>
           <!-- image -->
           <div class="image" style="background-image:url('{{item}}')"></div>
         </div>
@@ -125,7 +130,8 @@
         <div class="text">
           <!-- title -->
           <div class="titleContainer">
-            <div class="title" ng-show="item.intention.label">{{item.intention.label}}</div>
+            <div class="title" ng-show="textIsThought(item.text)">{{'OTD_THOUGHT' | translate}}</div>
+            <div class="title" ng-show="textIsJoke(item.text)">{{'OTD_JOKE' | translate}}</div>
           </div>
           <!-- content -->
           {{item.text.Content}}

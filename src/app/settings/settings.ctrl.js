@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $scope, config, notification, analytics, mumPetName) {
+  angular.module('app/settings').controller('SettingsCtrl', function($window, $scope, $translate, config, notification, analytics, mumPetName) {
     // Report settings page init
     analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height
@@ -11,17 +11,17 @@
     $scope.deviceHeight = $window.deviceHeight;    
     // Intentions
     $scope.intentions = [
-      {name: 'how-are-you', label:'How Are You'},
-      {name: 'I-think-of-you', label:'Thinking Of You'},
-      {name: 'jokes', label:'Jokes'},
-      {name: 'thank-you', label:'Thank You'},
-      {name: 'a-few-words-for-you', label:'A Few Words For You'},
-      {name: 'I-love-you', label:'I Love You'},
-      {name: 'I-miss-you', label:'I Miss You'},
-      {name: 'I-am-here-for-you', label:'I\'m here For You'},
-      {name: 'facebook-status', label:'Mood Of The Day'},
-      {name: 'positive-thoughts', label:'Poisitive Thoughts'},
-      {name: 'would-you-care-for-a-drink', label:'Care For A Drink?'}
+      {name: 'how-are-you', trans:'INT_HOW'},
+      {name: 'I-think-of-you', trans:'INT_THINK'},
+      {name: 'jokes', trans:'INT_JOKES'},
+      {name: 'thank-you', trans:'INT_THANK'},
+      {name: 'a-few-words-for-you', trans:'INT_WORDS'},
+      {name: 'I-love-you', trans:'INT_LOVE'},
+      {name: 'I-miss-you', trans:'INT_MISS'},
+      {name: 'I-am-here-for-you', trans:'INT_HERE'},
+      {name: 'facebook-status', trans:'INT_FB'},
+      {name: 'positive-thoughts', trans:'INT_POS'},
+      {name: 'would-you-care-for-a-drink', trans:'INT_DRINK'}
     ];
     // Initialise mum pet names dropdown data
     var mumPetNames = mumPetName.getNames();
@@ -55,7 +55,9 @@
         // Report notification time
         analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', $scope.settings.notificationHour + ":" + $scope.settings.notificationMinute);        
         // Set notification 
-        notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.replace(config.notificationMessage, $scope.settings.mumPetName));
+        $translate('NOTIFICATION').then(function (notificationText) {
+          notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.replace(notificationText, $scope.settings.mumPetName));
+        });
       } else {
         // Report notification disabled
         analytics.reportEvent('Command', 'NotificationDisabled', 'Settings', 'click');        
