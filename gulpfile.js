@@ -200,8 +200,24 @@ gulp.task('process:platform:android', function(done) {
 });
 
 gulp.task('process:icons:android', function(done) {
-  // TODO: implement
-  done();
+  var icons = [
+    {dir: 'drawable', size: 96},
+    {dir: 'drawable-ldpi', size: 36},
+    {dir: 'drawable-mdpi', size: 48},
+    {dir: 'drawable-hdpi', size: 72},
+    {dir: 'drawable-xhdpi', size: 96}
+  ];
+  async.eachSeries(icons, function(icon, callback) {
+    gulp.src('src/res/icon/icon.png')
+      .pipe(jimp({
+        resize:{
+          width: icon.size,
+          height: icon.size
+        }
+      }))
+      .pipe(gulp.dest('platforms/android/res/' + icon.dir))
+      .pipe(gCallback(callback));
+  }, done);
 });
 
 gulp.task('build', function(done) {
