@@ -9,6 +9,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var inject = require('gulp-inject');
 var replace = require('gulp-replace');
+var gCallback = require('gulp-callback');
 var templateCache = require('gulp-angular-templatecache');
 var gIf = require('gulp-if');
 var gFile = require('gulp-file');
@@ -21,6 +22,7 @@ var streamQueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var autoPrefixer = require('autoprefixer-core');
 var spawn = require('child_process').spawn;
+var async = require('async');
 var glob = require('glob');
 var del = require('del');
 
@@ -161,8 +163,36 @@ gulp.task('process:platform:ios', function(done) {
 });
 
 gulp.task('process:icons:ios', function(done) {
-  // TODO: implement
-  done();
+  // TODO: un-hardcode 'HelloMum'
+  var icons = [
+    {name: 'icon-40.png', size: 40},
+    {name: 'icon-40@2x.png', size: 80},
+    {name: 'icon-50.png', size: 50},
+    {name: 'icon-50@2x.png', size: 100},
+    {name: 'icon-60.png', size: 60},
+    {name: 'icon-60@2x.png', size: 120},
+    {name: 'icon-60@3x.png', size: 180},
+    {name: 'icon-72.png', size: 72},
+    {name: 'icon-72@2x.png', size: 144},
+    {name: 'icon-76.png', size: 76},
+    {name: 'icon-76@2x.png', size: 152},
+    {name: 'icon-small.png', size: 29},
+    {name: 'icon-small@2x.png', size: 58},
+    {name: 'icon.png', size: 57},
+    {name: 'icon@2x.png', size: 114}
+  ];
+  async.eachSeries(icons, function(icon, callback) {
+    gulp.src('src/res/icon/icon.png')
+      .pipe(jimp({
+        resize:{
+          width: icon.size,
+          height: icon.size
+        }
+      }))
+      .pipe(rename(icon.name))
+      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/icons'))
+      .pipe(gCallback(callback));
+  }, done);
 });
 
 gulp.task('process:platform:android', function(done) {
@@ -170,8 +200,24 @@ gulp.task('process:platform:android', function(done) {
 });
 
 gulp.task('process:icons:android', function(done) {
-  // TODO: implement
-  done();
+  var icons = [
+    {dir: 'drawable', size: 96},
+    {dir: 'drawable-ldpi', size: 36},
+    {dir: 'drawable-mdpi', size: 48},
+    {dir: 'drawable-hdpi', size: 72},
+    {dir: 'drawable-xhdpi', size: 96}
+  ];
+  async.eachSeries(icons, function(icon, callback) {
+    gulp.src('src/res/icon/icon.png')
+      .pipe(jimp({
+        resize:{
+          width: icon.size,
+          height: icon.size
+        }
+      }))
+      .pipe(gulp.dest('platforms/android/res/' + icon.dir))
+      .pipe(gCallback(callback));
+  }, done);
 });
 
 gulp.task('build', function(done) {
