@@ -19,15 +19,9 @@
         var returnTextList = []; 
         // Having to do this because unlike pickOneTextFromWeightedIntentionArray pickWelcomeTexts does not return intention/text pairs 
         for(var i=0; i<pickedTextList.length; i++) {
-          var intentionLabel = null;
           var text = pickedTextList[i];
-          switch(text.IntentionId) {
-            case '2E2986': intentionLabel = 'Thought Of The Day'; break;
-            case '0B1EA1': intentionLabel = 'Joke Of The Day'; break;
-            case '67CC40': intentionLabel = 'Thought Of The Day'; break;
-          }
           text.Content = helperSvc.replaceAngledQuotes(text.Content,"");
-          returnTextList.push({text: pickedTextList[i], intention:{label:intentionLabel}}); 
+          returnTextList.push({text: pickedTextList[i]}); 
         }
         return returnTextList;
       },

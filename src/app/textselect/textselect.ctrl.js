@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');        
@@ -24,6 +24,14 @@
       swipeArrowFlashCount++;
       if(swipeArrowFlashCount > 19) $interval.cancel(swipeArrowInterval);
     }, 200);
+    // Translate eof text
+    $translate('EOF_TEXT').then(function (eofText) {
+      $scope.eofText = eofText;
+    });
+    // Translate email subject
+    $translate('EMAIL_SUBJECT').then(function (emailSubject) {
+      $scope.emailSubject = emailSubject;
+    });
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
       var image;
@@ -135,7 +143,7 @@
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
           // Return end of file text
-          text = {text:{Content:'See you tomorrow for more messages!', TextId:-1}}; 
+          text = {text:{Content:$scope.eofText, TextId:-1}}; 
           return text;
         }
         text = $scope.textList[currentTextIndex+1];
@@ -174,17 +182,27 @@
       }
       return index;
     }; 
-    $scope.getTitle = function() {
-      return 'Joke Of The Day';
-    };
+    // Is the passed text a quote?
     $scope.textIsQuote = function(text) {
+      if(!text) return false;
       return helperSvc.isQuote(text); 
     };
-    // End of text visible
+    // Is the passed text a thought?
+    $scope.textIsThought = function(text) {
+      if(!text) return false;
+      return text.IntentionId === '2E2986' ||
+        text.IntentionId === '67CC40';
+    };
+    // Is the passed text a joke?
+    $scope.textIsJoke = function(text) {
+      if(!text) return false;
+      return text.IntentionId === '0B1EA1';
+    };
+    // End of text visible?
     $scope.endOfTextVisible = function() {
       return $scope.textList.indexOf($scope.currentText) === -1;
     };
-    // End of image visible
+    // End of image visible?
     $scope.endOfImageVisible = function() {
       return $scope.imageList.indexOf($scope.currentImage) === -1;
     };
@@ -272,7 +290,7 @@
         // Send the Email
         sendEmail.setEmailAddress(settings.emailAddress);
         sendEmail.setAttachmentPath($scope.currentImage);
-        sendEmail.send(mumPetName.replace(config.emailSubject, settings.mumPetName), prepareContentForSending());
+        sendEmail.send(mumPetName.replace($scope.emailSubject, settings.mumPetName), prepareContentForSending());
         // Report email send
         analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
       } else {
@@ -399,8 +417,10 @@
     }
     // Replace mother pet names
     function replacePetNames(textList, replacement) {
-      for(var i=0; i<textList.length; i++) {
-        textList[i].text.Content = mumPetName.replace(textList[i].text.Content, replacement); 
+      if(textList) {
+        for(var i=0; i<textList.length; i++) {
+          textList[i].text.Content = mumPetName.replace(textList[i].text.Content, replacement); 
+        }
       }
     }
   });

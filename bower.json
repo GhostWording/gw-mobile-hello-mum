@@ -4,7 +4,7 @@
   "dependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0-beta.13-nightly-857",
     "ngCordova": "~0.1.6-alpha",
-    "angular-translate": "~2.0.1",
+    "angular-translate": "~2.5.2",
     "angular-cookies": "~1.2.9",
     "gw-common": "git@github.com:GhostWording/gw-common.git#52566963e0e2a605271c2e5c4e140f167dc01ad3",
     "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#0f80d49acb0906fbce6c72bfa457400a4aa2fb73",

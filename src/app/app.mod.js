@@ -4,6 +4,7 @@
 
   angular.module('app', [
     'ionic',
+    'pascalprecht.translate',
     'mobile/notification',
     'mobile/analytics',
     'app/config',
