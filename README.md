@@ -41,7 +41,7 @@ Adding platforms
 ```sh
 ionic platform add ios
 ```
-and / or
+**and / or**
 
 ```sh
 ionic platform add android
