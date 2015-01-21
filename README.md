@@ -35,6 +35,18 @@ npm install
 bower install
 ```
 
+Adding platforms
+----------------
+
+```sh
+ionic platform add ios
+```
+and / or
+
+```sh
+ionic platform add android
+```
+
 Run in browser
 --------------
 
