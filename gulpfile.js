@@ -129,6 +129,11 @@ gulp.task('process:messageimages', function() {
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
+gulp.task('process:localisation', function() {
+  gulp.src('src/res/localisation/**/*.json')
+    .pipe(gulp.dest('www/localisation'));
+});
+
 gulp.task('process:styles', function() {
   // TODO: this is not ideal.. but autoprefixer is throwing out loads of annoying warnings about 3rd party css
   console.warn = null;
@@ -221,7 +226,14 @@ gulp.task('process:icons:android', function(done) {
 });
 
 gulp.task('build', function(done) {
-  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images', 'process:messageimages'], 'process:index', done);
+  runSequence('clean', [
+    'process:javascript', 
+    'process:styles', 
+    'process:fonts', 
+    'process:images', 
+    'process:messageimages',
+    'process:localisation'
+  ], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {
