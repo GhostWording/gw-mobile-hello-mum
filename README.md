@@ -19,10 +19,10 @@ Prerequisites
 #### ionic
 ```npm install -g ionic```
 
-#### android sdk (standalone)
+#### android SDK (standalone)
 [developer.android.com](https://developer.android.com/sdk/index.html?hl=i#download)
 
-#### xcode (building for ios - osx only)
+#### xCode (building for ios - osx only)
 [developer.apple.com](https://developer.apple.com/xcode/downloads/)
 
 Install
@@ -123,6 +123,8 @@ Publishing
 
 **android**
 
+* Make sure to bump the version in config.xml
+
 ```sh
 gulp build:android
 cordova build android --release
@@ -130,3 +132,27 @@ cordova build android --release
 <enter keystore password>
 
 After which a signed apk can be found in platforms/android/ant-build/<app>-release.apk
+
+**ios**
+
+* Make sure to bump the version in config.xml
+* Make sure the ghostwording distribution certificate is on your keychain
+
+```sh
+git clone git@github.com:GhostWording/gw-mobile-hello-mum.git
+cd gw-mobile-hello-mum
+npm install
+bower install
+ionic platform add ios
+gulp build:ios
+cd platforms/ios
+open HelloMum.xcodeproj
+```
+
+And in Xcode..
+
+* Unplug any ios device
+* Make sure "HelloMum" > "iOS device" is selected on the left of the top grey bar
+* Product / Archive (from menu)
+* Click estimate size and see if it seems about right to make sure its built properly.
+* Hit Submit
