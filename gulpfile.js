@@ -34,6 +34,7 @@ var getJSGlobs = function() {
   return [
     'src/lib/ionic/js/ionic.bundle' + (debug?'':'.min') + '.js',
     'src/lib/angular-translate/angular-translate' + (debug?'':'.min') + '.js',
+    'src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files' + (debug?'':'.min') + '.js',
     'src/lib/angular-cookies/angular-cookies' + (debug?'':'.min') + '.js',
     'src/lib/ngCordova/dist/ng-cordova' + (debug?'':'.min') + '.js',
     'src/lib/angular-dropdowns/dist/angular-dropdowns' + (debug?'':'.min') + '.js',
