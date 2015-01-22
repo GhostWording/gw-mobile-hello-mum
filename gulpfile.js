@@ -68,6 +68,10 @@ var fontGlobs = [
   'src/app/fonts/**/notoserif-bolditalic.woff'
 ];
 
+var localeGlobs = [
+  'src/res/locale/**/*.json'
+];
+
 var partialGlobs = [
   'src/**/lib/gw-mobile-common/**/*.part.html',
   'src/**/app/**/*.part.html'
@@ -130,9 +134,9 @@ gulp.task('process:messageimages', function() {
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
-gulp.task('process:localisation', function() {
-  gulp.src('src/res/localisation/**/*.json')
-    .pipe(gulp.dest('www/localisation'));
+gulp.task('process:locale', function() {
+  gulp.src(localeGlobs)
+    .pipe(gulp.dest('www/locale'));
 });
 
 gulp.task('process:styles', function() {
@@ -233,7 +237,7 @@ gulp.task('build', function(done) {
     'process:fonts', 
     'process:images', 
     'process:messageimages',
-    'process:localisation'
+    'process:locale'
   ], 'process:index', done);
 });
 
@@ -289,6 +293,9 @@ gulp.task('watch', function(done) {
     });
     gulp.watch(imageGlobs, function() {
       runSequence('process:images');
+    });
+    gulp.watch(localeGlobs, function() {
+      runSequence('process:locale');
     });
     gulp.watch(fontGlobs, function() {
       runSequence('process:fonts');
