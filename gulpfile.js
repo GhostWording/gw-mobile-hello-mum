@@ -25,6 +25,7 @@ var spawn = require('child_process').spawn;
 var async = require('async');
 var glob = require('glob');
 var del = require('del');
+var fs = require('fs');
 
 var debug = gutil.env.debug;
 
@@ -169,7 +170,12 @@ gulp.task('process:fonts', function() {
 });
 
 gulp.task('process:platform:ios', function(done) {
-  runSequence('process:icons:ios', done);
+  if(fs.existsSync('platforms/ios')) {
+    runSequence('process:icons:ios', done);
+  } else {
+    console.log("\nIOS PLATFORM NOT ADDED ('ionic platform add ios')\n");
+    process.exit(1);
+  }
 });
 
 gulp.task('process:icons:ios', function(done) {
@@ -206,7 +212,12 @@ gulp.task('process:icons:ios', function(done) {
 });
 
 gulp.task('process:platform:android', function(done) {
-  runSequence('process:icons:android', done);
+  if(fs.existsSync('platforms/android')) {
+    runSequence('process:icons:android', done);
+  } else {
+    console.log("\nANDROID PLATFORM NOT ADDED ('ionic platform add android')\n");
+    process.exit(1);
+  }
 });
 
 gulp.task('process:icons:android', function(done) {
