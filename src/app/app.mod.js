@@ -13,6 +13,7 @@
     'app/home',
     'app/textselect',
     'app/mumpetname',
+    'app/translation',
     'app/debug'
   ]);
 
