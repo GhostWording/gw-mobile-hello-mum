@@ -34,6 +34,7 @@ var getJSGlobs = function() {
   return [
     'src/lib/ionic/js/ionic.bundle' + (debug?'':'.min') + '.js',
     'src/lib/angular-translate/angular-translate' + (debug?'':'.min') + '.js',
+    'src/lib/angular-translate-loader-static-files/angular-translate-loader-static-files' + (debug?'':'.min') + '.js',
     'src/lib/angular-cookies/angular-cookies' + (debug?'':'.min') + '.js',
     'src/lib/ngCordova/dist/ng-cordova' + (debug?'':'.min') + '.js',
     'src/lib/angular-dropdowns/dist/angular-dropdowns' + (debug?'':'.min') + '.js',
@@ -65,6 +66,10 @@ var fontGlobs = [
   'src/lib/ionic/fonts/**/ionicons.woff',
   'src/app/fonts/**/notoserif-italic.woff',
   'src/app/fonts/**/notoserif-bolditalic.woff'
+];
+
+var localeGlobs = [
+  'src/res/locale/**/*.json'
 ];
 
 var partialGlobs = [
@@ -127,6 +132,11 @@ gulp.task('process:messageimages', function() {
   // Remove eof image so it won't be picked
   messageImagePaths.splice(messageImagePaths.indexOf('app/messageimage/eof.jpg'), 1);
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
+});
+
+gulp.task('process:locale', function() {
+  gulp.src(localeGlobs)
+    .pipe(gulp.dest('www/locale'));
 });
 
 gulp.task('process:styles', function() {
@@ -221,7 +231,14 @@ gulp.task('process:icons:android', function(done) {
 });
 
 gulp.task('build', function(done) {
-  runSequence('clean', ['process:javascript', 'process:styles', 'process:fonts', 'process:images', 'process:messageimages'], 'process:index', done);
+  runSequence('clean', [
+    'process:javascript', 
+    'process:styles', 
+    'process:fonts', 
+    'process:images', 
+    'process:messageimages',
+    'process:locale'
+  ], 'process:index', done);
 });
 
 gulp.task('build:android', function(done) {
@@ -276,6 +293,9 @@ gulp.task('watch', function(done) {
     });
     gulp.watch(imageGlobs, function() {
       runSequence('process:images');
+    });
+    gulp.watch(localeGlobs, function() {
+      runSequence('process:locale');
     });
     gulp.watch(fontGlobs, function() {
       runSequence('process:fonts');
