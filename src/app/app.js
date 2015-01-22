@@ -113,10 +113,11 @@
        });
       $translateProvider.preferredLanguage('en');
     })
-    .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, mumPetName) {
+    .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
       $ionicPlatform.ready(function() {
         // Set up analytics
         analytics.setArea('HelloMum');
+        // TODO: set from gw-mobile-common localise service
         analytics.setLanguage('fr');
         analytics.setRecipientId('Mother');
         // If we are on a device (not browser)
@@ -130,8 +131,8 @@
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
-        // Init localisation
-        $translate.use('de');
+        // Localise!
+        localisation.localise();
         // Hide accessory bar
         if(window.cordova && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

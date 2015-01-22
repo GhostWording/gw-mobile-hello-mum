@@ -7,6 +7,7 @@
     'pascalprecht.translate',
     'mobile/notification',
     'mobile/analytics',
+    'mobile/localisation',
     'app/config',
     'app/settings',
     'app/home',
