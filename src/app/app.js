@@ -29,7 +29,7 @@
         // Set up analytics
         analytics.setArea('HelloMum');
         // TODO: set from gw-mobile-common localise service
-        analytics.setLanguage('fr');
+        //analytics.setLanguage('fr');
         analytics.setRecipientId('Mother');
         // If we are on a device (not browser)
         if($window.device) {
