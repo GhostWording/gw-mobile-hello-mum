@@ -27,6 +27,8 @@ var glob = require('glob');
 var del = require('del');
 var fs = require('fs');
 
+var config = require('./config.json');
+
 var debug = gutil.env.debug;
 
 var appModule = 'app';
@@ -171,15 +173,24 @@ gulp.task('process:fonts', function() {
 
 gulp.task('process:platform:ios', function(done) {
   if(fs.existsSync('platforms/ios')) {
-    runSequence('process:icons:ios', done);
+    runSequence(['process:icons:ios', 'process:appname:ios'], done);
   } else {
     console.log("\nIOS PLATFORM NOT ADDED ('ionic platform add ios')\n");
     process.exit(1);
   }
 });
 
+gulp.task('process:appname:ios', function(done) {
+  async.each(Object.keys(config.regional), function(language, callback) {
+    var regionalName = config.regional[language].appName;
+    var content = 'CFBundleDisplayName="' + regionalName + '";CFBundleName="' + regionalName + '";';
+    gFile('InfoPlist.strings', content, {src: true})
+      .pipe(gulp.dest('platforms/ios/' + language + '.lproj'))
+      .pipe(gCallback(callback));
+  }, done);
+}); 
+
 gulp.task('process:icons:ios', function(done) {
-  // TODO: un-hardcode 'HelloMum'
   var icons = [
     {name: 'icon-40.png', size: 40},
     {name: 'icon-40@2x.png', size: 80},
@@ -206,7 +217,7 @@ gulp.task('process:icons:ios', function(done) {
         }
       }))
       .pipe(rename(icon.name))
-      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/icons'))
+      .pipe(gulp.dest('platforms/ios/app/Resources/icons'))
       .pipe(gCallback(callback));
   }, done);
 });
