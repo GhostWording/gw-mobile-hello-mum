@@ -116,7 +116,7 @@ gulp.task('jshint', function() {
     .pipe(gIf(!debug, jshint.reporter("fail")));
 });
 
-// Inject js files into www/index.html
+// Inject js files into index.html and minify to www/index.html
 gulp.task('process:index', function() {
   return gulp.src('src/index.html')
     .pipe(gIf(!debug, replace('<!-- app:js --><!-- endinject -->','<script src="app.js"></script>')))
