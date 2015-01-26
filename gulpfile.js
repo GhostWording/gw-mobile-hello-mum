@@ -27,12 +27,16 @@ var glob = require('glob');
 var del = require('del');
 var fs = require('fs');
 
+// Build configuration
 var config = require('./config.json');
 
+// --debug build switch
 var debug = gutil.env.debug;
 
+// Name of main angular module
 var appModule = 'app';
 
+// Javascript glob patterns
 var getJSGlobs = function() {
   return [
     'src/lib/ionic/js/ionic.bundle' + (debug?'':'.min') + '.js',
@@ -51,6 +55,7 @@ var getJSGlobs = function() {
   ];
 };
 
+// CSS glob patterns
 var getCSSGlobs = function() {
   return [
     'src/lib/ionic/css/ionic' + (debug?'':'.min') + '.css',
@@ -60,42 +65,50 @@ var getCSSGlobs = function() {
   ];
 };
 
+// Image glob patterns
 var imageGlobs = [
   'src/app/**/*.jpg',
   'src/app/**/*.png'
 ];
 
+// Font glob patterns
 var fontGlobs = [
   'src/lib/ionic/fonts/**/ionicons.woff',
   'src/app/fonts/**/notoserif-italic.woff',
   'src/app/fonts/**/notoserif-bolditalic.woff'
 ];
 
+// Language file glob patterns
 var localeGlobs = [
   'src/res/locale/**/*.json'
 ];
 
+// Partial glob patterns
 var partialGlobs = [
   'src/**/lib/gw-mobile-common/**/*.part.html',
   'src/**/app/**/*.part.html'
 ];
 
+// Javascript lint glob patterns
 var jshintGlobs = [
   'src/lib/gw-common/**/*.js',
   'src/lib/gw-mobile-common/**/*.js',
   'src/app/**/*.js'
 ];
 
+// Delete everything in www (except .gitignore which is keeping www in git)
 gulp.task('clean', function(done) {
   del(['www/**/*','!www/.gitignore'], function() {
     del('platforms/android/out/', done);
   });
 });
 
+// Wrapper for 'iconic serve'
 gulp.task('ionic:serve', function(done) {
   exec('ionic', ['serve'], done);  
 });
 
+// Lint javascsript
 gulp.task('jshint', function() {
   return gulp.src(jshintGlobs)
     .pipe(jshint({debug:debug}))
@@ -103,6 +116,7 @@ gulp.task('jshint', function() {
     .pipe(gIf(!debug, jshint.reporter("fail")));
 });
 
+// Inject js files into www/index.html
 gulp.task('process:index', function() {
   return gulp.src('src/index.html')
     .pipe(gIf(!debug, replace('<!-- app:js --><!-- endinject -->','<script src="app.js"></script>')))
@@ -113,6 +127,7 @@ gulp.task('process:index', function() {
     .pipe(gulp.dest('www'));
 });
 
+// Contatinate and minify all javascript (including html partials) to www/app.js
 gulp.task('process:javascript', ['jshint'], function() {
   // TODO: temporary while we resolve https://github.com/GhostWording/gw-common/issues/2
   var jsStream = gulp.src(getJSGlobs(), {base:'src'})
@@ -130,6 +145,7 @@ gulp.task('process:javascript', ['jshint'], function() {
     .pipe(gulp.dest('www'));
 });
 
+// Generate www/messageimages.json (list of all images that can be sent)
 gulp.task('process:messageimages', function() {
   var messageImagePaths = glob.sync('app/messageimage/**/*.jpg', {cwd:'src'});
   // Remove eof image so it won't be picked
@@ -137,11 +153,13 @@ gulp.task('process:messageimages', function() {
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
+// Copy translation files to www/locale
 gulp.task('process:locale', function() {
   gulp.src(localeGlobs)
     .pipe(gulp.dest('www/locale'));
 });
 
+// Concatinate and minify css files to www
 gulp.task('process:styles', function() {
   // TODO: this is not ideal.. but autoprefixer is throwing out loads of annoying warnings about 3rd party css
   console.warn = null;
@@ -155,11 +173,13 @@ gulp.task('process:styles', function() {
     .pipe(gulp.dest('www'));
 });
 
+// Copy image files to www
 gulp.task('process:images', function() {
   return gulp.src(imageGlobs, {base:'src'})
     .pipe(gulp.dest('www'));
 });
 
+// Copy font files to www/fonts
 gulp.task('process:fonts', function() {
   if(debug) {
     var options = {base:'src'};
@@ -171,6 +191,7 @@ gulp.task('process:fonts', function() {
     .pipe(gulp.dest(dest));
 });
 
+// Process IOS specific stuff
 gulp.task('process:platform:ios', function(done) {
   if(fs.existsSync('platforms/ios')) {
     runSequence(['process:icons:ios', 'process:appname:ios'], done);
@@ -180,16 +201,21 @@ gulp.task('process:platform:ios', function(done) {
   }
 });
 
+// Build InfoPlist.strings file for each language so we can localise the app (bundle display) name
 gulp.task('process:appname:ios', function(done) {
+  // Build InfoPlist.strings file for each language
   async.each(Object.keys(config.regional), function(language, callback) {
     var regionalName = config.regional[language].appName;
     var content = 'CFBundleDisplayName="' + regionalName + '";CFBundleName="' + regionalName + '";';
     gFile('InfoPlist.strings', content, {src: true})
       .pipe(gulp.dest('platforms/ios/' + language + '.lproj'))
       .pipe(gCallback(callback));
-  }, done);
+  }, function() {
+    // Modify the xcode project to reference the InfoPlist.strings files
+  });
 }); 
 
+// Transcode required IOS icon resolutions from master icon
 gulp.task('process:icons:ios', function(done) {
   var icons = [
     {name: 'icon-40.png', size: 40},
@@ -222,6 +248,7 @@ gulp.task('process:icons:ios', function(done) {
   }, done);
 });
 
+// Process Android specific stuff
 gulp.task('process:platform:android', function(done) {
   if(fs.existsSync('platforms/android')) {
     runSequence('process:icons:android', done);
@@ -231,6 +258,7 @@ gulp.task('process:platform:android', function(done) {
   }
 });
 
+// Transcode required Android icon resolutions from master icon
 gulp.task('process:icons:android', function(done) {
   var icons = [
     {dir: 'drawable', size: 96},
@@ -252,6 +280,7 @@ gulp.task('process:icons:android', function(done) {
   }, done);
 });
 
+// Non platform specific build process
 gulp.task('build', function(done) {
   runSequence('clean', [
     'process:javascript', 
@@ -263,42 +292,49 @@ gulp.task('build', function(done) {
   ], 'process:index', done);
 });
 
+// Build for Android
 gulp.task('build:android', function(done) {
   runSequence('build', 'process:platform:android', function() {
     exec('ionic', ['build','android'], done);  
   });
 });
 
+// Build for Android and emulate
 gulp.task('emulate:android', function(done) {
   runSequence('build', 'process:platform:android', function() {
     exec('ionic', ['emulate','android'], done);  
   });
 });
 
+// Build for android and run
 gulp.task('run:android', function(done) {
   runSequence('build', 'process:platform:android', function() {
     exec('ionic', ['run','android'], done);  
   });
 });
 
+// Build for ios
 gulp.task('build:ios', function(done) {
   runSequence('build', 'process:platform:ios', function() {
     exec('ionic', ['build','ios'], done);  
   });
 });
 
+// Build for ios and emulate
 gulp.task('emulate:ios', function(done) {
   runSequence('build', 'process:platform:ios', function() {
     exec('ionic', ['emulate','ios'], done);  
   });
 });
 
+// Build for ios and run
 gulp.task('run:ios', function(done) {
   runSequence('build', 'process:platform:ios', function() {
     exec('ionic', ['run','ios'], done);  
   });
 });
 
+// Watch for file changes and rebuild
 gulp.task('watch', function(done) {
   runSequence('build', function() {
     gulp.watch('src/index.html', function() {
@@ -325,10 +361,14 @@ gulp.task('watch', function(done) {
   });
 });
 
+// Serve app to browser
 gulp.task('serve', ['ionic:serve']);
 
+// Build by default
 gulp.task('default', ['build']);
 
+// Helper function to spawn a sub process
+// TODO: fix on windows
 function exec(command, params, done) {
   var child = spawn(command, params, {cwd: process.cwd()});
   child.stdout.setEncoding('utf8');
