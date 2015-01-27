@@ -212,16 +212,17 @@ gulp.task('process:appname:ios', function(done) {
       .pipe(gCallback(callback));
   }, function() {
     // If we havent yet made a copy of the xcode project file
-    if(!fs.existsSync('platforms/ios/app.xcodeproj/projectorig.pbxproj')) {
-      // Copy it
-      fs.writeFileSync('platforms/ios/app.xcodeproj/projectorig.pbxproj', 
-        fs.readFileSync('platforms/ios/app.xcodeproj/project.pbxproj'));
-    }
+    //if(!fs.existsSync('platforms/ios/app.xcodeproj/projectorig.pbxproj')) {
+    //  // Copy it
+    //  fs.writeFileSync('platforms/ios/app.xcodeproj/projectorig.pbxproj', 
+    //    fs.readFileSync('platforms/ios/app.xcodeproj/project.pbxproj'));
+    //}
     // Modify the xcode project to reference the InfoPlist.strings files
-    gulp.src('platforms/ios/**/app.xcodeproj/projectorig.pbxproj')
-      .pipe(rename('project.pbxproj'))
-      .pipe(gulp.dest('platforms/ios/app.xcodeproj'))
-      .pipe(gCallback(done));
+    //gulp.src('platforms/ios/**/app.xcodeproj/projectorig.pbxproj')
+    //  .pipe(rename('project.pbxproj'))
+    //  .pipe(gulp.dest('platforms/ios/app.xcodeproj'))
+    //  .pipe(gCallback(done));
+    done();
   });
 }); 
 
