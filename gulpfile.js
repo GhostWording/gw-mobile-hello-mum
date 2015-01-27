@@ -211,7 +211,16 @@ gulp.task('process:appname:ios', function(done) {
       .pipe(gulp.dest('platforms/ios/' + language + '.lproj'))
       .pipe(gCallback(callback));
   }, function() {
+    // If we havent yet made a copy of the xcode project file
+    if(!fs.existsSync('platforms/ios/app.xcodeproj/projectorig.pbxproj')) {
+      // Copy it
+      fs.writeFileSync('platforms/ios/app.xcodeproj/projectorig.pbxproj', 
+        fs.readFileSync('platforms/ios/app.xcodeproj/project.pbxproj'));
+    }
     // Modify the xcode project to reference the InfoPlist.strings files
+    //gulp.src('platforms/ios/**/app.xcodeproj/project.pbxproj')
+    //  .pipe(gulp.dest('www'));  
+    done();
   });
 }); 
 
