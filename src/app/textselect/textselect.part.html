@@ -60,8 +60,12 @@
       emailaddress="settings.emailAddress"
       mobilenumber="settings.mobileNumber">
     </gw-mob-contact>
-    <div class="popupButton pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">{{'SEND' | translate}}</div>
-    <div class="popupButton" ng-class="{'pad':!mobileNumberValid()}"ng-click="contactCancelButtonClick()">{{'CANCEL' | translate}}</div>
+    <div class="popupButtonHit pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">
+      <div class="popupButton"><p>{{'SEND' | translate}}</p></div>
+    </div>
+    <div class="popupButtonHit" ng-class="{'pad':!mobileNumberValid()}" ng-click="contactCancelButtonClick()">
+      <div class="popupButton">{{'CANCEL' | translate}}</div>
+    </div>
   </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="textList && !endOfTextVisible() && imageList && !endOfImageVisible() && bottomBarVisible">
