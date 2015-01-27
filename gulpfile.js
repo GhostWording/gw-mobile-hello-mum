@@ -1,4 +1,4 @@
-var gulp = require('gulp');
+NOTE: var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var insert = require('gulp-insert');
@@ -246,7 +246,7 @@ gulp.task('process:icons:ios', function(done) {
     {name: 'icon@2x.png', size: 114}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/res/icon/icon.png')
+    gulp.src('src/res/icon/ios.png')
       .pipe(jimp({
         resize:{
           width: icon.size,
@@ -279,7 +279,7 @@ gulp.task('process:icons:android', function(done) {
     {dir: 'drawable-xhdpi', size: 96}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/res/icon/icon.png')
+    gulp.src('src/res/icon/android.png')
       .pipe(jimp({
         resize:{
           width: icon.size,
