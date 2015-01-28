@@ -13,6 +13,9 @@
       },
       // Fetch welcome text list
       fetchWelcome: function() {
+        // Set user gender
+        if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
+        if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
         return helloMumTextsSvc.getWelcomeTextList('HelloMum', _language).then(function(textList) {
           _welcomeTextList = textList;
           return textList;
@@ -31,15 +34,14 @@
       },
       // Fetch text list
       fetch: function() {
-        // TODO : if we know the user gender, we should set it before calling filtering functions (or use a watch to refilter)
-        //helloMumSvc.setUserGender('H'); // you would do that if you learn that recipient gender is Male
+        // Set user gender
+        if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
+        if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
         // TODO : add mechanism to check for cache staleness somewhere in the app
         _weightedIntentions = getWeightedIntentions();
-
         // Get text list promises for the intentions (from cache if previously queried)
         currentLanguage.setLanguageCode(_language, true); // Should be set when app initialize, or use 'en-EN'
         var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions,currentLanguage.currentCulture()); // 'en-EN' can be used as hard coded culture
-
         // When all texts have been fetched
         return $q.all(textListPromises).then(function (resolvedTextLists) {
           _textLists = resolvedTextLists;  
