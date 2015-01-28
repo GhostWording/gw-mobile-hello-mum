@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, settings, texts, analytics) {
+  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, settings, texts, localisation, analytics) {
     $timeout(function() {
       // Report home page init
       analytics.reportEvent('Init', 'Page', 'Home', 'Init');        
@@ -10,6 +10,8 @@
       $ionicViewService.nextViewOptions({
         disableBack: true
       });
+      // Set text language
+      texts.setLanguage(localisation.getLanguage().split('-')[0]);
       // Fetch welcome texts
       texts.fetchWelcome().then(function() {
         // If we dont know the users gender

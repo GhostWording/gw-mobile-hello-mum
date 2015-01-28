@@ -6,10 +6,14 @@
     var _weightedIntentions;
     var _textLists;
     var _welcomeTextList;
+    var _language;
     var texts = {
+      setLanguage: function(language) {
+        _language = language;
+      },
       // Fetch welcome text list
       fetchWelcome: function() {
-        return helloMumTextsSvc.getWelcomeTextList('HelloMum', 'en-EN').then(function(textList) {
+        return helloMumTextsSvc.getWelcomeTextList('HelloMum', _language).then(function(textList) {
           _welcomeTextList = textList;
           return textList;
         }); 
@@ -33,7 +37,8 @@
         _weightedIntentions = getWeightedIntentions();
 
         // Get text list promises for the intentions (from cache if previously queried)
-        currentLanguage.setLanguageCode('en',true); // Should be set when app initialize, or use 'en-EN'
+        alert(_language);
+        currentLanguage.setLanguageCode(_language, true); // Should be set when app initialize, or use 'en-EN'
         var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions,currentLanguage.currentCulture()); // 'en-EN' can be used as hard coded culture
 
         // When all texts have been fetched
