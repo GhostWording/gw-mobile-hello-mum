@@ -37,7 +37,6 @@
         _weightedIntentions = getWeightedIntentions();
 
         // Get text list promises for the intentions (from cache if previously queried)
-        alert(_language);
         currentLanguage.setLanguageCode(_language, true); // Should be set when app initialize, or use 'en-EN'
         var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions,currentLanguage.currentCulture()); // 'en-EN' can be used as hard coded culture
 
