@@ -57,8 +57,11 @@
   border-top-width: 2px;
   border-top-color: #339ee6; 
 }
+.settings .group {
+  margin-top: 10px;
+}
 /* select */
-.wrap-dd-select {
+.settings .wrap-dd-select {
   margin: 0px;
   width: 100%;
   font-weight: normal;
@@ -70,6 +73,9 @@
   border-radius: 3px;
   box-shadow: none;
   margin-top: 6px;
+}
+.settings .wrap-dd-select .dropdown {
+  z-index: 10;
 }
 /* toggle */
 .settings .item-toggle {
