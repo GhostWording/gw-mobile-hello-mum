@@ -21,6 +21,7 @@
     "SET_TAB_MUM": "Mum",
     "SET_TAB_REM": "Reminder",
     "SET_TAB_MES": "Messages",
+    "EMAIL_SUBJECT_SELECT": "Email Subject",
     "REFER_MUM": "Refer To Mum As",
     "DAILY_REMINDER": "Daily Reminder",
     "TIME_DAY": "Time Of Day",
