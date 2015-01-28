@@ -3,7 +3,7 @@
     <!-- mum tab -->
     <ion-tab title="{{'SET_TAB_MUM' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
       <!-- mum pet name dropdrown -->
-      <div class="group">
+      <div class="group" ng-if="mumPetNames">
         <label class="inputLabel">{{'REFER_MUM' | translate}}</label>
         <div 
           dropdown-select="mumPetNames" 
