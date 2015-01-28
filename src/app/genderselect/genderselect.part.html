@@ -1,14 +1,14 @@
 <ion-view>
   <ion-content class="genderSelect" scroll="false" ng-controller="GenderSelectCtrl">
-    <div class="title">I am..</div>
+    <div class="title">{{'I_AM' | translate}}</div>
     <div class="genderContainer">
       <div class="genderBox">
         <div class="genderButton icon ion-male" ng-click="maleGenderClick()"></div>
-        <p class="genderLabel">A Man</p>
+        <p class="genderLabel">{{'A_MAN' | translate}}</p>
       </div>
       <div class="genderBox">
         <div class="genderButton icon ion-female" ng-click="femaleGenderClick()"></div>
-        <p class="genderLabel">A Woman</p>
+        <p class="genderLabel">{{'A_WOMAN' | translate}}</p>
       </div>
     </div>
   </ion-content>
