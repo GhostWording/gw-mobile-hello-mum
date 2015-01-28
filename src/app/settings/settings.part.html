@@ -1,6 +1,8 @@
 <div class="settings" ng-controller="SettingsCtrl">
   <ion-tabs class="tabs-light">
+    <!-- mum tab -->
     <ion-tab title="{{'SET_TAB_MUM' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
+      <!-- mum pet name dropdrown -->
       <div class="group">
         <label class="inputLabel">{{'REFER_MUM' | translate}}</label>
         <div 
@@ -8,13 +10,17 @@
           dropdown-model="mumPetName"
           dropdown-item-label="text">
         </div>
-        <!---
-        <div class="motherNameSelect item item-input item-select">
-          <label> </label>
-          <select ng-options="mumPetName for mumPetName in mumPetNames" ng-model="settings.mumPetName"></select>
-        </div>
-        -->
       </div>
+      <!-- email subject dropdown -->
+      <div class="group">
+        <label class="inputLabel">{{'EMAIL_SUBJECT_SELECT' | translate}}</label>
+        <div 
+          dropdown-select="emailSubjects" 
+          dropdown-model="emailSubject"
+          dropdown-item-label="text">
+        </div>
+      </div>
+      <!-- mum contact select -->
       <gw-mob-contact
         emailaddresslabel="{{'MUM_EMAIL' | translate}}"
         mobilenumberlabel="{{'MUM_MOB' | translate}}"
@@ -23,13 +29,16 @@
         mobilenumber="settings.mobileNumber">
       </gw-mob-contact>
     </ion-tab>
+    <!-- reminder tab -->
     <ion-tab title="{{'SET_TAB_REM' | translate}}" icon-on="ion-clock" icon-off="ion-clock">
+      <!-- reminder toggle -->
       <div class="radioGroup">
         <div class="reminderLabel">{{'DAILY_REMINDER' | translate}}</div>
         <div>
           <ion-toggle ng-model="settings.notification" ng-change="notificationChange()" toggle-class="toggle-calm"></ion-toggle>
         </div>
       </div>
+      <!-- reminder time of day picker -->
       <div class="radioGroup" ng-show="settings.notification">
         <div class="reminderLabel">{{'TIME_DAY' | translate}}</div>
         <div class="timePickerContainer">
@@ -38,9 +47,12 @@
         </div>
       </div>
     </ion-tab>
+    <!-- messages tab -->
     <ion-tab title="{{'SET_TAB_MES' | translate}}" icon-on="ion-chatbox" icon-off="ion-chatbox">
       <div>
+        <!-- info label -->
         <div class="messageText">{{'MES_PREF' | translate}}</div>
+        <!-- intention radios -->
         <div class="radioGroup" ng-repeat="intention in intentions">
           <div class="radioGroupLabel">{{intention.trans | translate}}</div>
           <div class="radioGroupButtons">
@@ -79,6 +91,7 @@
     </ion-tab>
     -->
   </ion-tabs>
+  <!-- done button -->
   <div class="doneButtonHit" style="top:{{deviceHeight-60}}px" ng-click="close()">
     <div class="doneButton">{{'DONE' | translate}}</div>
   </div>
