@@ -5,7 +5,7 @@
   angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Report text select page init
-    analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');        
+    analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -27,10 +27,6 @@
     // Translate eof text
     $translate('EOF_TEXT').then(function (eofText) {
       $scope.eofText = eofText;
-    });
-    // Translate email subject
-    $translate('EMAIL_SUBJECT').then(function (emailSubject) {
-      $scope.emailSubject = emailSubject;
     });
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
@@ -287,12 +283,15 @@
       $scope.smsImagePopupVisible = false;
       // If we have a valid email address 
       if($scope.emailAddressValid()) {
-        // Send the Email
-        sendEmail.setEmailAddress(settings.emailAddress);
-        sendEmail.setAttachmentPath($scope.currentImage);
-        sendEmail.send(mumPetName.replace($scope.emailSubject, settings.mumPetName), prepareContentForSending());
-        // Report email send
-        analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
+        // Get the email subject
+        $translate('EMAIL_SUBJECT_' + $scope.settings.emailSubjectIndex).then(function(emailSubject) {
+          // Send the Email
+          sendEmail.setEmailAddress(settings.emailAddress);
+          sendEmail.setAttachmentPath($scope.currentImage);
+          sendEmail.send(mumPetName.replace(emailSubject, settings.mumPetName), prepareContentForSending());
+          // Report email send
+          analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
+        });
       } else {
         // Show the contact popup
         $scope.emailContactPopupVisible = true;

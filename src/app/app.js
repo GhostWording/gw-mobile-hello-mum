@@ -59,6 +59,7 @@
         if(settings.notificationHour === undefined) settings.notificationHour = config.defaultNotificationHour;
         if(settings.notificationminute === undefined) settings.notificationMinute = config.defaultNotificationMinute;
         if(settings.mumPetName === undefined) settings.mumPetName = 'Mum';
+        if(settings.emailSubjectIndex === undefined) settings.emailSubjectIndex = 0;
         settings.save();
         console.log(settings);
         // Get device width and height
