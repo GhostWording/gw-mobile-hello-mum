@@ -16,18 +16,43 @@
     $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
-    // Flash swipe arrows
-    $scope.swipeArrowsVisible = false;
-    var swipeArrowFlashCount = 0;
-    var swipeArrowInterval = $interval(function() {
-      $scope.swipeArrowsVisible = !$scope.swipeArrowsVisible;
-      swipeArrowFlashCount++;
-      if(swipeArrowFlashCount > 19) $interval.cancel(swipeArrowInterval);
-    }, 200);
     // Translate eof text
     $translate('EOF_TEXT').then(function (eofText) {
       $scope.eofText = eofText;
     });
+    $timeout(function() {
+      // Pop up gender select if we don't know the users gender
+      if(!settings.userGender) {
+        $scope.genderSelectPopupVisible = true;
+      } else {
+        // Just flash the arrows
+        flashSwipeArrows();
+      }
+    }, 1000);
+    // Male gender selected
+    $scope.maleGenderSelected = function() {
+      settings.userGender = 'Male';
+      settings.save();
+      $scope.genderSelectPopupVisible = false;
+      flashSwipeArrows();
+    };
+    // Female  gender selected
+    $scope.femaleGenderSelected = function() {
+      settings.userGender = 'Female';
+      settings.save();
+      $scope.genderSelectPopupVisible = false;
+      flashSwipeArrows();
+    };
+    // Flash swipe arrows
+    function flashSwipeArrows() {
+      $scope.swipeArrowsVisible = false;
+      var swipeArrowFlashCount = 0;
+      var swipeArrowInterval = $interval(function() {
+        $scope.swipeArrowsVisible = !$scope.swipeArrowsVisible;
+        swipeArrowFlashCount++;
+        if(swipeArrowFlashCount > 19) $interval.cancel(swipeArrowInterval);
+      }, 200);
+    }
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
       var image;

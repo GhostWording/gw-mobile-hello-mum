@@ -9,6 +9,7 @@
     'mobile/slide/slideswipe',
     'mobile/slide/imagetextslide',
     'mobile/dotindicator',
+    'mobile/genderselect',
     'mobile/send',
     'mobile/settings',
     'mobile/popup',

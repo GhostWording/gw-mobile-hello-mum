@@ -1,4 +1,14 @@
 <ion-view class="textSelect" ng-controller="TextSelectCtrl">
+  <!-- gender select popup -->
+  <gw-mob-popup class="genderSelectPopup" ng-if="genderSelectPopupVisible">
+    <gw-mob-genderselect
+      titletext="{{'I_AM' | translate}}"
+      maletext="{{'A_MAN' | translate}}"
+      femaletext="{{'A_WOMAN' | translate}}"
+      maleselected="maleGenderSelected()"
+      femaleselected="femaleGenderSelected()">
+    </gw-mob-genderselect>
+  </gw-mob-popup>
   <!-- send popup -->
   <gw-mob-popup class="sendPopup" ng-if="sendPopupVisible">
     <gw-mob-send
