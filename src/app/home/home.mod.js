@@ -7,7 +7,6 @@
     'mobile/localisation',
     'app/config',
     'app/settings',
-    'app/genderselect',
     'app/texts'
   ]);
 
