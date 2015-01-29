@@ -15,10 +15,14 @@
       <div class="group">
         <label class="inputLabel">{{'EMAIL_SUBJECT_SELECT' | translate}}</label>
         <div 
+          ng-click="dropdownClick()"
           dropdown-select="emailSubjects" 
           dropdown-model="emailSubject"
           dropdown-item-label="text">
         </div>
+      </div>
+      <!-- hack to fix ios keyboard issue -->
+      <div class="inputBlocker" ng-if="inputBlockerActive">
       </div>
       <!-- mum contact select -->
       <gw-mob-contact
