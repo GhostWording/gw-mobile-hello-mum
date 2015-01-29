@@ -6,6 +6,7 @@
       <div class="group" ng-if="mumPetNames">
         <label class="inputLabel">{{'REFER_MUM' | translate}}</label>
         <div 
+          ng-click="dropdownClick()"
           dropdown-select="mumPetNames" 
           dropdown-model="mumPetName"
           dropdown-item-label="text">
