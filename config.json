@@ -4,7 +4,10 @@
       "appName": "Hello Mum"
     },
     "fr": {
-      "appName": "Comment Vas Tu"
+      "appName": "Comment Va"
+    },
+    "es": {
+      "appName": "Hola Mamá"
     }
   }
 }
