@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home', [
+  angular.module('app/splash', [
     'ionic',
     'mobile/localisation',
     'app/config',
