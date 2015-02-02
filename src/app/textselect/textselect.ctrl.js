@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');
@@ -359,7 +359,8 @@
     // Load and select texts
     function loadTexts() {
       // If welcome texts have been shown twice
-      if(settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes) {
+      // NOTE: don't show welcome texts in spanish version
+      if(localisation.getLanguage().indexOf('es') !== -1 || (settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
         // Trigger a fetch of all texts
         texts.fetch().then(function() {
           // Choose (n) texts from all texts

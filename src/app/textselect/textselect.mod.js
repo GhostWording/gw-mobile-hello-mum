@@ -12,6 +12,7 @@
     'mobile/genderselect',
     'mobile/send',
     'mobile/settings',
+    'mobile/localisation',
     'mobile/popup',
     'mobile/contact',
     'app/config',
