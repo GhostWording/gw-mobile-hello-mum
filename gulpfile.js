@@ -77,11 +77,6 @@ var fontGlobs = [
   'src/app/fonts/**/notoserif-bolditalic.woff'
 ];
 
-// Language file glob patterns
-var localeGlobs = [
-  'src/res/locale/**/*.json'
-];
-
 // Partial glob patterns
 var partialGlobs = [
   'src/**/lib/gw-mobile-common/**/*.part.html',
@@ -150,12 +145,6 @@ gulp.task('process:messageimages', function() {
   // Remove eof image so it won't be picked
   messageImagePaths.splice(messageImagePaths.indexOf('app/messageimage/eof.jpg'), 1);
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
-});
-
-// Copy translation files to www/locale
-gulp.task('process:locale', function() {
-  gulp.src(localeGlobs)
-    .pipe(gulp.dest('www/locale'));
 });
 
 // Concatinate and minify css files to www
@@ -298,8 +287,7 @@ gulp.task('build', function(done) {
     'process:styles', 
     'process:fonts', 
     'process:images', 
-    'process:messageimages',
-    'process:locale'
+    'process:messageimages'
   ], 'process:index', done);
 });
 
@@ -362,9 +350,6 @@ gulp.task('watch', function(done) {
     });
     gulp.watch(imageGlobs, function() {
       runSequence('process:images');
-    });
-    gulp.watch(localeGlobs, function() {
-      runSequence('process:locale');
     });
     gulp.watch(fontGlobs, function() {
       runSequence('process:fonts');
