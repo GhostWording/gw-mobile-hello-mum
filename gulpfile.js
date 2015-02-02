@@ -253,7 +253,7 @@ gulp.task('process:icons:ios', function(done) {
         }
       }))
       .pipe(rename(icon.name))
-      .pipe(gulp.dest('platforms/ios/app/Resources/icons'))
+      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/icons'))
       .pipe(gCallback(callback));
   }, done);
 });
@@ -285,6 +285,7 @@ gulp.task('process:icons:android', function(done) {
           height: icon.size
         }
       }))
+      .pipe(rename('icon.png'))
       .pipe(gulp.dest('platforms/android/res/' + icon.dir))
       .pipe(gCallback(callback));
   }, done);
