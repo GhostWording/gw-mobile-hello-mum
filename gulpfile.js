@@ -234,7 +234,7 @@ gulp.task('process:icons:ios', function(done) {
     {name: 'icon@2x.png', size: 114}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/res/icon/ios.png')
+    gulp.src('src/app/icon/ios.png')
       .pipe(jimp({
         resize:{
           width: icon.size,
@@ -267,7 +267,7 @@ gulp.task('process:icons:android', function(done) {
     {dir: 'drawable-xhdpi', size: 96}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/res/icon/android.png')
+    gulp.src('src/app/icon/android.png')
       .pipe(jimp({
         resize:{
           width: icon.size,
