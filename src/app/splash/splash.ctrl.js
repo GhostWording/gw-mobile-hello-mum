@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $location, $ionicViewService, $timeout, texts, localisation, analytics) {
+  angular.module('app/splash').controller('SplashCtrl', function($scope, $location, $ionicViewService, $timeout, texts, localisation, analytics) {
     $timeout(function() {
-      // Report home page init
-      analytics.reportEvent('Init', 'Page', 'Home', 'Init');        
+      // Report splash page init
+      analytics.reportEvent('Init', 'Page', 'Splash', 'Init');        
       // Prevent user from returning to this screen
       $ionicViewService.nextViewOptions({
         disableBack: true
@@ -20,7 +20,7 @@
         // TODO: improve this
         alert('no internet connectivity');
       });
-    }, 500); 
+    }, 1500); 
   });
 
 }());

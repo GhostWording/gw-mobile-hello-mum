@@ -7,9 +7,9 @@
       $ionicConfigProvider.platform.android.tabs.position("bottom");
       $urlRouterProvider.otherwise('/');
       $stateProvider
-        .state('home', {
+        .state('splash', {
           url: '/',
-          templateUrl: 'app/home/home.part.html'
+          templateUrl: 'app/splash/splash.part.html'
         })
         .state('genderselect', {
           url: '/genderselect',

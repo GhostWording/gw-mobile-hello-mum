@@ -1,0 +1,27 @@
+.splash {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed fixed; 
+}
+.splash .titleText {
+  position: absolute;
+  top: 150px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-size: 8vw; 
+}
+.splash .copyText {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-size: 4vw; 
+}

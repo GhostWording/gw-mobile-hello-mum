@@ -182,7 +182,7 @@ gulp.task('process:fonts', function() {
 // Process IOS specific stuff
 gulp.task('process:platform:ios', function(done) {
   if(fs.existsSync('platforms/ios')) {
-    runSequence(['process:icons:ios', 'process:appname:ios'], done);
+    runSequence(['process:icons:ios', 'process:appname:ios', 'process:splash:ios'], done);
   } else {
     console.log("\nIOS PLATFORM NOT ADDED ('ionic platform add ios')\n");
     process.exit(1);
@@ -242,7 +242,45 @@ gulp.task('process:icons:ios', function(done) {
         }
       }))
       .pipe(rename(icon.name))
+      // TODO: un-hardcode "HelloMum"
       .pipe(gulp.dest('platforms/ios/HelloMum/Resources/icons'))
+      .pipe(gCallback(callback));
+  }, done);
+});
+
+// Transcode required IOS splash screens from master splash screen
+gulp.task('process:splash:ios', function(done) {
+  // TODO: un-hardcode masterWidth and masterHeight
+  var masterWidth = 812;
+  var masterHeight = 811;
+  var screens = [
+    {name: 'Default-568h@2x~iphone.png', width: 640, height: 1136},
+    {name: 'Default-667h.png', width: 750, height: 1334},
+    {name: 'Default-736h.png', width: 1242, height: 2208},
+    {name: 'Default-Landscape-736h.png', width: 2208, height: 1242},
+    {name: 'Default@2x~iphone.png', width: 640, height: 960},
+    {name: 'Default~iphone.png', width: 320, height: 480}
+  ];
+  async.eachSeries(screens, function(screen, callback) {
+    var scale = Math.max(screen.width / masterWidth, screen.height / masterHeight);
+    var targetWidth = masterWidth * scale;
+    var targetHeight = masterHeight * scale;
+    gulp.src('src/app/splash/splash.png')
+      .pipe(jimp({
+        resize:{
+          width: targetWidth,
+          height: targetHeight
+        },
+        crop:{
+          x: (targetWidth - screen.width) / 2,
+          y: (targetHeight - screen.height) / 2,
+          width: screen.width,
+          height: screen.height
+        }
+      }))
+      .pipe(rename(screen.name))
+      // TODO: un-hardcode "HelloMum"
+      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/splash'))
       .pipe(gCallback(callback));
   }, done);
 });
