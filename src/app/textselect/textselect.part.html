@@ -155,7 +155,7 @@
       </gw-mob-slide>
     </gw-mob-slideswipe>
     <!-- text dot indicator -->
-    <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px">
+    <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px" ng-if="textList">
       <div class="dotIndicatorCenter">
         <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
       </div>

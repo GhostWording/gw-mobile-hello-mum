@@ -36,7 +36,7 @@
       $scope.genderSelectPopupVisible = false;
       flashSwipeArrows();
     };
-    // Female  gender selected
+    // Female gender selected
     $scope.femaleGenderSelected = function() {
       settings.userGender = 'Female';
       settings.save();
@@ -141,6 +141,10 @@
     $scope.$watch('settings.mumPetName', function() {
       replacePetNames($scope.textList, settings.mumPetName);
     });
+    // Reload texts on language change
+    localisation.onLanguageChange(function(language) {
+      loadTexts();
+    });
     // On app return to foreground
     document.addEventListener("resume", function() {
       // If new day
@@ -148,9 +152,6 @@
       var dayOfTheWeek = now.getDay();
       if(dayOfTheWeek !== $scope.dayOfTheWeek) {
         // Reselect texts
-        $scope.textList = null;
-        $scope.currentText = null;
-        $scope.$apply();
         $timeout(function() {
           loadTexts(); 
         });
@@ -365,15 +366,19 @@
     };
     // Load and select texts
     function loadTexts() {
+      $scope.textList = null;
+      $scope.currentText = null;
       // If welcome texts have been shown twice
       // NOTE: don't show welcome texts in spanish version
-      if(localisation.getLanguage().indexOf('es') !== -1 || (settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
+      if(localisation.getLanguage() === 'es' || (settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
         // Trigger a fetch of all texts
         texts.fetch().then(function() {
-          // Choose (n) texts from all texts
-          $scope.textList = texts.choose(config.textsPerDay);
-          // Replace mother pet names with the one in settings
-          replacePetNames($scope.textList, settings.mumPetName);
+          $timeout(function() {
+            // Choose (n) texts from all texts
+            $scope.textList = texts.choose(config.textsPerDay);
+            // Replace mother pet names with the one in settings
+            replacePetNames($scope.textList, settings.mumPetName);
+          });
         }, function() {
           // TODO: improve this
           alert('no internet connectivity');
@@ -381,19 +386,21 @@
       } else {
         // Fetch welcome texts
         texts.fetchWelcome().then(function() {
-          $scope.textList = texts.chooseWelcome(config.textsPerDay);
-          // Replace mother pet names with the one in settings
-          replacePetNames($scope.textList, settings.mumPetName);
-          // Trigger a fetch of all texts
-          texts.fetch();
-          // Flag welcome texts as shown
-          if(settings.welcomeTextsShownCount === undefined) {
-            settings.welcomeTextsShownCount = 1;
-          } else {
-            settings.welcomeTextsShownCount ++;
-          }
-          // Save settings
-          settings.save(); 
+          $timeout(function() {
+            $scope.textList = texts.chooseWelcome(config.textsPerDay);
+            // Replace mother pet names with the one in settings
+            replacePetNames($scope.textList, settings.mumPetName);
+            // Trigger a fetch of all texts
+            texts.fetch();
+            // Flag welcome texts as shown
+            if(settings.welcomeTextsShownCount === undefined) {
+              settings.welcomeTextsShownCount = 1;
+            } else {
+              settings.welcomeTextsShownCount ++;
+            }
+            // Save settings
+            settings.save(); 
+          });
         }, function() {
           // TODO: improve this
           alert('no internet connectivity');
