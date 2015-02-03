@@ -26,7 +26,7 @@
         $scope.genderSelectPopupVisible = true;
       } else {
         // Just flash the arrows
-        flashSwipeArrows();
+        //flashSwipeArrows();
       }
     }, 500);
     // Male gender selected
@@ -34,14 +34,14 @@
       settings.userGender = 'Male';
       settings.save();
       $scope.genderSelectPopupVisible = false;
-      flashSwipeArrows();
+      //flashSwipeArrows();
     };
     // Female gender selected
     $scope.femaleGenderSelected = function() {
       settings.userGender = 'Female';
       settings.save();
       $scope.genderSelectPopupVisible = false;
-      flashSwipeArrows();
+      //flashSwipeArrows();
     };
     // Flash swipe arrows
     function flashSwipeArrows() {
