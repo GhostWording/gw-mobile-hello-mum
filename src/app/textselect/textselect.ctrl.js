@@ -16,6 +16,10 @@
     $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
+    // Get day of the week
+    var now = new Date();
+    $scope.dayOfTheWeek = now.getDay();
+    // Gender select
     $timeout(function() {
       // Pop up gender select if we don't know the users gender
       if(!settings.userGender) {
@@ -24,7 +28,7 @@
         // Just flash the arrows
         flashSwipeArrows();
       }
-    }, 1000);
+    }, 500);
     // Male gender selected
     $scope.maleGenderSelected = function() {
       settings.userGender = 'Male';
@@ -139,13 +143,20 @@
     });
     // On app return to foreground
     document.addEventListener("resume", function() {
-      // Reselect texts
-      $scope.textList = null;
-      $scope.currentText = null;
-      $scope.$apply();
-      $timeout(function() {
-        loadTexts(); 
-      });
+      // If new day
+      var now = new Date();
+      var dayOfTheWeek = now.getDay();
+      if(dayOfTheWeek !== $scope.dayOfTheWeek) {
+        // Reselect texts
+        $scope.textList = null;
+        $scope.currentText = null;
+        $scope.$apply();
+        $timeout(function() {
+          loadTexts(); 
+        });
+        // Update day of the week
+        $scope.dayOfTheWeek = dayOfTheWeek; 
+      }
     }, false);
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
