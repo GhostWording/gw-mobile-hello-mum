@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName) {
+  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, texts) {
     // Report settings page init
     analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height
@@ -26,6 +26,13 @@
     // Initialise dropdowns
     initMumPetNameDropdown();
     initEmailSubjectDropdown();
+    initLanguageDropdown();
+    // Re-Initialise dropdowns on language change
+    localisation.onLanguageChange(function() {
+      initMumPetNameDropdown();
+      initEmailSubjectDropdown();
+      initLanguageDropdown();
+    });
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
       if($scope.settings[$scope.intentions[i].name] === undefined) {
@@ -54,6 +61,32 @@
         notification.clear();
       }
     };
+    // Initialise language dropdown list
+    function initLanguageDropdown() {
+      $scope.languages = [
+        {text: $translate.instant('LANGUAGE_ENGLISH'), language:'en'},
+        {text: $translate.instant('LANGUAGE_FRENCH'), language:'fr'},
+        {text: $translate.instant('LANGUAGE_SPANISH'), language:'es'}
+      ];
+      var currentLanguage = localisation.getLanguage();
+      for(var i=0; i<$scope.languages.length; i++) {
+        if($scope.languages[i].language === currentLanguage) {
+          $scope.language = angular.copy($scope.languages[i]);
+          break;
+        }
+      }
+      $scope.languageChanged = function(selected) {
+        if(selected.language === 'auto') {
+          delete $scope.settings.language;
+        } else {
+          $scope.settings.language = selected.language;
+        }
+        // Save settings
+        $scope.settings.save();
+        // Re-localise
+        localisation.localise($scope.settings.language);
+      };
+    }
     // Initialise email subjects dropdown list
     function initEmailSubjectDropdown() {
       $q.all([
@@ -86,8 +119,9 @@
     }
     // Initialise mum pet names dropdown data
     function initMumPetNameDropdown() {
+      delete $scope.mumPetNames;
       // Only do pet name replacement on english version
-      if(localisation.getLanguage().indexOf('en') !== -1) {
+      if(localisation.getLanguage() === 'en') {
         var mumPetNames = mumPetName.getNames();
         $scope.mumPetNames = [];
         for(var p=0; p<mumPetNames.length; p++) {
