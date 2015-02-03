@@ -16,10 +16,6 @@
     $scope.settings = settings;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
-    // Translate eof text
-    $translate('EOF_TEXT').then(function (eofText) {
-      $scope.eofText = eofText;
-    });
     $timeout(function() {
       // Pop up gender select if we don't know the users gender
       if(!settings.userGender) {
@@ -164,7 +160,7 @@
         // If we are are at the end of the sequence
         if(currentTextIndex > $scope.textList.length-2) {
           // Return end of file text
-          text = {text:{Content:$scope.eofText, TextId:-1}}; 
+          text = {text:{Content:$translate.instant('EOF_TEXT'), TextId:-1}}; 
           return text;
         }
         text = $scope.textList[currentTextIndex+1];
@@ -411,10 +407,9 @@
       var text = $scope.currentText.text;
       // Get current text content
       var content = text.Content;
-      // Add intention label
-      if($scope.currentText.intention.label) {
-        content = $scope.currentText.intention.label + ' - ' + content;
-      }
+      // Add of the day labels
+      if($scope.textIsThought(text)) content = $translate.instant('OTD_THOUGHT') + ' - ' + content;
+      if($scope.textIsJoke(text)) content = $translate.instant('OTD_JOKE') + ' - ' + content;
       // Add author if quote
       if($scope.textIsQuote(text)) {
         content += ' - ' + text.Author;
