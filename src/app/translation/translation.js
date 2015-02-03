@@ -3,6 +3,7 @@
   "use strict";
 
   var en = {
+    "APP_TITLE": "Hello Mum",
     "SEND": "Send",
     "CANCEL": "Cancel",
     "DONE": "Done",
@@ -56,6 +57,7 @@
     "NOTIFICATION": "Say hello to mum? (new kittens!)"
   };
   var fr = {
+    "APP_TITLE": "Comment vas tu?",
     "SEND": "Envoyer",
     "CANCEL": "Annuler",
     "DONE": "Fermer",
@@ -109,6 +111,7 @@
     "NOTIFICATION": "Un message pour maman? (nouveaux chatons!)"
   };
   var es = {
+    "APP_TITLE": "¡Hola Mamá!",
     "SEND": "Enviar",
     "CANCEL": "Cancelar",
     "DONE": "Salir",
