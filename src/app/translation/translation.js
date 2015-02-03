@@ -57,7 +57,7 @@
     "NOTIFICATION": "Say hello to mum? (new kittens!)"
   };
   var fr = {
-    "APP_TITLE": "Comment vas tu?",
+    "APP_TITLE": "Comment vas tu ?",
     "SEND": "Envoyer",
     "CANCEL": "Annuler",
     "DONE": "Fermer",
