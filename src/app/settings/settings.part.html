@@ -52,6 +52,20 @@
         </div>
       </div>
     </ion-tab>
+    <!-- language tab -->
+    <ion-tab title="{{'SET_TAB_LANG' | translate}}" icon-on="ion-quote" icon-off="ion-quote">
+      <!-- language dropdrown -->
+      <div class="group">
+        <label class="inputLabel">{{'LANGUAGE' | translate}}</label>
+        <div 
+          ng-click="dropdownClick()"
+          dropdown-select="languages" 
+          dropdown-model="language"
+          dropdown-item-label="text"
+          dropdown-onchange="languageChanged(selected)">
+        </div>
+      </div>
+    </ion-tab>
     <!-- messages tab -->
     <ion-tab title="{{'SET_TAB_MES' | translate}}" icon-on="ion-chatbox" icon-off="ion-chatbox">
       <div>

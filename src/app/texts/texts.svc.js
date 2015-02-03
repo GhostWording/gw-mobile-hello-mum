@@ -2,21 +2,17 @@
 
   "use strict";
 
-  angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings) {
+  angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings, localisation) {
     var _weightedIntentions;
     var _textLists;
     var _welcomeTextList;
-    var _language;
     var texts = {
-      setLanguage: function(language) {
-        _language = language;
-      },
       // Fetch welcome text list
       fetchWelcome: function() {
         // Set user gender
         if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
         if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
-        return helloMumTextsSvc.getWelcomeTextList('HelloMum', _language).then(function(textList) {
+        return helloMumTextsSvc.getWelcomeTextList('HelloMum', localisation.getLanguage()).then(function(textList) {
           _welcomeTextList = textList;
           return textList;
         }); 
@@ -40,8 +36,8 @@
         // TODO : add mechanism to check for cache staleness somewhere in the app
         _weightedIntentions = getWeightedIntentions();
         // Get text list promises for the intentions (from cache if previously queried)
-        currentLanguage.setLanguageCode(_language, true); // Should be set when app initialize, or use 'en-EN'
-        var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions,currentLanguage.currentCulture()); // 'en-EN' can be used as hard coded culture
+        currentLanguage.setLanguageCode(localisation.getLanguage(), true);
+        var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions, currentLanguage.currentCulture());
         // When all texts have been fetched
         return $q.all(textListPromises).then(function (resolvedTextLists) {
           _textLists = resolvedTextLists;  

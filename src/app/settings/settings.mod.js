@@ -9,7 +9,8 @@
     'mobile/notification',
     'mobile/localisation',
     'app/config',
-    'app/mumpetname'
+    'app/mumpetname',
+    'app/texts'
   ]);
 
 }());

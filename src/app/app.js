@@ -26,6 +26,8 @@
     })
     .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
       $ionicPlatform.ready(function() {
+        // Localise!
+        localisation.localise(settings.language);
         // Set up analytics
         analytics.setArea('HelloMum');
         // TODO: set from gw-mobile-common localise service
@@ -42,8 +44,6 @@
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
-        // Localise!
-        localisation.localise();
         // Hide accessory bar
         if(window.cordova && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -61,7 +61,6 @@
         if(settings.mumPetName === undefined) settings.mumPetName = 'Mum';
         if(settings.emailSubjectIndex === undefined) settings.emailSubjectIndex = 0;
         settings.save();
-        console.log(settings);
         // Get device width and height
         // TODO: move into device service
         var windowElement = angular.element($window);
