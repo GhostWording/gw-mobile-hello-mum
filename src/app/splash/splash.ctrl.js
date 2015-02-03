@@ -20,7 +20,7 @@
         // TODO: improve this
         alert('no internet connectivity');
       });
-    }, 1500); 
+    }, 150000); 
   });
 
 }());

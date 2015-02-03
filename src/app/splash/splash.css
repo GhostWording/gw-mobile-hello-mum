@@ -8,10 +8,20 @@
   background-attachment: fixed fixed; 
 }
 .splash .titleText {
+  position: absolute;
+  top: 150px;
   width: 100%;
-  margin-top: 50%;
   color: white;
   text-align: center;
   font-size: 16px;
-  font-size: 10vw; 
+  font-size: 9vw; 
+}
+.splash .copyText {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-size: 3vw; 
 }
