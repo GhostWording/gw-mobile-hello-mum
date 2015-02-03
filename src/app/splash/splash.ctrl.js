@@ -10,8 +10,6 @@
       $ionicViewService.nextViewOptions({
         disableBack: true
       });
-      // Set text language
-      texts.setLanguage(localisation.getLanguage().split('-')[0]);
       // Fetch welcome texts
       texts.fetchWelcome().then(function() {
         // Go to text select
