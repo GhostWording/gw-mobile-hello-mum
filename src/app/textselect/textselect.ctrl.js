@@ -19,40 +19,25 @@
     // Get day of the week
     var now = new Date();
     $scope.dayOfTheWeek = now.getDay();
-    // Gender select
+    // Wait until the screen transition is over
     $timeout(function() {
       // Pop up gender select if we don't know the users gender
       if(!settings.userGender) {
         $scope.genderSelectPopupVisible = true;
       } else {
-        // Just flash the arrows
-        flashSwipeArrows();
+        // Show swipe hints
+        $scope.setSwipeHintState('image');
       }
-    }, 500);
-    // Male gender selected
-    $scope.maleGenderSelected = function() {
-      settings.userGender = 'Male';
+    }, 800);
+    // Gender selected
+    $scope.genderSelected = function(gender) {
+      settings.userGender = gender;
       settings.save();
+      // Hide gender popup
       $scope.genderSelectPopupVisible = false;
-      flashSwipeArrows();
+      // Show swipe hints
+      $scope.setSwipeHintState('image');
     };
-    // Female gender selected
-    $scope.femaleGenderSelected = function() {
-      settings.userGender = 'Female';
-      settings.save();
-      $scope.genderSelectPopupVisible = false;
-      flashSwipeArrows();
-    };
-    // Flash swipe arrows
-    function flashSwipeArrows() {
-      $scope.swipeArrowsVisible = false;
-      var swipeArrowFlashCount = 0;
-      var swipeArrowInterval = $interval(function() {
-        $scope.swipeArrowsVisible = !$scope.swipeArrowsVisible;
-        swipeArrowFlashCount++;
-        if(swipeArrowFlashCount > 19) $interval.cancel(swipeArrowInterval);
-      }, 200);
-    }
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
       var image;
@@ -113,22 +98,6 @@
     $scope.imageSwiped = function() {
       // Report Image Swipe
       analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect', 'Swipe'); 
-    };
-    // Image left swipe arrow clicked
-    $scope.imageLeftSwipeArrowClick = function() {
-      $scope.imageSwipeRight();
-    };
-    // Image right swipe arrow clicked
-    $scope.imageRightSwipeArrowClick = function() {
-      $scope.imageSwipeLeft();
-    };
-    // Text left swipe arrow clicked
-    $scope.textLeftSwipeArrowClick = function() {
-      $scope.textSwipeRight();
-    };
-    // Text right swipe arrow clicked
-    $scope.textRightSwipeArrowClick = function() {
-      $scope.textSwipeLeft();
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {
@@ -364,13 +333,18 @@
       $scope.smsContactPopupVisible = false;
       $scope.emailContactPopupVisible = false;
     };
+    $scope.setSwipeHintState = function(state) {
+      $scope.swipeHintState = state;
+    };
     // Load and select texts
     function loadTexts() {
       $scope.textList = null;
       $scope.currentText = null;
       // If welcome texts have been shown twice
       // NOTE: don't show welcome texts in spanish version
-      if(localisation.getLanguage() === 'es' || (settings.welcomeTextsShownCount !== undefined && settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
+      if(localisation.getLanguage() === 'es' || 
+        (settings.welcomeTextsShownCount !== undefined && 
+        settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
         // Trigger a fetch of all texts
         texts.fetch().then(function() {
           $timeout(function() {

@@ -5,8 +5,8 @@
       titletext="{{'I_AM' | translate}}"
       maletext="{{'A_MAN' | translate}}"
       femaletext="{{'A_WOMAN' | translate}}"
-      maleselected="maleGenderSelected()"
-      femaleselected="femaleGenderSelected()">
+      maleselected="genderSelected('Male')"
+      femaleselected="genderSelected('Female')">
     </gw-mob-genderselect>
   </gw-mob-popup>
   <!-- send popup -->
@@ -94,11 +94,18 @@
     </div>
     <!-- debug button -->
     <div class="debugButton" ng-click="debugButtonClick()"></div>
-    <!-- swipe arrows -->
-    <i class="swipeArrow swipeArrowLeft icon ion-chevron-left" style="top:{{slideImageHeight/2}}px" ng-if="swipeArrowsVisible"></i>
-    <i class="swipeArrow swipeArrowLeft icon ion-chevron-left" style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" ng-if="swipeArrowsVisible"></i>
-    <i class="swipeArrow swipeArrowRight icon ion-chevron-right" style="top:{{slideImageHeight/2}}px" ng-if="swipeArrowsVisible"></i>
-    <i class="swipeArrow swipeArrowRight icon ion-chevron-right" style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" ng-if="swipeArrowsVisible"></i>
+    <!-- image swipe hint -->
+    <gw-mob-swipehint 
+      style="top:{{slideImageHeight/2-25}}px" 
+      complete="setSwipeHintState('text')" 
+      ng-if="swipeHintState==='image'">
+    </gw-mob-swipehint>
+    <!-- text swipe hint -->
+    <gw-mob-swipehint 
+      style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" 
+      complete="setSwipeHintState('done')" 
+      ng-if="swipeHintState==='text'">
+    </gw-mob-swipehint>
     <!-- image slides -->
     <gw-mob-slideswipe
       ng-if="imageList"
@@ -109,6 +116,7 @@
       swiperight="$parent.$parent.imageSwipeRight"
       swipedleft="imageSwiped()"
       swipedright="imageSwiped()"
+      on-tap="setSwipeHintState('image')"
       width="deviceWidth"
       height="slideImageHeight">
       <!-- slide -->
@@ -137,6 +145,7 @@
       swipeRight="$parent.$parent.swipeRight"
       swipedleft="textSwiped()"
       swipedright="textSwiped()"
+      on-tap="setSwipeHintState('text')"
       width="deviceWidth">
       <!-- slide -->
       <gw-mob-slide>
