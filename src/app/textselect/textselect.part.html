@@ -116,6 +116,7 @@
       swiperight="$parent.$parent.imageSwipeRight"
       swipedleft="imageSwiped()"
       swipedright="imageSwiped()"
+      on-tap="setSwipeHintState('image')"
       width="deviceWidth"
       height="slideImageHeight">
       <!-- slide -->
@@ -144,6 +145,7 @@
       swipeRight="$parent.$parent.swipeRight"
       swipedleft="textSwiped()"
       swipedright="textSwiped()"
+      on-tap="setSwipeHintState('text')"
       width="deviceWidth">
       <!-- slide -->
       <gw-mob-slide>
