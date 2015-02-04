@@ -67,7 +67,9 @@ var getCSSGlobs = function() {
 // Image glob patterns
 var imageGlobs = [
   'src/app/**/*.jpg',
-  'src/app/**/*.png'
+  'src/app/**/*.png',
+  'src/lib/gw-mobile-common/**/*.jpg',
+  'src/lib/gw-mobile-common/**/*.png'
 ];
 
 // Font glob patterns
