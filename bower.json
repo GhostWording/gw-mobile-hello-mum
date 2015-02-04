@@ -7,7 +7,7 @@
     "angular-translate": "2.5.2",
     "angular-cookies": "1.2.28",
     "gw-common": "git@github.com:GhostWording/gw-common.git#034a6e2d96b1cda8ed1af699863fc1b44176dbd0",
-    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#4f4ff35bf5c19e66d21ab96e6c2ee8f6144883b6",
+    "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#404d230c8718cb64252424c9c97bf0a7ab75f8d4",
     "angular-dropdowns": "0.4.1"
   },
   "resolutions": {
