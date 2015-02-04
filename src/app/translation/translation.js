@@ -88,7 +88,7 @@
     "LANGUAGE": "Langue",
     "LANGUAGE_ENGLISH": "Anglais",
     "LANGUAGE_FRENCH": "Français",
-    "LANGUAGE_SPANISH": "Espagnol"
+    "LANGUAGE_SPANISH": "Espagnol",
     "EMAIL_SUBJECT_SELECT": "Sujet du mail",
     "EMAIL_SUBJECT_0": "Hello Maman",
     "EMAIL_SUBJECT_1": "Hello",
