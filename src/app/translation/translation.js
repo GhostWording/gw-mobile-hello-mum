@@ -99,7 +99,7 @@
     "REFER_MUM": "Diminutif à utiliser pour maman",
     "DAILY_REMINDER": "Rappel quotidien",
     "TIME_DAY": "Heure du jour",
-    "MES_PREF": "Quels types de messages voulez-vous envoyer ?",
+    "MES_PREF": "Quels messages voulez-vous envoyer ?",
     "MES_PREF_NONE": "aucun",
     "MES_PREF_FEW": "peu",
     "MES_PREF_MANY": "beaucoup",
