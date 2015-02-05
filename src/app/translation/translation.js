@@ -148,7 +148,7 @@
     "LANGUAGE_ENGLISH": "Inglés", 
     "LANGUAGE_FRENCH": "Francés", 
     "LANGUAGE_SPANISH": "Español",
-    "EMAIL_SUBJECT_SELECT": "Asunto Del Correo Electrónico",
+    "EMAIL_SUBJECT_SELECT": "Asunto del correo electrónico",
     "EMAIL_SUBJECT_0": "¡Hola Mamá!",
     "EMAIL_SUBJECT_1": "¡Hola Mami!",
     "EMAIL_SUBJECT_2": "¡Mamita linda!",
