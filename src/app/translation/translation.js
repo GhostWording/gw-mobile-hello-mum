@@ -108,7 +108,7 @@
     "INT_THINK": "Je pense à toi",
     "INT_JOKES": "Histoires drôles",
     "INT_THANK": "Merci",
-    "INT_WORDS": "Quelques mots pour toi",
+    "INT_WORDS": "Quelques mots",
     "INT_LOVE": "Je t'aime",
     "INT_MISS": "Tu me manques",
     "INT_HERE": "Je suis là pour toi",
