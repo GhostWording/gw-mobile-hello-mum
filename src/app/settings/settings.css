@@ -7,9 +7,29 @@
 .settings {
   color: #aaaaaa;
 }
+/* close button */
+.settings .closeButtonHit {
+  position: absolute;
+  right: 0px;
+  z-index: 200;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+.settings .closeButton {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 25px;
+  color: #339ee6;
+  border-radius: 3px;
+  vertical-align: center;
+  text-align: center;
+}
 /* tabs */
 .settings .tabs {
-  top: 10px;
+  top: 60px;
   height: 80px;
   background-color: transparent;
   border: none !important;
@@ -47,7 +67,7 @@
   color: #339ee6;
 }
 .settings .tab-content {
-  top: 85px;
+  top: 140px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
@@ -183,25 +203,4 @@
   color: #339ee6;
   font-size: 16px;
   direction: ltr;
-}
-/* done button */
-.settings .doneButtonHit {
-  z-index: 1000;
-  width: 100%;
-  position: absolute;
-  height: 60px;
-}
-.settings .doneButton {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 3px;
-  background-color: #339ee6;
-  width: 150px;
-  height: 40px;
-  line-height: 40px;
-  color: white;
-  font-size: 1.25em;
-  vertical-align: center;
-  text-align: center;
 }

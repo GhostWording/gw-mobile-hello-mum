@@ -1,4 +1,8 @@
-<div class="settings" ng-controller="SettingsCtrl">
+<div class="settings" ng-controller="SettingsCtrl" style="position:relative">
+  <!-- close button -->
+  <div class="closeButtonHit" ng-click="close()">
+    <div class="closeButton icon ion-close-round"></div>
+  </div>
   <ion-tabs class="tabs-light">
     <!-- mum tab -->
     <ion-tab title="{{'SET_TAB_MUM' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
@@ -52,20 +56,6 @@
         </div>
       </div>
     </ion-tab>
-    <!-- language tab -->
-    <ion-tab title="{{'SET_TAB_LANG' | translate}}" icon-on="ion-quote" icon-off="ion-quote">
-      <!-- language dropdrown -->
-      <div class="group">
-        <label class="inputLabel">{{'LANGUAGE' | translate}}</label>
-        <div 
-          ng-click="dropdownClick()"
-          dropdown-select="languages" 
-          dropdown-model="language"
-          dropdown-item-label="text"
-          dropdown-onchange="languageChanged(selected)">
-        </div>
-      </div>
-    </ion-tab>
     <!-- messages tab -->
     <ion-tab title="{{'SET_TAB_MES' | translate}}" icon-on="ion-chatbox" icon-off="ion-chatbox">
       <div>
@@ -85,6 +75,20 @@
               {{'MES_PREF_MANY' | translate}}
             </ion-radio>
           </div>
+        </div>
+      </div>
+    </ion-tab>
+    <!-- language tab -->
+    <ion-tab title="{{'SET_TAB_LANG' | translate}}" icon-on="ion-quote" icon-off="ion-quote">
+      <!-- language dropdrown -->
+      <div class="radioGroup">
+        <label class="inputLabel">{{'LANGUAGE' | translate}}</label>
+        <div 
+          ng-click="dropdownClick()"
+          dropdown-select="languages" 
+          dropdown-model="language"
+          dropdown-item-label="text"
+          dropdown-onchange="languageChanged(selected)">
         </div>
       </div>
     </ion-tab>
@@ -110,8 +114,4 @@
     </ion-tab>
     -->
   </ion-tabs>
-  <!-- done button -->
-  <div class="doneButtonHit" style="top:{{deviceHeight-60}}px" ng-click="close()">
-    <div class="doneButton">{{'DONE' | translate}}</div>
-  </div>
 </div>
