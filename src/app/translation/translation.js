@@ -62,7 +62,7 @@
     "NOTIFICATION": "Say hello to mum? (new kittens!)"
   };
   var fr = {
-    "APP_TITLE": "Comment vas tu ?",
+    "APP_TITLE": "Comment vas-tu ?",
     "SEND": "Envoyer",
     "CANCEL": "Annuler",
     "DONE": "Fermer",
@@ -143,6 +143,11 @@
     "SET_TAB_MUM": "Mamá",
     "SET_TAB_REM": "Recordatorios",
     "SET_TAB_MES": "Mensajes",
+    "SET_TAB_LANG": "Idioma",
+    "LANGUAGE": "Idioma", 
+    "LANGUAGE_ENGLISH": "Inglés", 
+    "LANGUAGE_FRENCH": "Francés", 
+    "LANGUAGE_SPANISH": "Español",
     "EMAIL_SUBJECT_SELECT": "Asunto Del Correo Electrónico",
     "EMAIL_SUBJECT_0": "¡Hola Mamá!",
     "EMAIL_SUBJECT_1": "¡Hola Mami!",
