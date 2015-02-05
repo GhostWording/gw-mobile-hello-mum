@@ -102,7 +102,7 @@
     "MES_PREF": "Quels messages voulez-vous envoyer ?",
     "MES_PREF_NONE": "aucun",
     "MES_PREF_FEW": "peu",
-    "MES_PREF_MANY": "beaucoup",
+    "MES_PREF_MANY": "plein",
     "SEL_CONT": "Choisir dans les contacts",
     "INT_HOW":"Comment vas-tu ?",
     "INT_THINK": "Je pense à toi",
