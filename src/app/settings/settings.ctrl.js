@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, texts) {
+  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $location, $state, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, texts) {
     // Report settings page init
     analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height
@@ -85,8 +85,20 @@
         $scope.settings.save();
         // Re-localise
         localisation.localise($scope.settings.language);
+        // Record language change
+        $scope.languageChanged = true;
       };
     }
+    $scope.closeButtonClick = function() {
+      // If language has changed, go back to splash screen
+      if($scope.languageChanged) {
+        $location.path('/');
+      }
+      // Close the settings popup
+      $timeout(function() {
+        $scope.close();
+      });
+    }; 
     // Initialise email subjects dropdown list
     function initEmailSubjectDropdown() {
       $q.all([
