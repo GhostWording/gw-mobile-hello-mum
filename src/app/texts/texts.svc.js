@@ -3,6 +3,7 @@
   "use strict";
 
   angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings, localisation) {
+    var _useWelcome;
     var _weightedIntentions;
     var _textLists;
     var _welcomeTextList;
@@ -17,17 +18,6 @@
           return textList;
         }); 
       }, 
-      chooseWelcome: function(n) {
-        var pickedTextList = helloMumTextsSvc.pickWelcomeTexts(_welcomeTextList, n); 
-        var returnTextList = []; 
-        // Having to do this because unlike pickOneTextFromWeightedIntentionArray pickWelcomeTexts does not return intention/text pairs 
-        for(var i=0; i<pickedTextList.length; i++) {
-          var text = pickedTextList[i];
-          text.Content = helperSvc.replaceAngledQuotes(text.Content,"");
-          returnTextList.push({text: pickedTextList[i]}); 
-        }
-        return returnTextList;
-      },
       // Fetch text list
       fetch: function() {
         // Set user gender
@@ -44,19 +34,37 @@
           return _textLists;
         });
       },
+      // Pick from welcome texts
+      useWelcome: function(use) {
+        _useWelcome = use;
+      },
+      // Choose (n) texts
       choose: function(n) {
-        // Associate texts lists with weighted intentions
-        helloMumTextsSvc.attachFilteredTextListsToWeightedIntentions(_weightedIntentions, _textLists);
-        // Pick n texts
-        var selectedTexts = []; 
-        for (var i = 0; i < n;  i++  ) {
-          // Will randomly choose an intention then a text
-          var choice = chooseText(_weightedIntentions);
-          // Texts may look better without quotation marks
-          choice.text.Content = helperSvc.replaceAngledQuotes(choice.text.Content,"");
-          selectedTexts.push(choice);
+        // If welcome text flash
+        if(_useWelcome) {
+          var pickedTextList = helloMumTextsSvc.pickWelcomeTexts(_welcomeTextList, n); 
+          var returnTextList = []; 
+          // Having to do this because unlike pickOneTextFromWeightedIntentionArray pickWelcomeTexts does not return intention/text pairs 
+          for(var wt=0; wt<pickedTextList.length; wt++) {
+            var text = pickedTextList[wt];
+            text.Content = 'welcome';//helperSvc.replaceAngledQuotes(text.Content,"");
+            returnTextList.push({text: pickedTextList[wt]}); 
+          }
+          return returnTextList;
+        } else {
+          // Associate texts lists with weighted intentions
+          helloMumTextsSvc.attachFilteredTextListsToWeightedIntentions(_weightedIntentions, _textLists);
+          // Pick n texts
+          var selectedTexts = []; 
+          for (var t = 0; t < n;  t++  ) {
+            // Will randomly choose an intention then a text
+            var choice = chooseText(_weightedIntentions);
+            // Texts may look better without quotation marks
+            choice.text.Content = helperSvc.replaceAngledQuotes(choice.text.Content,"");
+            selectedTexts.push(choice);
+          }
+          return selectedTexts; 
         }
-        return selectedTexts; 
       },
       getAll: function() {
         var intentions = [];
