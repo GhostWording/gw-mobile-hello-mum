@@ -9,8 +9,6 @@
     $ionicViewService.nextViewOptions({
       disableBack: true
     });
-    // Get year for copyright text
-    $scope.year = (new Date()).getFullYear(); 
     // Wait a bit
     $timeout(function() {
       // Attempt to fetch texts
