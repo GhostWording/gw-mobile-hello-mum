@@ -75,7 +75,7 @@
           break;
         }
       }
-      $scope.languageChanged = function(selected) {
+      $scope.languageSelected = function(selected) {
         if(selected.language === 'auto') {
           delete $scope.settings.language;
         } else {
