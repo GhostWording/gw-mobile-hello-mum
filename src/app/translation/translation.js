@@ -4,6 +4,7 @@
 
   var en = {
     "APP_TITLE": "Hello Mum",
+    "CONNECTIVITY": "No internet connection",
     "SEND": "Send",
     "CANCEL": "Cancel",
     "DONE": "Done",
