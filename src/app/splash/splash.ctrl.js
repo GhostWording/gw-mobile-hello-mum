@@ -17,14 +17,18 @@
       fetchTexts(); 
     }, 1500); 
     // On app return to foreground
-    document.addEventListener("resume", function() {
+    document.addEventListener("resume", appResume, false);
+    $scope.$on('$destroy', function() {
+      document.removeEventListener("resume", appResume);
+    });
+    function appResume() {
       // Hide connectivity message
       $scope.showConnectivityMessage = false;
       // Try fetching welcome texts again
       fetchTexts();
       // Apply since we are not in angular world
       $scope.$apply();
-    }, false);
+    }
     // Fetch texts from server
     function fetchTexts() {
       // If we have shown the welcome texts (n) times
@@ -54,7 +58,7 @@
           // Save settings
           settings.save(); 
           // Trigger a fetch of all texts in the background
-          //texts.fetch();
+          texts.fetch();
           // Pick from welcome texts
           texts.useWelcome(true);
           // Good to go..
