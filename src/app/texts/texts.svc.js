@@ -47,7 +47,7 @@
           // Having to do this because unlike pickOneTextFromWeightedIntentionArray pickWelcomeTexts does not return intention/text pairs 
           for(var wt=0; wt<pickedTextList.length; wt++) {
             var text = pickedTextList[wt];
-            text.Content = 'welcome';//helperSvc.replaceAngledQuotes(text.Content,"");
+            text.Content = helperSvc.replaceAngledQuotes(text.Content,"");
             returnTextList.push({text: pickedTextList[wt]}); 
           }
           return returnTextList;
