@@ -9,12 +9,39 @@
 }
 .splash .titleText {
   position: absolute;
-  top: 150px;
+  top: 20%;
   width: 100%;
   color: white;
   text-align: center;
-  font-size: 16px;
-  font-size: 8vw; 
+  font-size: 9vw; 
+}
+.splash .spinner {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 10vw; 
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+.splash .connectivityText {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 5vw; 
 }
 .splash .copyText {
   position: absolute;
