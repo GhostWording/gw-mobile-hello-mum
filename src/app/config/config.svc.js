@@ -5,6 +5,7 @@
   angular.module('app/config').factory('config', function() {
     return {
       'apiUrl': 'http://api.cvd.io/',
+      'textFetchRetryDelay': 4,
       'imagesPerDay': 8,
       'textsPerDay': 8,
       'showWelcomeTextTimes': 2,
