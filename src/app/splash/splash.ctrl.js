@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/splash').controller('SplashCtrl', function($scope, $location, $ionicViewService, $timeout, texts, localisation, analytics, config, settings) {
+  angular.module('app/splash').controller('SplashCtrl', function($scope, $location, $timeout, $ionicViewService, texts, localisation, analytics, config, settings) {
     // Report splash page init
     analytics.reportEvent('Init', 'Page', 'Splash', 'Init');        
     // Prevent user from returning to this screen
@@ -43,6 +43,8 @@
         }, function() {
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;
+          // Retry
+          $timeout(fetchTexts, config.textFetchRetryDelay);
         });
       } else {
         // Fetch welcome texts
@@ -64,6 +66,8 @@
         }, function() {
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;
+          // Retry
+          $timeout(fetchTexts, config.textFetchRetryDelay);
         });
       }
     }
