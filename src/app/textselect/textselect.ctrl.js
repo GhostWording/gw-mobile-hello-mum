@@ -17,8 +17,7 @@
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
     // Get day of the week
-    var now = new Date();
-    $scope.dayOfTheWeek = now.getDay();
+    $scope.dayOfTheWeek = (new Date()).getDay();
     // Wait until the screen transition is over
     $timeout(function() {
       // Pop up gender select if we don't know the users gender
@@ -111,17 +110,19 @@
       replacePetNames($scope.textList, settings.mumPetName);
     });
     // On app return to foreground
-    document.addEventListener("resume", function() {
+    document.addEventListener("resume", appResume, false);
+    $scope.$on('$destroy', function() {
+      document.removeEventListener("resume", appResume);
+    });
+    function appResume() {
       // If new day
-      var now = new Date();
-      var dayOfTheWeek = now.getDay();
-      if(dayOfTheWeek !== $scope.dayOfTheWeek) {
-        // Pick new texts
-        pickTexts(); 
-        // Update day of the week
-        $scope.dayOfTheWeek = dayOfTheWeek; 
+      if((new Date()).getDay() !== $scope.dayOfTheWeek) {
+        // Go to splash to fetch new texts
+        $location.path('/');
+        // Apply since we are not in angular world
+        $scope.$apply();
       }
-    }, false);
+    }
     // Given a text, get the next one in the sequence
     $scope.getNextText = function(currentText) {
       var text;
