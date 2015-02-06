@@ -116,10 +116,6 @@
         $scope.emailSubject = angular.copy($scope.emailSubjects[$scope.settings.emailSubjectIndex]);
       });
       $scope.$watch('emailSubject', function(emailSubjectObject) {
-        $timeout(function() {
-         // console.log('UN-BLOCKING INPUTS');
-          //$scope.blockInputsActive = false;
-        }, 100);
         for(var i=0; i<$scope.emailSubjects.length; i++) {
           if($scope.emailSubjects[i].text === emailSubjectObject.text) {
             $scope.settings.emailSubjectIndex = i;
