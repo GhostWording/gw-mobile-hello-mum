@@ -64,6 +64,7 @@
   };
   var fr = {
     "APP_TITLE": "Comment vas-tu ?",
+    "CONNECTIVITY": "pas de connexion internet",
     "SEND": "Envoyer",
     "CANCEL": "Annuler",
     "DONE": "Fermer",
@@ -123,6 +124,7 @@
   };
   var es = {
     "APP_TITLE": "¡Hola Mamá!",
+    "CONNECTIVITY": "sin conexión internet",
     "SEND": "Enviar",
     "CANCEL": "Cancelar",
     "DONE": "Salir",
