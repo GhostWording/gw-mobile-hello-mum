@@ -26,8 +26,6 @@
     })
     .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
       $ionicPlatform.ready(function() {
-        // Hide splash
-        navigator.splashscreen.hide();
         // Localise!
         localisation.localise(settings.language);
         // Set up analytics
