@@ -6,11 +6,11 @@
     "ngCordova": "0.1.11-alpha",
     "angular-translate": "2.5.2",
     "angular-cookies": "1.2.28",
-    "gw-common": "git@github.com:GhostWording/gw-common.git#034a6e2d96b1cda8ed1af699863fc1b44176dbd0",
+    "gw-common": "git@github.com:GhostWording/gw-common.git#e5823d8b7eb255ab483ff9c87df0018e2fdc9d04",
     "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#404d230c8718cb64252424c9c97bf0a7ab75f8d4",
     "angular-dropdowns": "0.4.1"
   },
   "resolutions": {
-    "angular": "1.3.11"
+    "angular": "1.3.13"
   }
 }
