@@ -290,7 +290,7 @@ gulp.task('process:splash:ios', function(done) {
 // Process Android specific stuff
 gulp.task('process:platform:android', function(done) {
   if(fs.existsSync('platforms/android')) {
-    runSequence('process:icons:android', done);
+    runSequence(['process:icons:android', 'process:splash:android'], done);
   } else {
     console.log("\nANDROID PLATFORM NOT ADDED ('ionic platform add android')\n");
     process.exit(1);
@@ -316,6 +316,40 @@ gulp.task('process:icons:android', function(done) {
       }))
       .pipe(rename('icon.png'))
       .pipe(gulp.dest('platforms/android/res/' + icon.dir))
+      .pipe(gCallback(callback));
+  }, done);
+});
+
+// Transcode required android splash screens from master splash screen
+gulp.task('process:splash:android', function(done) {
+  // TODO: un-hardcode masterWidth and masterHeight
+  var masterWidth = 812;
+  var masterHeight = 811;
+  var screens = [
+    {dir: 'drawable-port-hdpi', width: 480, height: 800},
+    {dir: 'drawable-port-ldpi', width: 200, height: 320},
+    {dir: 'drawable-port-mdpi', width: 320, height: 480},
+    {dir: 'drawable-port-xhdpi', width: 720, height: 1280}
+  ];
+  async.eachSeries(screens, function(screen, callback) {
+    var scale = Math.max(screen.width / masterWidth, screen.height / masterHeight);
+    var targetWidth = masterWidth * scale;
+    var targetHeight = masterHeight * scale;
+    gulp.src('src/app/splash/splash.png')
+      .pipe(jimp({
+        resize:{
+          width: targetWidth,
+          height: targetHeight
+        },
+        crop:{
+          x: (targetWidth - screen.width) / 2,
+          y: (targetHeight - screen.height) / 2,
+          width: screen.width,
+          height: screen.height
+        }
+      }))
+      .pipe(rename('screen.png'))
+      .pipe(gulp.dest('platforms/android/res/' + screen.dir))
       .pipe(gCallback(callback));
   }, done);
 });
