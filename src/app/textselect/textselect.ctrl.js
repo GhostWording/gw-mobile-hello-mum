@@ -215,6 +215,21 @@
     $scope.sendButtonClick = function() {
       $scope.sendPopupVisible = true;
     };
+    // Is a popup currently visible?
+    $scope.popupVisible = function() {
+      if($scope.smsContactPopupVisible || 
+        $scope.genderSelectPopupVisible || 
+        $scope.sendPopupVisible || 
+        $scope.smsImagePopupVisible || 
+        $scope.sentPopupVisible || 
+        $scope.errorPopupVisible || 
+        $scope.emailContactPopupVisible ||
+        $scope.smsContactPopupVisible) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     // Send cancel button clicked
     $scope.sendCancelButtonClick = function() {
       $scope.sendPopupVisible = false;

@@ -78,7 +78,7 @@
     </div>
   </gw-mob-popup>
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="textList && !endOfTextVisible() && imageList && !endOfImageVisible() && bottomBarVisible">
+  <div class="bottomBar" ng-if="textList && !endOfTextVisible() && imageList && !endOfImageVisible() && bottomBarVisible && !popupVisible()">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
     <div class="sendButtonHit" ng-click="sendButtonClick()">
@@ -89,7 +89,7 @@
   </div>
   <ion-content scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
     <!-- settings button -->
-    <div class="settingsButtonHit" ng-click="settingsButtonClick()">
+    <div class="settingsButtonHit" ng-click="settingsButtonClick()" ng-if="!popupVisible()">
       <div class="settingsButton icon ion-gear-a"></div>
     </div>
     <!-- debug button -->
