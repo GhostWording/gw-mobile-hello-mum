@@ -41,7 +41,7 @@
         [composeViewController setRecipients:recipients];
     }
     
-    [self.viewController presentViewController:composeViewController animated:YES completion:nil];
+    [self.viewController presentViewController:composeViewController animated:NO completion:nil];
 }
 
 #pragma mark - MFMessageComposeViewControllerDelegate Implementation
