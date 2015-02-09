@@ -40,7 +40,7 @@
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;
           // Retry
-          $timeout(fetchTexts, config.textFetchRetryDelay);
+          $timeout(fetchTexts, config.textFetchRetryDelayi * 1000);
         });
       } else {
         // Fetch welcome texts
@@ -63,7 +63,7 @@
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;
           // Retry
-          $timeout(fetchTexts, config.textFetchRetryDelay);
+          $timeout(fetchTexts, config.textFetchRetryDelay * 1000);
         });
       }
     }
