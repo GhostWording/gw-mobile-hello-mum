@@ -18,14 +18,17 @@
     $scope.bottomBarVisible = true;
     // Get day of the week
     $scope.dayOfTheWeek = (new Date()).getDay();
+    // Swipe status
+    $scope.imageWasSwiped = settings.imageWasSwiped;
+    $scope.textWasSwiped = settings.textWasSwiped;
     // Wait until the screen transition is over
     $timeout(function() {
       // Pop up gender select if we don't know the users gender
       if(!settings.userGender) {
         $scope.genderSelectPopupVisible = true;
       } else {
-        // Show swipe hints
-        $scope.setSwipeHintState('image');
+        // Initialise swipe hints
+        initSwipeHints();
       }
     }, 800);
     // Gender selected
@@ -34,8 +37,8 @@
       settings.save();
       // Hide gender popup
       $scope.genderSelectPopupVisible = false;
-      // Show swipe hints
-      $scope.setSwipeHintState('image');
+      // Initialise swipe hints
+      initSwipeHints();
     };
     // Given an image, get the next one in the sequence
     $scope.getNextImage = function(currentImage) {
@@ -89,12 +92,27 @@
     }; 
     // Text slide swiped
     $scope.textSwiped = function() {
+      // Scroll back to top
       $ionicScrollDelegate.scrollTop(true); 
+      // Hide swipe hint
+      $scope.textSwipeHintVisible = false;
+      // Record swipe
+      $scope.textWasSwiped = true;
+      // Persist to settings to disable hints
+      settings.textWasSwiped = true;
+      settings.save();
       // Report Text Swipe
       analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'Swipe'); 
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
+      // Hide swipe hint
+      $scope.imageSwipeHintVisible = false;
+      // Record swipe
+      $scope.imageWasSwiped = true;
+      // Persist to settings to disable hints
+      settings.imageWasSwiped = true;
+      settings.save();
       // Report Image Swipe
       analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect', 'Swipe'); 
     };
@@ -343,8 +361,47 @@
       $scope.smsContactPopupVisible = false;
       $scope.emailContactPopupVisible = false;
     };
-    $scope.setSwipeHintState = function(state) {
-      $scope.swipeHintState = state;
+    // Initialise swipe hints
+    function initSwipeHints() {
+      // Wait a bit
+      $timeout(function() {
+        // Show image swipe hint
+        if(!$scope.imageWasSwiped) {
+          $scope.imageSwipeHintVisible = true;
+        } 
+        // Wait a bit more
+        if(!$scope.textWasSwiped) {
+          $timeout(function() {
+            // Show text swipe hint
+            $scope.textSwipeHintVisible = true;
+          }, $scope.imageWasSwiped?0:3000);
+        }
+        // Wait a bit more
+        $timeout(function() {
+          // Every now and then
+          $interval(function() {
+            // If image was not swiped 
+            if(!$scope.imageWasSwiped) {
+              // Show image swipe hint again
+              $scope.imageSwipeHintVisible = true;
+            }
+            // Wait a bit more
+            $timeout(function() {
+              // If text was not swiped 
+              if(!$scope.textWasSwiped) {
+                // Show text swipe hint again
+                $scope.textSwipeHintVisible = true;
+              }
+            }, 3000);
+          }, 8000);
+        }, 3000);
+      }, 4000);
+    }
+    $scope.imageSwipeHintComplete = function() {
+      $scope.imageSwipeHintVisible = false;
+    };
+    $scope.textSwipeHintComplete = function() {
+      $scope.textSwipeHintVisible = false;
     };
     // Select texts
     function pickTexts() {
