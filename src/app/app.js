@@ -45,9 +45,9 @@
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
         // Hide accessory bar
-        if(window.cordova && window.cordova.plugins.Keyboard) {
-          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        }
+        //if(window.cordova && window.cordova.plugins.Keyboard) {
+        //  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        //}
         if(window.StatusBar) {
           StatusBar.styleDefault();
         }
