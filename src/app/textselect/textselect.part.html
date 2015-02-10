@@ -97,14 +97,14 @@
     <!-- image swipe hint -->
     <gw-mob-swipehint 
       style="top:{{slideImageHeight/2-25}}px" 
-      complete="setSwipeHintState('text')" 
-      ng-if="swipeHintState==='image'">
+      complete="imageSwipeHintComplete()" 
+      ng-if="imageSwipeHintVisible===true">
     </gw-mob-swipehint>
     <!-- text swipe hint -->
     <gw-mob-swipehint 
       style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" 
-      complete="setSwipeHintState('done')" 
-      ng-if="swipeHintState==='text'">
+      complete="textSwipeHintComplete()" 
+      ng-if="textSwipeHintVisible===true">
     </gw-mob-swipehint>
     <!-- image slides -->
     <gw-mob-slideswipe
