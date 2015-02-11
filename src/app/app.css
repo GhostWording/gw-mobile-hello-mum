@@ -1,4 +1,28 @@
 @font-face {
+  font-family: 'notosans-regular';
+  src: url('./fonts/notosans-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'notosans-bold';
+  src: url('./fonts/notosans-bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'notosans-italic';
+  src: url('./fonts/notosans-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'notosans-bolditalic';
+  src: url('./fonts/notosans-bolditalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'notoserif-regular';
+  src: url('./fonts/notoserif-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'notoserif-bold';
+  src: url('./fonts/notoserif-bold.woff') format('woff');
+}
+@font-face {
   font-family: 'notoserif-italic';
   src: url('./fonts/notoserif-italic.woff') format('woff');
 }
