@@ -16,7 +16,9 @@
   width: 100%;
   color: white;
   text-align: center;
-  font-size: 9vw; 
+  font-family: 'notosans-bold';
+  font-size: 40px; 
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 .splash .spinner {
   position: absolute;
@@ -24,7 +26,7 @@
   width: 100%;
   text-align: center;
   color: white;
-  font-size: 10vw; 
+  font-size: 50px; 
   animation-name: spin;
   animation-duration: 1000ms;
   animation-iteration-count: infinite;
