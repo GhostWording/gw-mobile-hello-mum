@@ -73,10 +73,15 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 15px;
+  padding-bottom: 15px;
   border-style: solid;
   border-width: 0px;
   border-top-width: 2px;
   border-top-color: #339ee6; 
+}
+.settings .pane {
+  height: auto;
+  overflow: visible;
 }
 .settings .group {
   margin-top: 10px;
