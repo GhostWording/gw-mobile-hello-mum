@@ -1,11 +1,12 @@
 .settings {
   width: 100%;
+  height: 100%;
   background-color: white;
   font-family: 'notoserif-italic';
-}
-.settings {
   color: #aaaaaa;
-  height: 100%;
+}
+.backdrop {
+  display: none;
 }
 /* close button */
 .settings .closeButtonHit {
@@ -86,13 +87,21 @@
   position: static;
 }
 .settings .group {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 /* input blocker */
 .settings .inputBlocker {
   position: absolute;
   width: 60%;
   height: 150px;
+}
+.settings .contact {
+  margin-top: 15px;
+  border-style: dotted;
+  border-width: 0px;
+  border-top-width: 1px;
+  border-top-color: #aaaaaa; 
+  padding-top: 5px;
 }
 /* select */
 .settings .wrap-dd-select {
@@ -147,7 +156,9 @@
   color: #339ee6;
   padding-bottom: 10px;
 }
-/* radio boxes */
+.settings .inputLabel {
+  font-size: 0.9em;
+}
 /* radio boxes */
 .settings .radioGroup {
   clear: both;
