@@ -36,6 +36,7 @@
   border-color: white;
   border-width: 0px;
   box-shadow: none !important;
+  background-image: none;
 }
 .settings .tabs-striped .tabs {
   background-color: transparent;
