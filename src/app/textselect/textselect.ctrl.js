@@ -363,39 +363,25 @@
     };
     // Initialise swipe hints
     function initSwipeHints() {
-      // Wait a bit
-      $timeout(function() {
-        // Show image swipe hint
-        if(!$scope.imageWasSwiped) {
-          $scope.imageSwipeHintVisible = true;
-        } 
-        // Wait a bit more
-        if(!$scope.textWasSwiped) {
+      // Every now and then
+      $interval(function() {
+        // If no popups visible
+        if(!$scope.popupVisible()) {
+          // If image was not swiped 
+          if(!$scope.imageWasSwiped) {
+            // Show image swipe hint
+            $scope.imageSwipeHintVisible = true;
+          }
+          // Wait a bit more
           $timeout(function() {
-            // Show text swipe hint
-            $scope.textSwipeHintVisible = true;
-          }, $scope.imageWasSwiped?0:3000);
-        }
-        // Wait a bit more
-        $timeout(function() {
-          // Every now and then
-          $interval(function() {
-            // If image was not swiped 
-            if(!$scope.imageWasSwiped) {
-              // Show image swipe hint again
-              $scope.imageSwipeHintVisible = true;
+            // If text was not swiped 
+            if(!$scope.textWasSwiped) {
+              // Show text swipe hint 
+              $scope.textSwipeHintVisible = true;
             }
-            // Wait a bit more
-            $timeout(function() {
-              // If text was not swiped 
-              if(!$scope.textWasSwiped) {
-                // Show text swipe hint again
-                $scope.textSwipeHintVisible = true;
-              }
-            }, 3000);
-          }, 8000);
-        }, 3000);
-      }, 4000);
+          }, 3000);
+        }
+      }, 7000);
     }
     $scope.imageSwipeHintComplete = function() {
       $scope.imageSwipeHintVisible = false;
