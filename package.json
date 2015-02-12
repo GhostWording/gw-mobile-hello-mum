@@ -30,6 +30,7 @@
     "gulp-sass": "^0.7.1",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^2.2.14",
+    "jimp": "^0.1.4",
     "jshint-stylish": "^1.0.0",
     "merge-stream": "^0.1.6",
     "run-sequence": "^1.0.1",
