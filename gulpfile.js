@@ -16,8 +16,9 @@ var gFile = require('gulp-file');
 var postCSS = require('gulp-postcss');
 var jshint = require('gulp-jshint');
 var jshintstylish = require('jshint-stylish');
-var jimp = require('gulp-jimp');
+var jimp = require('jimp');
 var mergeStream = require('merge-stream');
+var mapStream = require('map-stream');
 var streamQueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var autoPrefixer = require('autoprefixer-core');
@@ -237,25 +238,16 @@ gulp.task('process:icons:ios', function(done) {
     {name: 'icon@2x.png', size: 114}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/app/icon/ios.png')
-      .pipe(jimp({
-        resize:{
-          width: icon.size,
-          height: icon.size
-        }
-      }))
-      .pipe(rename(icon.name))
+    new jimp('src/app/icon/ios.png', function() {
       // TODO: un-hardcode "HelloMum"
-      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/icons'))
-      .pipe(gCallback(callback));
+      this.resize(icon.size, icon.size).write('platforms/ios/HelloMum/Resources/icons/' + icon.name);
+    });
+    callback();
   }, done);
 });
 
 // Transcode required IOS splash screens from master splash screen
 gulp.task('process:splash:ios', function(done) {
-  // TODO: un-hardcode masterWidth and masterHeight
-  var masterWidth = 812;
-  var masterHeight = 811;
   var screens = [
     {name: 'Default-568h@2x~iphone.png', width: 640, height: 1136},
     {name: 'Default-667h.png', width: 750, height: 1334},
@@ -266,26 +258,19 @@ gulp.task('process:splash:ios', function(done) {
     {name: 'Default-Portrait@2x~ipad.png', width: 1536, height: 2048}
   ];
   async.eachSeries(screens, function(screen, callback) {
-    var scale = Math.max(screen.width / masterWidth, screen.height / masterHeight);
-    var targetWidth = masterWidth * scale;
-    var targetHeight = masterHeight * scale;
-    gulp.src('src/app/splash/splash.png')
-      .pipe(jimp({
-        resize:{
-          width: targetWidth,
-          height: targetHeight
-        },
-        crop:{
-          x: (targetWidth - screen.width) / 2,
-          y: (targetHeight - screen.height) / 2,
-          width: screen.width,
-          height: screen.height
-        }
-      }))
-      .pipe(rename(screen.name))
-      // TODO: un-hardcode "HelloMum"
-      .pipe(gulp.dest('platforms/ios/HelloMum/Resources/splash'))
-      .pipe(gCallback(callback));
+    new jimp('src/app/splash/splash.png', function() {
+      var sourceWidth = this.bitmap.width;
+      var sourceHeight = this.bitmap.height;
+      var scale = Math.max(screen.width / sourceWidth, screen.height / sourceHeight);
+      var targetWidth = sourceWidth * scale;
+      var targetHeight = sourceHeight * scale;
+      this
+        .resize(targetWidth, targetHeight)
+        .crop((targetWidth - screen.width) / 2, (targetHeight - screen.height) / 2, screen.width, screen.height)      
+        // TODO: un-hardcode "HelloMum"
+        .write('platforms/ios/HelloMum/Resources/splash/' + screen.name);
+    });
+    callback();
   }, done);
 });
 
@@ -309,24 +294,15 @@ gulp.task('process:icons:android', function(done) {
     {dir: 'drawable-xhdpi', size: 96}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    gulp.src('src/app/icon/android.png')
-      .pipe(jimp({
-        resize:{
-          width: icon.size,
-          height: icon.size
-        }
-      }))
-      .pipe(rename('icon.png'))
-      .pipe(gulp.dest('platforms/android/res/' + icon.dir))
-      .pipe(gCallback(callback));
+    new jimp('src/app/icon/android.png', function() {
+      this.resize(icon.size, icon.size).write('platforms/android/res/' + icon.dir + '/icon.png');
+    });
+    callback();
   }, done);
 });
 
 // Transcode required android splash screens from master splash screen
 gulp.task('process:splash:android', function(done) {
-  // TODO: un-hardcode masterWidth and masterHeight
-  var masterWidth = 812;
-  var masterHeight = 811;
   var screens = [
     {dir: 'drawable-port-hdpi', width: 480, height: 800},
     {dir: 'drawable-port-ldpi', width: 200, height: 320},
@@ -334,25 +310,18 @@ gulp.task('process:splash:android', function(done) {
     {dir: 'drawable-port-xhdpi', width: 720, height: 1280}
   ];
   async.eachSeries(screens, function(screen, callback) {
-    var scale = Math.max(screen.width / masterWidth, screen.height / masterHeight);
-    var targetWidth = masterWidth * scale;
-    var targetHeight = masterHeight * scale;
-    gulp.src('src/app/splash/splash.png')
-      .pipe(jimp({
-        resize:{
-          width: targetWidth,
-          height: targetHeight
-        },
-        crop:{
-          x: (targetWidth - screen.width) / 2,
-          y: (targetHeight - screen.height) / 2,
-          width: screen.width,
-          height: screen.height
-        }
-      }))
-      .pipe(rename('screen.png'))
-      .pipe(gulp.dest('platforms/android/res/' + screen.dir))
-      .pipe(gCallback(callback));
+    new jimp('src/app/splash/splash.png', function() {
+      var sourceWidth = this.bitmap.width;
+      var sourceHeight = this.bitmap.height;
+      var scale = Math.max(screen.width / sourceWidth, screen.height / sourceHeight);
+      var targetWidth = sourceWidth * scale;
+      var targetHeight = sourceHeight * scale;
+      this
+        .resize(targetWidth, targetHeight)
+        .crop((targetWidth - screen.width) / 2, (targetHeight - screen.height) / 2, screen.width, screen.height)      
+        .write('platforms/android/res/' + screen.dir + '/screen.png');
+    });
+    callback();
   }, done);
 });
 
