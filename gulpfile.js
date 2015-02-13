@@ -44,7 +44,6 @@ var getJSGlobs = function() {
     'src/lib/angular-translate/angular-translate' + (debug?'':'.min') + '.js',
     'src/lib/angular-cookies/angular-cookies' + (debug?'':'.min') + '.js',
     'src/lib/ngCordova/dist/ng-cordova' + (debug?'':'.min') + '.js',
-    'src/lib/angular-dropdowns/dist/angular-dropdowns' + (debug?'':'.min') + '.js',
     'src/lib/gw-common/**/*.js',
     '!src/lib/gw-common/**/*.spec.js',
     'src/lib/gw-mobile-common/**/*.mod.js',
@@ -59,7 +58,6 @@ var getJSGlobs = function() {
 var getCSSGlobs = function() {
   return [
     'src/lib/ionic/css/ionic' + (debug?'':'.min') + '.css',
-    'src/lib/angular-dropdowns/dist/angular-dropdowns.css',
     'src/lib/gw-mobile-common/**/*.css',
     'src/app/**/*.css',
   ];
