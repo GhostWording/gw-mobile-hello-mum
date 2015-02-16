@@ -1,4 +1,4 @@
-<div class="settings" ng-controller="SettingsCtrl" style="position:relative">
+<div class="settings" ng-controller="SettingsCtrl">
   <!-- close button -->
   <div class="closeButtonHit" ng-click="closeButtonClick()">
     <div class="closeButton icon ion-close-round"></div>
@@ -25,9 +25,6 @@
           dropdown-model="emailSubject"
           dropdown-item-label="text">
         </div>
-      </div>
-      <!-- hack to fix ios keyboard issue -->
-      <div class="inputBlocker" ng-if="inputBlockerActive">
       </div>
       <!-- mum contact select -->
       <gw-mob-contact

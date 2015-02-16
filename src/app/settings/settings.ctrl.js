@@ -147,26 +147,6 @@
         }, true);
       }
     }
-    // Block inputs so we dont get clickthrough on the menu in the mum tab which causes the keyboard to appear
-    // even though the input does not get focused, causing the keyboard to stay up permanently - tried a lot
-    // of "proper" solutions to this with no luck.. this solution is a bit of a hack.
-    // TODO: try removing on next ionic update
-    $scope.inputBlockerActive = false;
-    $scope.dropdownClick = function() {
-      if(!$scope.inputBlockerActive) {
-        $scope.inputBlockerActive = true;
-      } else {
-        $timeout(function() {
-          $scope.inputBlockerActive = false;
-        }, 500);
-      }
-    };
-    var body = $document.find('body');
-    body.bind('click', function () {
-      $scope.inputBlockerActive = false;
-      $scope.$apply();
-    }); 
-
   });
 
 }());
