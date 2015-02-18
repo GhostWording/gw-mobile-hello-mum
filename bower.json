@@ -6,7 +6,7 @@
     "ngCordova": "0.1.11-alpha",
     "angular-translate": "2.5.2",
     "angular-cookies": "1.2.28",
-    "gw-common": "git@github.com:GhostWording/gw-common.git#1c8c34214332682d9ef30a9eb73707752a46e025",
+    "gw-common": "git@github.com:GhostWording/gw-common.git#3d813abf48dee263de781845630c0696cf59c814",
     "gw-mobile-common": "git@github.com:GhostWording/gw-mobile-common.git#a78346424ddaa6c1c6099628bfc8a535fca73ad7"
   },
   "resolutions": {
