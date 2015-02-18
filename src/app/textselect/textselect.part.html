@@ -157,7 +157,7 @@
             <div class="title" ng-show="textIsJoke(item.text)">{{'OTD_JOKE' | translate}}</div>
           </div>
           <!-- content -->
-          {{item.text.Content}}
+         <span ng-bind-html="formatTextForDisplay(item.text.Content)" style="white-space: pre-wrap"></span>
           <!-- author -->
           <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
         </div>

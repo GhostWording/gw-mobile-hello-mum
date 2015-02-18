@@ -389,6 +389,14 @@
     $scope.textSwipeHintComplete = function() {
       $scope.textSwipeHintVisible = false;
     };
+    $scope.formatTextForDisplay = function(text) {
+      if(!text) return;
+      return text
+        .replace(/\s\!/g, '&nbsp;!')
+        .replace(/\s\?/g, '&nbsp;?')
+        .replace(/\s\:/g, '&nbsp;:')
+        .replace(/\s\»/g, '&nbsp;»');
+    };
     // Select texts
     function pickTexts() {
       $scope.textList = null;
