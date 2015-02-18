@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/mumpetname').factory('mumPetName', function() {
+  angular.module('app/mumpetname').factory('mumPetName', function(localisation) {
     var mumPetName = {
       getNames: function() {
         // TODO: Localise
@@ -19,6 +19,9 @@
         ];
       },
       replace: function(input, replacement) {
+        // No pet name replacement in fr/es languages
+        var currentLanguage = localisation.getLanguage();
+        if(currentLanguage === 'fr' || currentLanguage === 'es') return input;
         var names = mumPetName.getNames();
         // Sort by length so we dont multi-replace
         names.sort(function(a, b){
