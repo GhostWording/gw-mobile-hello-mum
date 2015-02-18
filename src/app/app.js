@@ -11,10 +11,6 @@
           url: '/',
           templateUrl: 'app/splash/splash.part.html'
         })
-        .state('genderselect', {
-          url: '/genderselect',
-          templateUrl: 'app/genderselect/genderselect.part.html'
-        })
         .state('textselect', {
           url: '/textselect',
           templateUrl: 'app/textselect/textselect.part.html'
