@@ -275,11 +275,23 @@ gulp.task('process:splash:ios', function(done) {
 // Process Android specific stuff
 gulp.task('process:platform:android', function(done) {
   if(fs.existsSync('platforms/android')) {
-    runSequence(['process:icons:android', 'process:splash:android'], done);
+    runSequence(['process:appname:android', 'process:icons:android', 'process:splash:android'], done);
   } else {
     console.log("\nANDROID PLATFORM NOT ADDED ('ionic platform add android')\n");
     process.exit(1);
   }
+});
+
+// Write multi linugal strings.xml files so we can localise the app name
+gulp.task('process:appname:android', function(done) {
+  // Build strings.xml file for each language
+  async.each(Object.keys(config.regional), function(language, callback) {
+    var regionalName = config.regional[language].appName;
+    return gulp.src('platforms/android/res/values/strings.xml')
+      .pipe(replace('HelloMum', regionalName))
+      .pipe(gulp.dest('platforms/android/res/values-' + language))
+      .pipe(gCallback(callback));
+  }, done); 
 });
 
 // Transcode required Android icon resolutions from master icon
