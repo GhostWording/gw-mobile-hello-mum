@@ -25,6 +25,19 @@ Prerequisites
 #### xCode (building for ios - osx only)
 [developer.apple.com](https://developer.apple.com/xcode/downloads/)
 
+Windows Prerequisites
+---------------------
+
+Follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
+(click the red "Windows note on Java, Ant and Android" button)
+
+**summary**
+
+Set the ANDROID_HOME environment variable to reference the downloaded SDK folder
+Add the tools and platform-tools folders in the android SDK to the system PATH environment variable
+Install apache Ant
+Install Java JDK
+
 Install
 -------
 
