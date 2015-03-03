@@ -28,7 +28,7 @@ Prerequisites
 Windows Prerequisites
 ---------------------
 
-And then follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
+Follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
 (click the red "Windows note on Java, Ant and Android" button)
 
 **summary**
