@@ -419,7 +419,20 @@ gulp.task('serve', ['ionic:serve']);
 gulp.task('default', ['build']);
 
 // Helper function to spawn a sub process
+function exec(command, params, done) {
+  var proc = spawn(command, params, {stdio:'inherit', stderr:'inherit'});
+  proc.on('close', function (code) {
+    done();
+  });
+  // Kill child process on gulp exit
+  process.on('exit', function() {
+    proc.kill();
+  });
+}
+
+// Helper function to spawn a sub process
 // TODO: fix on windows
+/*
 function exec(command, params, done) {
   var child = spawn(command, params, {cwd: process.cwd()});
   child.stdout.setEncoding('utf8');
@@ -434,3 +447,4 @@ function exec(command, params, done) {
     done();
   });
 }
+*/
