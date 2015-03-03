@@ -38,7 +38,8 @@ And then follow the instructions found [here](http://ionicframework.com/docs/gui
 * Install Apache Ant
 * Install Java JDK
 
-**install the required android API**
+Install Android API
+-------------------
 
 * Open the "Android SDK Manager" and add Android 4.4.2 (API 19)
 
