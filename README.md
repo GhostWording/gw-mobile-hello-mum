@@ -33,10 +33,10 @@ Follow the instructions found [here](http://ionicframework.com/docs/guide/instal
 
 **summary**
 
-Set the ANDROID_HOME environment variable to reference the downloaded SDK folder
-Add the tools and platform-tools folders in the android SDK to the system PATH environment variable
-Install apache Ant
-Install Java JDK
+* Set the ANDROID_HOME environment variable to reference the downloaded SDK folder
+* Add the tools and platform-tools folders in the android SDK to the system PATH environment variable
+* Install apache Ant
+* Install Java JDK
 
 Install
 -------
