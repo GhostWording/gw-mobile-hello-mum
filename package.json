@@ -6,7 +6,9 @@
     "type": "git",
     "url": "git@github.com:GhostWording/gw-mobile-hello-mum.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "cross-spawn": "^0.2.6"
+  },
   "devDependencies": {
     "async": "^0.9.0",
     "autoprefixer-core": "^3.1.2",
