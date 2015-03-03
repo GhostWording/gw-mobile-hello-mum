@@ -28,15 +28,19 @@ Prerequisites
 Windows Prerequisites
 ---------------------
 
-Follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
+And then follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
 (click the red "Windows note on Java, Ant and Android" button)
 
 **summary**
 
 * Set the ANDROID_HOME environment variable to reference the downloaded SDK folder
 * Add the tools and platform-tools folders in the android SDK to the system PATH environment variable
-* Install apache Ant
+* Install Apache Ant
 * Install Java JDK
+
+**install the required android API**
+
+* Open the "Android SDK Manager" and add Android 4.4.2 (API 19)
 
 Install
 -------
