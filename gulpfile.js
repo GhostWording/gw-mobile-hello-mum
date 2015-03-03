@@ -1,4 +1,4 @@
-NOTE: var gulp = require('gulp');
+var gulp = require('gulp');
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var insert = require('gulp-insert');
