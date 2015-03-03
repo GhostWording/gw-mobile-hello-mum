@@ -8,16 +8,16 @@ Prerequisites
 [nodejs.org](http://nodejs.org)
 
 #### bower
-```npm install -g bower```
+```(sudo) npm install -g bower```
 
 #### gulp
-```npm install -g gulp```
+```(sudo) npm install -g gulp```
 
 #### cordova
-```npm install -g cordova```
+```(sudo) npm install -g cordova```
 
 #### ionic
-```npm install -g ionic```
+```(sudo) npm install -g ionic```
 
 #### android SDK (standalone)
 [developer.android.com](https://developer.android.com/sdk/index.html?hl=i#download)
