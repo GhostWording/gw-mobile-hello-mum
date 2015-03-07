@@ -4,8 +4,7 @@
 
   angular.module('app/home', [
     'common/services/helperSvc',
-    'mobile/slide/slideswipe',
-    'mobile/slide/imagetextslide',
+    'mobile/slider/infiniteslider',
     'mobile/dotindicator',
     'mobile/swipehint',
     'mobile/genderselect',

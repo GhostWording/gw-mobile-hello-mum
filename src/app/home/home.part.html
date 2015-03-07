@@ -109,7 +109,7 @@
       ng-if="textSwipeHintVisible===true">
     </gw-mob-swipehint>
     <!-- image slides -->
-    <gw-mob-slideswipe
+    <gw-mob-infiniteslider
       ng-if="imageList"
       getnextitem="getNextImage(currentImage)"
       getpreviousitem="getPreviousImage(currentImage)"
@@ -130,7 +130,7 @@
           <div class="image" style="background-image:url('{{item}}')"></div>
         </div>
       </gw-mob-slide>
-    </gw-mob-slideswipe>
+    </gw-mob-infiniteslider>
     <!-- image dot indicator -->
     <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px" ng-if="imageList">
       <div class="dotIndicatorCenter">
@@ -138,7 +138,7 @@
       </div>
     </div>
     <!-- text slides -->
-    <gw-mob-slideswipe
+    <gw-mob-infiniteslider
       ng-if="textList"
       getnextitem="getNextText(currentText)"
       getpreviousitem="getPreviousText(currentText)"
@@ -164,7 +164,7 @@
           <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
         </div>
       </gw-mob-slide>
-    </gw-mob-slideswipe>
+    </gw-mob-infiniteslider>
     <!-- text dot indicator -->
     <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px" ng-if="textList">
       <div class="dotIndicatorCenter">
