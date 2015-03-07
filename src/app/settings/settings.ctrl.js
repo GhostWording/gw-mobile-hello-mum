@@ -92,14 +92,14 @@
       };
     }
     $scope.closeButtonClick = function() {
-      // If language has changed, go back to splash screen
+      // If language has changed 
       if($scope.languageChanged) {
-        $location.path('/');
+        // Go back to splash screen
+        $state.go('splash');
+      } else {
+        // Go back to home screen
+        $state.go('home');
       }
-      // Close the settings popup
-      $timeout(function() {
-        $scope.close();
-      });
     }; 
     // Initialise email subjects dropdown list
     function initEmailSubjectDropdown() {

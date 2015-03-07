@@ -64,8 +64,6 @@
         if(window.StatusBar) {
           StatusBar.styleDefault();
         }
-        // Set settings template
-        settings.setTemplateUrl('app/settings/settings.part.html');
         // Set up default settings
         // TODO: move this into settings
         if(settings.notification === undefined) settings.notification = true;
