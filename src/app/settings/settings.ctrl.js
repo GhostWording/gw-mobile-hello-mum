@@ -2,13 +2,15 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $location, $state, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, texts) {
+  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $location, $state, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, settings, texts) {
     // Report settings page init
     analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
     $scope.deviceHeight = $window.deviceHeight;    
+    // Put settings on the scope so we can bind to it from the partial
+    $scope.settings = settings;
     // Intentions
     $scope.intentions = [
       {name: 'how-are-you', trans:'INT_HOW'},
@@ -35,24 +37,24 @@
     });
     // Set default intention weights
     for(var i=0; i<$scope.intentions.length; i++) {
-      if($scope.settings[$scope.intentions[i].name] === undefined) {
-        $scope.settings[$scope.intentions[i].name] = 'few'; 
+      if(settings[$scope.intentions[i].name] === undefined) {
+        settings[$scope.intentions[i].name] = 'few'; 
       }
     }
-    $scope.settings.save();
+    settings.save();
     // Intention weight adjusted
     $scope.intentionWeightChange = function(intention) {
       // Report intention weight change
-      analytics.reportEvent('Command', intention.name, 'Settings', 'click', $scope.settings[intention.name]);        
+      analytics.reportEvent('Command', intention.name, 'Settings', 'click', settings[intention.name]);        
     };
     // Notification time/enable adjusted
     $scope.notificationChange = function() {
-      if($scope.settings.notification) {
+      if(settings.notification) {
         // Report notification time
-        analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', $scope.settings.notificationHour + ":" + $scope.settings.notificationMinute);        
+        analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', settings.notificationHour + ":" + settings.notificationMinute);        
         // Set notification 
         $translate('NOTIFICATION').then(function (notificationText) {
-          notification.set($scope.settings.notificationHour, $scope.settings.notificationMinute, mumPetName.replace(notificationText, $scope.settings.mumPetName));
+          notification.set(settings.notificationHour, settings.notificationMinute, mumPetName.replace(notificationText, settings.mumPetName));
         });
       } else {
         // Report notification disabled
@@ -77,14 +79,14 @@
       }
       $scope.languageSelected = function(selected) {
         if(selected.language === 'auto') {
-          delete $scope.settings.language;
+          delete settings.language;
         } else {
-          $scope.settings.language = selected.language;
+          settings.language = selected.language;
         }
         // Save settings
-        $scope.settings.save();
+        settings.save();
         // Re-localise
-        localisation.localise($scope.settings.language);
+        localisation.localise(settings.language);
         // Record language change
         $scope.languageChanged = true;
       };
@@ -111,18 +113,18 @@
       ]).then(function(translatedSubjects) {
         $scope.emailSubjects = [];
         for(var i=0; i<translatedSubjects.length; i++) {
-          $scope.emailSubjects.push({text: mumPetName.replace(translatedSubjects[i], $scope.settings.mumPetName)});
+          $scope.emailSubjects.push({text: mumPetName.replace(translatedSubjects[i], settings.mumPetName)});
         }
-        $scope.emailSubject = angular.copy($scope.emailSubjects[$scope.settings.emailSubjectIndex]);
+        $scope.emailSubject = angular.copy($scope.emailSubjects[settings.emailSubjectIndex]);
       });
       $scope.$watch('emailSubject', function(emailSubjectObject) {
         for(var i=0; i<$scope.emailSubjects.length; i++) {
           if($scope.emailSubjects[i].text === emailSubjectObject.text) {
-            $scope.settings.emailSubjectIndex = i;
+            settings.emailSubjectIndex = i;
             break;
           }
         }
-        $scope.settings.save();
+        settings.save();
       }, true);
     }
     // Initialise mum pet names dropdown data
@@ -135,13 +137,13 @@
         for(var p=0; p<mumPetNames.length; p++) {
           var petNameSelectObject = {text:mumPetNames[p]};
           $scope.mumPetNames.push(petNameSelectObject); 
-          if(mumPetNames[p] === $scope.settings.mumPetName) {
+          if(mumPetNames[p] === settings.mumPetName) {
             $scope.mumPetName = angular.copy(petNameSelectObject);
           }
         }
         $scope.$watch('mumPetName', function(petNameSelectObject) {
-          $scope.settings.mumPetName = petNameSelectObject.text;
-          $scope.settings.save();
+          settings.mumPetName = petNameSelectObject.text;
+          settings.save();
           // Re initialise email subject dropdown with pet name replacements
           initEmailSubjectDropdown();
         }, true);

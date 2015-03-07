@@ -35,7 +35,7 @@
           // Pick from all texts
           texts.useWelcome(false);
           // Good to go..
-          $location.path('/textselect');
+          $location.path('/home');
         }, function() {
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;
@@ -58,7 +58,7 @@
           // Pick from welcome texts
           texts.useWelcome(true);
           // Good to go..
-          $location.path('/textselect');
+          $location.path('/home');
         }, function() {
           // Failed to fetch texts
           $scope.showConnectivityMessage = true;

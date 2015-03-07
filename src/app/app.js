@@ -9,18 +9,35 @@
       $stateProvider
         .state('splash', {
           url: '/',
-          templateUrl: 'app/splash/splash.part.html'
+          templateUrl: 'app/splash/splash.part.html',
+          controller: 'SplashCtrl'
         })
-        .state('textselect', {
-          url: '/textselect',
-          templateUrl: 'app/textselect/textselect.part.html'
+        .state('home', {
+          url: '/home',
+          templateUrl: 'app/home/home.part.html',
+          controller: 'HomeCtrl'
+        })
+        .state('settings', {
+          url: '/settings',
+          templateUrl: 'app/settings/settings.part.html',
+          controller: 'SettingsCtrl'
+        })
+        .state('home.send', {
+          url: '/send',
+          templateUrl: 'app/send/send.part.html',
+          controller: 'SendCtrl' 
+        })
+        .state('home.sendresult', {
+          templateUrl: 'app/sendresult/sendresult.part.html',
+          controller: 'SendResultCtrl', 
+          params: ['success']
         })
         .state('debug', {
           url: '/debug',
           templateUrl: 'app/debug/debug.part.html'
         });
     })
-    .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
+    .run(function($window, $ionicPlatform, $state, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
       $ionicPlatform.ready(function() {
         // Localise!
         localisation.localise(settings.language);

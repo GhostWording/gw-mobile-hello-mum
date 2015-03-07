@@ -9,11 +9,13 @@
     'mobile/analytics',
     'mobile/localisation',
     'app/splash',
-    'app/config',
     'app/settings',
-    'app/textselect',
+    'app/home',
+    'app/config',
     'app/mumpetname',
     'app/translation',
+    'app/send',
+    'app/sendresult',
     'app/debug'
   ]);
 

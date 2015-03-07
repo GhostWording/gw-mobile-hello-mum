@@ -2,9 +2,7 @@
 
   "use strict";
 
-  angular.module('app/textselect', [
-    'ionic',
-    'ngCordova.plugins.prefs',
+  angular.module('app/home', [
     'common/services/helperSvc',
     'mobile/slide/slideswipe',
     'mobile/slide/imagetextslide',

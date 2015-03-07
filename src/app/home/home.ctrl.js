@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/textselect').controller('TextSelectCtrl', function($scope, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
+  angular.module('app/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
     var textImageMap = {};
     // Report text select page init
-    analytics.reportEvent('Init', 'Page', 'TextSelect', 'Init');
+    analytics.reportEvent('Init', 'Page', 'Home', 'Init');
     // Get device width and height
     // TODO: move into service
     $scope.deviceWidth = $window.deviceWidth;    
@@ -102,7 +102,7 @@
       settings.textWasSwiped = true;
       settings.save();
       // Report Text Swipe
-      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'Swipe'); 
+      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'Home', 'Swipe'); 
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
@@ -114,7 +114,7 @@
       settings.imageWasSwiped = true;
       settings.save();
       // Report Image Swipe
-      analytics.reportEvent('Photo', $scope.currentImage, 'TextSelect', 'Swipe'); 
+      analytics.reportEvent('Photo', $scope.currentImage, 'Home', 'Swipe'); 
     };
     // Load message image urls
     $http.get('messageimages.json').success(function(imageUrls) {
@@ -231,13 +231,12 @@
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
-      $scope.sendPopupVisible = true;
+      $state.go('textselect.send');
     };
     // Is a popup currently visible?
     $scope.popupVisible = function() {
       if($scope.smsContactPopupVisible || 
         $scope.genderSelectPopupVisible || 
-        $scope.sendPopupVisible || 
         $scope.smsImagePopupVisible || 
         $scope.sentPopupVisible || 
         $scope.errorPopupVisible || 
@@ -248,96 +247,9 @@
         return false;
       }
     };
-    // Send cancel button clicked
-    $scope.sendCancelButtonClick = function() {
-      $scope.sendPopupVisible = false;
-      $scope.smsImagePopupVisible = false;
-    };
-    // Returns true if the passed email is valid
-    // TODO: move to send 
-    $scope.emailAddressValid = function() {
-      // TODO: make this better
-      return settings.emailAddress && settings.emailAddress!=='';
-    };
-    // Returns true if the passed mobile number is valid
-    // TODO: move to send 
-    $scope.mobileNumberValid = function() {
-      // TODO: make this better
-      return settings.mobileNumber && settings.mobileNumber!=='';
-    };
-    // Send via SMS
-    $scope.sendSMS = function() {
-      // Save the settings
-      settings.save();
-      // Hide the send popup
-      $scope.sendPopupVisible = false;
-      // If the sms image warning or sms contact picker popups are visible
-      if($scope.smsImagePopupVisible || $scope.smsContactPopupVisible) {
-        // Hide the SMS image warning poup
-        $scope.smsImagePopupVisible = false;
-        // Hide the SMS contact picker
-        $scope.smsContactPopupVisible = false;
-        // If we have a mobile number 
-        if($scope.mobileNumberValid()) {
-          // Send the SMS
-          sendSMS.setMobileNumber(settings.mobileNumber);
-          sendSMS.send(prepareContentForSending()).then(function() {
-            // Report SMS send
-            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
-            // Show sent popup
-            showSentPopup();
-          }, function() {
-            // Report SMS send fail
-            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
-            // Show error popup
-            showErrorPopup();
-          }); 
-        } else {
-          // Show the sms contact popup
-          $scope.smsContactPopupVisible = true;
-        }
-      } else {
-        // Show the SMS image warning popup
-        $scope.smsImagePopupVisible = true;
-      }
-    };
-    // Send via Email
-    $scope.sendEmail = function() {
-      // Save the settings
-      settings.save();
-      // Hide the send popup
-      $scope.sendPopupVisible = false;
-      // Hide the Email contact picker
-      $scope.emailContactPopupVisible = false;
-      // Hide the SMS image warning poup
-      $scope.smsImagePopupVisible = false;
-      // If we have a valid email address 
-      if($scope.emailAddressValid()) {
-        // Get the email subject
-        $translate('EMAIL_SUBJECT_' + $scope.settings.emailSubjectIndex).then(function(emailSubject) {
-          // Send the Email
-          sendEmail.setEmailAddress(settings.emailAddress);
-          sendEmail.setAttachmentPath($scope.currentImage);
-          sendEmail.send(mumPetName.replace(emailSubject, settings.mumPetName), prepareContentForSending());
-          // Report email send
-          analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
-        });
-      } else {
-        // Show the contact popup
-        $scope.emailContactPopupVisible = true;
-      }
-    };    
-    // Send via Facebook
-    $scope.sendFacebook = function() {
-      // Hide the send popup
-      $scope.sendPopupVisible = false;
-      // Alert for now..
-      // TODO: implement
-      alert('sending "' + prepareContentForSending() + '" via Facebook');
-    };
     // Settings button clicked
     $scope.settingsButtonClick = function() {
-      settings.show();  
+      $state.go('settings');
     };
     // Debug button clicked
     var debugClickCount = 0;
