@@ -1,0 +1,17 @@
+<gw-mob-popup class="sendPopup">
+  <!-- gw mobile common send directive -->
+  <gw-mob-send
+    sendsms="sendSMS()"
+    sendemail="sendEmail()"
+    sendfacebook="sendFacebook()"
+    showsendfacebook="false"
+    sendemaillabel="{{'SND_EMAIL' | translate}}"
+    sendsmslabel="{{'SND_SMS' | translate}}"
+    sendfacebooklabel="{{'SND_FB' | translate}}">
+  </gw-mob-send>
+  <!-- cancel button hit area -->
+  <div class="popupButtonHit pad" on-tap="close()">
+    <!-- cancel button -->
+    <div class="popupButton">{{'CANCEL' | translate}}</div>
+  </div>
+</gw-mob-popup>
