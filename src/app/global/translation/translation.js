@@ -182,7 +182,7 @@
     "EMAIL_SUBJECT": "Hola Mamá",
     "NOTIFICATION": "¿Un mensaje para Mamá? (¡nuevos gatitos!)"
   };
-  angular.module('app/translation')
+  angular.module('app/global/translation')
     .config(function($translateProvider) {
       $translateProvider.translations('en', en); 
       $translateProvider.translations('fr', fr); 

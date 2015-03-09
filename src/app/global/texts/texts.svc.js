@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings, localisation) {
+  angular.module('app/global/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings, localisation) {
     var _useWelcome;
     var _weightedIntentions;
     var _textLists;

@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/settings').controller('SettingsCtrl', function($window, $document, $location, $state, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, settings, texts) {
+  angular.module('app/state/settings').controller('SettingsCtrl', function($window, $document, $location, $state, $timeout, $scope, $translate, $q, config, notification, localisation, analytics, mumPetName, settings, texts) {
     // Report settings page init
     analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
     // Get device width and height

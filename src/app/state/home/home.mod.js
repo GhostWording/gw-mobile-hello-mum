@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home', [
+  angular.module('app/state/home', [
     'common/services/helperSvc',
     'mobile/slider/fixedslider',
     'mobile/slider/infiniteslider',
@@ -13,9 +13,9 @@
     'mobile/localisation',
     'mobile/popup',
     'mobile/contact',
-    'app/config',
-    'app/texts',
-    'app/mumpetname'
+    'app/global/config',
+    'app/global/texts',
+    'app/global/mumpetname'
   ]);
 
 }());

@@ -2,15 +2,15 @@
 
   "use strict";
 
-  angular.module('app/send', [
+  angular.module('app/state/home/send', [
     'common/services/helperSvc',
     'mobile/send',
     'mobile/settings',
     'mobile/localisation',
     'mobile/popup',
-    'app/config',
-    'app/texts',
-    'app/mumpetname'
+    'app/global/config',
+    'app/global/texts',
+    'app/global/mumpetname'
   ]);
 
 }());

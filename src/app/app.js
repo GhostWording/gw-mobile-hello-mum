@@ -8,12 +8,12 @@
       $stateProvider
         .state('splash', {
           url: '/',
-          templateUrl: 'app/splash/splash.part.html',
+          templateUrl: 'app/state/splash/splash.part.html',
           controller: 'SplashCtrl'
         })
         .state('home', {
           url: '/home',
-          templateUrl: 'app/home/home.part.html',
+          templateUrl: 'app/state/home/home.part.html',
           controller: 'HomeCtrl',
           resolve: {
             images: function($http, config) {
@@ -25,7 +25,7 @@
         })
         .state('settings', {
           url: '/settings',
-          templateUrl: 'app/settings/settings.part.html',
+          templateUrl: 'app/state/settings/settings.part.html',
           controller: 'SettingsCtrl'
         })
         .state('home.genderselect', {
@@ -46,17 +46,17 @@
         })
         .state('home.send', {
           url: '/send',
-          templateUrl: 'app/send/send.part.html',
+          templateUrl: 'app/state/home/send/send.part.html',
           controller: 'SendCtrl' 
         })
         .state('home.sendresult', {
-          templateUrl: 'app/sendresult/sendresult.part.html',
+          templateUrl: 'app/state/home/send/sendresult/sendresult.part.html',
           controller: 'SendResultCtrl', 
           params: ['success']
         })
         .state('debug', {
           url: '/debug',
-          templateUrl: 'app/debug/debug.part.html'
+          templateUrl: 'app/state/debug/debug.part.html'
         });
     })
     .run(function($window, $ionicPlatform, $state, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {

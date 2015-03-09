@@ -2,12 +2,11 @@
 
   "use strict";
 
-  angular.module('app/splash', [
+  angular.module('app/state/splash', [
     'ionic',
     'mobile/localisation',
-    'app/config',
-    'app/settings',
-    'app/texts'
+    'app/global/config',
+    'app/global/texts'
   ]);
 
 }());

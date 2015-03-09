@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/splash').controller('SplashCtrl', function($scope, $location, $timeout, $ionicPlatform, $ionicViewService, texts, localisation, analytics, config, settings) {
+  angular.module('app/state/splash').controller('SplashCtrl', function($scope, $location, $timeout, $ionicPlatform, $ionicViewService, texts, localisation, analytics, config, settings) {
     // Report splash page init
     analytics.reportEvent('Init', 'Page', 'Splash', 'Init');        
     // Prevent user from returning to this screen

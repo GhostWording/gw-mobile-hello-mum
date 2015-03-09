@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/translation', [
+  angular.module('app/global/translation', [
   ]);
 
 }());

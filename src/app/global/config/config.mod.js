@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/config', [
+  angular.module('app/global/config', [
   ]);
 
 }());

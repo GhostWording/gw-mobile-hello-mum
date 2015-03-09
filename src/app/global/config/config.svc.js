@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/config').factory('config', function() {
+  angular.module('app/global/config').factory('config', function() {
     return {
       'apiUrl': 'http://api.cvd.io/',
       'textFetchRetryDelay': 4,
@@ -10,7 +10,6 @@
       'textsPerDay': 8,
       'showWelcomeTextTimes': 2,
       'imageHeightFactor': '0.55',
-      'endOfFileImageUrl': 'app/messageimage/eof.jpg',
       'defaultNotificationHour': 16,
       'defaultNotificationMinute': 0,
       'googleAnalyticsTrackerId': 'UA-47718196-5',

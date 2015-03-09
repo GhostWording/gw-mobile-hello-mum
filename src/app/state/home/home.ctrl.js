@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc, images) {
+  angular.module('app/state/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc, images) {
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'Home', 'Init');
     // Get device width and height
@@ -114,7 +114,7 @@
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
-      $state.go('textselect.send');
+      $state.go('.send');
     };
     // Is a popup currently visible?
     $scope.popupVisible = function() {

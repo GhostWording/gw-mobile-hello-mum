@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/texts', [
+  angular.module('app/global/texts', [
     'common/i18n',
     'common/services/helperSvc',
     'common/helloMum',

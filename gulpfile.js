@@ -74,9 +74,9 @@ var imageGlobs = [
 // Font glob patterns
 var fontGlobs = [
   'src/lib/ionic/fonts/**/ionicons.woff',
-  'src/app/fonts/**/notosans-bold.woff',
-  'src/app/fonts/**/notoserif-italic.woff',
-  'src/app/fonts/**/notoserif-bolditalic.woff'
+  'src/app/global/fonts/**/notosans-bold.woff',
+  'src/app/global/fonts/**/notoserif-italic.woff',
+  'src/app/global/fonts/**/notoserif-bolditalic.woff'
 ];
 
 // Partial glob patterns
@@ -143,9 +143,7 @@ gulp.task('process:javascript', ['jshint'], function() {
 
 // Generate www/messageimages.json (list of all images that can be sent)
 gulp.task('process:messageimages', function() {
-  var messageImagePaths = glob.sync('app/messageimage/**/*.jpg', {cwd:'src'});
-  // Remove eof image so it won't be picked
-  messageImagePaths.splice(messageImagePaths.indexOf('app/messageimage/eof.jpg'), 1);
+  var messageImagePaths = glob.sync('app/global/messageimage/**/*.jpg', {cwd:'src'});
   return gFile('messageimages.json', JSON.stringify(messageImagePaths), { src: true }).pipe(gulp.dest('www'));
 });
 
@@ -236,7 +234,7 @@ gulp.task('process:icons:ios', function(done) {
     {name: 'icon@2x.png', size: 114}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    new jimp('src/app/icon/ios.png', function() {
+    new jimp('src/app/global/icon/ios.png', function() {
       // TODO: un-hardcode "HelloMum"
       this.resize(icon.size, icon.size).write('platforms/ios/HelloMum/Resources/icons/' + icon.name);
     });
@@ -256,7 +254,7 @@ gulp.task('process:splash:ios', function(done) {
     {name: 'Default-Portrait@2x~ipad.png', width: 1536, height: 2048}
   ];
   async.eachSeries(screens, function(screen, callback) {
-    new jimp('src/app/splash/splash.png', function() {
+    new jimp('src/app/global/splash/splash.png', function() {
       var sourceWidth = this.bitmap.width;
       var sourceHeight = this.bitmap.height;
       var scale = Math.max(screen.width / sourceWidth, screen.height / sourceHeight);
@@ -304,7 +302,7 @@ gulp.task('process:icons:android', function(done) {
     {dir: 'drawable-xhdpi', size: 96}
   ];
   async.eachSeries(icons, function(icon, callback) {
-    new jimp('src/app/icon/android.png', function() {
+    new jimp('src/app/global/icon/android.png', function() {
       this.resize(icon.size, icon.size).write('platforms/android/res/' + icon.dir + '/icon.png');
     });
     callback();
@@ -320,7 +318,7 @@ gulp.task('process:splash:android', function(done) {
     {dir: 'drawable-port-xhdpi', width: 720, height: 1280}
   ];
   async.eachSeries(screens, function(screen, callback) {
-    new jimp('src/app/splash/splash.png', function() {
+    new jimp('src/app/global/splash/splash.png', function() {
       var sourceWidth = this.bitmap.width;
       var sourceHeight = this.bitmap.height;
       var scale = Math.max(screen.width / sourceWidth, screen.height / sourceHeight);

@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/send').controller('SendCtrl', function($scope, $state, config, settings, analytics, sendEmail, sendSMS) {
+  angular.module('app/state/home/send').controller('SendCtrl', function($scope, $state, config, settings, analytics, sendEmail, sendSMS) {
     // Close popup
     $scope.close = function() {
       $state.go('^');

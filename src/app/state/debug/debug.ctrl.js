@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/debug').controller('DebugCtrl', function($scope, $location, $timeout, config, texts, settings, analytics) {
+  angular.module('app/state/debug').controller('DebugCtrl', function($scope, $location, $timeout, config, texts, settings, analytics) {
     // Clear cache and re-fetch texts
     $scope.refreshTextList = function() {
       // Fetch text list

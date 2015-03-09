@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/sendresult', [
+  angular.module('app/state/home/send/sendresult', [
      'mobile/popup'
   ]);
 
