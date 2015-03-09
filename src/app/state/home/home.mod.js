@@ -8,7 +8,6 @@
     'mobile/slider/infiniteslider',
     'mobile/dotindicator',
     'mobile/swipehint',
-    'mobile/genderselect',
     'mobile/send',
     'mobile/settings',
     'mobile/localisation',

@@ -28,6 +28,22 @@
           templateUrl: 'app/settings/settings.part.html',
           controller: 'SettingsCtrl'
         })
+        .state('home.genderselect', {
+          url: '/genderselect',
+          template: [
+            '<gw-mob-genderselect ',
+            'titletext="{{\'I_AM\' | translate}}" ',
+            'maletext="{{\'A_MAN\' | translate}}" ',
+            'femaletext="{{\'A_WOMAN\' | translate}}" ',
+            'maleselected="genderSelected(\'Male\')" ',
+            'femaleselected="genderSelected(\'Female\')"> ',
+            '</gw-mob-genderselect>'].join(''),
+          controller: function($scope) {
+            $scope.genderSeleted = function(gender) {
+              alert('gender is ' + gender);
+            };
+          }
+        })
         .state('home.send', {
           url: '/send',
           templateUrl: 'app/send/send.part.html',
@@ -57,9 +73,9 @@
           // Set the device ID
           analytics.setDeviceId($cordovaDevice.getUUID());
           // Initialise google analytics
-          analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
+          //analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
           // Initialise server analytics
-          analytics.initServerAnalytics();
+          //analytics.initServerAnalytics();
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        

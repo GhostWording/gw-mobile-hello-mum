@@ -8,6 +8,7 @@
     'mobile/notification',
     'mobile/analytics',
     'mobile/localisation',
+    'mobile/popup/genderselect',
     'app/splash',
     'app/settings',
     'app/home',
