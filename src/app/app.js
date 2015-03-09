@@ -20,6 +20,11 @@
               return $http.get('messageimages.json').then(function(result) {
                 return pickImages(result.data, config.imagesPerDay); 
               });
+            },
+            texts: function(texts, config) {
+              return texts.fetch().then(function() {
+                return texts.choose(config.textsPerDay); 
+              });
             }
           }
         })

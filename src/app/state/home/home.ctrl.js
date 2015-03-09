@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/state/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc, images) {
+  angular.module('app/state/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, helperSvc, images, texts) {
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'Home', 'Init');
     // Get device width and height
@@ -15,6 +15,8 @@
     $scope.settings = settings;
     // Put images on the scope
     $scope.images = images;
+    // Put texts on the scope
+    $scope.texts = texts;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
     // Get day of the week
@@ -69,7 +71,6 @@
       // Report Image Swipe
       analytics.reportEvent('Photo', $scope.imageSlider.currentImage, 'Home', 'Swipe'); 
     };
-    pickTexts();
     // Watch mum pet name setting, and re-replace on change
     $scope.$watch('settings.mumPetName', function() {
       replacePetNames($scope.texts, settings.mumPetName);
@@ -192,15 +193,6 @@
         .replace(/\s\:/g, '&nbsp;:')
         .replace(/\s\»/g, '&nbsp;»');
     };
-    // Select texts
-    function pickTexts() {
-      $scope.texts = null;
-      $scope.textSlider.currentText = null;
-      // Choose (n) texts
-      $scope.texts = texts.choose(config.textsPerDay);
-      // Replace mother pet names with the one in settings
-      replacePetNames($scope.texts, settings.mumPetName);
-    }
     // Prepare text content for sending 
     function prepareContentForSending() {
       // Get current text

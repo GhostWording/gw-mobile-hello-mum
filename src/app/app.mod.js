@@ -15,6 +15,7 @@
     'app/state/home/send/sendresult',
     'app/state/settings',
     'app/state/debug',
+    'app/global/texts',
     'app/global/config',
     'app/global/mumpetname',
     'app/global/translation'

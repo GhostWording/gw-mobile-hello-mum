@@ -2,41 +2,57 @@
 
   "use strict";
 
-  angular.module('app/global/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, settings, localisation) {
+  angular.module('app/global/texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, config, settings, localisation) {
     var _useWelcome;
     var _weightedIntentions;
     var _textLists;
     var _welcomeTextList;
     var texts = {
-      // Fetch welcome text list
-      fetchWelcome: function() {
-        // Set user gender
-        if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
-        if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
-        return helloMumTextsSvc.getWelcomeTextList('HelloMum', localisation.getLanguage()).then(function(textList) {
-          _welcomeTextList = textList;
-          return textList;
-        }); 
-      }, 
-      // Fetch text list
+      // Fetch texts from server (or cache)
       fetch: function() {
-        // Set user gender
-        if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
-        if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
-        // TODO : add mechanism to check for cache staleness somewhere in the app
-        _weightedIntentions = getWeightedIntentions();
-        // Get text list promises for the intentions (from cache if previously queried)
-        currentLanguage.setLanguageCode(localisation.getLanguage(), true);
-        var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions, currentLanguage.currentCulture());
-        // When all texts have been fetched
-        return $q.all(textListPromises).then(function (resolvedTextLists) {
-          _textLists = resolvedTextLists;  
-          return _textLists;
-        });
-      },
-      // Pick from welcome texts
-      useWelcome: function(use) {
-        _useWelcome = use;
+        _useWelcome = false;
+        return fetchAll();
+        /*
+        // If we have shown the welcome texts (n) times
+        // NOTE: no welcome texts for spanish language
+        if(localisation.getLanguage() === 'es' || 
+          (settings.welcomeTextsShownCount !== undefined && 
+          settings.welcomeTextsShownCount >= config.showWelcomeTextTimes)) {
+          // Trigger a fetch of all texts
+          fetchAll().then(function() {
+            // Pick from all texts
+            _useWelcome = false;
+          }, function() {
+            // Failed to fetch texts
+            $scope.showConnectivityMessage = true;
+            // Retry
+            $timeout(fetchTexts, config.textFetchRetryDelay * 1000);
+          });
+        } else {
+          // Fetch welcome texts
+          texts.fetchWelcome().then(function() {
+            // Flag welcome texts as shown
+            if(settings.welcomeTextsShownCount === undefined) {
+              settings.welcomeTextsShownCount = 1;
+            } else {
+              settings.welcomeTextsShownCount ++;
+            }
+            // Save settings
+            settings.save(); 
+            // Trigger a fetch of all texts in the background
+            texts.fetch();
+            // Pick from welcome texts
+            _useWelcome = true;
+            // Good to go..
+            $state.go('home');
+          }, function() {
+            // Failed to fetch texts
+            $scope.showConnectivityMessage = true;
+            // Retry
+            $timeout(fetchTexts, config.textFetchRetryDelay * 1000);
+          });
+        }
+        */
       },
       // Choose (n) texts
       choose: function(n) {
@@ -90,6 +106,34 @@
         _textList.splice(_textList.indexOf(text, 1));
       }
     };
+
+    // Fetch welcome text list
+    function fetchWelcome() {
+      // Set user gender
+      if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
+      if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
+      return helloMumTextsSvc.getWelcomeTextList('HelloMum', localisation.getLanguage()).then(function(textList) {
+        _welcomeTextList = textList;
+        return textList;
+      }); 
+    }
+ 
+    // Fetch text list
+    function fetchAll() {
+      // Set user gender
+      if(settings.userGender === 'Male') helloMumTextsSvc.setUserGender('H');
+      if(settings.userGender === 'Female') helloMumTextsSvc.setUserGender('F');
+      // TODO : add mechanism to check for cache staleness somewhere in the app
+      _weightedIntentions = getWeightedIntentions();
+      // Get text list promises for the intentions (from cache if previously queried)
+      currentLanguage.setLanguageCode(localisation.getLanguage(), true);
+      var textListPromises = helloMumTextsSvc.textListPromises(_weightedIntentions, currentLanguage.currentCulture());
+      // When all texts have been fetched
+      return $q.all(textListPromises).then(function (resolvedTextLists) {
+        _textLists = resolvedTextLists;  
+        return _textLists;
+      });
+    }
 
     function getWeightedIntentions() {
       // Get slugs and default weights for hello mum intentions

@@ -6,7 +6,10 @@
     'common/i18n',
     'common/services/helperSvc',
     'common/helloMum',
-    'mobile/localisation'
+    'mobile/localisation',
+    'mobile/settings',
+    'app/global/config',
+    'app/global/texts'
   ]);
 
 }());
