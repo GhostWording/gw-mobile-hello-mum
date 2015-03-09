@@ -80,7 +80,7 @@
     </div>
   </gw-mob-popup>
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="textList && !endOfTextVisible() && imageList && !endOfImageVisible() && bottomBarVisible && !popupVisible()">
+  <div class="bottomBar" ng-if="!endOfTextVisible() && !endOfImageVisible() && bottomBarVisible && !popupVisible()">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
     <div class="sendButtonHit" ng-click="sendButtonClick()">
@@ -89,7 +89,7 @@
     <!--TODO: Dislike button disabled for v1.0.0 - implement-->
     <!--<div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div>--> 
   </div>
-  <ion-content scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
+  <ion-content style="line-height:0px" scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
     <!-- settings button -->
     <div class="settingsButtonHit" ng-click="settingsButtonClick()" ng-if="!popupVisible()">
       <div class="settingsButton icon ion-gear-a"></div>
@@ -109,49 +109,50 @@
       ng-if="textSwipeHintVisible===true">
     </gw-mob-swipehint>
     <!-- image slides -->
-    <gw-mob-infiniteslider
-      ng-if="imageList"
-      getnextitem="getNextImage(currentImage)"
-      getpreviousitem="getPreviousImage(currentImage)"
-      currentitem="$parent.$parent.currentImage"
-      swipeleft="$parent.$parent.imageSwipeLeft"
-      swiperight="$parent.$parent.imageSwipeRight"
+    <gw-mob-fixedslider
+      items="images"
+      currentitem="imageSlider.currentImage"
+      eof="imageSlider.eof"
+      swipeleft="imageSlider.swipeLeft"
+      swiperight="imageSlider.swipeRight"
       swipedleft="imageSwiped()"
       swipedright="imageSwiped()"
+      dotindicatorposition="bottom" 
       on-tap="setSwipeHintState('image')"
       width="deviceWidth"
       height="slideImageHeight">
       <!-- slide -->
       <gw-mob-slide>
         <div class="imageContainer" style="height:{{slideImageHeight}}px">
-          <!-- more images text -->
-          <div class="moreImagesText" ng-show="item.indexOf('eof')!==-1">{{'EOF_IMAGE' | translate}}</div>
           <!-- image -->
           <div class="image" style="background-image:url('{{item}}')"></div>
         </div>
       </gw-mob-slide>
-    </gw-mob-infiniteslider>
-    <!-- image dot indicator -->
-    <div class="dotIndicatorContainer" style="top:{{slideImageHeight-22}}px" ng-if="imageList">
-      <div class="dotIndicatorCenter">
-        <gw-mob-dotindicator count="imageList.length+1" index="getImageIndex(currentImage)"></gw-mob-dotindicator>
-      </div>
-    </div>
+      <!-- eof slide -->
+      <gw-mob-eof>
+        <div class="imageContainer" style="height:{{slideImageHeight}}px">
+          <!-- eof text -->
+          <div class="moreImagesText">{{'EOF_IMAGE' | translate}}</div>
+          <!-- eof image -->
+          <div class="image" style="background-image:url('app/home/eof.jpg')"></div>
+        </div>
+      </gw-mob-eof>
+    </gw-mob-fixedslider>
     <!-- text slides -->
-    <gw-mob-infiniteslider
-      ng-if="textList"
-      getnextitem="getNextText(currentText)"
-      getpreviousitem="getPreviousText(currentText)"
-      currentitem="$parent.$parent.currentText"
-      swipeLeft="$parent.$parent.swipeLeft"
-      swipeRight="$parent.$parent.swipeRight"
+    <gw-mob-fixedslider
+      items="texts"
+      currentitem="textSlider.currentText"
+      eof="textSlider.eof"
+      swipeLeft="textSlider.swipeLeft"
+      swipeRight="textSlider.swipeRight"
       swipedleft="textSwiped()"
       swipedright="textSwiped()"
+      dotindicatorposition="top"
       on-tap="setSwipeHintState('text')"
       width="deviceWidth">
       <!-- slide -->
       <gw-mob-slide>
-        <!-- text -->
+       <!-- text -->
         <div class="text">
           <!-- title -->
           <div class="titleContainer">
@@ -159,17 +160,18 @@
             <div class="title" ng-show="textIsJoke(item.text)">{{'OTD_JOKE' | translate}}</div>
           </div>
           <!-- content -->
-         <span ng-bind-html="formatTextForDisplay(item.text.Content)" style="white-space: pre-wrap"></span>
+          <span ng-bind-html="formatTextForDisplay(item.text.Content)" style="white-space: pre-wrap"></span>
           <!-- author -->
           <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
         </div>
       </gw-mob-slide>
-    </gw-mob-infiniteslider>
-    <!-- text dot indicator -->
-    <div class="dotIndicatorContainer" style="top:{{slideImageHeight+2}}px" ng-if="textList">
-      <div class="dotIndicatorCenter">
-        <gw-mob-dotindicator count="textList.length+1" index="getTextIndex(currentText)"></gw-mob-dotindicator>
-      </div>
-    </div>
+      <!-- eof slide -->
+      <gw-mob-eof>
+        <div class="text">
+          <!-- eof text -->
+          <span>{{'EOF_TEXT' | translate}}</span>
+        </div>
+      </gw-mob-eof> 
+    </gw-mob-fixedslider>
   </ion-content>
 </ion-view>

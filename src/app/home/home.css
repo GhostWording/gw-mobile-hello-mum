@@ -78,33 +78,6 @@
 .home .swipeArrowRight {
   right: 10px;
 }
-.home .dotIndicatorContainer {
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-  pointer-events: none;
-}
-.home .dotIndicatorCenter {
-  float: right;
-  right: 50%;
-  position: relative;
-}
-.home .dotIndicator {
-  float: right;
-  right: -50%;
-  position: relative;
-}
-.home .dotIndicator .dot {
-  margin-left: 2px;
-  margin-right: 2px;
-  font-size: 18px;
-  opacity: 0.15;
-  color: black;
-}
-.home .dotIndicator .currentDot {
-  color: #339ee6;
-  opacity: 1;
-}
 .home .settingsButtonHit {
   position: absolute;
   z-index: 200;

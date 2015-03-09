@@ -2,8 +2,7 @@
 
   "use strict";
 
-  angular.module('app/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc) {
-    var textImageMap = {};
+  angular.module('app/home').controller('HomeCtrl', function($scope, $state, $http, $window, $location, $timeout, $interval, $ionicScrollDelegate, $translate, mumPetName, config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, texts, helperSvc, images) {
     // Report text select page init
     analytics.reportEvent('Init', 'Page', 'Home', 'Init');
     // Get device width and height
@@ -14,10 +13,15 @@
     $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
     // Put settings on the scope
     $scope.settings = settings;
+    // Put images on the scope
+    $scope.images = images;
     // Default to bottom bar visible
     $scope.bottomBarVisible = true;
     // Get day of the week
     $scope.dayOfTheWeek = (new Date()).getDay();
+    // Slider states
+    $scope.textSlider = {};
+    $scope.imageSlider = {};
     // Swipe status
     $scope.imageWasSwiped = settings.imageWasSwiped;
     $scope.textWasSwiped = settings.textWasSwiped;
@@ -40,57 +44,6 @@
       // Initialise swipe hints
       initSwipeHints();
     };
-    // Given an image, get the next one in the sequence
-    $scope.getNextImage = function(currentImage) {
-      var image;
-      // If no current image
-      if(!currentImage) {
-        // Use the first in the sequence 
-        image = $scope.imageList[0]; 
-      } else {
-        var currentImageIndex = $scope.imageList.indexOf(currentImage);
-        if(currentImageIndex === -1) return null;
-        // If we are are at the end of the sequence
-        if(currentImageIndex > $scope.textList.length-2) {
-          // Return end of file image
-          return config.endOfFileImageUrl;
-        }
-        image = $scope.imageList[currentImageIndex+1];
-      }
-      // Return text
-      return image;  
-    };
-    // Given an image, get the previous one in the sequence
-    $scope.getPreviousImage = function(currentImage) {
-      var currentImageIndex = $scope.imageList.indexOf(currentImage);
-      // If we are on the end of file image
-      if(currentImageIndex === -1) {
-        // If there are no images in the sequence
-        if($scope.imageList.length === 0) {
-          // Return null
-          return null;
-        }
-        // Return the last image in the sequence
-        return $scope.imageList[$scope.imageList.length-1];
-      }
-      // If we are at the beginning of the sequence
-      if(currentImageIndex === 0) {
-        // Return null
-        return null;
-      }
-      // Return previous image
-      return $scope.imageList[currentImageIndex-1];
-    };
-    // Get the index of the current image slide for the dot indicator
-    $scope.getImageIndex = function(currentImage) {
-      var index = $scope.imageList.indexOf(currentImage);
-      // Account for eof image
-      if(index === -1) {
-        index = $scope.imageList.length;
-      }
-      return index;
-    }; 
-    // Text slide swiped
     $scope.textSwiped = function() {
       // Scroll back to top
       $ionicScrollDelegate.scrollTop(true); 
@@ -102,7 +55,7 @@
       settings.textWasSwiped = true;
       settings.save();
       // Report Text Swipe
-      analytics.reportEvent('Text', $scope.currentText.text.TextId, 'Home', 'Swipe'); 
+      analytics.reportEvent('Text', $scope.textSlider.currentText.text.TextId, 'Home', 'Swipe'); 
     };
     // Image slide swiped
     $scope.imageSwiped = function() {
@@ -114,18 +67,12 @@
       settings.imageWasSwiped = true;
       settings.save();
       // Report Image Swipe
-      analytics.reportEvent('Photo', $scope.currentImage, 'Home', 'Swipe'); 
+      analytics.reportEvent('Photo', $scope.imageSlider.currentImage, 'Home', 'Swipe'); 
     };
-    // Load message image urls
-    $http.get('messageimages.json').success(function(imageUrls) {
-      // Pick images
-      $scope.imageList = pickImages(imageUrls, config.imagesPerDay);
-      // Pick texts
-      pickTexts(); 
-    });
+    pickTexts();
     // Watch mum pet name setting, and re-replace on change
     $scope.$watch('settings.mumPetName', function() {
-      replacePetNames($scope.textList, settings.mumPetName);
+      replacePetNames($scope.texts, settings.mumPetName);
     });
     // On app return to foreground
     document.addEventListener("resume", appResume, false);
@@ -141,58 +88,6 @@
         $scope.$apply();
       }
     }
-    // Given a text, get the next one in the sequence
-    $scope.getNextText = function(currentText) {
-      var text;
-      // If no current text
-      if(!currentText) {
-        // Use the first in the sequence 
-        text = $scope.textList[0]; 
-      } else {
-        var currentTextIndex = $scope.textList.indexOf(currentText);
-        if(currentTextIndex === -1) return null;
-        // If we are are at the end of the sequence
-        if(currentTextIndex > $scope.textList.length-2) {
-          // Return end of file text
-          text = {text:{Content:$translate.instant('EOF_TEXT'), TextId:-1}}; 
-          return text;
-        }
-        text = $scope.textList[currentTextIndex+1];
-      }
-      // Return text
-      return text;  
-    };
-    // Given a text, get the previous one in the sequence
-    $scope.getPreviousText = function(currentText) {
-      var currentTextIndex = $scope.textList.indexOf(currentText);
-      // If we are on the end of file text
-      if(currentTextIndex === -1) {
-        // If there are no texts in the sequence
-        if($scope.textList.length === 0) {
-          // Return null
-          return null;
-        }
-        // Return the last item in the sequence
-        return $scope.textList[$scope.textList.length-1];
-      }
-      // If we are at the beginning of the sequence
-      if(currentTextIndex === 0) {
-        // Return null
-        return null;
-      }
-      // Return previous text
-      return $scope.textList[currentTextIndex-1];
-    };
-    // Get the index of the current text slide for the dot indicator
-    $scope.getTextIndex = function(currentText) {
-      if(!$scope.textList) return null;
-      var index = $scope.textList.indexOf(currentText);
-      // Account for eof text
-      if(index === -1) {
-        index = $scope.textList.length;
-      }
-      return index;
-    }; 
     // Is the passed text a quote?
     $scope.textIsQuote = function(text) {
       if(!text) return false;
@@ -211,23 +106,11 @@
     };
     // End of text visible?
     $scope.endOfTextVisible = function() {
-      return $scope.textList.indexOf($scope.currentText) === -1;
+      return $scope.texts.indexOf($scope.textSlider.currentText) === -1;
     };
     // End of image visible?
     $scope.endOfImageVisible = function() {
-      return $scope.imageList.indexOf($scope.currentImage) === -1;
-    };
-    // Like button clicked
-    $scope.likeButtonClick = function(item) {
-      item.liked = !item.liked;
-    };
-    // Dislike button clicked
-    $scope.dislikeButtonClick = function(item) {
-      $scope.swipeLeft();
-      // Remove current text from textlist
-      var currentTextIndex = $scope.textList.indexOf($scope.currentText);
-      $scope.textList.splice(currentTextIndex, 1);
-      $scope.currentText = $scope.textList[currentTextIndex];
+      return $scope.images.indexOf($scope.imageSlider.currentImage) === -1;
     };
     // Send button clicked
     $scope.sendButtonClick = function() {
@@ -311,29 +194,17 @@
     };
     // Select texts
     function pickTexts() {
-      $scope.textList = null;
-      $scope.currentText = null;
+      $scope.texts = null;
+      $scope.textSlider.currentText = null;
       // Choose (n) texts
-      $scope.textList = texts.choose(config.textsPerDay);
+      $scope.texts = texts.choose(config.textsPerDay);
       // Replace mother pet names with the one in settings
-      replacePetNames($scope.textList, settings.mumPetName);
-    }
-    // Select (n) unique images
-    function pickImages(candidateImageUrls, numImages) {
-      var imageList = [];
-      for(var i=0; i<numImages; i++) {
-        var image;
-        do {
-          image = candidateImageUrls[Math.floor(Math.random() * candidateImageUrls.length)];
-        } while(imageList.indexOf(image) !== -1); 
-        imageList.push(image);
-      }
-      return imageList;
+      replacePetNames($scope.texts, settings.mumPetName);
     }
     // Prepare text content for sending 
     function prepareContentForSending() {
       // Get current text
-      var text = $scope.currentText.text;
+      var text = $scope.textSlider.currentText.text;
       // Get current text content
       var content = text.Content;
       // Add of the day labels
@@ -365,10 +236,10 @@
       }, 1000);
     }
     // Replace mother pet names
-    function replacePetNames(textList, replacement) {
-      if(textList) {
-        for(var i=0; i<textList.length; i++) {
-          textList[i].text.Content = mumPetName.replace(textList[i].text.Content, replacement); 
+    function replacePetNames(texts, replacement) {
+      if(texts) {
+        for(var i=0; i<texts.length; i++) {
+          texts[i].text.Content = mumPetName.replace(texts[i].text.Content, replacement); 
         }
       }
     }
