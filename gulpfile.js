@@ -74,9 +74,9 @@ var imageGlobs = [
 // Font glob patterns
 var fontGlobs = [
   'src/lib/ionic/fonts/**/ionicons.woff',
-  'src/app/global/fonts/**/notosans-bold.woff',
-  'src/app/global/fonts/**/notoserif-italic.woff',
-  'src/app/global/fonts/**/notoserif-bolditalic.woff'
+  'src/app/fonts/**/notosans-bold.woff',
+  'src/app/fonts/**/notoserif-italic.woff',
+  'src/app/fonts/**/notoserif-bolditalic.woff'
 ];
 
 // Partial glob patterns

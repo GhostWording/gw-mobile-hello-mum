@@ -1,34 +1,34 @@
 @font-face {
   font-family: 'notosans-regular';
-  src: url('./global/fonts/notosans-regular.woff') format('woff');
+  src: url('./fonts/notosans-regular.woff') format('woff');
 }
 @font-face {
   font-family: 'notosans-bold';
-  src: url('./global/fonts/notosans-bold.woff') format('woff');
+  src: url('./fonts/notosans-bold.woff') format('woff');
 }
 @font-face {
   font-family: 'notosans-italic';
-  src: url('./global/fonts/notosans-italic.woff') format('woff');
+  src: url('./fonts/notosans-italic.woff') format('woff');
 }
 @font-face {
   font-family: 'notosans-bolditalic';
-  src: url('./global/fonts/notosans-bolditalic.woff') format('woff');
+  src: url('./fonts/notosans-bolditalic.woff') format('woff');
 }
 @font-face {
   font-family: 'notoserif-regular';
-  src: url('./global/fonts/notoserif-regular.woff') format('woff');
+  src: url('./fonts/notoserif-regular.woff') format('woff');
 }
 @font-face {
   font-family: 'notoserif-bold';
-  src: url('./global/fonts/notoserif-bold.woff') format('woff');
+  src: url('./fonts/notoserif-bold.woff') format('woff');
 }
 @font-face {
   font-family: 'notoserif-italic';
-  src: url('./global/fonts/notoserif-italic.woff') format('woff');
+  src: url('./fonts/notoserif-italic.woff') format('woff');
 }
 @font-face {
   font-family: 'notoserif-bolditalic';
-  src: url('./global/fonts/notoserif-bolditalic.woff') format('woff');
+  src: url('./fonts/notoserif-bolditalic.woff') format('woff');
 }
 .appView {
   padding: 0px;
