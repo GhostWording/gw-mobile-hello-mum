@@ -12,6 +12,7 @@
     'app/state/splash/genderselect',
     'app/state/home',
     'app/state/home/send',
+    'app/state/home/smswarn',
     'app/state/home/send/sendresult',
     'app/state/settings',
     'app/state/debug',

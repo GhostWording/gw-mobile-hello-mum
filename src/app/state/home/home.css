@@ -105,9 +105,6 @@
   width: 40px;
   height: 40px;
 }
-.home .popupt {
-  background-color: rgba(6,42,66,0.75);
-}
 .home .bottomBar {
   position: absolute;
   display: flex;
@@ -151,9 +148,6 @@
   vertical-align: center;
   text-align: center;
   pointer-events: all;
-}
-.home .send {
-  margin-top: 150px;
 }
 .home .contactPopup .popupContent {
   width: 90%;

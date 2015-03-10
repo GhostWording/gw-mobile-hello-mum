@@ -103,7 +103,6 @@
     // Is a popup currently visible?
     $scope.popupVisible = function() {
       if($scope.smsContactPopupVisible || 
-        $scope.smsImagePopupVisible || 
         $scope.sentPopupVisible || 
         $scope.errorPopupVisible || 
         $scope.emailContactPopupVisible ||

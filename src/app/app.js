@@ -43,6 +43,11 @@
           templateUrl: 'app/state/home/send/send.part.html',
           controller: 'SendCtrl' 
         })
+        .state('home.smswarn', {
+          url: '/smswarn',
+          templateUrl: 'app/state/home/smswarn/smswarn.part.html',
+          controller: 'SmsWarnCtrl' 
+        })
         .state('home.sendresult', {
           templateUrl: 'app/state/home/send/sendresult/sendresult.part.html',
           controller: 'SendResultCtrl', 
