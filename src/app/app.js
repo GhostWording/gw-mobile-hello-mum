@@ -38,10 +38,10 @@
           templateUrl: 'app/state/settings/settings.part.html',
           controller: 'SettingsCtrl'
         })
-        .state('home.send', {
-          url: '/send',
-          templateUrl: 'app/state/home/send/send.part.html',
-          controller: 'SendCtrl' 
+        .state('home.sendmethod', {
+          url: '/sendmethod',
+          templateUrl: 'app/state/home/sendmethod/sendmethod.part.html',
+          controller: 'SendMethodCtrl' 
         })
         .state('home.smswarn', {
           url: '/smswarn',
