@@ -235,24 +235,6 @@
           // Return prepared content
           return content;
         }
-        // Show sent popup
-        function showSentPopup() {
-          // Show the SMS sent popup
-          $scope.sentPopupVisible = true;
-          // And hide it after 1 second
-          $timeout(function() {
-            $scope.sentPopupVisible = false;
-          }, 1000);
-        }
-        // Show error popup
-        function showErrorPopup() {
-          // Show the error popup
-          $scope.errorPopupVisible = true;
-          // And hide it after 1 second
-          $timeout(function() {
-            $scope.errorPopupVisible = false;
-          }, 1000);
-        }
         // Replace mother pet names
         function replacePetNames(texts, replacement) {
           if(texts) {

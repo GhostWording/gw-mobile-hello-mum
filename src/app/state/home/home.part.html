@@ -1,14 +1,6 @@
 <ion-view class="home" cache-view="false">
   <!-- popup injection point -->
   <div ui-view></div>
-  <!-- sent popup -->
-  <gw-mob-popup class="textPopup" ng-if="sentPopupVisible">
-    <div>{{'MES_SEND_SUC' | translate}}</div>
-  </gw-mob-popup>
-  <!-- error popup -->
-  <gw-mob-popup class="textPopup" ng-if="errorPopupVisible">
-    <div>{{'MES_SEND_ERR' | translate}}</div>
-  </gw-mob-popup>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="bottomBarVisible()">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
