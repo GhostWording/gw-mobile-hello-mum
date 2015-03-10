@@ -3,62 +3,14 @@
   "use strict";
 
   angular.module('app')
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function($urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
-      $stateProvider
-        .state('splash', {
-          url: '/',
-          templateUrl: 'app/state/splash/splash.part.html',
-          controller: 'SplashCtrl'
-        })
-        .state('splash.genderselect', {
-          url: '/genderselect',
-          templateUrl: 'app/state/splash/genderselect/genderselect.part.html',
-          controller: 'GenderSelectCtrl'
-        })
-        .state('home', {
-          url: '/home',
-          templateUrl: 'app/state/home/home.part.html',
-          controller: 'HomeCtrl',
-          resolve: {
-            images: function($http, config) {
-              return $http.get('messageimages.json').then(function(result) {
-                return pickImages(result.data, config.imagesPerDay); 
-              });
-            },
-            texts: function(texts, config) {
-              return texts.fetch().then(function() {
-                return texts.choose(config.textsPerDay); 
-              });
-            }
-          }
-        })
-        .state('settings', {
-          url: '/settings',
-          templateUrl: 'app/state/settings/settings.part.html',
-          controller: 'SettingsCtrl'
-        })
-        .state('home.sendmethod', {
-          url: '/sendmethod',
-          templateUrl: 'app/state/home/sendmethod/sendmethod.part.html',
-          controller: 'SendMethodCtrl' 
-        })
-        .state('home.smswarn', {
-          url: '/smswarn',
-          templateUrl: 'app/state/home/smswarn/smswarn.part.html',
-          controller: 'SmsWarnCtrl' 
-        })
-        .state('home.sendresult', {
-          templateUrl: 'app/state/home/send/sendresult/sendresult.part.html',
-          controller: 'SendResultCtrl', 
-          params: ['success']
-        })
-        .state('debug', {
-          url: '/debug',
-          templateUrl: 'app/state/debug/debug.part.html'
-        });
     })
-    .run(function($window, $ionicPlatform, $state, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
+    .run(function(
+      /* ANG */ $window, 
+      /* 3RD */ $ionicPlatform, $state, $cordovaDevice, $translate, 
+      /* GMC */ settings, notification, analytics, localisation,
+      /* APP */ config, mumPetName) {
       $ionicPlatform.ready(function() {
         // Localise!
         localisation.localise(settings.language);
@@ -101,19 +53,5 @@
         }
       });
   });
-
-  // Select (n) unique images
-  // TODO: temporary, move
-  function pickImages(candidateImageUrls, numImages) {
-    var imageList = [];
-    for(var i=0; i<numImages; i++) {
-      var image;
-      do {
-        image = candidateImageUrls[Math.floor(Math.random() * candidateImageUrls.length)];
-      } while(imageList.indexOf(image) !== -1); 
-      imageList.push(image);
-    }
-    return imageList;
-  }
 
 }());
