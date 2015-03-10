@@ -27,25 +27,8 @@
     // Swipe status
     $scope.imageWasSwiped = settings.imageWasSwiped;
     $scope.textWasSwiped = settings.textWasSwiped;
-    // Wait until the screen transition is over
-    $timeout(function() {
-      // Pop up gender select if we don't know the users gender
-      if(!settings.userGender) {
-        $scope.genderSelectPopupVisible = true;
-      } else {
-        // Initialise swipe hints
-        initSwipeHints();
-      }
-    }, 800);
-    // Gender selected
-    $scope.genderSelected = function(gender) {
-      settings.userGender = gender;
-      settings.save();
-      // Hide gender popup
-      $scope.genderSelectPopupVisible = false;
-      // Initialise swipe hints
-      initSwipeHints();
-    };
+    // Initialise swipe hints
+    initSwipeHints();
     $scope.textSwiped = function() {
       // Scroll back to top
       $ionicScrollDelegate.scrollTop(true); 
@@ -120,7 +103,6 @@
     // Is a popup currently visible?
     $scope.popupVisible = function() {
       if($scope.smsContactPopupVisible || 
-        $scope.genderSelectPopupVisible || 
         $scope.smsImagePopupVisible || 
         $scope.sentPopupVisible || 
         $scope.errorPopupVisible || 

@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/state/splash').controller('SplashCtrl', function($scope, $state, $timeout, $ionicPlatform, $ionicViewService, analytics) {
+  angular.module('app/state/splash').controller('SplashCtrl', function($scope, $state, $timeout, $ionicPlatform, $ionicViewService, analytics, settings) {
     // Report splash page init
     analytics.reportEvent('Init', 'Page', 'Splash', 'Init');        
     // Prevent user from returning to this screen
@@ -19,8 +19,14 @@
       }
       // Wait a bit
       $timeout(function() {
-        // Go home
-        $state.go('home');
+        // If we dont know the users gender
+        if(!settings.userGender) {
+          // Go to gender select
+          $state.go('.genderselect');
+        } else {
+          // Go home
+          $state.go('home');
+        }
       }, 1500);
     });
   });

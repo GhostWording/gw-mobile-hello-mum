@@ -11,6 +11,11 @@
           templateUrl: 'app/state/splash/splash.part.html',
           controller: 'SplashCtrl'
         })
+        .state('splash.genderselect', {
+          url: '/genderselect',
+          templateUrl: 'app/state/splash/genderselect/genderselect.part.html',
+          controller: 'GenderSelectCtrl'
+        })
         .state('home', {
           url: '/home',
           templateUrl: 'app/state/home/home.part.html',
@@ -32,22 +37,6 @@
           url: '/settings',
           templateUrl: 'app/state/settings/settings.part.html',
           controller: 'SettingsCtrl'
-        })
-        .state('home.genderselect', {
-          url: '/genderselect',
-          template: [
-            '<gw-mob-genderselect ',
-            'titletext="{{\'I_AM\' | translate}}" ',
-            'maletext="{{\'A_MAN\' | translate}}" ',
-            'femaletext="{{\'A_WOMAN\' | translate}}" ',
-            'maleselected="genderSelected(\'Male\')" ',
-            'femaleselected="genderSelected(\'Female\')"> ',
-            '</gw-mob-genderselect>'].join(''),
-          controller: function($scope) {
-            $scope.genderSeleted = function(gender) {
-              alert('gender is ' + gender);
-            };
-          }
         })
         .state('home.send', {
           url: '/send',

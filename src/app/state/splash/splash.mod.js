@@ -4,7 +4,8 @@
 
   angular.module('app/state/splash', [
     'ionic',
-    'mobile/localisation'
+    'mobile/localisation',
+    'mobile/settings'
   ]);
 
 }());
