@@ -3,8 +3,8 @@
   "use strict";
 
   angular.module('app/state/home/send').controller('SendCtrl', function($scope, $state, config, settings, analytics, sendEmail, sendSMS) {
-    // Close popup
-    $scope.close = function() {
+    // Cancel
+    $scope.cancel = function() {
       $state.go('^');
     };
     // Send via SMS
