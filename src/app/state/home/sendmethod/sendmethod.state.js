@@ -9,7 +9,7 @@
       controller: function($scope, $state) {
         // Send SMS
         $scope.sendSMS = function() {
-          $state.go('^');
+          $state.go('^.smswarn');
         };
         // Send Email
         $scope.sendEmail = function() {
