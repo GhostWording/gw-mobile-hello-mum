@@ -19,12 +19,12 @@
         }
       },
       controller: function(
-        $scope, $window, $timeout, $interval, 
-        $state, $ionicScrollDelegate, $translate, 
-        settings, analytics, localisation, sendSMS, sendEmail,
-        helperSvc, 
-        mumPetName, config, 
-        images, texts) {
+        /* ANG */ $scope, $window, $timeout, $interval, 
+        /* 3RD */ $state, $ionicScrollDelegate, $translate, 
+        /* GMC */ settings, analytics, localisation, sendSMS, sendEmail,
+        /* GWC */ helperSvc, 
+        /* APP */ mumPetName, config, 
+        /* RES */ images, texts) {
         // Report home page init
         analytics.reportEvent('Init', 'Page', 'Home', 'Init');
         // Get device width and height
