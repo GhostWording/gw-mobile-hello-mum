@@ -18,7 +18,8 @@
     'app/state/home/sendmethod',
     'app/state/home/smswarn',
     'app/state/home/emailselect',
-    'app/state/home/mobileselect'
+    'app/state/home/mobileselect',
+    'app/state/home/sendresult',
   ]);
 
 }());

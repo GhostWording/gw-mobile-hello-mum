@@ -123,11 +123,13 @@
             sendSMS.send(prepareContentForSending()).then(function() {
               // Report SMS send
               analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
-              alert('GOING TO SEND SUCCESS STATE');
+              // Go to success result
+              $state.go('home.sendresult', {success: true});
             }, function() {
               // Report SMS send fail
               analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
-              alert('GOING TO SEND ERROR STATE');
+              // Go to fail result
+              $state.go('home.sendresult', {success: true});
             }); 
           }
         };
