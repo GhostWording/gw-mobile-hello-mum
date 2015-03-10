@@ -19,12 +19,12 @@
         }
       },
       controller: function(
-        /* ANG */ $scope, $window, $timeout, $interval, 
-        /* 3RD */ $state, $ionicScrollDelegate, $translate, 
-        /* GMC */ settings, analytics, localisation, sendSMS, sendEmail,
-        /* GWC */ helperSvc, 
-        /* APP */ mumPetName, config, 
-        /* RES */ images, texts) {
+        $scope, $window, $timeout, $interval, 
+        $state, $ionicScrollDelegate, $translate, 
+        settings, analytics, localisation, sendSMS, sendEmail,
+        helperSvc, 
+        mumPetName, config, 
+        images, texts) {
         // Report home page init
         analytics.reportEvent('Init', 'Page', 'Home', 'Init');
         // Get device width and height
@@ -39,8 +39,6 @@
         $scope.images = images;
         // Put texts on the scope
         $scope.texts = texts;
-        // Default to bottom bar visible
-        $scope.bottomBarVisible = true;
         // Get day of the week
         $scope.dayOfTheWeek = (new Date()).getDay();
         // Slider states
@@ -60,7 +58,6 @@
           $scope.textWasSwiped = true;
           // Persist to settings to disable hints
           settings.textWasSwiped = true;
-          settings.save();
           // Report Text Swipe
           analytics.reportEvent('Text', $scope.textSlider.currentText.text.TextId, 'Home', 'Swipe'); 
         };
@@ -72,7 +69,6 @@
           $scope.imageWasSwiped = true;
           // Persist to settings to disable hints
           settings.imageWasSwiped = true;
-          settings.save();
           // Report Image Swipe
           analytics.reportEvent('Photo', $scope.imageSlider.currentImage, 'Home', 'Swipe'); 
         };
@@ -110,23 +106,18 @@
           if(!text) return false;
           return text.IntentionId === '0B1EA1';
         };
-        // End of text visible?
-        $scope.endOfTextVisible = function() {
-          return $scope.texts.indexOf($scope.textSlider.currentText) === -1;
-        };
-        // End of image visible?
-        $scope.endOfImageVisible = function() {
-          return $scope.images.indexOf($scope.imageSlider.currentImage) === -1;
-        };
         // Send button clicked
         $scope.sendButtonClick = function() {
           // Pick send method
-          $state.go('.sendmethod');
+          $state.go('home.sendmethod');
         };
         // Send via SMS
         $scope.sendSMS = function() {
-          // If we have a mobile number 
-          if($scope.mobileNumberValid()) {
+          // If we dont have a mobile number 
+          if(!settings.mobileNumber || settings.mobileNumber==='') {
+            // Go to mobile select
+            $state.go('home.mobileselect');
+          } else {
             // Send the SMS
             sendSMS.setMobileNumber(settings.mobileNumber);
             sendSMS.send(prepareContentForSending()).then(function() {
@@ -138,14 +129,15 @@
               analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
               alert('GOING TO SEND ERROR STATE');
             }); 
-          } else {
-            alert('GOING TO SMS CONTACT SELECT STATE');
           }
         };
         // Send via Email
         $scope.sendEmail = function() {
-          // If we have a valid email address 
-          if($scope.emailAddressValid()) {
+          // If we dont have an email address 
+          if(!settings.emailAddress || settings.emailAddress==='') {
+            // go to email select
+            $state.go('home.emailselect');
+          } else {
             // Get the email subject
             $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
               // Send the Email
@@ -155,41 +147,12 @@
               // Report email send
               analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
             });
-          } else {
-            alert('GOING TO EMAIL CONTACT SELECT STATE');
           }
         };    
         // Send via Facebook
         $scope.sendFacebook = function() {
-          // Hide the send popup
-          $scope.sendPopupVisible = false;
-          // Alert for now..
           // TODO: implement
           alert('sending "' + prepareContentForSending() + '" via Facebook');
-        };
-        // Returns true if the passed mobile number is valid
-        // TODO: move to send 
-        $scope.mobileNumberValid = function() {
-          // TODO: make this better
-          return settings.mobileNumber && settings.mobileNumber!=='';
-        };
-        // Returns true if the passed email is valid
-        // TODO: move to send 
-        $scope.emailAddressValid = function() {
-          // TODO: make this better
-          return settings.emailAddress && settings.emailAddress!=='';
-        };
-        // Is a popup currently visible?
-        $scope.popupVisible = function() {
-          if($scope.smsContactPopupVisible || 
-            $scope.sentPopupVisible || 
-            $scope.errorPopupVisible || 
-            $scope.emailContactPopupVisible ||
-            $scope.smsContactPopupVisible) {
-            return true;
-          } else {
-            return false;
-          }
         };
         // Settings button clicked
         $scope.settingsButtonClick = function() {
@@ -207,22 +170,23 @@
           debugClickCount ++;
           if(debugClickCount === 3) {
             debugClickCount = 0;
-            $location.path('/debug');
+            $state.go('debug');
           }
         };
-        $scope.contactOkButtonClick = function() {
-          $scope.contactPopupVisible = false;
+        // Returns true if the bottom bar should be visible
+        $scope.bottomBarVisible = function() {
+          return !$scope.textSlider.eof && !$scope.imageSlider.eof && !$scope.childStateActive();
         };
-        $scope.contactCancelButtonClick = function() {
-          $scope.smsContactPopupVisible = false;
-          $scope.emailContactPopupVisible = false;
+        // Returns true if a child state is active
+        $scope.childStateActive = function() {
+          return $state.current.name !== 'home';
         };
         // Initialise swipe hints
         function initSwipeHints() {
           // Every now and then
           $interval(function() {
-            // If no popups visible
-            if(!$scope.popupVisible()) {
+            // If there are no child states active
+            if(!$scope.childStateActive()) {
               // If image was not swiped 
               if(!$scope.imageWasSwiped) {
                 // Show image swipe hint

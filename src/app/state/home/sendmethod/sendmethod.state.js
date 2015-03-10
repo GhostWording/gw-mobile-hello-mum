@@ -6,18 +6,10 @@
     $stateProvider.state('home.sendmethod', {
       url: '/sendmethod',
       templateUrl: 'app/state/home/sendmethod/sendmethod.part.html',
-      controller: function($scope, $state) {
+      controller: function($scope, $state, settings) {
         // Send SMS
         $scope.sendSMS = function() {
           $state.go('^.smswarn');
-        };
-        // Send Email
-        $scope.sendEmail = function() {
-          $state.go('^');
-        };
-        // Send Facebook
-        $scope.sendEmail = function() {
-          $state.go('^');
         };
         // Cancel
         $scope.cancel = function() {

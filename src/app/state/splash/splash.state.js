@@ -7,9 +7,9 @@
       url: '/',
       templateUrl: 'app/state/splash/splash.part.html',
       controller: function(
-        /* ANG */ $scope, $timeout,
-        /* 3RD */ $state, $ionicPlatform, $ionicViewService,
-        /* GMC */ analytics, settings) {
+        $scope, $timeout,
+        $state, $ionicPlatform, $ionicViewService,
+        analytics, settings) {
         // Report splash page init
         analytics.reportEvent('Init', 'Page', 'Splash', 'Init');        
         // Prevent user from returning to this screen

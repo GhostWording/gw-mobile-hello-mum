@@ -9,55 +9,23 @@
   <gw-mob-popup class="textPopup" ng-if="errorPopupVisible">
     <div>{{'MES_SEND_ERR' | translate}}</div>
   </gw-mob-popup>
-  <!-- email contact picker popup -->
-  <gw-mob-popup class="contactPopup" ng-if="emailContactPopupVisible">
-    <gw-mob-contact
-      showmobilenumber="false"
-      emailaddresslabel="{{'MUM_EMAIL' | translate}}"
-      selectbuttontext="{{'SEL_CONT' | translate}}"
-      emailaddress="settings.emailAddress"
-      mobilenumber="settings.mobileNumber">
-    </gw-mob-contact>
-    <div class="popupButtonHit pad" ng-if="emailAddressValid()" ng-click="sendEmail()">
-      <div class="popupButton"><p>{{'SEND' | translate}}</p></div>
-    </div>
-    <div class="popupButtonHit" ng-class="{'pad':!emailAddressValid()}" ng-click="contactCancelButtonClick()">
-      <div class="popupButton">{{'CANCEL' | translate}}</div>
-    </div>
-  </gw-mob-popup>
-  <!-- sms contact picker popup -->
-  <gw-mob-popup class="contactPopup" ng-if="smsContactPopupVisible">
-    <gw-mob-contact
-      showemailaddress="false"
-      mobilenumberlabel="{{'MUM_MOB' | translate}}"
-      selectbuttontext="{{'SEL_CONT' | translate}}"
-      emailaddress="settings.emailAddress"
-      mobilenumber="settings.mobileNumber">
-    </gw-mob-contact>
-    <div class="popupButtonHit pad" ng-if="mobileNumberValid()" ng-click="sendSMS()">
-      <div class="popupButton"><p>{{'SEND' | translate}}</p></div>
-    </div>
-    <div class="popupButtonHit" ng-class="{'pad':!mobileNumberValid()}" ng-click="contactCancelButtonClick()">
-      <div class="popupButton">{{'CANCEL' | translate}}</div>
-    </div>
-  </gw-mob-popup>
   <!-- bottom bar -->
-  <div class="bottomBar" ng-if="!endOfTextVisible() && !endOfImageVisible() && bottomBarVisible && !popupVisible()">
+  <div class="bottomBar" ng-if="bottomBarVisible()">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
-    <!--<div class="likeDislikeButton icon ion-thumbsdown" ng-click="dislikeButtonClick()"></div>-->
-    <div class="sendButtonHit" ng-click="sendButtonClick()">
+    <!--<div class="likeDislikeButton icon ion-thumbsdown" on-tap="dislikeButtonClick()"></div>-->
+    <div class="sendButtonHit" on-tap="sendButtonClick()">
       <div class="sendButton">{{'SEND' | translate}}</div>
     </div>
     <!--TODO: Dislike button disabled for v1.0.0 - implement-->
-    <!--<div class="likeDislikeButton ion-thumbsup" ng-click="likeButtonClick(item)"></div>--> 
+    <!--<div class="likeDislikeButton ion-thumbsup" on-tap="likeButtonClick(item)"></div>--> 
   </div>
   <ion-content style="line-height:0px" scroll="true" scrollbar-y="false" has-bouncing="false" style="width:{{windowWidth}}px">
     <!-- settings button -->
-    <div class="settingsButtonHit" ng-click="settingsButtonClick()" ng-if="!popupVisible()">
+    <div class="settingsButtonHit" on-tap="settingsButtonClick()" ng-if="!childStateActive()">
       <div class="settingsButton icon ion-gear-a"></div>
     </div>
     <!-- debug button -->
-    <div class="debugButton" ng-click="debugButtonClick()"></div>
+    <div class="debugButton" on-tap="debugButtonClick()"></div>
     <!-- image swipe hint -->
     <gw-mob-swipehint 
       style="top:{{slideImageHeight/2-25}}px" 
