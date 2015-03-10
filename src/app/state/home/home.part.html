@@ -1,21 +1,6 @@
 <ion-view class="home" cache-view="false">
   <!-- popup injection point -->
   <div ui-view></div>
-  <!-- send popup -->
-  <gw-mob-popup class="sendPopup" ng-if="sendPopupVisible">
-    <gw-mob-send
-      sendsms="sendSMS()"
-      sendemail="sendEmail()"
-      sendfacebook="sendFacebook()"
-      showsendfacebook="false"
-      sendemaillabel="{{'SND_EMAIL' | translate}}"
-      sendsmslabel="{{'SND_SMS' | translate}}"
-      sendfacebooklabel="{{'SND_FB' | translate}}">
-    </gw-mob-send>
-    <div class="popupButtonHit pad" ng-click="sendCancelButtonClick()">
-      <div class="popupButton">{{'CANCEL' | translate}}</div>
-    </div>
-  </gw-mob-popup>
   <!-- sms image popup -->
   <gw-mob-popup class="textPopup" ng-if="smsImagePopupVisible">
     <div>{{'SMS_IMAGE_WARN' | translate}}</div>
