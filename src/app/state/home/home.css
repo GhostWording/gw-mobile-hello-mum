@@ -149,17 +149,3 @@
   text-align: center;
   pointer-events: all;
 }
-.home .contactPopup .popupContent {
-  width: 90%;
-}
-.home .contact {
-  margin-top: 50px;
-  background-color: white;
-  border-radius: 8px;
-}
-.home .pad {
-  margin-top: 30px;
-}
-.home .contact {
-  padding: 20px;
-}

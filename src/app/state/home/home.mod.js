@@ -14,7 +14,11 @@
     'mobile/send/email',
     'app/global/config',
     'app/global/texts',
-    'app/global/mumpetname'
+    'app/global/mumpetname',
+    'app/state/home/sendmethod',
+    'app/state/home/smswarn',
+    'app/state/home/emailselect',
+    'app/state/home/mobileselect'
   ]);
 
 }());

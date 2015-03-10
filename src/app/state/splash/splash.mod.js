@@ -5,7 +5,8 @@
   angular.module('app/state/splash', [
     'ionic',
     'mobile/localisation',
-    'mobile/settings'
+    'mobile/settings',
+    'app/state/splash/genderselect'
   ]);
 
 }());
