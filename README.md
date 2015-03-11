@@ -1,60 +1,50 @@
-GhostWording "Hello Mum" Mobile Application
-===========================================
+"Hello Mum" Mobile Application
+==============================
 
 Prerequisites
 -------------
 
-#### node.js
-[nodejs.org](http://nodejs.org)
+See [Mobile Platform](https://github.com/GhostWording/gw-mobile-platform#prerequisites)
 
-#### bower
-```(sudo) npm install -g bower```
-
-#### gulp
-```(sudo) npm install -g gulp```
-
-#### cordova
-```(sudo) npm install -g cordova```
-
-#### ionic
-```(sudo) npm install -g ionic```
-
-#### android SDK (standalone)
-[developer.android.com](https://developer.android.com/sdk/index.html?hl=i#download)
-
-#### xCode (building for ios - osx only)
-[developer.apple.com](https://developer.apple.com/xcode/downloads/)
-
-Windows Prerequisites
----------------------
-
-Follow the instructions found [here](http://ionicframework.com/docs/guide/installation.html)
-(click the red "Windows note on Java, Ant and Android" button)
-
-**summary**
-
-* Set the ANDROID_HOME environment variable to reference the downloaded SDK folder
-* Add the tools and platform-tools folders in the android SDK to the system PATH environment variable
-* Install Apache Ant
-* Install Java JDK
-
-Install Android API
--------------------
-
-* Open the "Android SDK Manager" and add Android 4.4.2 (API 19)
-
-Install
--------
+Create Application
+------------------
 
 ```sh
-git clone git@github.com:GhostWording/gw-mobile-hello-mum.git
-cd gw-mobile-hello-mum
+ionic start gw-mobile-hello-mum blank -i com.ghostwording.hellomum
+```
+
+Install Mobile Platform
+-----------------------
+
+```sh
+cd gw-mobile-hello-mum 
+git init
+git remote add origin git@github.com:GhostWording/gw-mobile-platform.git
+git fetch origin
+git reset --hard origin/master
+```
+
+Install Application Code
+------------------------
+
+```sh
+rm -r -f .git
+git init
+git remote add origin git@github.com:GhostWording/gw-mobile-hello-mum.git
+git fetch origin
+git reset --hard origin/master
+```
+
+Install 3rd Party Libraries
+---------------------------
+
+```sh
 npm install
 bower install
 ```
 
-Adding platforms
-----------------
+Add Target Platforms
+--------------------
 
 ```sh
 ionic platform add ios
@@ -65,112 +55,7 @@ ionic platform add ios
 ionic platform add android
 ```
 
-Run in browser
---------------
+Build
+-----
 
-```gulp build``` or ```gulp watch``` then ```gulp serve```
-
-Run on emulator
----------------
-
-**android**
-```gulp emulate:android```
-
-**ios**
-```gulp emulate:ios``` (osx only)
-
-postfix --debug for debug build.
-
-Run on device
--------------
-
-**android**
-```gulp run:android```
-
-**ios**
-```gulp run:ios``` (osx only)
-
-postfix --debug for debug build.
-
-Linking with common
--------------------
-
-Simultaneous development of gw-mobile-hello-mum and gw-common
-
-```sh
-cd ..
-git clone git@github.com:GhostWording/gw-common.git
-cd gw-common
-bower link
-cd ../gw-mobile-hello-mum
-bower link gw-common
-```
-
-After which gw-common code can be edited/committed from both:
-
-gw-common 
-
-**and**
-
-gw-mobile-hello-mum/src/lib/gw-common
-
-Linking with mobile common
---------------------------
-
-Simultaneous development of gw-mobile-hello-mum and gw-mobile-common
-
-```sh
-cd ..
-git clone git@github.com:GhostWording/gw-mobile-common.git
-cd gw-mobile-common
-bower link
-cd ../gw-mobile-hello-mum
-bower link gw-mobile-common
-```
-
-After which gw-mobile-common code can be edited/committed from both:
-
-gw-mobile-common 
-
-**and**
-
-gw-mobile-hello-mum/src/lib/gw-mobile-common
-
-Publishing
-----------
-
-**android**
-
-* Make sure to bump the version in config.xml
-
-```sh
-gulp build:android
-cordova build android --release
-```
-<enter keystore password>
-
-After which a signed apk can be found in platforms/android/ant-build/<app>-release.apk
-
-**ios**
-
-* Make sure to bump the version in config.xml
-* Make sure the ghostwording distribution certificate is on your keychain
-
-```sh
-git clone git@github.com:GhostWording/gw-mobile-hello-mum.git
-cd gw-mobile-hello-mum
-npm install
-bower install
-ionic platform add ios
-gulp build:ios
-cd platforms/ios
-open HelloMum.xcodeproj
-```
-
-And in Xcode..
-
-* Unplug any ios device
-* Make sure "HelloMum" > "iOS device" is selected on the left of the top grey bar
-* Product / Archive (from menu)
-* Click estimate size and see if it seems about right to make sure its built properly.
-* Hit Submit
+See [Mobile Platform](https://github.com/GhostWording/gw-mobile-platform#applications)
