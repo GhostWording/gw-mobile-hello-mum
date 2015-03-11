@@ -135,7 +135,7 @@
         };
         // Send via Email
         $scope.sendEmail = function() {
-          // Get the email subject
+          // Translate the email subject
           $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
             // Send the Email
             sendEmail.setEmailAddress(settings.emailAddress);
@@ -152,7 +152,7 @@
         };
         // Settings button clicked
         $scope.settingsButtonClick = function() {
-          $state.go('settings');
+          $state.go('home.settings');
         };
         // Debug button clicked
         var debugClickCount = 0;

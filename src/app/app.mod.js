@@ -11,7 +11,6 @@
     'mobile/localisation',
     'app/state/splash',
     'app/state/home',
-    'app/state/settings',
     'app/state/debug',
     'app/global/texts',
     'app/global/config',

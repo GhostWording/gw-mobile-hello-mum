@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/settings').config(function($stateProvider) {
-    $stateProvider.state('settings', {
+  angular.module('app/state/home/settings').config(function($stateProvider) {
+    $stateProvider.state('home.settings', {
       url: '/settings',
-      templateUrl: 'app/state/settings/settings.part.html',
+      templateUrl: 'app/state/home/settings/settings.part.html',
       controller: function(
         /* ANG */ $scope, $window, $document, $timeout, $q,
         /* 3RD */ $state, $translate,
@@ -106,7 +106,7 @@
             $state.go('splash');
           } else {
             // Go back to home screen
-            $state.go('home');
+            $state.go('^');
           }
         }; 
         // Initialise email subjects dropdown list

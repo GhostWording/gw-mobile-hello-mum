@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/state/settings', [
+  angular.module('app/state/home/settings', [
     'ngDropdowns',
     'mobile/timepicker',
     'mobile/settings',
