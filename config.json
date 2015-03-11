@@ -1,4 +1,5 @@
 {
+  "appName": "HelloMum",
   "regional": {
     "en": {
       "appName": "Hello Mum"
@@ -9,5 +10,16 @@
     "es": {
       "appName": "Hola Mamá"
     }
-  }
+  },
+  "googleAnalyticsTrackerId": "UA-47718196-5",
+  "apiUrl": "http://api.cvd.io/",
+  "textFetchRetryDelay": "4",
+  "imagesPerDay": "8",
+  "textsPerDay": "8",
+  "showWelcomeTextTimes": "2",
+  "imageHeightFactor": "0.55",
+  "defaultNotificationHour": "16",
+  "defaultNotificationMinute": "0",
+  "googleAnalyticsDebugMode": "true",
+  "sendResultPopupShowTime": "1500"
 }
