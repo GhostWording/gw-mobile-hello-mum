@@ -5,8 +5,8 @@
   angular.module('app/state/home', [
     'common/services/helperSvc',
     'mobile/slider/fixedslider',
+    'mobile/slider/swipehint',
     'mobile/popup/sendmethod',
-    'mobile/swipehint',
     'mobile/settings',
     'mobile/localisation',
     'mobile/contact',
