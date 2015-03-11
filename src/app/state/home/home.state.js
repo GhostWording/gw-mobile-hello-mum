@@ -8,12 +8,16 @@
       templateUrl: 'app/state/home/home.part.html',
       resolve: {
         images: function($http, config) {
+          // Get list of all available images
           return $http.get('messageimages.json').then(function(result) {
+            // Pick (n) images
             return pickImages(result.data, config.imagesPerDay); 
           });
         },
         texts: function(texts, config) {
+          // Fetch all texts
           return texts.fetch().then(function() {
+            // Pick (n) texts
             return texts.choose(config.textsPerDay); 
           });
         }
