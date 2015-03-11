@@ -4,17 +4,18 @@
 
   angular.module('app', [
     'ionic',
+    'ngCordova.plugins.device',
     'pascalprecht.translate',
+    'mobile/splash',
     'mobile/notification',
     'mobile/analytics',
     'mobile/localisation',
-    'app/splash',
-    'app/config',
-    'app/settings',
-    'app/textselect',
-    'app/mumpetname',
-    'app/translation',
-    'app/debug'
+    'app/state/home',
+    'app/state/debug',
+    'app/global/texts',
+    'app/global/config',
+    'app/global/mumpetname',
+    'app/global/translation'
   ]);
 
 }());

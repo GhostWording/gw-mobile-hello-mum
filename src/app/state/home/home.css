@@ -1,0 +1,152 @@
+.home {
+}
+.home .titleContainer {
+  text-align: center;
+  width: 100%;
+}
+.home .title {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 4px;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  font-family: 'notoserif-italic';
+  font-size: 1em;
+  color: #339ee6;
+}
+.home .text {
+  padding-top: 40px;  
+  padding-bottom: 100px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-family: 'notoserif-italic';
+  font-size: 1.2em;
+  line-height: 1.4em;
+  text-align: center;
+  color: #001f46; 
+  opacity: 0.7;
+} 
+.home .author {
+  margin-top: 10px;
+  font-size: 0.9em;
+  opacity: 0.7;
+} 
+.home .imageContainer {
+  width: 100%;
+  position: relative;
+}
+.home .image {
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center center;
+  background-attachment: fixed fixed; 
+}
+.home .moreImagesText {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: white;
+  font-family: 'notoserif-italic';
+  font-size: 1.5em;
+  line-height: 1.2em;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.home .swipeArrow {
+  position: absolute;
+  color: #339ee6;
+  font-size: 50px;
+  z-index: 3000;
+}
+.home .swipeArrowLeft {
+  left: 10px;
+}
+.home .swipeArrowRight {
+  right: 10px;
+}
+.home .settingsButtonHit {
+  position: absolute;
+  z-index: 200;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  padding-left: 15px;
+  padding-right: 50px;
+}
+.home .settingsButton {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 25px;
+  color: rgba(255,255,255,0.7);
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+  vertical-align: center;
+  text-align: center;
+}
+.home .debugButton {
+  position: absolute;
+  z-index: 200;
+  top: 30px;
+  right: 15px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+}
+.home .bottomBar {
+  position: absolute;
+  display: flex;
+  bottom: 0px;
+  width: 100%;
+  z-index: 200;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 25%, rgba(255,255,255,1) 100%);
+  pointer-events: none;
+}
+.home .bottomBar .sendButtonHit {
+  padding-top: 20px;
+  padding-bottom: 15px;
+  margin-left: 50px;
+  margin-right: 50px;
+  flex: 1;
+  pointer-events: all;
+}
+.home .bottomBar .sendButton {
+  border-radius: 3px;
+  width: 100%;
+  background-color: #339ee6;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  font-size: 1.25em;
+  text-align: center;
+  vertical-align: center;
+  font-family: 'notoserif-italic';
+}
+.home .bottomBar .likeDislikeButton {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 23px;
+  color: white;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 3px;
+  vertical-align: center;
+  text-align: center;
+  pointer-events: all;
+}

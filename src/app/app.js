@@ -3,24 +3,14 @@
   "use strict";
 
   angular.module('app')
-    .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-      $ionicConfigProvider.platform.android.tabs.position("bottom");
+    .config(function($urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
-      $stateProvider
-        .state('splash', {
-          url: '/',
-          templateUrl: 'app/splash/splash.part.html'
-        })
-        .state('textselect', {
-          url: '/textselect',
-          templateUrl: 'app/textselect/textselect.part.html'
-        })
-        .state('debug', {
-          url: '/debug',
-          templateUrl: 'app/debug/debug.part.html'
-        });
     })
-    .run(function($window, $ionicPlatform, $cordovaDevice, $translate, config, settings, notification, analytics, localisation, mumPetName) {
+    .run(function(
+      /* ANG */ $window, 
+      /* 3RD */ $ionicPlatform, $state, $cordovaDevice, $translate, 
+      /* GMC */ settings, notification, analytics, localisation,
+      /* APP */ config, mumPetName) {
       $ionicPlatform.ready(function() {
         // Localise!
         localisation.localise(settings.language);
@@ -34,21 +24,12 @@
           // Set the device ID
           analytics.setDeviceId($cordovaDevice.getUUID());
           // Initialise google analytics
-          analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
+          //analytics.initGoogleAnalytics(config.googleAnalyticsTrackerId, config.googleAnalyticsDebugMode);
           // Initialise server analytics
-          analytics.initServerAnalytics();
+          //analytics.initServerAnalytics();
         }
         // Report app start up
         analytics.reportEvent('Init', 'Init', 'App', 'Init');        
-        // Hide accessory bar
-        //if(window.cordova && window.cordova.plugins.Keyboard) {
-        //  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        //}
-        if(window.StatusBar) {
-          StatusBar.styleDefault();
-        }
-        // Set settings template
-        settings.setTemplateUrl('app/settings/settings.part.html');
         // Set up default settings
         // TODO: move this into settings
         if(settings.notification === undefined) settings.notification = true;

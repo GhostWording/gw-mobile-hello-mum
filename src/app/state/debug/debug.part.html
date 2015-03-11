@@ -1,0 +1,43 @@
+<ion-view class="debug">
+  <ion-header-bar align-title="left" class="bar-dark">
+    <div class="buttons">
+      <button class="button" ng-click="backButtonClick()">Back</button>
+    </div>
+  </ion-header-bar>
+  <ion-tabs class="tabs-dark">
+    <ion-tab title="Misc" icon-on="ion-wrench" icon-off="ion-wrench">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
+        <br><br>
+        <button class="button" ng-click="clearLocalStorageClick()">Clear Local Storage</button>
+      </ion-content>
+    </ion-tab> 
+    <ion-tab title="Texts" icon-on="ion-document-text" icon-off="ion-document-text">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="true">
+        <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="refreshTextList()">
+        </ion-refresher>
+        <br><br>
+        <div class="intention" ng-repeat="intention in intentions">
+          <h2>{{intention.intention.name}}</h2>
+          <ion-list>
+            <ion-item class="textListItem item-text-wrap" ng-repeat="text in intention.textList"><p>{{text.Content}}</p></ion-item>
+          </ion-list>
+        </div>
+        <br><br>
+      </ion-content>
+    </ion-tab>
+    <ion-tab title="Analytics" icon-on="ion-arrow-graph-up-left" icon-off="ion-arrow-graph-up-left">
+      <ion-content scroll="true" scrollbar-y="true" has-bouncing="false">
+        <br><br>
+        <ion-list>
+          <ion-item class="analyticEvent item-text-wrap" ng-repeat="analyticEvent in analyticEvents">
+            <p>{{analyticEvent | json}}</p>
+          </ion-item>
+          <br><br>
+        </ion-list>
+        <br><br>
+      </ion-content>
+    </ion-tab>
+  </ion-tabs>
+</ion-view>
