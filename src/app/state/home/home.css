@@ -97,8 +97,9 @@
   vertical-align: center;
   text-align: center;
 }
-.home.debugButton {
+.home .debugButton {
   position: absolute;
+  z-index: 200;
   top: 30px;
   right: 15px;
   z-index: 200;
