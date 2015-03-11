@@ -1,0 +1,16 @@
+/src/lib
+/platforms
+/plugins
+/hooks
+/www
+/scss
+/node_modules
+bower.json
+config.xml
+gulpfile.js
+ionic.project
+package.json
+.bowerrc
+.DS_Store
+*.swp
+*.swo
