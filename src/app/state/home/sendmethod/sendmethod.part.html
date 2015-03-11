@@ -1,11 +1,11 @@
 <gw-mob-popup-sendmethod
-  sendemaillabel="{{'SND_EMAIL' | translate}}"
-  sendsmslabel="{{'SND_SMS' | translate}}"
-  sendfacebooklabel="{{'SND_FB' | translate}}"
+  facebookenabled = "false"
+  emaillabel="{{'SND_EMAIL' | translate}}"
+  smslabel="{{'SND_SMS' | translate}}"
+  facebooklabel="{{'SND_FB' | translate}}"
   cancellabel="{{'CANCEL' | translate}}"
-  sendsms="sendSMS()"
-  sendemail="sendEmail()"
-  sendfacebook="sendFacebook()"
-  showsendfacebook="false"
+  smsselected="smsSelected()"
+  emailselected="emailSelected()"
+  facebookselected="facebookSelected()"
   cancel="cancel()">
 </gw-mob-popup-sendmethod>

@@ -7,9 +7,23 @@
       url: '/sendmethod',
       templateUrl: 'app/state/home/sendmethod/sendmethod.part.html',
       controller: function($scope, $state, settings) {
-        // Send SMS
-        $scope.sendSMS = function() {
+        // SMS Selected
+        $scope.smsSelected = function() {
+          // Go to SMS warning state
           $state.go('^.smswarn');
+        };
+        // Email selected
+        $scope.emailSelected = function() {
+          // If we dont have an email address 
+          if(!settings.emailAddress || settings.emailAddress==='') {
+            // go to email select
+            $state.go('home.emailselect');
+          } else {
+            // Go home
+            $state.go('^');
+            // Send email from home controller
+            $scope.sendEmail();
+          }
         };
         // Cancel
         $scope.cancel = function() {

@@ -129,27 +129,21 @@
               // Report SMS send fail
               analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
               // Go to fail result
-              $state.go('home.sendresult', {success: true});
+              $state.go('home.sendresult', {success: false});
             }); 
           }
         };
         // Send via Email
         $scope.sendEmail = function() {
-          // If we dont have an email address 
-          if(!settings.emailAddress || settings.emailAddress==='') {
-            // go to email select
-            $state.go('home.emailselect');
-          } else {
-            // Get the email subject
-            $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
-              // Send the Email
-              sendEmail.setEmailAddress(settings.emailAddress);
-              sendEmail.setAttachmentPath($scope.currentImage);
-              sendEmail.send(mumPetName.replace(emailSubject, settings.mumPetName), prepareContentForSending());
-              // Report email send
-              analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
-            });
-          }
+          // Get the email subject
+          $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
+            // Send the Email
+            sendEmail.setEmailAddress(settings.emailAddress);
+            sendEmail.setAttachmentPath($scope.currentImage);
+            sendEmail.send(mumPetName.replace(emailSubject, settings.mumPetName), prepareContentForSending());
+            // Report email send
+            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
+          });
         };    
         // Send via Facebook
         $scope.sendFacebook = function() {
