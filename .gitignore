@@ -1,8 +1,0 @@
-/node_modules
-/src/lib
-/platforms
-/plugins/ios.json
-/plugins/android.json
-.DS_Store
-*.swp
-*.swo
