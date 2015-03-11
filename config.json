@@ -1,5 +1,6 @@
 {
-  "appName": "gw-mobile-hello-mum",
+  "app": "gw-mobile-hello-mum",
+  "version": "1.9.0",
   "regional": {
     "en": {
       "appName": "Hello Mum"
