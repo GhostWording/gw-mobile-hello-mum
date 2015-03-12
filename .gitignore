@@ -5,7 +5,7 @@
 /www
 /scss
 /node_modules
-/bower_components
+/lib
 /fonts
 bower.json
 config.xml
