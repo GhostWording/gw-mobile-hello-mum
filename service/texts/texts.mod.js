@@ -8,8 +8,8 @@
     'common/helloMum',
     'mobile/localisation',
     'mobile/settings',
-    'app/global/config',
-    'app/global/texts'
+    'mobile/config',
+    'app/texts'
   ]);
 
 }());
