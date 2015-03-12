@@ -3,9 +3,9 @@
   "use strict";
 
   angular.module('app/state/debug', [
+    'mobile/config',
     'mobile/settings',
-    'app/global/texts',
-    'app/global/config'
+    'app/texts'
   ]);
 
 }());

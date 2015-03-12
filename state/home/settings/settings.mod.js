@@ -4,13 +4,13 @@
 
   angular.module('app/state/home/settings', [
     'ngDropdowns',
-    'mobile/timepicker',
+    'mobile/config',
     'mobile/settings',
+    'mobile/timepicker',
     'mobile/notification',
     'mobile/localisation',
-    'app/global/config',
-    'app/global/mumpetname',
-    'app/global/texts'
+    'app/mumpetname',
+    'app/texts'
   ]);
 
 }());
