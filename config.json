@@ -12,6 +12,8 @@
       "appName": "Hola Mamá"
     }
   },
+  "GWAnalytics": "true",
+  "googleAnalytics": "true",
   "googleAnalyticsTrackerId": "UA-47718196-5",
   "apiUrl": "http://api.cvd.io/",
   "textFetchRetryDelay": "4",
