@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/debug', [
+  angular.module('state/debug', [
     'mobile/config',
     'mobile/settings',
-    'app/texts'
+    'texts'
   ]);
 
 }());

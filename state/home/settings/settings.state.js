@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/home/settings').config(function($stateProvider) {
+  angular.module('state/home/settings').config(function($stateProvider) {
     $stateProvider.state('home.settings', {
       url: '/settings',
-      templateUrl: 'app/state/home/settings/settings.part.html',
+      templateUrl: 'state/home/settings/settings.part.html',
       controller: function(
         /* ANG */ $scope, $window, $document, $timeout, $q,
         /* 3RD */ $state, $translate,

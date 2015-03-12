@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/home').config(function($stateProvider) {
+  angular.module('state/home').config(function($stateProvider) {
     $stateProvider.state('home', {
       url: '/home',
-      templateUrl: 'app/state/home/home.part.html',
+      templateUrl: 'state/home/home.part.html',
       resolve: {
         images: function($http, config) {
           // Get list of all available images

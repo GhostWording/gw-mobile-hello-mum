@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/home/sendmethod').config(function($stateProvider) {
+  angular.module('state/home/sendmethod').config(function($stateProvider) {
     $stateProvider.state('home.sendmethod', {
       url: '/sendmethod',
-      templateUrl: 'app/state/home/sendmethod/sendmethod.part.html',
+      templateUrl: 'state/home/sendmethod/sendmethod.part.html',
       controller: function($scope, $state, settings) {
         // SMS Selected
         $scope.smsSelected = function() {

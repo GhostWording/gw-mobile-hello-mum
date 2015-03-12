@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/debug').config(function($stateProvider) {
+  angular.module('state/debug').config(function($stateProvider) {
     $stateProvider.state('debug', {
       url: '/debug',
-      templateUrl: 'app/state/debug/debug.part.html',
+      templateUrl: 'state/debug/debug.part.html',
       controller: function(
         /* ANG */ $scope, $timeout, 
         /* 3RD */ $state,

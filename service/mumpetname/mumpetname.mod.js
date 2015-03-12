@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/mumpetname', [
+  angular.module('mumpetname', [
     'mobile/localisation'
   ]);
 

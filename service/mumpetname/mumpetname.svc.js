@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/mumpetname').factory('mumPetName', function(localisation) {
+  angular.module('mumpetname').factory('mumPetName', function(localisation) {
     var mumPetName = {
       getNames: function() {
         // TODO: Localise

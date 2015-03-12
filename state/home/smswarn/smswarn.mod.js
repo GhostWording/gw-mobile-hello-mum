@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('app/state/home/smswarn', [
+  angular.module('state/home/smswarn', [
     'mobile/localisation',
     'mobile/popup/smswarn'
   ]);

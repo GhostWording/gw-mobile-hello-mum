@@ -2,10 +2,10 @@
 
   "use strict";
 
-  angular.module('app/state/home/smswarn').config(function($stateProvider) {
+  angular.module('state/home/smswarn').config(function($stateProvider) {
     $stateProvider.state('home.smswarn', {
       url: '/smswarn',
-      templateUrl: 'app/state/home/smswarn/smswarn.part.html',
+      templateUrl: 'state/home/smswarn/smswarn.part.html',
       controller: function($scope, $state, settings) {
         $scope.smsSelected = function() {
           // If we dont have a mobile number 
