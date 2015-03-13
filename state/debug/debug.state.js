@@ -9,8 +9,8 @@
       controller: function(
         /* ANG */ $scope, $timeout, 
         /* 3RD */ $state,
-        /* GMC */ settings, analytics,
-        /* APP */ config, texts) {
+        /* GMC */ config, settings, analytics,
+        /* APP */ texts) {
         // Clear cache and re-fetch texts
         $scope.refreshTextList = function() {
           // Fetch text list

@@ -9,8 +9,8 @@
       controller: function(
         /* ANG */ $scope, $window, $document, $timeout, $q,
         /* 3RD */ $state, $translate,
-        /* GMC */ notification, localisation, analytics, settings,
-        /* APP */ config, mumPetName, texts) {
+        /* GMC */ config, settings, notification, localisation, analytics,
+        /* APP */ mumPetName, texts) {
         // Report settings page init
         analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
         // Get device width and height

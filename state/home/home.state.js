@@ -25,9 +25,9 @@
       controller: function(
         /* ANG */ $scope, $window, $timeout, $interval, 
         /* 3RD */ $state, $ionicScrollDelegate, $translate, 
-        /* GMC */ settings, analytics, localisation, sendSMS, sendEmail,
+        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail,
         /* GWC */ helperSvc, 
-        /* APP */ mumPetName, config, 
+        /* APP */ mumPetName, 
         /* RES */ images, texts) {
         // Report home page init
         analytics.reportEvent('Init', 'Page', 'Home', 'Init');
