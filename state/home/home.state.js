@@ -117,25 +117,19 @@
         };
         // Send via SMS
         $scope.sendSMS = function() {
-          // If we dont have a mobile number 
-          if(!settings.mobileNumber || settings.mobileNumber==='') {
-            // Go to mobile select
-            $state.go('home.mobileselect');
-          } else {
-            // Send the SMS
-            sendSMS.setMobileNumber(settings.mobileNumber);
-            sendSMS.send(prepareContentForSending()).then(function() {
-              // Report SMS send
-              analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
-              // Go to success result
-              $state.go('home.sendresult', {success: true});
-            }, function() {
-              // Report SMS send fail
-              analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
-              // Go to fail result
-              $state.go('home.sendresult', {success: false});
-            }); 
-          }
+          // Send the SMS
+          sendSMS.setMobileNumber(settings.mobileNumber);
+          sendSMS.send(prepareContentForSending()).then(function() {
+            // Report SMS send
+            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
+            // Go to success result
+            $state.go('home.sendresult', {success: true});
+          }, function() {
+            // Report SMS send fail
+            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
+            // Go to fail result
+            $state.go('home.sendresult', {success: false});
+          }); 
         };
         // Send via Email
         $scope.sendEmail = function() {
