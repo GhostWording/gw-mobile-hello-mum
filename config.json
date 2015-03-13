@@ -12,9 +12,12 @@
       "appName": "Hola Mamá"
     }
   },
-  "GWAnalytics": "true",
+  "serverAnalytics": "true",
   "googleAnalytics": "true",
   "googleAnalyticsTrackerId": "UA-47718196-5",
+  "googleAnalyticsDebugMode": "true",
+  "analyticsArea": "HelloMum",
+  "analyticsRecipientId": "Mother",
   "apiUrl": "http://api.cvd.io/",
   "textFetchRetryDelay": "4",
   "imagesPerDay": "8",
@@ -23,6 +26,5 @@
   "imageHeightFactor": "0.55",
   "defaultNotificationHour": "16",
   "defaultNotificationMinute": "0",
-  "googleAnalyticsDebugMode": "true",
   "sendResultPopupShowTime": "1500"
 }
