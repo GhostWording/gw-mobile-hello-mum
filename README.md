@@ -1,10 +1,15 @@
 "Hello Mum" Mobile Application
 ==============================
 
+Application Structure
+---------------------
+
+See [Mobile Platform Application Structure](https://github.com/GhostWording/gw-mobile-platform#application-structure)
+
 Prerequisites
 -------------
 
-See [Mobile Platform](https://github.com/GhostWording/gw-mobile-platform#prerequisites)
+See [Mobile Platform Prerequisites](https://github.com/GhostWording/gw-mobile-platform#prerequisites)
 
 Create Application
 ------------------
@@ -57,7 +62,7 @@ ionic platform add ios
 ionic platform add android
 ```
 
-Build
------
+Build / Run
+-----------
 
-See [Mobile Platform](https://github.com/GhostWording/gw-mobile-platform#applications)
+See [Mobile Platform Build / Run](https://github.com/GhostWording/gw-mobile-platform#build--run)
