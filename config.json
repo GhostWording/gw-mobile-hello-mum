@@ -1,23 +1,35 @@
 {
-  "app": "gw-mobile-hello-mum",
-  "version": "1.9.0",
-  "regional": {
-    "en": {
-      "appName": "Hello Mum"
+  "app": {
+    "name": "gw-mobile-hello-mum",
+    "version": "1.9.0",
+    "description": "GhostWording Hello Mum Mobile Application",
+    "regional": {
+      "en": {
+        "appName": "Hello Mum"
+      },
+      "fr": {
+        "appName": "Comment Va"
+      },
+      "es": {
+        "appName": "Hola Mamá"
+      }
     },
-    "fr": {
-      "appName": "Comment Va"
+    "analytics": {
+      "area": "HelloMum",
+      "recipientId": "Mother",
+      "server": {
+        "enabled": "true"
+      },
+      "google": {
+        "enabled": "true",
+        "trackerId": "UA-47718196-5",
+        "debugMode": "true"
+      }
     },
-    "es": {
-      "appName": "Hola Mamá"
+    "cordova": {
+      "Orientation": "portrait"
     }
   },
-  "serverAnalytics": "true",
-  "googleAnalytics": "true",
-  "googleAnalyticsTrackerId": "UA-47718196-5",
-  "googleAnalyticsDebugMode": "true",
-  "analyticsArea": "HelloMum",
-  "analyticsRecipientId": "Mother",
   "apiUrl": "http://api.cvd.io/",
   "textFetchRetryDelay": "4",
   "imagesPerDay": "8",
