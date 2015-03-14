@@ -12,7 +12,7 @@ Create Application
 ```sh
 ionic start gw-mobile-hello-mum blank -i com.ghostwording.hellomum
 ```
-> the first parameter should match the application repo name
+> the first parameter should match the application repo name  
 > the last parameter is the bundle identifier of the application on the android/ios store(s)
 
 Install Mobile Platform
