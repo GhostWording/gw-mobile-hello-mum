@@ -8,8 +8,8 @@
       templateUrl: 'state/home/home.part.html',
       resolve: {
         images: function($http, config) {
-          // Get list of all available images
-          return $http.get('messageimages.json').then(function(result) {
+          // Load the list of bundled images
+          return $http.get('imagebundle.json').then(function(result) {
             // Pick (n) images
             return pickImages(result.data, config.imagesPerDay); 
           });
