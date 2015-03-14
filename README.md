@@ -62,3 +62,8 @@ Build / Run
 -----------
 
 See [Mobile Platform Build / Run](https://github.com/GhostWording/gw-mobile-platform#build--run)
+
+Publish
+-------
+
+See [Mobile Platform Publish](https://github.com/GhostWording/gw-mobile-platform#publish)
