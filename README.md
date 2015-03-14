@@ -13,7 +13,7 @@ Create Application
 ionic start gw-mobile-hello-mum blank -i com.ghostwording.hellomum
 ```
 
-> the last parameter is the bundle identifier of the epplication on the android/ios stores
+> the last parameter is the bundle identifier of the application on the android/ios stores
 
 Install Mobile Platform
 -----------------------
