@@ -55,8 +55,6 @@ Add Target Platforms
 
 ```sh
 ionic platform add ios
-```
-```sh
 ionic platform add android
 ```
 
