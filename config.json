@@ -43,5 +43,15 @@
   "textsPerDay": 8,
   "showWelcomeTextTimes": 2,
   "imageHeightFactor": 0.55,
-  "sendResultPopupShowTime": 1500
+  "sendResultPopupShowTime": 1500,
+  "swipeHint": {
+    "image": {
+      "startDelay": 4,
+      "repeatDelay": 11 
+    },
+    "text": {
+      "startDelay": 7,
+      "repeatDelay": 11 
+    }
+  }
 }
