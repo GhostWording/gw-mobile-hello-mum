@@ -7,7 +7,6 @@
     'mobile/config',
     'mobile/settings',
     'mobile/slider/fixedslider',
-    'mobile/slider/swipehint',
     'mobile/popup/sendmethod',
     'mobile/localisation',
     'mobile/contact',
