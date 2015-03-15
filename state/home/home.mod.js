@@ -6,6 +6,7 @@
     'common/services/helperSvc',
     'mobile/config',
     'mobile/settings',
+    'mobile/images',
     'mobile/slider/fixedslider',
     'mobile/popup/sendmethod',
     'mobile/localisation',
