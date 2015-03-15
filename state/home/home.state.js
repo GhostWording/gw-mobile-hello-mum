@@ -7,12 +7,8 @@
       url: '/home',
       templateUrl: 'state/home/home.part.html',
       resolve: {
-        images: function($http, config) {
-          // Load the list of bundled images
-          return $http.get('imagebundle.json').then(function(result) {
-            // Pick (n) images
-            return pickImages(result.data, config.imagesPerDay); 
-          });
+        images: function($http, config, images) {
+          return images.choose(config.imagesPerDay);
         },
         texts: function($rootScope, $q, $timeout, texts, config) {
           // Fetch texts (with retry)
