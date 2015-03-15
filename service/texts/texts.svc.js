@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('texts').factory('texts', function(currentLanguage, $q, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, config, settings, localisation) {
+  angular.module('texts').factory('texts', function($rootScope, $q, $timeout, currentLanguage, helloMumSvc, helloMumTextsSvc, helperSvc, cacheSvc, config, settings, localisation) {
     var _useWelcome;
     var _weightedIntentions;
     var _textLists;
@@ -11,7 +11,28 @@
       // Fetch texts from server (or cache)
       fetch: function() {
         _useWelcome = false;
-        return fetchAll();
+        // Text fetch retry function
+        function fetchTexts() {
+          // Fetch texts
+          return fetchAll()
+            .then(function() {
+              // Hide loading overlay
+              $rootScope.loading = false;
+            }, function() {
+              // Show connectivity text
+              $rootScope.connectivity = false;
+              // Wait a bit
+              return $timeout(function(){}, config.textFetchRetryDelay * 1000)
+                .then(function () {
+                  // Retry text fetch
+                  return fetchTexts();
+                });
+            });
+        }
+        // Show loading overlay
+        $rootScope.loading = true;
+        // Fetch texts (with retry)
+        return fetchTexts();
         /*
         // If we have shown the welcome texts (n) times
         // NOTE: no welcome texts for spanish language

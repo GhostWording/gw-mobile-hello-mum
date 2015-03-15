@@ -14,8 +14,8 @@
             return pickImages(result.data, config.imagesPerDay); 
           });
         },
-        texts: function(texts, config) {
-          // Fetch all texts
+        texts: function($rootScope, $q, $timeout, texts, config) {
+          // Fetch texts (with retry)
           return texts.fetch().then(function() {
             // Pick (n) texts
             return texts.choose(config.textsPerDay); 
