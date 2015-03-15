@@ -37,6 +37,8 @@
         $scope.deviceHeight = $window.deviceHeight;    
         // Calculate slide image height
         $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
+        // Put config on the scope
+        $scope.config = config;
         // Put settings on the scope
         $scope.settings = settings;
         // Put images on the scope
@@ -48,31 +50,18 @@
         // Slider states
         $scope.textSlider = {};
         $scope.imageSlider = {};
-        // Swipe status
-        $scope.imageWasSwiped = settings.imageWasSwiped;
-        $scope.textWasSwiped = settings.textWasSwiped;
-        // Initialise swipe hints
-        initSwipeHints();
-        $scope.textSwiped = function() {
+        $scope.textSliderSwiped = function() {
           // Scroll back to top
           $ionicScrollDelegate.scrollTop(true); 
-          // Hide swipe hint
-          $scope.textSwipeHintVisible = false;
-          // Record swipe
-          $scope.textWasSwiped = true;
-          // Persist to settings to disable hints
-          settings.textWasSwiped = true;
+          // Disable text swipe hints
+          settings.textSliderSwiped = true;
           // Report Text Swipe
           analytics.reportEvent('Text', $scope.textSlider.currentText.text.TextId, 'Home', 'Swipe'); 
         };
         // Image slide swiped
-        $scope.imageSwiped = function() {
-          // Hide swipe hint
-          $scope.imageSwipeHintVisible = false;
-          // Record swipe
-          $scope.imageWasSwiped = true;
-          // Persist to settings to disable hints
-          settings.imageWasSwiped = true;
+        $scope.imageSliderSwiped = function() {
+          // Disable image swipe hints
+          settings.imageSliderSwiped = true;
           // Report Image Swipe
           analytics.reportEvent('Photo', $scope.imageSlider.currentImage, 'Home', 'Swipe'); 
         };
@@ -174,34 +163,6 @@
         // Returns true if a child state is active
         $scope.childStateActive = function() {
           return $state.current.name !== 'home';
-        };
-        // Initialise swipe hints
-        function initSwipeHints() {
-          // Every now and then
-          $interval(function() {
-            // If there are no child states active
-            if(!$scope.childStateActive()) {
-              // If image was not swiped 
-              if(!$scope.imageWasSwiped) {
-                // Show image swipe hint
-                $scope.imageSwipeHintVisible = true;
-              }
-              // Wait a bit more
-              $timeout(function() {
-                // If text was not swiped 
-                if(!$scope.textWasSwiped) {
-                  // Show text swipe hint 
-                  $scope.textSwipeHintVisible = true;
-                }
-              }, 3000);
-            }
-          }, 7000);
-        }
-        $scope.imageSwipeHintComplete = function() {
-          $scope.imageSwipeHintVisible = false;
-        };
-        $scope.textSwipeHintComplete = function() {
-          $scope.textSwipeHintVisible = false;
         };
         $scope.formatTextForDisplay = function(text) {
           if(!text) return;

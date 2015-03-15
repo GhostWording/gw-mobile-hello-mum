@@ -18,18 +18,6 @@
     </div>
     <!-- debug button -->
     <div class="debugButton" on-tap="debugButtonClick()"></div>
-    <!-- image swipe hint -->
-    <gw-mob-swipehint 
-      style="top:{{slideImageHeight/2-25}}px" 
-      complete="imageSwipeHintComplete()" 
-      ng-if="imageSwipeHintVisible===true">
-    </gw-mob-swipehint>
-    <!-- text swipe hint -->
-    <gw-mob-swipehint 
-      style="top:{{deviceHeight-(deviceHeight-slideImageHeight)/2-25}}px" 
-      complete="textSwipeHintComplete()" 
-      ng-if="textSwipeHintVisible===true">
-    </gw-mob-swipehint>
     <!-- image slides -->
     <gw-mob-fixedslider
       items="images"
@@ -37,12 +25,15 @@
       eof="imageSlider.eof"
       swipeleft="imageSlider.swipeLeft"
       swiperight="imageSlider.swipeRight"
-      swipedleft="imageSwiped()"
-      swipedright="imageSwiped()"
+      swipedleft="imageSliderSwiped()"
+      swipedright="imageSliderSwiped()"
       dotindicatorposition="bottom" 
-      on-tap="setSwipeHintState('image')"
       width="deviceWidth"
-      height="slideImageHeight">
+      height="slideImageHeight"
+      swipehintenabled="!settings.imageSliderSwiped"
+      swipehintverticalposition="slideImageHeight/2-25"
+      swipehintstartdelay="config.swipeHint.image.startDelay"
+      swipehintrepeatdelay="config.swipeHint.image.repeatDelay">
       <!-- slide -->
       <gw-mob-slide>
         <div class="imageContainer" style="height:{{slideImageHeight}}px">
@@ -67,11 +58,14 @@
       eof="textSlider.eof"
       swipeLeft="textSlider.swipeLeft"
       swipeRight="textSlider.swipeRight"
-      swipedleft="textSwiped()"
-      swipedright="textSwiped()"
+      swipedleft="textSliderSwiped()"
+      swipedright="textSliderSwiped()"
       dotindicatorposition="top"
-      on-tap="setSwipeHintState('text')"
-      width="deviceWidth">
+      width="deviceWidth"
+      swipehintenabled="!settings.textSliderSwiped"
+      swipehintverticalposition="60"
+      swipehintstartdelay="config.swipeHint.text.startDelay"
+      swipehintrepeatdelay="config.swipeHint.text.repeatDelay">
       <!-- slide -->
       <gw-mob-slide>
        <!-- text -->
