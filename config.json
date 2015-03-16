@@ -35,7 +35,8 @@
       "notificationMinute": 0,
       "emailSubjectIndex": 0,
       "mumPetName": "Mum"
-    }
+    },
+    "initialState": "home"
   },
   "apiUrl": "http://api.cvd.io/",
   "textFetchRetryDelay": 4,
