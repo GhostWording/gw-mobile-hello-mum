@@ -11,8 +11,8 @@ Prerequisites
 
 See [Mobile Platform Prerequisites](https://github.com/GhostWording/gw-mobile-platform#prerequisites)
 
-Create Application
-------------------
+Create Application [layer 1]
+----------------------------
 
 ```sh
 ionic start gw-mobile-hello-mum blank -i com.ghostwording.hellomum
@@ -20,8 +20,8 @@ ionic start gw-mobile-hello-mum blank -i com.ghostwording.hellomum
 > the first parameter should match the application repo name  
 > the last parameter is the bundle identifier of the application on the android/ios store(s)
 
-Install Mobile Platform
------------------------
+Install Mobile Platform [layer 2]
+---------------------------------
 
 ```sh
 cd gw-mobile-hello-mum 
@@ -31,8 +31,8 @@ git fetch origin
 git reset --hard origin/master
 ```
 
-Install Application Code
-------------------------
+Install Application Code [layer 3]
+----------------------------------
 
 ```sh
 rm -r -f .git
