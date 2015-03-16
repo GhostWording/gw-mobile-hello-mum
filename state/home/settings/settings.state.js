@@ -49,7 +49,6 @@
             settings[$scope.intentions[i].name] = 'few'; 
           }
         }
-        settings.save();
         // Intention weight adjusted
         $scope.intentionWeightChange = function(intention) {
           // Report intention weight change
@@ -91,8 +90,6 @@
             } else {
               settings.language = selected.language;
             }
-            // Save settings
-            settings.save();
             // Re-localise
             localisation.localise(settings.language);
             // Record language change
@@ -132,7 +129,6 @@
                 break;
               }
             }
-            settings.save();
           }, true);
         }
         // Initialise mum pet names dropdown data
@@ -151,7 +147,6 @@
             }
             $scope.$watch('mumPetName', function(petNameSelectObject) {
               settings.mumPetName = petNameSelectObject.text;
-              settings.save();
               // Re initialise email subject dropdown with pet name replacements
               initEmailSubjectDropdown();
             }, true);
