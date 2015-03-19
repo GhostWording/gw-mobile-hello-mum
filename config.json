@@ -34,7 +34,7 @@
       "notificationHour": 16,
       "notificationMinute": 0,
       "emailSubjectIndex": 0,
-      "mumPetName": "Mum"
+      "petName": "Mum"
     },
     "initialState": "home"
   },

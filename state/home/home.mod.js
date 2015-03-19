@@ -19,7 +19,7 @@
     'state/home/emailselect',
     'state/home/mobileselect',
     'state/home/sendresult',
-    'mumpetname',
+    'petname',
     'texts'
   ]);
 

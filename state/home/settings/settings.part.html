@@ -4,15 +4,15 @@
     <div class="closeButton icon ion-close-round"></div>
   </div>
   <ion-tabs class="tabs-light">
-    <!-- mum tab -->
+    <!-- recipient tab -->
     <ion-tab title="{{'SET_TAB_RECIPIENT' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
-      <!-- mum pet name dropdrown -->
-      <div class="group" ng-if="mumPetNames">
+      <!-- pet name dropdrown -->
+      <div class="group" ng-if="petNames">
         <label class="inputLabel">{{'REFER_RECIPIENT' | translate}}</label>
         <div 
           ng-click="dropdownClick()"
-          dropdown-select="mumPetNames" 
-          dropdown-model="mumPetName"
+          dropdown-select="petNames" 
+          dropdown-model="petName"
           dropdown-item-label="text">
         </div>
       </div>
@@ -26,7 +26,7 @@
           dropdown-item-label="text">
         </div>
       </div>
-      <!-- mum contact select -->
+      <!-- contact select -->
       <gw-mob-contact
         emailaddresslabel="{{'RECIPIENT_EMAIL' | translate}}"
         mobilenumberlabel="{{'RECIPIENT_MOB' | translate}}"

@@ -2,11 +2,10 @@
 
   "use strict";
 
-  angular.module('mumpetname').factory('mumPetName', function(localisation) {
-    var mumPetName = {
+  // TODO: move into gw-common?
+  angular.module('petname').factory('petName', function(localisation) {
+    var petName = {
       getNames: function() {
-        // TODO: Localise
-        // Mother names
         return [
           'Mum',
           'Mummy',
@@ -22,7 +21,7 @@
         // No pet name replacement in fr/es languages
         var currentLanguage = localisation.getLanguage();
         if(currentLanguage === 'fr' || currentLanguage === 'es') return input;
-        var names = mumPetName.getNames();
+        var names = petName.getNames();
         // Sort by length so we dont multi-replace
         names.sort(function(a, b){
           return b.length - a.length;
@@ -41,7 +40,7 @@
         return input;
       }
     }; 
-    return mumPetName;
+    return petName;
   });
 
 }());

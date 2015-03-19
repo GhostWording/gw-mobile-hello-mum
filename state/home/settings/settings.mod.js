@@ -9,7 +9,7 @@
     'mobile/timepicker',
     'mobile/notification',
     'mobile/localisation',
-    'mumpetname',
+    'petname',
     'texts'
   ]);
 

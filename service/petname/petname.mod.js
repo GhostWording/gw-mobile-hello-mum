@@ -2,7 +2,7 @@
 
   "use strict";
 
-  angular.module('mumpetname', [
+  angular.module('petname', [
     'mobile/localisation'
   ]);
 
