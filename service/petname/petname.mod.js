@@ -2,7 +2,8 @@
 
   "use strict";
 
-  angular.module('mumpetname', [
+  angular.module('petname', [
+    'mobile/config',
     'mobile/localisation'
   ]);
 

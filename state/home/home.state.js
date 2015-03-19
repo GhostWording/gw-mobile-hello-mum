@@ -23,7 +23,7 @@
         /* 3RD */ $state, $ionicScrollDelegate, $translate, 
         /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail,
         /* GWC */ helperSvc, 
-        /* APP */ mumPetName, 
+        /* APP */ petName, 
         /* RES */ images, texts) {
         // Report home page init
         analytics.reportEvent('Init', 'Page', 'Home', 'Init');
@@ -61,9 +61,9 @@
           // Report Image Swipe
           analytics.reportEvent('Photo', $scope.imageSlider.currentImage, 'Home', 'Swipe'); 
         };
-        // Watch mum pet name setting, and re-replace on change
-        $scope.$watch('settings.mumPetName', function() {
-          replacePetNames($scope.texts, settings.mumPetName);
+        // Watch pet name setting, and re-replace on change
+        $scope.$watch('settings.petName', function() {
+          replacePetNames($scope.texts, settings.petName);
         });
         // On app return to foreground
         document.addEventListener("resume", appResume, false);
@@ -123,7 +123,7 @@
             // Send the Email
             sendEmail.setEmailAddress(settings.emailAddress);
             sendEmail.setAttachmentPath($scope.currentImage);
-            sendEmail.send(mumPetName.replace(emailSubject, settings.mumPetName), prepareContentForSending());
+            sendEmail.send(petName.replace(emailSubject, settings.petName), prepareContentForSending());
             // Report email send
             analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
           });
@@ -184,11 +184,11 @@
           // Return prepared content
           return content;
         }
-        // Replace mother pet names
+        // Replace pet names
         function replacePetNames(texts, replacement) {
           if(texts) {
             for(var i=0; i<texts.length; i++) {
-              texts[i].text.Content = mumPetName.replace(texts[i].text.Content, replacement); 
+              texts[i].text.Content = petName.replace(texts[i].text.Content, replacement); 
             }
           }
         }

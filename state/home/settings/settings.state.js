@@ -10,7 +10,7 @@
         /* ANG */ $scope, $window, $document, $timeout, $q,
         /* 3RD */ $state, $translate,
         /* GMC */ config, settings, notification, localisation, analytics,
-        /* APP */ mumPetName, texts) {
+        /* APP */ petName, texts) {
         // Report settings page init
         analytics.reportEvent('Init', 'Page', 'Settings', 'Init');        
         // Get device width and height
@@ -34,12 +34,12 @@
           {name: 'would-you-care-for-a-drink', trans:'INT_DRINK'}
         ];
         // Initialise dropdowns
-        initMumPetNameDropdown();
+        initPetNameDropdown();
         initEmailSubjectDropdown();
         initLanguageDropdown();
         // Re-Initialise dropdowns on language change
         localisation.onLanguageChange(function() {
-          initMumPetNameDropdown();
+          initPetNameDropdown();
           initEmailSubjectDropdown();
           initLanguageDropdown();
         });
@@ -61,7 +61,7 @@
             analytics.reportEvent('Command', 'NotificationTime', 'Settings', 'click', settings.notificationHour + ":" + settings.notificationMinute);        
             // Set notification 
             $translate('NOTIFICATION').then(function (notificationText) {
-              notification.set(settings.notificationHour, settings.notificationMinute, mumPetName.replace(notificationText, settings.mumPetName));
+              notification.set(settings.notificationHour, settings.notificationMinute, petName.replace(notificationText, settings.petName));
             });
           } else {
             // Report notification disabled
@@ -118,7 +118,7 @@
           ]).then(function(translatedSubjects) {
             $scope.emailSubjects = [];
             for(var i=0; i<translatedSubjects.length; i++) {
-              $scope.emailSubjects.push({text: mumPetName.replace(translatedSubjects[i], settings.mumPetName)});
+              $scope.emailSubjects.push({text: petName.replace(translatedSubjects[i], settings.petName)});
             }
             $scope.emailSubject = angular.copy($scope.emailSubjects[settings.emailSubjectIndex]);
           });
@@ -131,22 +131,22 @@
             }
           }, true);
         }
-        // Initialise mum pet names dropdown data
-        function initMumPetNameDropdown() {
-          delete $scope.mumPetNames;
+        // Initialise pet names dropdown data
+        function initPetNameDropdown() {
+          delete $scope.petNames;
           // Only do pet name replacement on english version
           if(localisation.getLanguage() === 'en') {
-            var mumPetNames = mumPetName.getNames();
-            $scope.mumPetNames = [];
-            for(var p=0; p<mumPetNames.length; p++) {
-              var petNameSelectObject = {text:mumPetNames[p]};
-              $scope.mumPetNames.push(petNameSelectObject); 
-              if(mumPetNames[p] === settings.mumPetName) {
-                $scope.mumPetName = angular.copy(petNameSelectObject);
+            var petNames = petName.getNames();
+            $scope.petNames = [];
+            for(var p=0; p<petNames.length; p++) {
+              var petNameSelectObject = {text:petNames[p]};
+              $scope.petNames.push(petNameSelectObject); 
+              if(petNames[p] === settings.petName) {
+                $scope.petName = angular.copy(petNameSelectObject);
               }
             }
-            $scope.$watch('mumPetName', function(petNameSelectObject) {
-              settings.mumPetName = petNameSelectObject.text;
+            $scope.$watch('petName', function(petNameSelectObject) {
+              settings.petName = petNameSelectObject.text;
               // Re initialise email subject dropdown with pet name replacements
               initEmailSubjectDropdown();
             }, true);

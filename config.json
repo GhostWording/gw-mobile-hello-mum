@@ -33,8 +33,7 @@
       "notification": true, 
       "notificationHour": 16,
       "notificationMinute": 0,
-      "emailSubjectIndex": 0,
-      "mumPetName": "Mum"
+      "emailSubjectIndex": 0
     },
     "initialState": "home"
   },
@@ -45,6 +44,16 @@
   "showWelcomeTextTimes": 2,
   "imageHeightFactor": 0.55,
   "sendResultPopupShowTime": 1500,
+  "petNames": [
+    "Mum",
+    "Mummy",
+    "Mommy",
+    "Mom",
+    "Mam",
+    "Maa",
+    "Mama",
+    "Mother"
+  ],
   "swipeHint": {
     "image": {
       "startDelay": 4,
