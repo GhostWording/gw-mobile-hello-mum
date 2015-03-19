@@ -1,6 +1,5 @@
 {
   "en": {
-    "APP_TITLE": "Hello Mum",
     "CONNECTIVITY": "no internet connection",
     "SEND": "Send",
     "CANCEL": "Cancel",
@@ -60,7 +59,6 @@
     "NOTIFICATION": "Say hello to mum? (new kittens!)"
   },
   "fr": {
-    "APP_TITLE": "Comment vas-tu ?",
     "CONNECTIVITY": "pas de connexion internet",
     "SEND": "Envoyer",
     "CANCEL": "Annuler",
@@ -120,7 +118,6 @@
     "NOTIFICATION": "Un message pour maman? (nouveaux chatons!)"
   },
   "es": {
-    "APP_TITLE": "¡Hola Mamá!",
     "CONNECTIVITY": "sin conexión internet",
     "SEND": "Enviar",
     "CANCEL": "Cancelar",
