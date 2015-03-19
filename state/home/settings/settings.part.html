@@ -5,10 +5,10 @@
   </div>
   <ion-tabs class="tabs-light">
     <!-- mum tab -->
-    <ion-tab title="{{'SET_TAB_MUM' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
+    <ion-tab title="{{'SET_TAB_RECIPIENT' | translate}}" icon-on="ion-android-contact" icon-off="ion-android-contact">
       <!-- mum pet name dropdrown -->
       <div class="group" ng-if="mumPetNames">
-        <label class="inputLabel">{{'REFER_MUM' | translate}}</label>
+        <label class="inputLabel">{{'REFER_RECIPIENT' | translate}}</label>
         <div 
           ng-click="dropdownClick()"
           dropdown-select="mumPetNames" 
@@ -28,8 +28,8 @@
       </div>
       <!-- mum contact select -->
       <gw-mob-contact
-        emailaddresslabel="{{'MUM_EMAIL' | translate}}"
-        mobilenumberlabel="{{'MUM_MOB' | translate}}"
+        emailaddresslabel="{{'RECIPIENT_EMAIL' | translate}}"
+        mobilenumberlabel="{{'RECIPIENT_MOB' | translate}}"
         selectbuttontext="{{'SEL_CONT' | translate}}"
         emailaddress="settings.emailAddress"
         mobilenumber="settings.mobileNumber">
