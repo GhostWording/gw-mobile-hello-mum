@@ -6,7 +6,7 @@
   angular.module('petname').factory('petName', function(config, localisation) {
     var petName = {
       getNames: function() {
-        return config.petNames;
+        return config.petNames.slice(0);
       },
       replace: function(input, replacement) {
         // No pet name replacement in fr/es languages
