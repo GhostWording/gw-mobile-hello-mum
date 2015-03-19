@@ -3,19 +3,10 @@
   "use strict";
 
   // TODO: move into gw-common?
-  angular.module('petname').factory('petName', function(localisation) {
+  angular.module('petname').factory('petName', function(config, localisation) {
     var petName = {
       getNames: function() {
-        return [
-          'Mum',
-          'Mummy',
-          'Mommy',
-          'Mom',
-          'Mam',
-          'Maa',
-          'Mama',
-          'Mother'
-        ];
+        return config.petNames;
       },
       replace: function(input, replacement) {
         // No pet name replacement in fr/es languages
