@@ -26,7 +26,7 @@
               // Show connectivity text
               $rootScope.connectivity = false;
               // Wait a bit
-              return $timeout(function(){}, config.textFetchRetryDelay * 1000)
+              return $timeout(function(){}, config.text.fetchRetryDelay * 1000)
                 .then(function () {
                   // Retry text fetch
                   return fetchTexts();
@@ -39,7 +39,7 @@
         // NOTE: no welcome texts in spanish version
         if(localisation.getLanguage() !== 'es' &&
           (settings.welcomeTextsShownCount === undefined || 
-          settings.welcomeTextsShownCount < config.showWelcomeTextTimes)) {
+          settings.welcomeTextsShownCount < config.text.showWelcomeTextTimes)) {
             // Use welcome texts
             _useWelcome = true;
             // Increment welcome text show count
