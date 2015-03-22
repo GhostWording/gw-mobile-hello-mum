@@ -35,33 +35,45 @@
       "notificationMinute": 0,
       "emailSubjectIndex": 0
     },
-    "initialState": "home"
+    "initialState": "home",
+    "staticDomain": "gw-static.azurewebsites.net"
   },
-  "apiUrl": "http://api.cvd.io/",
-  "textFetchRetryDelay": 4,
-  "imagesPerDay": 8,
-  "textsPerDay": 8,
-  "showWelcomeTextTimes": 2,
-  "imageHeightFactor": 0.55,
-  "sendResultPopupShowTime": 1500,
-  "petNames": [
-    "Mum",
-    "Mummy",
-    "Mommy",
-    "Mom",
-    "Mam",
-    "Maa",
-    "Mama",
-    "Mother"
-  ],
-  "swipeHint": {
-    "image": {
+  "image": {
+    "fetchPerDay": 8,
+    "choosePerDay": 8,
+    "containerPaths": [
+      "/mum/kittens/small",
+      "/mum/puppies/small"
+    ],
+    "containerWeights": [
+      0.6,
+      0.4
+    ],
+    "heightFactor": 0.55,
+    "swipeHint": {
       "startDelay": 4,
-      "repeatDelay": 11 
-    },
-    "text": {
-      "startDelay": 7,
-      "repeatDelay": 11 
+      "repeatDelay": 11
     }
-  }
+  },
+  "text": {
+    "apiUrl": "http://api.cvd.io/",
+    "fetchRetryDelay": 4,
+    "choosePerDay": 8,
+    "showWelcomeTextTimes": 3,
+    "swipeHint": {
+      "startDelay": 7,
+      "repeatDelay": 11
+    },
+    "petNames": [
+      "Mum",
+      "Mummy",
+      "Mommy",
+      "Mom",
+      "Mam",
+      "Maa",
+      "Mama",
+      "Mother"
+    ]
+  },
+  "sendResultPopupShowTime": 1500
 }

@@ -7,14 +7,17 @@
       url: '/home',
       templateUrl: 'state/home/home.part.html',
       resolve: {
-        images: function($http, config, images) {
-          return images.choose(config.imagesPerDay);
+        images: function($http, config, mImages) {
+          return mImages.chooseFromRandomContainer(config.image.containerPaths, config.image.containerWeights, config.image.choosePerDay).catch(function(error) {
+            alert('failed to choose images: ' + error);
+            return [];
+          });
         },
         texts: function($rootScope, $q, $timeout, texts, config) {
           // Fetch texts (with retry)
           return texts.fetch().then(function() {
             // Pick (n) texts
-            return texts.choose(config.textsPerDay); 
+            return texts.choose(config.text.choosePerDay); 
           });
         }
       },
@@ -32,7 +35,7 @@
         $scope.deviceWidth = $window.deviceWidth;    
         $scope.deviceHeight = $window.deviceHeight;    
         // Calculate slide image height
-        $scope.slideImageHeight = $scope.deviceHeight * config.imageHeightFactor;
+        $scope.slideImageHeight = $scope.deviceHeight * config.image.heightFactor;
         // Put config on the scope
         $scope.config = config;
         // Put settings on the scope

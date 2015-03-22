@@ -4,8 +4,9 @@
 
   angular.module('app', [
     'mobile/app',
+    'mobile/images',
     'state/home',
-    'state/debug'
+    'state/debug',
   ]);
 
 }());

@@ -1,6 +1,7 @@
 <ion-view class="home" cache-view="false">
   <!-- popup injection point -->
   <div ui-view></div>
+  <img src="cdvfile://localhost/persistent/static/mum/puppies/small/iStock_000000362918_Medium.jpg"/>
   <!-- bottom bar -->
   <div class="bottomBar" ng-if="bottomBarVisible()">
     <!--TODO: Like button disabled for v1.0.0 - implement-->
@@ -32,8 +33,8 @@
       height="slideImageHeight"
       swipehintenabled="!settings.imageSliderSwiped"
       swipehintverticalposition="slideImageHeight/2-25"
-      swipehintstartdelay="config.swipeHint.image.startDelay"
-      swipehintrepeatdelay="config.swipeHint.image.repeatDelay">
+      swipehintstartdelay="config.image.swipeHint.startDelay"
+      swipehintrepeatdelay="config.image.swipeHint.repeatDelay">
       <!-- slide -->
       <gw-mob-slide>
         <div class="imageContainer" style="height:{{slideImageHeight}}px">
@@ -64,8 +65,8 @@
       width="deviceWidth"
       swipehintenabled="!settings.textSliderSwiped"
       swipehintverticalposition="60"
-      swipehintstartdelay="config.swipeHint.text.startDelay"
-      swipehintrepeatdelay="config.swipeHint.text.repeatDelay">
+      swipehintstartdelay="config.text.swipeHint.startDelay"
+      swipehintrepeatdelay="config.text.swipeHint.repeatDelay">
       <!-- slide -->
       <gw-mob-slide>
        <!-- text -->
