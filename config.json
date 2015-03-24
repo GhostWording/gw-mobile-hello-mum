@@ -33,14 +33,15 @@
       "notification": true, 
       "notificationHour": 16,
       "notificationMinute": 0,
-      "emailSubjectIndex": 0
+      "emailSubjectIndex": 0,
+      "welcomeTextShownTimes": 0
     },
     "initialState": "home",
     "staticDomain": "gw-static.azurewebsites.net"
   },
   "image": {
     "fetchPerDay": 8,
-    "choosePerDay": 8,
+    "showPerDay": 8,
     "containerPaths": [
       "/mum/kittens/small",
       "/mum/puppies/small"
@@ -58,12 +59,15 @@
   "text": {
     "apiUrl": "http://api.cvd.io/",
     "fetchRetryDelay": 4,
-    "choosePerDay": 8,
-    "showWelcomeTextTimes": 3,
+    "showPerDay": 8,
+    "welcomeTextShowTimes": 3,
     "swipeHint": {
       "startDelay": 7,
       "repeatDelay": 11
     },
+    "area": "HelloMum",
+    "relationTypeId": "64C63D",
+    "recipientGender": "F",
     "petNames": [
       "Mum",
       "Mummy",

@@ -11,6 +11,7 @@
     'mobile/localisation',
     'mobile/contact',
     'mobile/images',
+    'mobile/loading',
     'mobile/send/sms',
     'mobile/send/email',
     'state/home/settings',

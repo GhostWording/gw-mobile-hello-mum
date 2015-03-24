@@ -73,13 +73,13 @@
         <div class="text">
           <!-- title -->
           <div class="titleContainer">
-            <div class="title" ng-show="textIsThought(item.text)">{{'OTD_THOUGHT' | translate}}</div>
-            <div class="title" ng-show="textIsJoke(item.text)">{{'OTD_JOKE' | translate}}</div>
+            <div class="title" ng-show="textIsThought(item)">{{'OTD_THOUGHT' | translate}}</div>
+            <div class="title" ng-show="textIsJoke(item)">{{'OTD_JOKE' | translate}}</div>
           </div>
           <!-- content -->
-          <span ng-bind-html="formatTextForDisplay(item.text.Content)" style="white-space: pre-wrap"></span>
+          <span ng-bind-html="formatTextForDisplay(item.Content)" style="white-space: pre-wrap"></span>
           <!-- author -->
-          <div class="author" ng-show="textIsQuote(item.text)">- {{item.text.Author}}</div>
+          <div class="author" ng-show="textIsQuote(item)">- {{item.Author}}</div>
         </div>
       </gw-mob-slide>
       <!-- eof slide -->
