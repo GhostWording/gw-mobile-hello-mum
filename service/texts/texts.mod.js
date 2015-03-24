@@ -3,9 +3,11 @@
   "use strict";
 
   angular.module('texts', [
-    'common/i18n',
+    'common/clientService/helloMumClientSvc',
+    'common/textSelection/welcomeGroupTextSelectionSvc',
+    'common/textSelection/getTextsForRecipientSvc',
+    'common/intentions/intentionPonderationSvc',
     'common/services/helperSvc',
-    'common/helloMum',
     'mobile/localisation',
     'mobile/settings',
     'mobile/config',
