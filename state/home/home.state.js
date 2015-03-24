@@ -7,17 +7,37 @@
       url: '/home',
       templateUrl: 'state/home/home.part.html',
       resolve: {
+        // Choose images (they will be injected as "images" in the controller below)
         images: function($http, config, mImages) {
-          return mImages.chooseFromRandomContainer(config.image.containerPaths, config.image.containerWeights, config.image.choosePerDay).catch(function(error) {
+          // Choose images
+          return mImages.chooseFromRandomContainer(config.image.containerPaths, config.image.containerWeights, config.image.showPerDay).catch(function(error) {
+            // TODO: remove, just added for the clone test (because it will happen!)
             alert('failed to choose images: ' + error);
             return [];
           });
         },
-        texts: function($rootScope, $q, $timeout, texts, config) {
-          // Fetch texts (with retry)
-          return texts.fetch().then(function() {
-            // Pick (n) texts
-            return texts.choose(config.text.choosePerDay); 
+        // Fetch and choose texts (they will be injected as "texts" in the controller below)
+        texts: function(texts, config, settings, loading, localisation) {
+          // Show the loading overlay and retry text fetch if no connectivity
+          return loading.showAndRetry(config.text.fetchRetryDelay, function() {
+            // If welcome texts not shown enough times (and language not spanish)
+            if(settings.welcomeTextShownTimes < config.text.welcomeTextShowTimes && localisation.getLanguage() !== 'es') {
+              // Fetch welcome texts
+              return texts.fetchWelcome().then(function(fetchedTexts) {
+                // Increment welcome text shown count
+                settings.welcomeTextShownTimes ++;
+                // Fetch all texts in the background
+                texts.fetchAll();
+                // Choose welcome texts
+                return texts.chooseWelcome(fetchedTexts, config.text.showPerDay);
+              });
+            } else {
+              // Fetch all texts
+              return texts.fetchAll().then(function(fetchedTextLists) {
+                // Choose texts
+                return texts.chooseAll(fetchedTextLists, config.text.showPerDay);
+              });
+            }
           });
         }
       },
@@ -55,7 +75,7 @@
           // Disable text swipe hints
           settings.textSliderSwiped = true;
           // Report Text Swipe
-          analytics.reportEvent('Text', $scope.textSlider.currentText.text.TextId, 'Home', 'Swipe'); 
+          analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'Home', 'Swipe'); 
         };
         // Image slide swiped
         $scope.imageSliderSwiped = function() {
@@ -109,12 +129,12 @@
           sendSMS.setMobileNumber(settings.mobileNumber);
           sendSMS.send(prepareContentForSending()).then(function() {
             // Report SMS send
-            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssend');
+            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'smssend');
             // Go to success result
             $state.go('home.sendresult', {success: true});
           }, function() {
             // Report SMS send fail
-            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'smssendfail');
+            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'smssendfail');
             // Go to fail result
             $state.go('home.sendresult', {success: false});
           }); 
@@ -128,7 +148,7 @@
             sendEmail.setAttachmentPath($scope.currentImage);
             sendEmail.send(petName.replace(emailSubject, settings.petName), prepareContentForSending());
             // Report email send
-            analytics.reportEvent('Text', $scope.currentText.text.TextId, 'TextSelect', 'emailsend');
+            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'emailsend');
           });
         };    
         // Send via Facebook
@@ -174,7 +194,7 @@
         // Prepare text content for sending 
         function prepareContentForSending() {
           // Get current text
-          var text = $scope.textSlider.currentText.text;
+          var text = $scope.textSlider.currentText;
           // Get current text content
           var content = text.Content;
           // Add of the day labels
@@ -191,7 +211,7 @@
         function replacePetNames(texts, replacement) {
           if(texts) {
             for(var i=0; i<texts.length; i++) {
-              texts[i].text.Content = petName.replace(texts[i].text.Content, replacement); 
+              texts[i].Content = petName.replace(texts[i].Content, replacement); 
             }
           }
         }
