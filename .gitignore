@@ -15,5 +15,6 @@ package.json
 index.html
 .bowerrc
 .DS_Store
+*.idea
 *.swp
 *.swo
