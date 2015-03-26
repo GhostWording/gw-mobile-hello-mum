@@ -16,7 +16,7 @@ package.json
 index.html
 .bowerrc
 .DS_Store
-.npm-debug.log
+npm-debug.log
 *.idea
 *.swp
 *.swo
