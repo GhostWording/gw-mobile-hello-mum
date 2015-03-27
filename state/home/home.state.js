@@ -44,7 +44,7 @@
       controller: function(
         /* ANG */ $scope, $window, $timeout, $interval, 
         /* 3RD */ $state, $ionicScrollDelegate, $translate, 
-        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail,
+        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail, mImages,
         /* GWC */ helperSvc, 
         /* APP */ petName, 
         /* RES */ images, texts) {
@@ -123,18 +123,23 @@
           // Pick send method
           $state.go('home.sendmethod');
         };
+        // Get an image url from an image path
+        $scope.getImageUrl = function(imagePath) {
+          if(!imagePath) return;
+          return mImages.getImageUrl(imagePath);
+        };
         // Send via SMS
         $scope.sendSMS = function() {
           // Send the SMS
           sendSMS.setMobileNumber(settings.mobileNumber);
           sendSMS.send(prepareContentForSending()).then(function() {
             // Report SMS send
-            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'smssend');
+            analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'TextSelect', 'smssend');
             // Go to success result
             $state.go('home.sendresult', {success: true});
           }, function() {
             // Report SMS send fail
-            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'smssendfail');
+            analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'TextSelect', 'smssendfail');
             // Go to fail result
             $state.go('home.sendresult', {success: false});
           }); 
@@ -145,10 +150,10 @@
           $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
             // Send the Email
             sendEmail.setEmailAddress(settings.emailAddress);
-            sendEmail.setAttachmentPath($scope.currentImage);
+            sendEmail.setAttachmentPath(mImages.getImageDevicePath($scope.imageSlider.currentImage));
             sendEmail.send(petName.replace(emailSubject, settings.petName), prepareContentForSending());
             // Report email send
-            analytics.reportEvent('Text', $scope.currentText.TextId, 'TextSelect', 'emailsend');
+            analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'TextSelect', 'emailsend');
           });
         };    
         // Send via Facebook
