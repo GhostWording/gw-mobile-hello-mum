@@ -7,17 +7,17 @@
       url: '/home',
       templateUrl: 'state/home/home.part.html',
       resolve: {
-        // Choose images (they will be injected as "images" in the controller below)
-        images: function($http, config, mImages) {
+        // Choose images (they will be injected as "chosenImages" in the controller below)
+        chosenImages: function($http, config, images) {
           // Choose images
-          return mImages.chooseFromRandomContainer(config.image.containerPaths, config.image.containerWeights, config.image.showPerDay).catch(function(error) {
+          return images.chooseFromRandomContainer(config.image.containerPaths, config.image.containerWeights, config.image.showPerDay).catch(function(error) {
             // TODO: remove, just added for the clone test (because it will happen!)
             alert('failed to choose images: ' + error);
             return [];
           });
         },
-        // Fetch and choose texts (they will be injected as "texts" in the controller below)
-        texts: function(texts, config, settings, loading, localisation) {
+        // Fetch and choose texts (they will be injected as "chosenTexts" in the controller below)
+        chosenTexts: function(texts, config, settings, loading, localisation) {
           // Show the loading overlay and retry text fetch if no connectivity
           return loading.showAndRetry(config.text.fetchRetryDelay, function() {
             // If welcome texts not shown enough times (and language not spanish)
@@ -44,10 +44,10 @@
       controller: function(
         /* ANG */ $scope, $window, $timeout, $interval, 
         /* 3RD */ $state, $ionicScrollDelegate, $translate, 
-        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail, mImages,
+        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail, images,
         /* GWC */ helperSvc, 
         /* APP */ petName, 
-        /* RES */ images, texts) {
+        /* RES */ chosenImages, chosenTexts) {
         // Report home page init
         analytics.reportEvent('Init', 'Page', 'Home', 'Init');
         // Get device width and height
@@ -56,14 +56,14 @@
         $scope.deviceHeight = $window.deviceHeight;    
         // Calculate slide image height
         $scope.slideImageHeight = $scope.deviceHeight * config.image.heightFactor;
-        // Put config on the scope
+        // Put config service on the scope
         $scope.config = config;
-        // Put settings on the scope
+        // Put settings service on the scope
         $scope.settings = settings;
-        // Put images on the scope
-        $scope.images = images;
-        // Put texts on the scope
-        $scope.texts = texts;
+        // Put chosen images on the scope
+        $scope.chosenImages = chosenImages;
+        // Put chosen texts on the scope
+        $scope.chosenTexts = chosenTexts;
         // Get day of the week
         $scope.dayOfTheWeek = (new Date()).getDay();
         // Slider states
@@ -86,7 +86,7 @@
         };
         // Watch pet name setting, and re-replace on change
         $scope.$watch('settings.petName', function() {
-          replacePetNames($scope.texts, settings.petName);
+          replacePetNames($scope.chosenTexts, settings.petName);
         });
         // On app return to foreground
         document.addEventListener("resume", appResume, false);
@@ -126,7 +126,7 @@
         // Get an image url from an image path
         $scope.getImageUrl = function(imagePath) {
           if(!imagePath) return;
-          return mImages.getImageUrl(imagePath);
+          return images.getImageUrl(imagePath);
         };
         // Send via SMS
         $scope.sendSMS = function() {
@@ -150,7 +150,7 @@
           $translate('EMAIL_SUBJECT_' + settings.emailSubjectIndex).then(function(emailSubject) {
             // Send the Email
             sendEmail.setEmailAddress(settings.emailAddress);
-            sendEmail.setAttachmentPath(mImages.getImageDevicePath($scope.imageSlider.currentImage));
+            sendEmail.setAttachmentPath(images.getImageDevicePath($scope.imageSlider.currentImage));
             sendEmail.send(petName.replace(emailSubject, settings.petName), prepareContentForSending());
             // Report email send
             analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'TextSelect', 'emailsend');

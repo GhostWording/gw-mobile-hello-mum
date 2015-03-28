@@ -6,7 +6,7 @@
     .run(function(
       /* ANG */ $document,
       /* 3RD */ $ionicPlatform, $translate, 
-      /* GMC */ config, settings, notification, localisation, mImages,
+      /* GMC */ config, settings, notification, localisation, images,
       /* APP */ petName) {
       $ionicPlatform.ready(function() {
         // If pet name hasn't been chosen, use the first in the list
@@ -24,7 +24,7 @@
         // On app return to foreground
         $document.bind("resume", function() {
           // Fetch a few more remote images into local containers (round robin)
-          mImages.fetchFromEachContainer(config.image.containerPaths, config.image.fetchPerDay);
+          images.fetchFromEachContainer(config.image.containerPaths, config.image.fetchPerDay);
         });
         // If the language changes, re-show the welcome texts
         localisation.onLanguageChange(function() {
