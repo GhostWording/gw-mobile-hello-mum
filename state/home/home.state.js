@@ -44,7 +44,7 @@
       controller: function(
         /* ANG */ $scope, $window, $timeout, $interval, 
         /* 3RD */ $state, $ionicScrollDelegate, $translate, 
-        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail, images,
+        /* GMC */ config, settings, analytics, localisation, sendSMS, sendEmail, sendFacebook, images,
         /* GWC */ helperSvc, 
         /* APP */ petName, 
         /* RES */ chosenImages, chosenTexts) {
@@ -120,13 +120,19 @@
         };
         // Send button clicked
         $scope.sendButtonClick = function() {
+          // See if text is appropriate for facebook
+          var text = $scope.textSlider.currentText;
+          var appropriateForFacebook = 
+            $scope.textIsQuote(text) ||
+            $scope.textIsThought(text) ||
+            $scope.textIsJoke(text);
           // Pick send method
-          $state.go('home.sendmethod');
+          $state.go('home.sendmethod', {smsEnabled: true, emailEnabled: true, facebookEnabled: appropriateForFacebook});
         };
-        // Get an image url from an image path
-        $scope.getImageUrl = function(imagePath) {
+        // Get a local image url from an image path
+        $scope.getImageLocalUrl = function(imagePath) {
           if(!imagePath) return;
-          return images.getImageUrl(imagePath);
+          return images.getImageLocalUrl(imagePath);
         };
         // Send via SMS
         $scope.sendSMS = function() {
@@ -158,8 +164,21 @@
         };    
         // Send via Facebook
         $scope.sendFacebook = function() {
-          // TODO: implement
-          alert('sending "' + prepareContentForSending() + '" via Facebook');
+          sendFacebook.send(
+            prepareContentForSending(), 
+            images.getImageRemoteUrl($scope.imageSlider.currentImage), 
+            config.send.facebook.caption, 
+            config.send.facebook.description, 
+            config.send.facebook.useDialog).then(function(response) {
+            // Report facebook send success
+            analytics.reportEvent('Text', $scope.textSlider.currentText.TextId, 'TextSelect', 'facebooksend');
+            // Go to success result
+            $state.go('home.sendresult', {success: true});
+          }, function(error) {
+            // Go to error result
+            $state.go('home.sendresult', {success: false});
+            // TODO: add analytic
+          });
         };
         // Settings button clicked
         $scope.settingsButtonClick = function() {

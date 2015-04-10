@@ -14,6 +14,7 @@
     'mobile/loading',
     'mobile/send/sms',
     'mobile/send/email',
+    'mobile/send/facebook',
     'state/home/settings',
     'state/home/sendmethod',
     'state/home/smswarn',
