@@ -13,7 +13,7 @@
         $timeout(function() {
           // Go home
           $state.go('home');  
-        }, config.sendResultPopupShowTime);
+        }, config.send.sendResultPopupShowTime);
       }
     });
   });
