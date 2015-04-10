@@ -42,6 +42,13 @@ git fetch origin
 git reset --hard origin/master
 ```
 
+Install Facebook Plugin
+-----------------------
+
+```sh
+cordova plugin add https://github.com/Wizcorp/phonegap-facebook-plugin.git --variable APP_ID="461147764033404" --variable APP_NAME="HelloMum"
+```
+
 Install 3rd Party Libraries
 ---------------------------
 
