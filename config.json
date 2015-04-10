@@ -79,5 +79,12 @@
       "Mother"
     ]
   },
-  "sendResultPopupShowTime": 1500
+  "send": {
+    "facebook": {
+      "useDialog": false,
+      "caption": " ",
+      "description": "www.hellomum.com"
+    },
+    "sendResultPopupShowTime": 1500
+  }
 }
